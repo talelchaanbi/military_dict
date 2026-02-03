@@ -81,6 +81,8 @@ def process_file(conn: sqlite3.Connection, path: Path) -> None:
     except ValueError:
         return
 
+    _clear_term_records(conn, str(path))
+
     if section_title:
         conn.execute(
             "INSERT OR IGNORE INTO sections (section_number, title, section_type) VALUES (?, ?, ?)",
@@ -98,6 +100,16 @@ def process_file(conn: sqlite3.Connection, path: Path) -> None:
             (str(path), section_number, section_title, item_number, term, description, abbreviation),
         )
     conn.commit()
+
+
+def _clear_term_records(conn: sqlite3.Connection, source_path: str) -> None:
+    cur = conn.execute("SELECT id FROM terms WHERE source_path = ?", (source_path,))
+    term_ids = [row[0] for row in cur.fetchall()]
+    if term_ids:
+        placeholders = ",".join("?" for _ in term_ids)
+        conn.execute(f"DELETE FROM term_documents WHERE term_id IN ({placeholders})", term_ids)
+        conn.execute("DELETE FROM terms WHERE source_path = ?", (source_path,))
+        conn.commit()
 
 
 def main() -> None:

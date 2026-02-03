@@ -95,6 +95,7 @@ def insert_document(
     text: str,
     section_number: Optional[int],
 ) -> int:
+    _clear_document_records(conn, source_path)
     if section_number is not None:
         conn.execute(
             "INSERT OR IGNORE INTO sections (section_number, title, section_type) VALUES (?, ?, ?)",
@@ -109,6 +110,17 @@ def insert_document(
     )
     conn.commit()
     return int(cur.lastrowid)
+
+
+def _clear_document_records(conn: sqlite3.Connection, source_path: str) -> None:
+    cur = conn.execute("SELECT id FROM documents WHERE source_path = ?", (source_path,))
+    doc_ids = [row[0] for row in cur.fetchall()]
+    if doc_ids:
+        placeholders = ",".join("?" for _ in doc_ids)
+        conn.execute(f"DELETE FROM images WHERE document_id IN ({placeholders})", doc_ids)
+        conn.execute(f"DELETE FROM term_documents WHERE document_id IN ({placeholders})", doc_ids)
+        conn.execute("DELETE FROM documents WHERE source_path = ?", (source_path,))
+        conn.commit()
 
 
 def insert_image(
