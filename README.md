@@ -135,5 +135,25 @@ Aucune compilation n’est nécessaire.
 3. Utiliser la recherche dans les sections 1–11.
 4. Consulter ou télécharger les documents dans les sections 12–13.
 
+## 9) Version "application moderne" (DB + serveur)
+Le dépôt contient maintenant un petit serveur web (FastAPI) qui lit la base SQLite `data/app_data.sqlite` et affiche une interface moderne RTL.
+
+### Installer les dépendances
+```bash
+./.venv/bin/python -m pip install -r requirements.txt
+```
+
+### (Re)générer la base de données depuis les fichiers existants
+```bash
+./.venv/bin/python tools/build_database.py
+```
+
+### Lancer le serveur
+```bash
+./.venv/bin/python -m uvicorn server.app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Puis ouvrir: http://127.0.0.1:8000
+
 ## 8) Conclusion
 Ce projet est un **portail de consultation de terminologie militaire** structuré en 13 sections, combinant **données tabulaires** et **documents officiels**. Il s’agit d’une solution **statique et autonome**, pratique pour un usage local ou en intranet, focalisée sur l’accessibilité du contenu en langue arabe.

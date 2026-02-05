@@ -1,0 +1,446 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "terminal-sanity",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"echo hi > /home/mdn/Desktop/military_dict/.terminal_test_task"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:import-sqlite",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run import:sqlite"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:check-docs-html",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node - <<'NODE'\nconst { PrismaClient } = require('@prisma/client');\nconst prisma = new PrismaClient();\n(async () => {\n  const docs = await prisma.document.findMany({\n    where: { code: { in: ['dep12','dep13'] } },\n    select: { code: true, contentHtml: true, updatedAt: true }\n  });\n  for (const d of docs) {\n    const html = d.contentHtml || '';\n    console.log(d.code, 'len', html.length, 'updatedAt', d.updatedAt.toISOString());\n    console.log('  contains data:image?', html.includes('data:image'));\n    console.log('  contains /uploads/assets/?', html.includes('/uploads/assets/'));\n  }\n  await prisma.$disconnect();\n})().catch(async (e)=>{ console.error(e); await prisma.$disconnect(); process.exit(1);});\nNODE"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:check-docs-html2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node -e \"const {PrismaClient}=require('@prisma/client'); const prisma=new PrismaClient(); (async()=>{ const docs=await prisma.document.findMany({ where:{code:{in:['dep12','dep13']}}, select:{code:true,contentHtml:true,updatedAt:true} }); for (const d of docs){ const html=d.contentHtml||''; console.log(d.code,'len',html.length,'updatedAt',d.updatedAt.toISOString()); console.log('  data:image?',html.includes('data:image'),'uploads?',html.includes('/uploads/assets/')); } await prisma.$disconnect(); })().catch(async(e)=>{ console.error(e); await prisma.$disconnect(); process.exit(1); });\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:check-docs-html-file",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node scripts/check-docs-html.cjs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:inspect-dep13",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node scripts/inspect-doc.cjs dep13 | head -n 80"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:inspect-dep13",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node scripts/inspect-doc.cjs dep13 | head -n 120"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run export:docs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:check-doc-assets",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node scripts/check-doc-assets.cjs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run export:docs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:build",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run build"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs3",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run export:docs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs4",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && node -p \"'running export at '+new Date().toISOString()\" && npm run export:docs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs-clean",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run export:docs"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint3",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:eslint-unix",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npx eslint . -f unix"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint-fix",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:eslint-stylish",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npx eslint ."
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint-now",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint-now2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:lint-now2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npm run lint"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:eslint-check-one",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd /home/mdn/Desktop/military_dict/web && npx eslint scripts/check-docs-html.cjs -f compact"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-xml",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail; cd /home/mdn/Desktop/military_dict; DOC=web/public/uploads/docs/dep12.docx; echo \"DOC size:\"; ls -lh \"$DOC\"; echo; echo \"First 40 entries:\"; unzip -l \"$DOC\" | head -n 60; echo; echo \"Needle hits (document.xml):\"; for needle in \"مسار التسرب\" \"منطقة الوصول\" \"الوصول براً\"; do echo \"--- $needle\"; unzip -p \"$DOC\" word/document.xml | LC_ALL=C grep -n \"$needle\" | head -n 20 || true; done"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-table-merge",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 - <<'PY'\nimport re, zipfile\n\ndocx_path='web/public/uploads/docs/dep12.docx'\nneedles=['مسار التسرب','منطقة الوصول','الوصول براً','منطقة الوصول براً']\nwith zipfile.ZipFile(docx_path) as z:\n    xml=z.read('word/document.xml').decode('utf-8','ignore')\n\nrows=re.split(r'(?=<w:tr\\b)', xml)\n\ndef cell_info(cell_xml: str):\n    texts=re.findall(r'<w:t[^>]*>(.*?)</w:t>', cell_xml)\n    text=''.join(texts)\n    text=re.sub(r'\\s+',' ',text).strip()\n\n    m=re.search(r'<w:vMerge(?:\\s+w:val=\"([^\"]*)\")?\\s*/>', cell_xml)\n    if not m:\n        m=re.search(r'<w:vMerge(?:\\s+w:val=\"([^\"]*)\")?\\s*>', cell_xml)\n    vmerge = m.group(1) if m else None\n\n    g=re.search(r'<w:gridSpan\\s+w:val=\"(\\d+)\"\\s*/>', cell_xml)\n    gridspan = int(g.group(1)) if g else 1\n\n    return text, vmerge, gridspan\n\nhits=[]\nfor idx, row in enumerate(rows):\n    if not row.startswith('<w:tr'):\n        continue\n    if not any(n in row for n in needles):\n        continue\n    hits.append(idx)\n\nprint(f'Found {len(hits)} matching <w:tr> rows')\nfor idx in hits[:20]:\n    row=rows[idx]\n    cells=re.split(r'(?=<w:tc\\b)', row)\n    infos=[]\n    for c in cells:\n        if not c.startswith('<w:tc'):\n            continue\n        text,vmerge,gridspan=cell_info(c)\n        infos.append((text,vmerge,gridspan))\n\n    print('\\n=== ROW', idx, '===')\n    for i,(text,vmerge,gridspan) in enumerate(infos[:12]):\n        t=text\n        if len(t)>120:\n            t=t[:117]+'...'\n        print(f'[{i}] gridSpan={gridspan} vMerge={vmerge} text={t!r}')\n\n    for off in (1,2):\n        if idx+off>=len(rows):\n            continue\n        r=rows[idx+off]\n        if not r.startswith('<w:tr'):\n            continue\n        cells2=re.split(r'(?=<w:tc\\b)', r)\n        texts=[]\n        for c in cells2:\n            if not c.startswith('<w:tc'):\n                continue\n            text,_,_=cell_info(c)\n            if text:\n                texts.append(text)\n        preview=' | '.join(texts)\n        preview=re.sub(r'\\s+',' ',preview).strip()\n        if len(preview)>160:\n            preview=preview[:157]+'...'\n        print(f'  next+{off}: {preview!r}')\nPY",
+				""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-table-merge2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 - <<'PY'\nimport re, zipfile\n\ndocx_path = 'web/public/uploads/docs/dep12.docx'\nneedles = ['مسار التسرب', 'منطقة الوصول', 'الوصول براً', 'منطقة الوصول براً']\n\nwith zipfile.ZipFile(docx_path) as z:\n    xml = z.read('word/document.xml').decode('utf-8', 'ignore')\n\nrows = re.split(r'(?=<w:tr\\b)', xml)\n\ndef cell_info(cell_xml: str):\n    texts = re.findall(r'<w:t[^>]*>(.*?)</w:t>', cell_xml)\n    text = ''.join(texts)\n    text = re.sub(r'\\s+', ' ', text).strip()\n\n    m = re.search(r'<w:vMerge(?:\\s+w:val=\"([^\"]*)\")?\\s*/>', cell_xml)\n    if not m:\n        m = re.search(r'<w:vMerge(?:\\s+w:val=\"([^\"]*)\")?\\s*>', cell_xml)\n    vmerge = m.group(1) if m else None\n\n    g = re.search(r'<w:gridSpan\\s+w:val=\"(\\d+)\"\\s*/>', cell_xml)\n    gridspan = int(g.group(1)) if g else 1\n\n    return text, vmerge, gridspan\n\nhits = []\nfor idx, row in enumerate(rows):\n    if not row.startswith('<w:tr'):\n        continue\n    if any(n in row for n in needles):\n        hits.append(idx)\n\nprint(f'Found {len(hits)} matching <w:tr> rows')\nfor idx in hits[:30]:\n    row = rows[idx]\n    cells = re.split(r'(?=<w:tc\\b)', row)\n    infos = []\n    for c in cells:\n        if not c.startswith('<w:tc'):\n            continue\n        text, vmerge, gridspan = cell_info(c)\n        infos.append((text, vmerge, gridspan))\n\n    print(f'\\n=== ROW {idx} ===')\n    for i, (text, vmerge, gridspan) in enumerate(infos[:12]):\n        t = text\n        if len(t) > 120:\n            t = t[:117] + '...'\n        print(f'[{i}] gridSpan={gridspan} vMerge={vmerge} text={t!r}')\n\n    for off in (1, 2):\n        if idx + off >= len(rows):\n            continue\n        r = rows[idx + off]\n        if not r.startswith('<w:tr'):\n            continue\n        cells2 = re.split(r'(?=<w:tc\\b)', r)\n        texts = []\n        for c in cells2:\n            if not c.startswith('<w:tc'):\n                continue\n            text, _, _ = cell_info(c)\n            if text:\n                texts.append(text)\n        preview = ' | '.join(texts)\n        preview = re.sub(r'\\s+', ' ', preview).strip()\n        if len(preview) > 160:\n            preview = preview[:157] + '...'\n        print(f'  next+{off}: {preview!r}')\nPY\n"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" \"منطقة الوصول\" --max-hits 10 --context-rows 3 | head -n 220"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge3",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" \"منطقة الوصول\" --max-hits 8 --context-rows 4 | sed -n '1,220p'"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge-item6",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" \"منطقة الوصول براً\" \"مسار التسرب جواً\" --max-hits 20 --context-rows 6 | sed -n '1,260p'"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge-msar",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" --max-hits 5 --context-rows 6"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge-item6-small",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" --max-hits 3 --context-rows 6 --max-cells 6 --hide-empty-cells"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep12-docx-merge-item6-cells",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep12.docx --needles \"مسار التسرب\" --max-hits 1 --context-rows 4 --max-cells 8"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs-tail",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict/web\nLOG=/tmp/export-docs.log\nrm -f \"$LOG\"\nset +e\nnpm run export:docs >\"$LOG\" 2>&1\nCODE=$?\nset -e\necho \"exit=$CODE\"\necho \"--- last 200 lines ---\"\ntail -n 200 \"$LOG\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs-log-snippet",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict/web\nLOG=/tmp/export-docs.log\nrm -f \"$LOG\"\nset +e\nnpm run export:docs >\"$LOG\" 2>&1\nCODE=$?\nset -e\necho \"exit=$CODE\"\necho \"--- head ---\"\nhead -n 120 \"$LOG\"\necho \"--- tail ---\"\ntail -n 120 \"$LOG\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:export-docs-logfile",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict/web\nmkdir -p .tmp\nLOG=.tmp/export-docs.log\nrm -f \"$LOG\"\nset +e\nnpm run export:docs >\"$LOG\" 2>&1\nCODE=$?\nset -e\necho \"$CODE\" > .tmp/export-docs.exit\nwc -l \"$LOG\" | cat"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "node:check-file-global",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"node -p \"process.version + ' File=' + (typeof File) + ' Blob=' + (typeof Blob)\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "node:check-file-global2",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"node -p \"process.version + \\\" File=\\\" + (typeof globalThis.File) + \\\" Blob=\\\" + (typeof globalThis.Blob)\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep13-docx-vmerge-scan",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 - <<'PY'\nimport re, zipfile\np='web/public/uploads/docs/dep13.docx'\nwith zipfile.ZipFile(p) as z:\n    xml=z.read('word/document.xml').decode('utf-8','ignore')\nprint('docxml_len', len(xml))\nprint('vMerge tags', len(re.findall(r'<w:vMerge\\b', xml)))\nprint('gridSpan tags', len(re.findall(r'<w:gridSpan\\b', xml)))\n# show a few nearby snippets to understand usage\nfor pat in [r'<w:vMerge[^>]*>', r'<w:gridSpan[^>]*>']:\n    m=re.search(pat, xml)\n    if not m:\n        continue\n    s=max(0, m.start()-200)\n    e=min(len(xml), m.start()+200)\n    snippet=xml[s:e]\n    snippet=snippet.replace('<','\\n<')\n    print('\\nFirst', pat, 'snippet:')\n    print(snippet[:800])\nPY"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep13-docx-vmerge-count",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 -c 'import re,zipfile; xml=zipfile.ZipFile(\"web/public/uploads/docs/dep13.docx\").read(\"word/document.xml\").decode(\"utf-8\",\"ignore\"); print(\"len\",len(xml)); print(\"vMerge\",len(re.findall(r\"<w:vMerge\\\\b\",xml))); print(\"gridSpan\",len(re.findall(r\"<w:gridSpan\\\\b\",xml)))'"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep13-docx-rows-air",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep13.docx --needles \"قوات جوية\" \"طيران الجيش\" \"القوات المحمولة\" --max-hits 6 --context-rows 3 --max-cells 8 --hide-empty-cells"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "inspect:dep13-docx-rows-qawat",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict\npython3 tools/inspect_docx_table_merge.py web/public/uploads/docs/dep13.docx --needles \"قوات جوية\" --max-hits 6 --context-rows 5 --max-cells 10 --hide-empty-cells"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:analyze-dep13-generated",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict/web\nnode scripts/analyze-generated-doc.cjs public/generated/docs/dep13.html | head -n 120"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "web:inspect-dep13-table10",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"set -euo pipefail\ncd /home/mdn/Desktop/military_dict/web\n/home/mdn/.nvm/versions/node/v20.19.6/bin/node scripts/inspect-generated-table.cjs public/generated/docs/dep13.html 10 12"
+			],
+			"isBackground": false
+		}
+	]
+}

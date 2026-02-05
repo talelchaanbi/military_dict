@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}الرئيسية - قاموس المصطلحات العسكرية{% endblock %}
+{% block content %}
+  <div class="row g-3 align-items-stretch">
+    <div class="col-12 col-lg-5">
+      <div class="card p-4 h-100">
+        <h1 class="h4 mb-2">قاموس المصطلحات العسكرية</h1>
+        <div class="kpi mb-3">واجهة حديثة + قاعدة بيانات بدلاً من ملفات HTML ثابتة</div>
+        <div class="d-grid gap-2">
+          <a class="btn btn-brand" href="/search">بحث شامل</a>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-light w-50" href="/docs/12">الوثائق 12</a>
+            <a class="btn btn-outline-light w-50" href="/docs/13">الوثائق 13</a>
+          </div>
+        </div>
+        <hr class="border-light opacity-25" />
+        <div class="kpi">المحتوى الحالي في DB:</div>
+        <ul class="mb-0">
+          <li>الأقسام: {{ sections|length }}</li>
+          <li>مصطلحات: {{ sections|map(attribute='terms_count')|sum }}</li>
+          <li>وثائق: {{ sections|map(attribute='documents_count')|sum }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-7">
+      <div class="row g-3">
+        {% for s in sections %}
+          <div class="col-12">
+            <div class="card p-3">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="badge badge-soft">قسم {{ s.section_number }}</span>
+                    <span class="kpi">{{ s.section_type }}</span>
+                  </div>
+                  <div class="fw-bold">{{ s.title }}</div>
+                  <div class="kpi mt-1">
+                    {% if s.section_type == 'terms' %}
+                      {{ s.terms_count }} مصطلح
+                    {% else %}
+                      {{ s.documents_count }} وثيقة
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="text-nowrap">
+                  {% if s.section_type == 'terms' %}
+                    <a class="btn btn-outline-light" href="/sections/{{ s.section_number }}">فتح</a>
+                  {% else %}
+                    <a class="btn btn-outline-light" href="/docs/{{ s.section_number }}">فتح</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}قسم {{ section.section_number }} - {{ section.title }}{% endblock %}
+{% block content %}
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+    <div>
+      <div class="kpi">قسم {{ section.section_number }}</div>
+      <h1 class="h5 mb-0">{{ section.title }}</h1>
+    </div>
+    <form class="d-flex gap-2" method="get">
+      <input class="form-control" name="q" placeholder="بحث داخل القسم..." value="{{ q }}" />
+      <select class="form-select" name="page_size" style="max-width: 130px">
+        {% for s in [25,50,100,200] %}
+          <option value="{{s}}" {% if page_size==s %}selected{% endif %}>{{s}}/صفحة</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-brand" type="submit">تحديث</button>
+    </form>
+  </div>
+
+  <div class="card p-3">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+      <div class="kpi">النتائج: {{ total }} (صفحة {{ page }} من {{ total_pages }})</div>
+      <div class="d-flex gap-2">
+        {% set prev = page - 1 %}
+        {% set next = page + 1 %}
+        <a class="btn btn-outline-light btn-sm {% if page <= 1 %}disabled{% endif %}" href="?q={{ q|urlencode }}&page={{ prev }}&page_size={{ page_size }}">السابق</a>
+        <a class="btn btn-outline-light btn-sm {% if page >= total_pages %}disabled{% endif %}" href="?q={{ q|urlencode }}&page={{ next }}&page_size={{ page_size }}">التالي</a>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-sm align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:80px">م</th>
+            <th>المصطلح</th>
+            <th>المفهوم</th>
+            <th style="width:160px">الاختصار</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for it in items %}
+            <tr>
+              <td class="mono">{{ it.item_number }}</td>
+              <td class="term-cell">{{ it.term }}</td>
+              <td class="text-wrap">{{ it.description }}</td>
+              <td class="mono">{{ it.abbreviation }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

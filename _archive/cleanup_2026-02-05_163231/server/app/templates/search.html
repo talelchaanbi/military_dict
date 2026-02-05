@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}بحث شامل{% endblock %}
+{% block content %}
+  <h1 class="h5 mb-3">بحث شامل</h1>
+
+  <div class="card p-3 mb-3">
+    <form class="row g-2 align-items-end" method="get">
+      <div class="col-12 col-lg-7">
+        <label class="form-label kpi">نص البحث</label>
+        <input class="form-control" name="q" placeholder="مصطلح / مفهوم / اختصار" value="{{ q }}" />
+      </div>
+      <div class="col-12 col-lg-3">
+        <label class="form-label kpi">القسم</label>
+        <select class="form-select" name="section">
+          <option value="">كل الأقسام</option>
+          {% for s in sections if s.section_type == 'terms' %}
+            <option value="{{ s.section_number }}" {% if section == s.section_number %}selected{% endif %}>{{ s.section_number }} - {{ s.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-12 col-lg-2 d-grid">
+        <button class="btn btn-brand" type="submit">بحث</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card p-3">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+      <div class="kpi">النتائج: {{ total }} (صفحة {{ page }} من {{ total_pages }})</div>
+      <div class="d-flex gap-2">
+        {% set prev = page - 1 %}
+        {% set next = page + 1 %}
+        <a class="btn btn-outline-light btn-sm {% if page <= 1 %}disabled{% endif %}" href="?q={{ q|urlencode }}&section={{ section or '' }}&page={{ prev }}&page_size={{ page_size }}">السابق</a>
+        <a class="btn btn-outline-light btn-sm {% if page >= total_pages %}disabled{% endif %}" href="?q={{ q|urlencode }}&section={{ section or '' }}&page={{ next }}&page_size={{ page_size }}">التالي</a>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-sm align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:70px">قسم</th>
+            <th style="width:70px">م</th>
+            <th>المصطلح</th>
+            <th>المفهوم</th>
+            <th style="width:160px">الاختصار</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for it in items %}
+            <tr>
+              <td class="mono"><a href="/sections/{{ it.section_number }}?q={{ q|urlencode }}">{{ it.section_number }}</a></td>
+              <td class="mono">{{ it.item_number }}</td>
+              <td class="term-cell">{{ it.term }}</td>
+              <td class="text-wrap">{{ it.description }}</td>
+              <td class="mono">{{ it.abbreviation }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

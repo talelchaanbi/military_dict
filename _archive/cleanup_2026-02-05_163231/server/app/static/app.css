@@ -1,0 +1,92 @@
+:root{
+  --bg: #0b1220;
+  --panel: rgba(255,255,255,.06);
+  --panel2: rgba(255,255,255,.10);
+  --text: #e6edf7;
+  --muted: rgba(230,237,247,.7);
+  --brand: #d4af37;
+}
+
+html, body{height:100%;}
+body{
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(212,175,55,.18), transparent 60%),
+              radial-gradient(900px 500px at 10% 10%, rgba(79,70,229,.22), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+  color: var(--text);
+}
+
+.navbar{
+  backdrop-filter: blur(10px);
+  background: rgba(11,18,32,.55) !important;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.card{
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.card:hover{border-color: rgba(212,175,55,.35);}
+
+.badge-soft{
+  background: rgba(212,175,55,.15);
+  color: #f6e6a6;
+  border: 1px solid rgba(212,175,55,.25);
+}
+
+.table{
+  color: var(--text);
+}
+
+.table thead th{
+  color: var(--muted);
+  border-color: rgba(255,255,255,.12);
+}
+
+.table td, .table th{
+  border-color: rgba(255,255,255,.10);
+}
+
+.form-control, .form-select{
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.form-control:focus, .form-select:focus{
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+  border-color: rgba(212,175,55,.45);
+  box-shadow: 0 0 0 .25rem rgba(212,175,55,.15);
+}
+
+.btn-brand{
+  background: rgba(212,175,55,.95);
+  border-color: rgba(212,175,55,.95);
+  color: #1b1b1b;
+  font-weight: 700;
+}
+.btn-brand:hover{
+  background: rgba(232,197,71,.98);
+  border-color: rgba(232,197,71,.98);
+}
+
+a{color: #b8c7ff;}
+a:hover{color:#d7e0ff;}
+
+.kpi{
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+.term-cell{
+  font-weight: 700;
+}
+
+.mono{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.footer{
+  color: var(--muted);
+}
