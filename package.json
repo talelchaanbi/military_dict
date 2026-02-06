@@ -1,0 +1,7 @@
+{
+  "name": "military_dict_root",
+  "private": true,
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
+  }
+}

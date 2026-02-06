@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { requireApiRole } from "@/lib/auth";
 
 function clampInt(value: string | null, fallback: number, min: number, max: number) {
   const parsed = Number.parseInt(value ?? "", 10);
@@ -69,4 +70,64 @@ export async function GET(
   ]);
 
   return NextResponse.json({ section, q, page, pageSize, total, terms });
+}
+
+export async function POST(
+  req: Request,
+  { params }: { params: Promise<{ number: string }> }
+) {
+  const session = await requireApiRole(["editor"]);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const { number } = await params;
+  const sectionNumber = Number.parseInt(number, 10);
+  if (!Number.isFinite(sectionNumber)) {
+    return NextResponse.json({ error: "Invalid section number" }, { status: 400 });
+  }
+
+  const body = await req.json();
+  const term = String(body.term || "").trim();
+  const description = body.description ? String(body.description) : null;
+  const abbreviation = body.abbreviation ? String(body.abbreviation) : null;
+  const itemNumber = body.itemNumber ? String(body.itemNumber) : null;
+
+  if (!term) {
+    return NextResponse.json({ error: "Missing term" }, { status: 400 });
+  }
+
+  const section = await prisma.section.findUnique({
+    where: { number: sectionNumber },
+    select: { id: true, type: true },
+  });
+
+  if (!section) {
+    return NextResponse.json({ error: "Section not found" }, { status: 404 });
+  }
+
+  if (section.type !== "terms") {
+    return NextResponse.json(
+      { error: "This section does not contain terms" },
+      { status: 400 }
+    );
+  }
+
+  const created = await prisma.term.create({
+    data: {
+      sectionId: section.id,
+      term,
+      description,
+      abbreviation,
+      itemNumber,
+    },
+    select: {
+      id: true,
+      itemNumber: true,
+      term: true,
+      description: true,
+      abbreviation: true,
+    },
+  });
+
+  return NextResponse.json({ term: created });
 }

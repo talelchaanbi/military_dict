@@ -47,8 +47,18 @@ export default async function ViewerPage({
   // Note: This regex is simple and implies the structure we know.
   content = content.replace(/<div class="doc-content">/g, "").replace(/<\/div>\s*$/g, "");
 
+   // Remove subheader rows like (أ)(ب)(ج/ﺠ)(د) in tables
+   content = content.replace(
+      /<tr>\s*<th>\s*<p>\s*\(أ\)\s*<\/p>\s*<\/th>\s*<th>\s*<p>\s*\(ب\)\s*<\/p>\s*<\/th>\s*<th>\s*<p>\s*\((?:ﺠ|ج)\)\s*<\/p>\s*<\/th>\s*<\/tr>/gi,
+      ""
+   );
+   content = content.replace(
+      /<tr>\s*<td>\s*<p>\s*\(أ\)\s*<\/p>\s*<\/td>\s*<td>\s*<p>\s*\(ب\)\s*<\/p>\s*<\/td>\s*<td>\s*<p>\s*\((?:ﺠ|جـ|ج)\)\s*<\/p>\s*<\/td>\s*<td>\s*<p>\s*\(د\)\s*<\/p>\s*<\/td>\s*<\/tr>/gi,
+      ""
+   );
+
   return (
-    <Shell backTo="/sections" title={`عرض الوثيقة: ${safeCode}`}>
+    <Shell backTo="/sections">
        <div className="max-w-5xl mx-auto">
           <Card className="shadow-lg">
              <CardContent className="p-8 sm:p-12">

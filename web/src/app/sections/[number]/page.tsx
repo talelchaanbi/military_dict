@@ -3,6 +3,7 @@ import path from "path";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth";
 import { Shell } from "@/components/layout/Shell";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -83,7 +84,16 @@ export default async function SectionPage({
   searchParams,
 }: {
   params: Promise<{ number: string }>;
-  searchParams: Promise<{ q?: string; page?: string; pageSize?: string }>;
+  searchParams: Promise<{
+    q?: string;
+    page?: string;
+    pageSize?: string;
+    field?: string;
+    hasAbbr?: string;
+    hasDesc?: string;
+    starts?: string;
+    sort?: string;
+  }>;
 }) {
   const { number } = await params;
   const sectionNumber = safeInt(number);
@@ -137,27 +147,96 @@ export default async function SectionPage({
   }
 
   // Handle Terms Sections (1-11)
-  const { q = "", page = "1", pageSize = "25" } = await searchParams;
+  const {
+    q = "",
+    page = "1",
+    pageSize = "25",
+    field = "all",
+    hasAbbr = "0",
+    hasDesc = "0",
+    starts = "",
+    sort = "number-asc",
+  } = await searchParams;
+
   const query = String(q || "").trim();
   const pageNum = Math.max(1, Number.parseInt(page, 10) || 1);
   const sizeNum = Math.max(1, Math.min(200, Number.parseInt(pageSize, 10) || 25));
+  const searchField = ["all", "term", "description", "abbreviation", "itemNumber"].includes(String(field))
+    ? String(field)
+    : "all";
+  const wantsAbbr = hasAbbr === "1";
+  const wantsDesc = hasDesc === "1";
+  const startsWith = String(starts || "").trim();
+  const sortBy = ["number-asc", "number-desc", "term-asc", "term-desc"].includes(String(sort))
+    ? String(sort)
+    : "number-asc";
 
-  const isGroupedView = section.number >= 1 && section.number <= 11 && !query;
+  const hasFilters = Boolean(
+    query || wantsAbbr || wantsDesc || startsWith || searchField !== "all" || sortBy !== "number-asc"
+  );
+
+  const isGroupedView = section.number >= 1 && section.number <= 11 && !hasFilters;
   const subtitleGroups = isGroupedView ? loadSubtitleGroups(section.number) : [];
   const canGroup = isGroupedView && subtitleGroups.length > 0;
 
-  const where = {
-    sectionId: section.id,
-    ...(query
-      ? {
-          OR: [
-            { term: { contains: query } },
-            { description: { contains: query } },
-            { abbreviation: { contains: query } },
-          ],
-        }
-      : {}),
-  };
+  const andFilters: Array<Record<string, unknown>> = [{ sectionId: section.id }];
+
+  if (query) {
+    if (searchField === "term") {
+      andFilters.push({ term: { contains: query } });
+    } else if (searchField === "description") {
+      andFilters.push({ description: { contains: query } });
+    } else if (searchField === "abbreviation") {
+      andFilters.push({ abbreviation: { contains: query } });
+    } else if (searchField === "itemNumber") {
+      andFilters.push({ itemNumber: { contains: query } });
+    } else {
+      andFilters.push({
+        OR: [
+          { term: { contains: query } },
+          { description: { contains: query } },
+          { abbreviation: { contains: query } },
+          { itemNumber: { contains: query } },
+        ],
+      });
+    }
+  }
+
+  if (startsWith) {
+    if (searchField === "description") {
+      andFilters.push({ description: { startsWith } });
+    } else if (searchField === "abbreviation") {
+      andFilters.push({ abbreviation: { startsWith } });
+    } else if (searchField === "itemNumber") {
+      andFilters.push({ itemNumber: { startsWith } });
+    } else {
+      andFilters.push({ term: { startsWith } });
+    }
+  }
+
+  if (wantsAbbr) {
+    andFilters.push({ abbreviation: { not: null } });
+    andFilters.push({ abbreviation: { not: "" } });
+    andFilters.push({ abbreviation: { not: "-" } });
+    andFilters.push({ abbreviation: { not: "–" } });
+    andFilters.push({ abbreviation: { not: "—" } });
+  }
+
+  if (wantsDesc) {
+    andFilters.push({ description: { not: null } });
+    andFilters.push({ description: { not: "" } });
+  }
+
+  const where = { AND: andFilters };
+
+  const orderBy =
+    sortBy === "term-asc"
+      ? [{ term: "asc" }, { id: "asc" }]
+      : sortBy === "term-desc"
+        ? [{ term: "desc" }, { id: "desc" }]
+        : sortBy === "number-desc"
+          ? [{ itemNumber: "desc" }, { id: "desc" }]
+          : [{ itemNumber: "asc" }, { id: "asc" }];
 
   const [total, terms] = canGroup
     ? await Promise.all([
@@ -178,7 +257,7 @@ export default async function SectionPage({
         prisma.term.count({ where }),
         prisma.term.findMany({
           where,
-          orderBy: { id: "asc" },
+          orderBy,
           skip: (pageNum - 1) * sizeNum,
           take: sizeNum,
           select: {
@@ -258,54 +337,197 @@ export default async function SectionPage({
       })()
     : [];
 
+  const currentUser = await getCurrentUser();
+  const canPropose = currentUser?.role === "reader";
+  const descriptionCol = canPropose ? "col-span-6 sm:col-span-6" : "col-span-6 sm:col-span-7";
+
+  const baseParams = new URLSearchParams();
+  if (query) baseParams.set("q", query);
+  if (searchField !== "all") baseParams.set("field", searchField);
+  if (wantsAbbr) baseParams.set("hasAbbr", "1");
+  if (wantsDesc) baseParams.set("hasDesc", "1");
+  if (startsWith) baseParams.set("starts", startsWith);
+  if (sortBy !== "number-asc") baseParams.set("sort", sortBy);
+  if (sizeNum !== 25) baseParams.set("pageSize", String(sizeNum));
+
+  const buildPageLink = (targetPage: number) => {
+    const params = new URLSearchParams(baseParams);
+    params.set("page", String(targetPage));
+    return `/sections/${section.number}?${params.toString()}`;
+  };
+
   return (
-    <Shell title={section.title || `قسم ${section.number}`} backTo="/sections">
+    <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
       
       {/* Search Bar */}
       <div className="mb-8">
-        <form className="flex gap-4 max-w-2xl" action="" method="get">
+        <form className="grid gap-4" action="" method="get">
+          <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
-                <Search className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                <Input
+              <Search className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
+              <Input
                 name="q"
                 defaultValue={query}
                 placeholder="ابحث عن مصطلح، تعريف، أو اختصار..."
                 className="pr-10 h-11 text-base shadow-sm"
-                />
+              />
             </div>
-            <Button size="lg" className="px-8 font-semibold">بحث</Button>
+            <select
+              aria-label="نطاق البحث"
+              name="field"
+              defaultValue={searchField}
+              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+            >
+              <option value="all">بحث في الكل</option>
+              <option value="term">المصطلح فقط</option>
+              <option value="description">الشرح فقط</option>
+              <option value="abbreviation">الاختصار فقط</option>
+              <option value="itemNumber">الرقم فقط</option>
+            </select>
+            <select
+              aria-label="ترتيب النتائج"
+              name="sort"
+              defaultValue={sortBy}
+              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+            >
+              <option value="number-asc">ترتيب: الرقم ↑</option>
+              <option value="number-desc">ترتيب: الرقم ↓</option>
+              <option value="term-asc">ترتيب: المصطلح أ-ي</option>
+              <option value="term-desc">ترتيب: المصطلح ي-أ</option>
+            </select>
+            <select
+              aria-label="حجم الصفحة"
+              name="pageSize"
+              defaultValue={String(sizeNum)}
+              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+            >
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
+            <Input
+              name="starts"
+              defaultValue={startsWith}
+              placeholder="يبدأ بـ (حسب نطاق البحث)..."
+              className="h-10 max-w-xs"
+            />
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" name="hasAbbr" value="1" defaultChecked={wantsAbbr} />
+              يحتوي اختصار فقط
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" name="hasDesc" value="1" defaultChecked={wantsDesc} />
+              يحتوي شرح فقط
+            </label>
+            <div className="flex gap-2">
+              <Button size="lg" className="px-8 font-semibold">بحث</Button>
+              <Link
+                href={`/sections/${section.number}`}
+                className="text-sm text-muted-foreground hover:text-primary self-center"
+              >
+                إعادة ضبط
+              </Link>
+            </div>
+          </div>
         </form>
       </div>
 
       <div className="mb-4 text-sm text-muted-foreground flex justify-between items-center">
          <span>عدد النتائج: <span className="font-semibold text-foreground">{total}</span></span>
-         {!canGroup && <span>صفحة {pageNum} من {totalPages}</span>}
+        {!canGroup && <span>صفحة {pageNum} من {totalPages}</span>}
       </div>
 
-      {canGroup && (
-        <div className="mb-6 rounded-xl border bg-white/80 dark:bg-zinc-900/80 backdrop-blur p-4">
-          <div className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 mb-3">
-            العناوين الفرعية
-          </div>
-          <div className="flex flex-col gap-3">
-            {navItems.map((item) => (
-              <div key={item.id} className="flex flex-col gap-2">
-                <a
-                  href={`#${item.id}`}
-                  className="rounded-full border bg-zinc-50 dark:bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 w-fit"
-                >
-                  {item.title}
-                </a>
-                {item.children && item.children.length > 0 && (
-                  <div className="flex flex-wrap gap-2 pl-3">
-                    {item.children.map((child) => (
-                      <a
-                        key={child.id}
-                        href={`#${child.id}`}
-                        className="rounded-full border bg-zinc-50/70 dark:bg-zinc-800/70 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+      {/* Results Table/List */}
+      {canGroup ? (
+        <div className="flex flex-col lg:flex-row gap-6">
+          <aside className="lg:w-64 xl:w-72 shrink-0">
+            <div className="rounded-xl border bg-white/80 dark:bg-zinc-900/80 backdrop-blur p-4 lg:sticky lg:top-6">
+              <div className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 mb-3">
+                العناوين الفرعية
+              </div>
+              <div className="flex flex-col gap-3">
+                {navItems.map((item) => (
+                  <div key={item.id} className="flex flex-col gap-2">
+                    <a
+                      href={`#${item.id}`}
+                      className="rounded-full border bg-zinc-50 dark:bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 w-fit"
+                    >
+                      {item.title}
+                    </a>
+                    {item.children && item.children.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pl-3">
+                        {item.children.map((child) => (
+                          <a
+                            key={child.id}
+                            href={`#${child.id}`}
+                            className="rounded-full border bg-zinc-50/70 dark:bg-zinc-800/70 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                          >
+                            {child.title}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          <div className="flex-1 space-y-6">
+            {groupedTerms.map((group, idx) => (
+              <div key={group.id} id={group.id} className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
+                <div className="px-4 py-3 bg-muted/40">
+                  {group.subTitle && group.parentTitle ? (
+                    <div className="space-y-1">
+                      {(idx === 0 || groupedTerms[idx - 1]?.parentTitle !== group.parentTitle) && (
+                        <div className="text-xs font-semibold text-muted-foreground">{group.parentTitle}</div>
+                      )}
+                      <div className="text-sm font-semibold">{group.title}</div>
+                    </div>
+                  ) : (
+                    <div className="text-sm font-semibold">{group.title}</div>
+                  )}
+                </div>
+                <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                  <div className="col-span-2 sm:col-span-1">الرقم</div>
+                  <div className="col-span-4 sm:col-span-3">المصطلح</div>
+                  <div className={descriptionCol}>الشرح / المفهوم</div>
+                  <div className="hidden sm:block sm:col-span-1">اختصار</div>
+                  {canPropose && <div className="hidden sm:block sm:col-span-1">اقتراح</div>}
+                </div>
+
+                {group.terms.length === 0 ? (
+                  <div className="p-6 text-center text-muted-foreground">
+                    لا توجد عناصر ضمن هذا العنوان.
+                  </div>
+                ) : (
+                  <div className="divide-y divide-border">
+                    {group.terms.map((t) => (
+                      <div
+                        key={t.id}
+                        className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
                       >
-                        {child.title}
-                      </a>
+                        <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
+                        <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
+                        <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
+                          {t.description || <span className="text-muted-foreground italic">لا يوجد شرح</span>}
+                        </div>
+                        <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
+                        {canPropose && (
+                          <div className="hidden sm:block sm:col-span-1">
+                            <Link
+                              href={`/proposals/new?termId=${t.id}`}
+                              className="text-xs text-primary hover:underline"
+                            >
+                              اقتراح
+                            </Link>
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
@@ -313,64 +535,15 @@ export default async function SectionPage({
             ))}
           </div>
         </div>
-      )}
-
-      {/* Results Table/List */}
-      {canGroup ? (
-        <div className="space-y-6">
-          {groupedTerms.map((group, idx) => (
-            <div key={group.id} id={group.id} className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
-              <div className="px-4 py-3 bg-muted/40">
-                {group.subTitle && group.parentTitle ? (
-                  <div className="space-y-1">
-                    {(idx === 0 || groupedTerms[idx - 1]?.parentTitle !== group.parentTitle) && (
-                      <div className="text-xs font-semibold text-muted-foreground">{group.parentTitle}</div>
-                    )}
-                    <div className="text-sm font-semibold">{group.title}</div>
-                  </div>
-                ) : (
-                  <div className="text-sm font-semibold">{group.title}</div>
-                )}
-              </div>
-              <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                <div className="col-span-2 sm:col-span-1">الرقم</div>
-                <div className="col-span-4 sm:col-span-3">المصطلح</div>
-                <div className="col-span-6 sm:col-span-7">الشرح / المفهوم</div>
-                <div className="hidden sm:block sm:col-span-1">اختصار</div>
-              </div>
-
-              {group.terms.length === 0 ? (
-                <div className="p-6 text-center text-muted-foreground">
-                  لا توجد عناصر ضمن هذا العنوان.
-                </div>
-              ) : (
-                <div className="divide-y divide-border">
-                  {group.terms.map((t) => (
-                    <div
-                      key={t.id}
-                      className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
-                    >
-                      <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
-                      <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
-                      <div className="col-span-6 sm:col-span-7 text-foreground/90 leading-relaxed text-base">
-                        {t.description || <span className="text-muted-foreground italic">لا يوجد شرح</span>}
-                      </div>
-                      <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
       ) : (
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
           {/* Table Header */}
           <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
             <div className="col-span-2 sm:col-span-1">الرقم</div>
             <div className="col-span-4 sm:col-span-3">المصطلح</div>
-            <div className="col-span-6 sm:col-span-7">الشرح / المفهوم</div>
+            <div className={descriptionCol}>الشرح / المفهوم</div>
             <div className="hidden sm:block sm:col-span-1">اختصار</div>
+            {canPropose && <div className="hidden sm:block sm:col-span-1">اقتراح</div>}
           </div>
           
           {/* Table Body */}
@@ -387,10 +560,20 @@ export default async function SectionPage({
                   >
                       <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
                       <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
-                      <div className="col-span-6 sm:col-span-7 text-foreground/90 leading-relaxed text-base">
+                      <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
                           {t.description || <span className="text-muted-foreground italic">لا يوجد شرح</span>}
                       </div>
                       <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
+                      {canPropose && (
+                        <div className="hidden sm:block sm:col-span-1">
+                          <Link
+                            href={`/proposals/new?termId=${t.id}`}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            اقتراح
+                          </Link>
+                        </div>
+                      )}
                   </div>
                   ))}
               </div>
@@ -405,7 +588,7 @@ export default async function SectionPage({
             aria-disabled={pageNum <= 1}
             tabIndex={pageNum <= 1 ? -1 : undefined}
             className={pageNum <= 1 ? "pointer-events-none opacity-50" : ""}
-            href={`/sections/${section.number}?q=${encodeURIComponent(query)}&page=${pageNum - 1}&pageSize=${sizeNum}`}
+            href={buildPageLink(pageNum - 1)}
           >
             <Button variant="outline" size="sm" disabled={pageNum <= 1} className="gap-2">
               <ChevronRight className="h-4 w-4" /> السابق
@@ -420,7 +603,7 @@ export default async function SectionPage({
             aria-disabled={pageNum >= totalPages}
             tabIndex={pageNum >= totalPages ? -1 : undefined}
             className={pageNum >= totalPages ? "pointer-events-none opacity-50" : ""}
-            href={`/sections/${section.number}?q=${encodeURIComponent(query)}&page=${pageNum + 1}&pageSize=${sizeNum}`}
+            href={buildPageLink(pageNum + 1)}
           >
             <Button variant="outline" size="sm" disabled={pageNum >= totalPages} className="gap-2">
               التالي <ChevronLeft className="h-4 w-4" />

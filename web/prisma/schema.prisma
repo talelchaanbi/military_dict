@@ -19,6 +19,18 @@ enum SectionType {
   document
 }
 
+enum UserRole {
+  admin
+  editor
+  reader
+}
+
+enum ProposalStatus {
+  pending
+  approved
+  rejected
+}
+
 enum DocumentFormat {
   pdf
   docx
@@ -52,6 +64,8 @@ model Term {
   description  String? @db.LongText
   abbreviation String?
 
+  abbreviationProposals AbbreviationProposal[]
+
   section Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
@@ -59,6 +73,35 @@ model Term {
 
   @@index([sectionId])
   @@index([term])
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  role         UserRole @default(reader)
+  proposals    AbbreviationProposal[] @relation("ProposalAuthor")
+  reviewedProposals AbbreviationProposal[] @relation("ProposalReviewer")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AbbreviationProposal {
+  id                   Int            @id @default(autoincrement())
+  termId               Int
+  proposedAbbreviation String
+  status               ProposalStatus @default(pending)
+  createdById          Int
+  reviewedById         Int?
+  term                 Term           @relation(fields: [termId], references: [id], onDelete: Cascade)
+  createdBy            User           @relation("ProposalAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  reviewedBy           User?          @relation("ProposalReviewer", fields: [reviewedById], references: [id])
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([termId])
+  @@index([status])
+  @@index([createdById])
 }
 
 model Document {
