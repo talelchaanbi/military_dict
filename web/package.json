@@ -10,13 +10,28 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.2",
+<<<<<<< HEAD
     "@types/sanitize-html": "^2.16.0",
+=======
+    "@radix-ui/react-slot": "^1.2.4",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/sanitize-html": "^2.16.0",
+    "better-sqlite3": "^12.6.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
+    "mammoth": "^1.11.0",
+>>>>>>> main
     "mysql2": "^3.16.3",
     "next": "16.1.6",
     "prisma": "^6.19.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "sanitize-html": "^2.17.0",
+<<<<<<< HEAD
+=======
+    "tailwind-merge": "^3.4.0",
+>>>>>>> main
     "zod": "^4.3.6"
   },
   "devDependencies": {
