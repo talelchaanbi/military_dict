@@ -5,10 +5,12 @@ export function Shell({
   children,
   title,
   backTo,
+  fullWidth,
 }: {
   children: React.ReactNode;
   title?: string;
   backTo?: string;
+  fullWidth?: boolean;
 }) {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
@@ -41,7 +43,7 @@ export function Shell({
 
       {/* Main Content */}
       <main className="flex-1 py-8">
-        <div className="container px-4 sm:px-8 max-w-7xl mx-auto">
+        <div className={`container px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none" : "max-w-7xl"}`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
                {backTo && (

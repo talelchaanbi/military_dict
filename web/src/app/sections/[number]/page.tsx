@@ -44,8 +44,8 @@ export default async function SectionPage({
     }
 
     return (
-      <Shell title={section.title || `قسم ${section.number}`} backTo="/sections">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
+        <div className="grid gap-6">
           {documents.map((d) => (
             <Link
               key={d.code}
