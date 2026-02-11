@@ -33,11 +33,6 @@ export default async function SectionsIndexPage() {
                   </div>
                  <CardTitle className="leading-snug text-lg">{s.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                 <CardDescription>
-                    {s.type === "terms" ? "بحث في المصطلحات والتعاريف" : "استعراض الوثائق والرموز"}
-                 </CardDescription>
-              </CardContent>
             </Card>
           </Link>
         ))}

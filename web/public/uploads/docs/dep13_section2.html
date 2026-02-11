@@ -23,7 +23,7 @@
     }
 
     main {
-      max-width: 1200px;
+      max-width: 1500px;
       margin: 0 auto;
       padding: 24px 16px 40px;
     }
@@ -125,6 +125,11 @@
 
     .doc-content table tbody tr td:first-child:empty::before {
       content: counter(rowNumber);
+    }
+
+    .doc-content table td[colspan="5"],
+    .doc-content table th[colspan="5"] {
+      width: 400px;
     }
 
     .doc-content th,
