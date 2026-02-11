@@ -6,7 +6,7 @@ import { BookOpen, Shield, Search } from "lucide-react";
 
 export default function Home() {
   return (
-    <Shell>
+    <Shell fullWidth>
       <div className="flex flex-col items-center justify-center py-12 text-center space-y-8">
         <div className="rounded-full bg-primary/10 p-6 mb-4">
           <Shield className="h-16 w-16 text-primary" />
@@ -29,16 +29,16 @@ export default function Home() {
            </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mt-16 text-right">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-16 text-center">
            <Card className="hover:shadow-md transition-shadow">
              <CardHeader>
-               <CardTitle className="flex items-center gap-2">
-                 <BookOpen className="h-5 w-5 text-primary" />
+               <CardTitle className="flex flex-col items-center gap-2">
+                 <BookOpen className="h-8 w-8 text-primary mb-2" />
                  مصطلحات شاملة
                </CardTitle>
              </CardHeader>
              <CardContent>
-               <CardDescription>
+               <CardDescription className="text-center">
                   قاعدة بيانات ضخمة تحتوي على آلاف المصطلحات العسكرية في مختلف التخصصات البرية والجوية والبحرية.
                </CardDescription>
              </CardContent>
@@ -46,13 +46,13 @@ export default function Home() {
 
            <Card className="hover:shadow-md transition-shadow">
              <CardHeader>
-               <CardTitle className="flex items-center gap-2">
-                 <Search className="h-5 w-5 text-primary" />
+               <CardTitle className="flex flex-col items-center gap-2">
+                 <Search className="h-8 w-8 text-primary mb-2" />
                  بحث متقدم
                </CardTitle>
              </CardHeader>
              <CardContent>
-               <CardDescription>
+               <CardDescription className="text-center">
                   محرك بحث سريع ودقيق للوصول إلى المعلومات التي تحتاجها بأسرع وقت ممكن.
                </CardDescription>
              </CardContent>
@@ -60,13 +60,13 @@ export default function Home() {
 
            <Card className="hover:shadow-md transition-shadow">
              <CardHeader>
-               <CardTitle className="flex items-center gap-2">
-                 <Shield className="h-5 w-5 text-primary" />
+               <CardTitle className="flex flex-col items-center gap-2">
+                 <Shield className="h-8 w-8 text-primary mb-2" />
                  رموز عسكرية
                </CardTitle>
              </CardHeader>
              <CardContent>
-               <CardDescription>
+               <CardDescription className="text-center">
                   توثيق كامل للرموز العسكرية المستخدمة في القوات المسلحة لمختلف الصنوف والتشكيلات.
                </CardDescription>
              </CardContent>

@@ -3,8 +3,10 @@ import LoginClient from "./login-client";
 
 export default function LoginPage() {
   return (
-    <Shell title="تسجيل الدخول" backTo="/">
-      <LoginClient />
+    <Shell fullWidth backTo="/">
+      <div className="flex items-center justify-center p-4">
+        <LoginClient />
+      </div>
     </Shell>
   );
 }

@@ -1,6 +1,13 @@
 import Link from "next/link";
-import { BookOpen, Shield, ChevronLeft, User } from "lucide-react";
+import { BookOpen, Shield, ChevronLeft, User, LogOut, Menu } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export async function Shell({
   children,
@@ -19,68 +26,76 @@ export async function Shell({
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* Navbar */}
-      <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md shadow-sm">
         <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <Shield className="h-6 w-6 text-primary" />
+          <div className="flex items-center gap-4">
+            <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
+              <div className="bg-primary/10 group-hover:bg-primary/20 p-2.5 rounded-xl transition-colors">
+                <Shield className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg font-bold leading-none">القاموس العسكري</h1>
-                <p className="text-xs text-muted-foreground">أمانة الشؤون العسكرية</p>
+                <h1 className="text-lg font-bold leading-none tracking-tight">القاموس العسكري</h1>
+                <p className="text-xs text-muted-foreground mt-1">أمانة الشؤون العسكرية</p>
               </div>
             </Link>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-1 mr-6">
+              <Link 
+                href="/sections" 
+                className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 px-3 py-2 rounded-md transition-all flex items-center gap-2"
+              >
+                <BookOpen className="h-4 w-4" />
+                <span>الأقسام</span>
+              </Link>
+              {isEditor && (
+                <Link
+                  href="/editor/terms"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 px-3 py-2 rounded-md transition-all"
+                >
+                  إدارة المصطلحات
+                </Link>
+              )}
+              {isEditor && (
+                <Link
+                  href="/editor/proposals"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 px-3 py-2 rounded-md transition-all"
+                >
+                  طلبات الاختصارات
+                </Link>
+              )}
+              {isAdmin && (
+                <Link
+                  href="/admin/users"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 px-3 py-2 rounded-md transition-all"
+                >
+                  المستخدمون
+                </Link>
+              )}
+            </nav>
           </div>
           
-          <nav className="flex items-center gap-4">
-            <Link 
-              href="/sections" 
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary flex items-center gap-2"
-            >
-              <BookOpen className="h-4 w-4" />
-              <span>الأقسام</span>
-            </Link>
-            {isEditor && (
-              <Link
-                href="/editor/terms"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              >
-                إدارة المصطلحات
-              </Link>
-            )}
-            {isEditor && (
-              <Link
-                href="/editor/proposals"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              >
-                طلبات الاختصارات
-              </Link>
-            )}
-            {isAdmin && (
-              <Link
-                href="/admin/users"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              >
-                المستخدمون
-              </Link>
-            )}
-          </nav>
           <div className="flex items-center gap-3">
             {user ? (
-              <>
-                <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
-                  <User className="h-4 w-4" />
-                  <span>{user.username}</span>
-                  <span className="rounded-full border px-2 py-0.5">{user.role}</span>
+              <div className="flex items-center gap-2">
+                <div className="hidden sm:flex flex-col items-end mr-2">
+                   <span className="text-sm font-medium leading-none">{user.username}</span>
+                   <span className="text-xs text-muted-foreground">{user.role === 'admin' ? 'مدير النظام' : user.role === 'editor' ? 'محرر' : 'مستخدم'}</span>
+                </div>
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                   <User className="h-4 w-4" />
                 </div>
                 <form action="/api/auth/logout" method="post">
-                  <button className="text-sm text-muted-foreground hover:text-primary">خروج</button>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive">
+                     <LogOut className="h-4 w-4" />
+                  </Button>
                 </form>
-              </>
+              </div>
             ) : (
-              <Link href="/login" className="text-sm text-muted-foreground hover:text-primary">
-                دخول
+              <Link href="/login">
+                <Button variant="default" size="sm" className="px-6 rounded-full">
+                  تسجيل الدخول
+                </Button>
               </Link>
             )}
           </div>
@@ -107,8 +122,8 @@ export async function Shell({
 
       {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-6 md:py-0">
-        <div className={`container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-right">
+        <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
+          <p className="text-center text-sm leading-loose text-muted-foreground">
              تم التطوير بواسطة إدارة النظم والمعلومات &copy; {new Date().getFullYear()}
           </p>
         </div>
