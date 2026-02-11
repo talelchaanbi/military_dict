@@ -3,6 +3,7 @@ import path from "path";
 import { notFound } from "next/navigation";
 import { Shell } from "@/components/layout/Shell";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default async function ViewerPage({
   params,
@@ -20,6 +21,8 @@ export default async function ViewerPage({
   }
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
+   const showPdfButton = safeCode === "dep12" || safeCode === "dep13";
+   const pdfUrl = `/uploads/docs/${safeCode}.pdf`;
 
   // Simple extraction of the main content
   // We look for <main> content or just body body content
@@ -57,18 +60,27 @@ export default async function ViewerPage({
       ""
    );
 
-  return (
-    <Shell backTo="/sections">
-       <div className="max-w-5xl mx-auto">
-          <Card className="shadow-lg">
-             <CardContent className="p-8 sm:p-12">
-                 <div 
-                    className="doc-content prose prose-zinc dark:prose-invert max-w-none"
-                    dangerouslySetInnerHTML={{ __html: content }} 
-                 />
-             </CardContent>
-          </Card>
-       </div>
-    </Shell>
-  );
+   return (
+      <Shell backTo="/sections">
+         <div className="max-w-5xl mx-auto">
+            {showPdfButton && (
+               <div className="mb-4 flex justify-end">
+                  <Button asChild variant="outline" size="sm">
+                     <a href={pdfUrl} target="_blank" rel="noreferrer">
+                        عرض نسخة PDF الرسمية
+                     </a>
+                  </Button>
+               </div>
+            )}
+            <Card className="shadow-lg">
+               <CardContent className="p-8 sm:p-12">
+                  <div
+                     className="doc-content prose prose-zinc dark:prose-invert max-w-none"
+                     dangerouslySetInnerHTML={{ __html: content }}
+                  />
+               </CardContent>
+            </Card>
+         </div>
+      </Shell>
+   );
 }
