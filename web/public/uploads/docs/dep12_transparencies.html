@@ -4,229 +4,317 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الخرائط والشفافات والمخططات</title>
+  <title>الشفافات والمخططات</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --sidebar: #1e293b;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+    }
+
+    body.dark {
+      --bg: #0b1220;
+      --card: #1f2937;
+      --text: #e5e7eb;
+      --sidebar: #020617;
+      --border: #374151;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: "Cairo", "Noto Kufi Arabic", "Noto Naskh Arabic", Arial, Helvetica, sans-serif;
-      direction: rtl;
       margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.9;
-    }
-
-    header {
-      background: #fff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 18px 16px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-    }
-
-    .doc-content {
-      line-height: 2;
-      font-size: 16px;
-      direction: rtl;
-      text-align: right;
-    }
-
-    .doc-content h1,
-    .doc-content h2,
-    .doc-content h3 {
-      margin: 18px 0 10px;
-      color: #0f172a;
-    }
-
-    .doc-content h1 {
-      font-size: 22px;
-    }
-
-    .doc-content h2 {
-      font-size: 20px;
-    }
-
-    .doc-content h3 {
-      font-size: 18px;
-    }
-
-    .doc-content p {
-      margin: 10px 0;
-    }
-
-    .doc-content ol,
-    .doc-content ul {
-      margin: 8px 0 12px;
-      padding-inline-start: 24px;
-    }
-
-    .doc-content li {
-      margin: 6px 0;
-    }
-
-    .doc-content img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .doc-content img.doc-inline-asset {
-      display: block;
-      margin: 0 auto;
-      max-width: 260px;
-      max-height: 320px;
-      object-fit: contain;
-    }
-
-    .doc-content .table-wrap {
-      margin: 12px 0;
-      overflow-x: visible;
-      border: 1px solid #e4e4e7;
-      border-radius: 12px;
-      background: #fff;
-    }
-
-    .doc-content table {
-      border-collapse: collapse;
-      margin: 0;
-      width: 100%;
-      min-width: 0;
-      table-layout: fixed;
-    }
-
-    .doc-content th,
-    .doc-content td {
-      border: 1px solid #e2e8f0;
-      padding: 10px 12px;
-      vertical-align: top;
-      white-space: normal;
-      word-break: break-word;
-    }
-
-    .doc-content th {
-      background: #f1f5f9;
-      font-weight: 700;
-    }
-
-    .doc-content tr:nth-child(even) td {
-      background: #f8fafc;
-      overflow-wrap: anywhere;
-    }
-
-    .doc-content table p {
-      margin: 4px 0;
-    }
-
-    .doc-content table strong {
-      font-weight: 600;
-    }
-
-    .images {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 12px;
-    }
-
-    .img {
-      border: 1px solid #e4e4e7;
-      border-radius: 10px;
+      font-family: "Cairo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
       overflow: hidden;
-      background: #fff;
     }
 
-    .img img {
+    /* ===== SIDEBAR ===== */
+    aside {
+      width: 280px;
+      background: var(--sidebar);
+      color: #fff;
+      padding: 20px;
+      overflow-y: auto;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    aside h2 {
+      margin-top: 0;
+      font-size: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    aside a {
       display: block;
-      width: 100%;
-      height: auto;
+      padding: 10px 12px;
+      color: #cbd5e1;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 5px;
+      font-size: 15px;
     }
 
-    .cap {
-      font-size: 12px;
-      color: #6b7280;
-      padding: 8px 10px;
+    aside a:hover {
+      background: rgba(255,255,255,0.1);
+      color: white;
     }
 
+    /* ===== MAIN ===== */
+    main {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      padding-bottom: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: "Cairo";
+      font-size: 16px;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-family: "Cairo";
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    /* ===== ACCORDION ===== */
     details {
-      margin-top: 16px;
+      width: 100%;
     }
 
     summary {
-      cursor: pointer;
+      padding: 18px 24px;
       font-weight: 700;
-      font-size: 14px;
+      cursor: pointer;
+      font-size: 19px;
+      background: rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid transparent;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    
+    body.dark summary {
+       background: rgba(255, 255, 255, 0.03);
     }
 
-    a {
-      color: #2563eb;
-      text-decoration: none;
+    summary:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    details[open] summary {
+      border-bottom-color: var(--border);
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent);
     }
 
-    a:hover {
-      text-decoration: underline;
+    /* Flèche personnalisée */
+    summary::after {
+      content: "+";
+      font-size: 24px;
+      font-weight: 300;
+      transform: rotate(0deg);
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg); 
+    }
+
+    .content {
+      padding: 24px;
+      line-height: 2.2;
+      font-size: 16px;
+    }
+
+    /* Styles du contenu original */
+    .content p { margin: 12px 0; }
+    .content strong { color: var(--accent); }
+    body.dark .content strong { color: #60a5fa; }
+    
+    .content ul, .content ol {
+      padding-right: 25px;
+      margin: 10px 0;
+    }
+    
+    .content li {
+      margin-bottom: 8px;
+    }
+
+    @media(max-width: 900px) {
+      body { flex-direction: column; height: auto; overflow: visible;}
+      aside { width: 100%; height: auto; overflow: visible;}
+      main { padding: 15px; }
+      .topbar { position: static; }
     }
   </style>
 </head>
 
 <body>
-  <header>
 
-      <strong>الخرائط والشفافات والمخططات</strong>
-  </header>
+  <!-- ===== SIDEBAR ===== -->
+  <aside>
+    <!-- Bouton Retour -->
+    <a href="http://localhost:3000/viewer/dep12" style="background: rgba(255,255,255,0.1); text-align: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.2);">
+      🏠 العودة للقائمة الرئيسية
+    </a>
+
+    <h2>📚 الفهرس</h2>
+    <a href="#general">عام (مقدمة)</a>
+    <a href="#usage">الاستعمال</a>
+    <a href="#components">مكونات الشفافات</a>
+    <a href="#security">الوسائل والأمن</a>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
   <main>
-    <div class="card">
-      <div class="doc-content">
-        <div dir="rtl">
-                    
-          <p><strong>ثانياً: الشفافات والمخططات</strong></p>
-          <ol>
-            <li><strong>عام</strong>. إن الغاية من الورق الشفاف والخرائط المؤشرة والمخططات هي إكمال وتوضيح اختصار
-              الأوامر والتعليمات والتقارير، وتستعمل الرموز والمصطلحات العسكرية على الشفافات لتدل على الوحدات العسكرية
-              والمهام أو المنشآت وتستعمل الإشارات لتدل على المعالم الطبوغرافية كالسكك الحديدية والطرق والأنهار... إلخ.
-            </li>
-            <li><strong>الاستعمال</strong>. إن الحدود وخطوط البدء والأهداف والطرق وتفاصيل خطط الرمي وما أشبه ذلك من
-              النقاط التي يمكن إظهارها بواسطة الشفافات والرسوم أو الخرائط المؤشرة بوضوح أكثر مما لو استعملنا قوائم طويلة
-              من أسماء الأماكن وأرقام الخريطة في الأوامر أو التعليمات، وكذلك الحال في التقارير، إذ أن الشكل الواضح يفضل
-              على الوصف الخطي الطبوغرافي المطول. ويمكن استعمال الشكل أو المخطط ليكمل أو ليحل مكان تقارير الكشف، وغالباً
-              ما تشكل الرسوم الواضحة والشفافات مع الملاحظات تقريراً كاملاً في حد ذاتها، ويجب دوماً اعتبار عامل الوقت، إذ
-              ليس من المستحسن عمل شفاف لمجرد بيان حد فاصل قصير.</li>
-            <li>يجب أن تكون الشفافات والرسوم معبرة عن نفسها بحيث لا يرجع القارئ إلى المتن ليجد المعنى الذي تمثله الخطوط
-              الموجودة على المخطط أو الرسم.</li>
-            <li>عندما يكون الشفاف معمولاً بمقياس رسم كبير (1:50,000) ومرفقاً مع الأمر، فليس من الضروري أن يشتمل نص الأمر
-              على تفاصيل إحداثيات خطوط البدء أو الحدود أو الطرق... إلخ، بل يكفي لذلك الإشارة في الأمر إلى الشفاف.</li>
-            <li>يمكن أن تكون المخططات من نفس مقياس الخريطة التي يتم استعمالها أو بمقياس أكبر ولكي يكون المخطط ذا فائدة
-              يجب ذكر ملحوظة بهذا الشأن على المخطط.</li>
-            <li>هناك أهمية للمخططات والشفافات وخاصة لتوضيح التقارير، ويجب أن يتضمن الشفاف والمخطط النقاط التالية:</li>
-          
-          <p>أ . <strong>العنوان</strong>. يكتب العنوان مع الإشارة إلى التقرير أو الأمر الصادر معه.</p>
-          <p>ب. <strong>المقياس</strong>. يجب إعطاء بعض المعلومات عن المسافات عند عدم الاعتماد على دقة المخطط.</p>
-          <p>ﺠ . <strong>اتجاه الشمال</strong>. يتم تحديد اتجاه الشمال بالرسم على المخططات أو الشفافات.</p>
-          <p>د. <strong>الرموز العسكرية</strong>. يجب وضع الرموز العسكرية الصحيحة وإذا ذكرت رموز إضافية على المخطط فيجب
-            أن تشرح في المفتاح.</p>
-          <p>ﻫ . <strong>الوقت والتاريخ</strong>.</p>
 
-            <li><strong>الوسائل المتيسرة</strong>. يجب على ضباط الأركان أن يفهموا مختلف الأساليب التي بواسطتها يستطيعون
-              تحضير الشفافات والرسوم والأشكال في القيادات المختلفة والوقت اللازم لتحضيرها واستنساخها.</li>
-            <li><strong>درجة السرية</strong>. يجب أخذ الاحتياطات المشددة والتأكيد في الأوامر الثابتة لمنع الخرائط
-              المؤشرة والرسوم والأشكال من الوقوع في يد العدو، وذلك حسب أهمية المعلومات الموجودة على الخريطة.</li>
-          </ol>
-          
-        </div>
-      </div>
-
+    <div class="topbar">
+      <input type="text" placeholder="ابحث في المحتوى..." onkeyup="searchText(this.value)">
+      <button onclick="toggleDark()">🌙 / ☀️</button>
     </div>
+
+    <div style="margin-bottom: 20px;">
+       <h1 style="font-size: 24px; color: var(--accent);">الشفافات والمخططات</h1>
+    </div>
+
+    <!-- ===== SECTION 1: General ===== -->
+    <div class="card" id="general">
+      <details open>
+        <summary>📌 عام: الشفافات والمخططات</summary>
+        <div class="content">
+          <p><strong>1. عام</strong>. إن الغاية من الورق الشفاف والخرائط المؤشرة والمخططات هي إكمال وتوضيح اختصار الأوامر والتعليمات والتقارير، وتستعمل الرموز والمصطلحات العسكرية على الشفافات لتدل على الوحدات العسكرية والمهام أو المنشآت وتستعمل الإشارات لتدل على المعالم الطبوغرافية كالسكك الحديدية والطرق والأنهار... إلخ.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- ===== SECTION 2: Usage ===== -->
+    <div class="card" id="usage">
+      <details>
+        <summary>🛠️ الاستعمال والاستخدام</summary>
+        <div class="content">
+          <p><strong>2. الاستعمال</strong>. إن الحدود وخطوط البدء والأهداف والطرق وتفاصيل خطط الرمي وما أشبه ذلك من النقاط التي يمكن إظهارها بواسطة الشفافات والرسوم أو الخرائط المؤشرة بوضوح أكثر مما لو استعملنا قوائم طويلة من أسماء الأماكن وأرقام الخريطة في الأوامر أو التعليمات، وكذلك الحال في التقارير، إذ أن الشكل الواضح يفضل على الوصف الخطي الطبوغرافي المطول. ويمكن استعمال الشكل أو المخطط ليكمل أو ليحل مكان تقارير الكشف، وغالباً ما تشكل الرسوم الواضحة والشفافات مع الملاحظات تقريراً كاملاً في حد ذاتها، ويجب دوماً اعتبار عامل الوقت، إذ ليس من المستحسن عمل شفاف لمجرد بيان حد فاصل قصير.</p>
+
+          <p><strong>3.</strong> يجب أن تكون الشفافات والرسوم معبرة عن نفسها بحيث لا يرجع القارئ إلى المتن ليجد المعنى الذي تمثله الخطوط الموجودة على المخطط أو الرسم.</p>
+
+          <p><strong>4.</strong> عندما يكون الشفاف معمولاً بمقياس رسم كبير (1:50,000) ومرفقاً مع الأمر، فليس من الضروري أن يشتمل نص الأمر على تفاصيل إحداثيات خطوط البدء أو الحدود أو الطرق... إلخ، بل يكفي لذلك الإشارة في الأمر إلى الشفاف.</p>
+
+          <p><strong>5.</strong> يمكن أن تكون المخططات من نفس مقياس الخريطة التي يتم استعمالها أو بمقياس أكبر ولكي يكون المخطط ذا فائدة يجب ذكر ملحوظة بهذا الشأن على المخطط.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- ===== SECTION 3: Components ===== -->
+    <div class="card" id="components">
+      <details>
+        <summary>📝 محتويات الشفاف والمخطط (هام جداً)</summary>
+        <div class="content">
+          <p><strong>6. النقاط الهامة:</strong> هناك أهمية للمخططات والشفافات وخاصة لتوضيح التقارير، ويجب أن يتضمن الشفاف والمخطط النقاط التالية:</p>
+          <ul>
+            <li><strong>أ . العنوان:</strong> يكتب العنوان مع الإشارة إلى التقرير أو الأمر الصادر معه.</li>
+            <li><strong>ب. المقياس:</strong> يجب إعطاء بعض المعلومات عن المسافات عند عدم الاعتماد على دقة المخطط.</li>
+            <li><strong>ﺠ . اتجاه الشمال:</strong> يتم تحديد اتجاه الشمال بالرسم على المخططات أو الشفافات.</li>
+            <li><strong>د. الرموز العسكرية:</strong> يجب وضع الرموز العسكرية الصحيحة وإذا ذكرت رموز إضافية على المخطط فيجب أن تشرح في المفتاح.</li>
+            <li><strong>ﻫ . الوقت والتاريخ:</strong> يجب توثيق الوقت والتاريخ بوضوح.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- ===== SECTION 4: Security & Means ===== -->
+    <div class="card" id="security">
+      <details>
+        <summary>🔒 الوسائل المتيسرة ودرجة السرية</summary>
+        <div class="content">
+          <p><strong>7. الوسائل المتيسرة</strong>. يجب على ضباط الأركان أن يفهموا مختلف الأساليب التي بواسطتها يستطيعون تحضير الشفافات والرسوم والأشكال في القيادات المختلفة والوقت اللازم لتحضيرها واستنساخها.</p>
+          
+          <p><strong>8. درجة السرية</strong>. يجب أخذ الاحتياطات المشددة والتأكيد في الأوامر الثابتة لمنع الخرائط المؤشرة والرسوم والأشكال من الوقوع في يد العدو، وذلك حسب أهمية المعلومات الموجودة على الخريطة.</p>
+        </div>
+      </details>
+    </div>
+
   </main>
+
+  <script>
+    function searchText(value) {
+      const filter = value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(c => {
+        const text = c.innerText.toLowerCase();
+        if (text.includes(filter)) {
+          c.style.display = "block";
+          if (value.length > 2) {
+            const detail = c.querySelector("details");
+            if (detail) detail.open = true;
+          }
+        } else {
+          c.style.display = "none";
+        }
+      });
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+
 </body>
 
 </html>

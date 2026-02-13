@@ -6,6 +6,14 @@ import { FileText, List } from "lucide-react";
 
 export default async function SectionsIndexPage() {
   const sections = await prisma.section.findMany({
+    where: {
+      NOT: {
+        number: {
+          gte: 1301,
+          lte: 1399
+        }
+      }
+    },
     orderBy: { number: "asc" },
     select: { number: true, title: true, type: true },
   });

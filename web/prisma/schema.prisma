@@ -63,6 +63,7 @@ model Term {
   term         String
   description  String? @db.LongText
   abbreviation String?
+  imageUrl     String?
 
   abbreviationProposals AbbreviationProposal[]
 

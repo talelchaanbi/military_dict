@@ -108,6 +108,44 @@ export default async function SectionPage({
 
   // Handle Document Sections (12 & 13)
   if (section.type === "document") {
+    // Special handling for Department 13 which has been migrated to dynamic sections 1301-1305
+    if (section.number === 13) {
+      const subSections = await prisma.section.findMany({
+        where: {
+          number: {
+            in: [1301, 1302, 1303, 1304, 1305]
+          }
+        },
+        orderBy: { number: "asc" }
+      });
+
+      return (
+        <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
+          <div className="grid gap-6">
+            {subSections.map((sub) => (
+              <Link
+                key={sub.number}
+                href={`/sections/${sub.number}`}
+                className="block group"
+              >
+                <Card className="h-full hover:border-primary hover:shadow-lg transition-all">
+                  <CardContent className="pt-6 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                            <File className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="font-semibold text-lg">{sub.title}</div>
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </Shell>
+      );
+    }
+
     const documents = await prisma.document.findMany({
       where: { sectionId: section.id },
       orderBy: { code: "asc" },
@@ -227,6 +265,10 @@ export default async function SectionPage({
     andFilters.push({ description: { not: "" } });
   }
 
+  if (section.number >= 1301 && section.number <= 1399) {
+    andFilters.push({ term: { not: "#" } });
+  }
+
   const where = { AND: andFilters };
 
   const orderBy =
@@ -250,6 +292,7 @@ export default async function SectionPage({
             term: true,
             description: true,
             abbreviation: true,
+            imageUrl: true,
           },
         }),
       ])
@@ -266,6 +309,7 @@ export default async function SectionPage({
             term: true,
             description: true,
             abbreviation: true,
+            imageUrl: true,
           },
         }),
       ]);
@@ -356,8 +400,92 @@ export default async function SectionPage({
     return `/sections/${section.number}?${params.toString()}`;
   };
 
+
+const isDep13SubSection = section.number >= 1301 && section.number <= 1399;
+
+const columns = isDep13SubSection
+    ? [
+        { key: 'id', label: 'الرقم', className: 'col-span-2 sm:col-span-1' },
+        { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3' },
+        { key: 'term', label: 'معنى الرمز', className: 'col-span-4 sm:col-span-4' },
+        { key: 'description', label: 'ملاحظات', className: canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4' },
+        ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1' }] : [])
+      ]
+    : [
+        { key: 'itemNumber', label: 'الرقم', className: 'col-span-2 sm:col-span-1' },
+        { key: 'term', label: 'المصطلح', className: 'col-span-4 sm:col-span-3' },
+        { key: 'description', label: 'الشرح / المفهوم', className: `${descriptionCol}` },
+        { key: 'abbreviation', label: 'اختصار', className: 'hidden sm:block sm:col-span-1' },
+        ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1' }] : [])
+      ];
+
+// Helper to render row content based on configuration
+const renderRow = (t: any) => {
+    if (isDep13SubSection) {
+        return (
+            <>
+                <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.id}</div>
+                
+                {/* Symbol Col (formerly imageUrl)*/}
+                <div className="col-span-4 sm:col-span-3 flex justify-center sm:justify-start">
+                     {t.imageUrl ? (
+                        <img src={t.imageUrl} alt={t.term} className="max-w-[120px] h-auto max-h-[120px] object-contain border rounded-md bg-white p-1" />
+                     ) : (
+                        <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
+                     )}
+                </div>
+
+                {/* Meaning Col (formerly term)*/}
+                <div className="col-span-4 sm:col-span-4 font-bold text-primary text-base leading-snug">
+                    {t.term}
+                </div>
+
+                {/* Notes Col (formerly description) */}
+                <div className={`${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-foreground/90 leading-relaxed text-base`}>
+                    {t.description || ""}
+                </div>
+
+                {canPropose && (
+                    <div className="hidden sm:block sm:col-span-1">
+                          <Link
+                            href={`/proposals/new?termId=${t.id}`}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            اقتراح
+                          </Link>
+                    </div>
+                )}
+            </>
+        )
+    }
+
+    return (
+        <>
+            <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
+            <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
+            <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
+                {t.imageUrl && (
+                <img src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain border rounded-md mb-2 bg-white" />
+                )}
+                {t.description || (!t.imageUrl && <span className="text-muted-foreground italic">لا يوجد شرح</span>)}
+            </div>
+            <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
+            {canPropose && (
+                <div className="hidden sm:block sm:col-span-1">
+                    <Link
+                    href={`/proposals/new?termId=${t.id}`}
+                    className="text-xs text-primary hover:underline"
+                    >
+                    اقتراح
+                    </Link>
+                </div>
+            )}
+        </>
+    );
+}
+  
   return (
-    <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
+    <Shell title={section.title || `قسم ${section.number}`} backTo={section.number >= 1300 ? "/sections/13" : "/sections"} fullWidth>
       
       {/* Search Bar */}
       <div className="mb-8">
@@ -492,12 +620,10 @@ export default async function SectionPage({
                     <div className="text-sm font-semibold">{group.title}</div>
                   )}
                 </div>
-                <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                  <div className="col-span-2 sm:col-span-1">الرقم</div>
-                  <div className="col-span-4 sm:col-span-3">المصطلح</div>
-                  <div className={descriptionCol}>الشرح / المفهوم</div>
-                  <div className="hidden sm:block sm:col-span-1">اختصار</div>
-                  {canPropose && <div className="hidden sm:block sm:col-span-1">اقتراح</div>}
+                <div className={`grid grid-cols-12 gap-4 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider`}>
+                    {columns.map((col: any) => (
+                        <div key={col.key} className={col.className}>{col.label}</div>
+                    ))}
                 </div>
 
                 {group.terms.length === 0 ? (
@@ -511,22 +637,7 @@ export default async function SectionPage({
                         key={t.id}
                         className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
                       >
-                        <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
-                        <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
-                        <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
-                          {t.description || <span className="text-muted-foreground italic">لا يوجد شرح</span>}
-                        </div>
-                        <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
-                        {canPropose && (
-                          <div className="hidden sm:block sm:col-span-1">
-                            <Link
-                              href={`/proposals/new?termId=${t.id}`}
-                              className="text-xs text-primary hover:underline"
-                            >
-                              اقتراح
-                            </Link>
-                          </div>
-                        )}
+                        {renderRow(t)}
                       </div>
                     ))}
                   </div>
@@ -539,11 +650,9 @@ export default async function SectionPage({
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
           {/* Table Header */}
           <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-            <div className="col-span-2 sm:col-span-1">الرقم</div>
-            <div className="col-span-4 sm:col-span-3">المصطلح</div>
-            <div className={descriptionCol}>الشرح / المفهوم</div>
-            <div className="hidden sm:block sm:col-span-1">اختصار</div>
-            {canPropose && <div className="hidden sm:block sm:col-span-1">اقتراح</div>}
+               {columns.map((col: any) => (
+                    <div key={col.key} className={col.className}>{col.label}</div>
+               ))}
           </div>
           
           {/* Table Body */}
@@ -558,22 +667,7 @@ export default async function SectionPage({
                       key={t.id}
                       className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
                   >
-                      <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
-                      <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
-                      <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
-                          {t.description || <span className="text-muted-foreground italic">لا يوجد شرح</span>}
-                      </div>
-                      <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
-                      {canPropose && (
-                        <div className="hidden sm:block sm:col-span-1">
-                          <Link
-                            href={`/proposals/new?termId=${t.id}`}
-                            className="text-xs text-primary hover:underline"
-                          >
-                            اقتراح
-                          </Link>
-                        </div>
-                      )}
+                     {renderRow(t)}
                   </div>
                   ))}
               </div>
