@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <Shell>
       <div className="flex flex-col items-center justify-center py-12 text-center space-y-8">
-        <div className="rounded-full bg-primary/10 p-6 mb-4">
-          <Shield className="h-16 w-16 text-primary" />
+        <div className="mb-4">
+          <img src="/logo.png" alt="شعار القاموس العسكري" className="h-32 w-auto object-contain" />
         </div>
         
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl max-w-3xl">

@@ -46,15 +46,38 @@ model Section {
   @@index([type])
 }
 
+model Subtitle {
+  id        Int      @id @default(autoincrement())
+  sectionId Int
+  title     String
+  order     Int      @default(0)
+  
+  // Hierarchy support
+  parentId  Int?
+  parent    Subtitle? @relation("SubtitleHierarchy", fields: [parentId], references: [id])
+  children  Subtitle[] @relation("SubtitleHierarchy")
+
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  terms     Term[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sectionId])
+  @@index([parentId])
+}
+
 model Term {
   id           Int      @id @default(autoincrement())
   sectionId    Int
+  subtitleId   Int?
   itemNumber   String?
   term         String
   description  String? @db.LongText
   abbreviation String?
   imageUrl     String?
 
+  subtitle     Subtitle? @relation(fields: [subtitleId], references: [id])
   abbreviationProposals AbbreviationProposal[]
 
   section Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
@@ -63,6 +86,7 @@ model Term {
   updatedAt DateTime @updatedAt
 
   @@index([sectionId])
+  @@index([subtitleId])
   @@index([term])
 }
 

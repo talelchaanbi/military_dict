@@ -44,8 +44,8 @@ export default function LoginClient() {
     <div className="w-full max-w-sm mt-10">
       <Card className="border-t-4 border-t-primary shadow-lg">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto bg-primary/10 p-3 rounded-full w-fit">
-            <Shield className="h-8 w-8 text-primary" />
+          <div className="mx-auto w-fit mb-2">
+            <img src="/logo.png" alt="القاموس العسكري" className="h-20 w-auto object-contain" />
           </div>
           <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
           <CardDescription>

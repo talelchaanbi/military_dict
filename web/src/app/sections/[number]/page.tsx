@@ -28,16 +28,26 @@ function cleanText(value: string) {
 }
 
 function loadSubtitleGroups(sectionNumber: number): SubtitleGroup[] {
-  const htmlPath = path.join(
-    process.cwd(),
-    "..",
-    "qafFilesManager",
-    "Department",
-    "Details",
-    `${sectionNumber}.html`
-  );
+  // Check multiple possible locations for the HTML file
+  const possiblePaths = [
+    // Original path: ../qafFilesManager/Department/Details/X.html
+    path.join(process.cwd(), "..", "qafFilesManager", "Department", "Details", `${sectionNumber}.html`),
+    // Root path: ../X.html
+    path.join(process.cwd(), "..", `${sectionNumber}.html`),
+  ];
 
-  if (!fs.existsSync(htmlPath)) return [];
+  let htmlPath = "";
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      htmlPath = p;
+      break;
+    }
+  }
+
+  if (!htmlPath) {
+    console.warn(`[SectionPage] Subtitle Grouping file not found in any of: ${possiblePaths.join(", ")}`);
+    return [];
+  }
 
   const html = fs.readFileSync(htmlPath, "utf-8");
   const groups: SubtitleGroup[] = [];
@@ -213,7 +223,7 @@ export default async function SectionPage({
     query || wantsAbbr || wantsDesc || startsWith || searchField !== "all" || sortBy !== "number-asc"
   );
 
-  const isGroupedView = section.number >= 1 && section.number <= 11 && !hasFilters;
+  const isGroupedView = section.number >= 1 && section.number <= 11;
   const subtitleGroups = isGroupedView ? loadSubtitleGroups(section.number) : [];
   const canGroup = isGroupedView && subtitleGroups.length > 0;
 
@@ -279,9 +289,9 @@ export default async function SectionPage({
 
   const [total, terms] = canGroup
     ? await Promise.all([
-        prisma.term.count({ where: { sectionId: section.id } }),
+        prisma.term.count({ where }),
         prisma.term.findMany({
-          where: { sectionId: section.id },
+          where,
           orderBy: { id: "asc" },
           select: {
             id: true,

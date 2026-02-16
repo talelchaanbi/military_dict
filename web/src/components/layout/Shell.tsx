@@ -30,9 +30,7 @@ export async function Shell({
         <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
-              <div className="bg-primary/10 group-hover:bg-primary/20 p-2.5 rounded-xl transition-colors">
-                <Shield className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
-              </div>
+                <img src="/logo.png" alt="القاموس العسكري" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
               <div className="hidden sm:block">
                 <h1 className="text-lg font-bold leading-none tracking-tight">القاموس العسكري</h1>
                 <p className="text-xs text-muted-foreground mt-1">أمانة الشؤون العسكرية</p>
