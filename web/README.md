@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Military Dictionary Project
 
-## Getting Started
+This project is a Next.js application for a military dictionary, managing terms, definitions, and abbreviations across different sections (e.g., DEP 12, DEP 13).
 
-First, run the development server:
+## Prerequisites
+
+- Node.js (v18+ recommended)
+- MySQL Database
+
+## Setup
+
+1.  **Clone the repository** and navigate to the `web` directory:
+    ```bash
+    cd web
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Environment Variables**:
+    Create a `.env` file in the `web` directory based on your configuration. Example:
+    ```env
+    DATABASE_URL="mysql://user:password@localhost:3306/military_dict"
+    ADMIN_USERNAME="admin"
+    ADMIN_PASSWORD="admin123"
+    ```
+
+## Database Management
+
+This project uses Prisma for database management.
+
+### Migrations
+
+To run migrations and set up the database schema:
+
+```bash
+npx prisma migrate dev
+```
+
+This will create the tables in your MySQL database.
+
+### Seeding Data
+
+This project has a unified seeding command that handles:
+1.  **Restoring base data** from `prisma/seed_data.sql` (if database is empty).
+2.  **Seeding DEP 13** data from `prisma/dep13_data.json`.
+3.  **Creating/Updating Admin user**.
+
+To initialize or reset your database with all necessary data, simply run:
+
+```bash
+npm run seed
+```
+
+This single command will ensure your database is fully populated and ready.
+
+## Reviewing Useless Fields
+
+To clean up unused fields or optimize the schema:
+
+1.  Review `prisma/schema.prisma`.
+2.  Identify fields that are no longer used by the application logic.
+3.  Remove them from the model.
+4.  Create a migration:
+    ```bash
+    npx prisma migrate dev --name remove_unused_fields
+    ```
+
+## Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

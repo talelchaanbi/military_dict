@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 
 <html dir="rtl" lang="ar">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>الرموز العسكرية: القواعد العامة</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>الرموز العسكرية: القواعد العامة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
         :root {
-            --primary-color: #1e40af; /* أزرق رسمي */
+            --primary-color: #1e40af;
+            /* أزرق رسمي */
             --bg-color: #f1f5f9;
             --text-color: #1e293b;
             --sidebar-width: 300px;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: "Cairo", sans-serif;
@@ -37,7 +41,7 @@
             overflow-y: auto;
             padding: 20px;
             z-index: 1000;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
         }
 
         aside h2 {
@@ -60,7 +64,8 @@
             font-weight: 600;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             background-color: #eff6ff;
             color: var(--primary-color);
             transform: translateX(-5px);
@@ -72,7 +77,8 @@
             flex: 1;
             padding: 40px;
             max-width: 1600px;
-            width: 95%; /* Make it wider */
+            width: 95%;
+            /* Make it wider */
         }
 
         /* --- Header Styling --- */
@@ -91,7 +97,7 @@
             font-size: 2.5rem;
             margin: 0;
             font-weight: 800;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
         }
 
         /* --- البطاقات (Sections) --- */
@@ -101,7 +107,8 @@
             padding: 40px;
             margin-bottom: 40px;
             border: 1px solid #e2e8f0;
-            scroll-margin-top: 20px; /* لضبط التمرير */
+            scroll-margin-top: 20px;
+            /* لضبط التمرير */
         }
 
         h3.section-title {
@@ -130,11 +137,46 @@
             font-size: 1.05rem;
         }
 
-        .content-block p { margin-bottom: 15px; }
-        .content-block ul, .content-block ol { margin-right: 20px; }
-        .content-block li { margin-bottom: 10px; }
-        
-        strong { color: #0f172a; font-weight: 700; }
+        .content-block p {
+            margin-bottom: 15px;
+        }
+
+/* ===== Lists Fix for RTL ===== */
+.content-block ul,
+.content-block ol {
+    padding-right: 25px;       /* مسافة للنقطة */
+    margin: 15px 0;
+    list-style-position: outside;
+}
+
+.content-block ul {
+    list-style-type: disc;
+}
+
+.content-block ol {
+    list-style-type: decimal;
+}
+
+.content-block li {
+    margin-bottom: 8px;
+    line-height: 1.9;
+}
+
+.content-block ul ul,
+.content-block ol ol {
+    margin-top: 8px;
+    padding-right: 20px;
+}
+
+
+        .content-block li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #0f172a;
+            font-weight: 700;
+        }
 
         /* --- الصور --- */
         img {
@@ -169,7 +211,8 @@
             min-width: 600px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px 15px;
             border-bottom: 1px solid #e2e8f0;
             text-align: right;
@@ -182,12 +225,22 @@
             color: var(--primary-color);
         }
 
-        tr:last-child td { border-bottom: none; }
-        tr:nth-child(even) { background-color: #fff; } /* Zebre stripe logic can be adjusted */
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        /* Zebre stripe logic can be adjusted */
 
         /* --- Responsive --- */
         @media (max-width: 768px) {
-            body { flex-direction: column; }
+            body {
+                flex-direction: column;
+            }
+
             aside {
                 position: relative;
                 width: 100%;
@@ -196,11 +249,17 @@
                 border-bottom: 1px solid #e2e8f0;
                 padding: 15px;
             }
-            main { margin-right: 0; padding: 20px; }
+
+            main {
+                margin-right: 0;
+                padding: 20px;
+            }
         }
-    
+
         /* --- Dynamic & Ergonomic Enhancements --- */
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         /* Floating Tools Styles */
         .fixed-tools {
@@ -223,7 +282,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: transform 0.2s, background 0.2s;
             font-size: 1.5rem;
@@ -234,14 +293,18 @@
             background-color: #1e3a8a;
         }
 
-        .tool-btn.hidden { display: none; }
+        .tool-btn.hidden {
+            display: none;
+        }
 
         /* Mobile Menu Toggle */
         .menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none;
+            /* Hidden on desktop */
             position: fixed;
             top: 20px;
-            left: 20px; /* Arabic RTL -> Left is secondary */
+            left: 20px;
+            /* Arabic RTL -> Left is secondary */
             z-index: 2001;
             background: #fff;
             color: var(--primary-color);
@@ -271,7 +334,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9); /* Dark overlay */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Dark overlay */
             justify-content: center;
             align-items: center;
             cursor: zoom-out;
@@ -282,23 +346,26 @@
         .lightbox img {
             max-width: 90%;
             max-height: 90%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             cursor: default;
             border-radius: 4px;
         }
 
-        .lightbox.active { display: flex; }
+        .lightbox.active {
+            display: flex;
+        }
 
         /* Hover effect on images */
         .content-block img {
             cursor: zoom-in;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .content-block img:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* Collapsible Sections */
         .section-header-row {
             display: flex;
@@ -307,7 +374,7 @@
             cursor: pointer;
             width: 100%;
         }
-        
+
         .section-header-row:hover .collapse-icon {
             color: var(--primary-color);
         }
@@ -316,37 +383,49 @@
             font-size: 1.2rem;
             color: #94a3b8;
             transition: transform 0.3s;
-            margin-right: auto; /* Push to left in RTL */
+            margin-right: auto;
+            /* Push to left in RTL */
             margin-left: 10px;
         }
-        
+
         .section-collapsed .content-block {
             display: none;
         }
-        
+
         .section-collapsed .collapse-icon {
             transform: rotate(180deg);
         }
-        
+
         /* Smooth fade for content */
         .content-block {
             animation: fadeIn 0.5s ease;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Improvements */
         @media (max-width: 1024px) {
-             /* Tablet & Mobile */
-            body { flex-direction: column; }
-            
+
+            /* Tablet & Mobile */
+            body {
+                flex-direction: column;
+            }
+
             aside {
                 position: fixed;
                 width: 280px;
-                right: -300px; /* Hide off-screen initially */
+                right: -300px;
+                /* Hide off-screen initially */
                 left: auto;
                 top: 0;
                 bottom: 0;
@@ -358,488 +437,831 @@
 
             aside.open {
                 right: 0;
-                box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+                box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
             }
 
             main {
                 margin-right: 0;
                 padding: 20px;
-                padding-top: 80px; /* Space for top bar */
+                padding-top: 80px;
+                /* Space for top bar */
             }
 
             .menu-toggle {
                 display: flex;
-                right: 20px; /* Place on right for RTL users to easily access */
+                right: 20px;
+                /* Place on right for RTL users to easily access */
                 left: auto;
             }
-            
+
             /* Overlay for mobile sidebar */
             .sidebar-overlay {
                 display: none;
                 position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(0,0,0,0.5);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
                 z-index: 2400;
                 backdrop-filter: blur(2px);
             }
-            .sidebar-overlay.active { display: block; }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
         }
     </style>
-<style id="lightbox-override">
+    <style id="lightbox-override">
         /* Enhanced Lightbox Styles - Adjusted */
         .lightbox {
-            background-color: rgba(0,0,0,0.9) !important;
+            background-color: rgba(0, 0, 0, 0.9) !important;
             backdrop-filter: blur(5px);
         }
+
         .lightbox img {
             /* Reset forcing dimensions to avoid blur */
             width: auto;
             height: auto;
-            
+
             /* Constrain to screen size */
             max-width: 90vw !important;
             max-height: 90vh !important;
-            
+
             /* Minimal size to ensure visibility but not too much stretching */
             /* We remove the aggressive min-width: 60% */
-            min-width: 0 !important; 
-            
+            min-width: 0 !important;
+
             object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
             border: 1px solid #444;
             border-radius: 4px;
-            
+
             /* Optional: slight scale up for very small images, but safely? */
             /* No, let's keep it sharp. User prefers sharpness over size if blur is the issue. */
-            
+
             transform: scale(0.9);
             opacity: 0;
             transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s ease;
-            background-color: white; /* Verify transparent images look okay */
+            background-color: white;
+            /* Verify transparent images look okay */
         }
+
         .lightbox.active img {
             transform: scale(1);
             opacity: 1;
         }
-    </style></head>
-<body><button class="tool-btn menu-toggle" id="menuBtn" onclick="toggleSidebar()">☰</button><div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div><div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"/></div><div class="fixed-tools"><button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()" title="إلى الأعلى">▲</button></div>
-<aside>
-<div class="sidebar-search"><input id="searchInput" placeholder="بحث في العناوين..." type="text"/></div><h2>الفهرس</h2>
-<nav>
-<a class="nav-link" href="#part1">1. المقدمة والتعريف</a>
-<a class="nav-link" href="#part2">2. الاستخدامات والألوان</a>
-<a class="nav-link" href="#part3">3. الخطوط والوقت</a>
-<a class="nav-link" href="#part4">4. الدلالة على المواقع</a>
-<a class="nav-link" href="#part5">5. القيادات وتأليف الرموز</a>
-<a class="nav-link" href="#part6">6. المعلومات الإضافية والحدود</a>
-<a class="nav-link" href="#part7">7. العمليات الهجومية والأهداف</a>
-<a class="nav-link" href="#part8">8. التزويد والطرق</a>
-<a class="nav-link" href="#part9">9. جداول الرموز الأساسية</a>
-</nav>
-</aside>
-<main>
-    <div class="page-header">
-        <h1>الرموز العسكرية: القواعد العامة</h1>
-    </div>
-<section class="section-collapsed" id="part1">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">1</span> تعريف الرموز والاستعمال</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>1. تعريف الرموز العسكرية.</strong> هي وسيلة دقيقة وواضحة تستعمل لتمييز أي وحدة عسكرية أو منشآت أو نشاطات أخرى، ويتم توضيحها إما على شكل رموز متكاملة أو بالأحرف أو مصطلحات أو كلمات أو بالألوان.</p>
-<p><strong>2. الاستعمال.</strong> تستعمل الرموز العسكرية في الحالات التالية:</p>
-<ul>
-<li>أ. لتأشير جميع الخرائط العسكرية.</li>
-<li>ب. لعمل المخططات والشفافات (الكروكيات).</li>
-</ul>
-<p>3. إن استعمال هذه الرموز والمصطلحات ضروري جداً من قبل الوحدات العسكرية، ولا سيما أنها الوسيلة الوحيدة التي يمكن بها تمييز حجم الوحدة، نوع السلاح، الموقع، التحركات، النشاطات والمنشآت العسكرية لمختلف الوحدات في الميدان، سواء لنا أو للعدو وبهذه الطريقة يمكن تثبيت جميع هذه المعلومات على الخرائط واللوحات والشفافات.</p>
-<p>4. الرموز العسكرية لا تطبع بشكل ثابت على الخرائط، والسبب في ذلك أن الوحدات أو أي نشاط تمثله هذه الرموز قابلة للتغيير باستمرار، كتنقل القطعات من مكان لآخر ... إلخ، وهناك سبب مهم جداً وهو المحافظة على السرية، حيث أن جميع هذه الخرائط أو الشفافات هي وثائق عسكرية وإذا دعت الحاجة إلى طيها، تستخدم لهذه الغاية خرائط وشفافات خاصة.</p>
-</div>
-</section>
-<section class="section-collapsed" id="part2">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">2</span> استخدامات الرموز والألوان</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>5. استخدامات الرموز.</strong> تستخدم الرموز لبيان ما يلي:</p>
-<div style="background:#fff; padding:15px; border:1px solid #e2e8f0; border-radius:8px;">
-<p><strong>أ . القطعات / القوات.</strong> وتشمل ما يلي:</p>
-<ul>
-<li>(1) <strong>النوع.</strong> وحدة قيادة منشآت أو نقاط ملاحظة... إلخ.</li>
-<li>(2) <strong>الصنف.</strong> مشاة، دروع، مدفعية، هندسة ... إلخ.</li>
-<li>(3) <strong>الحجم.</strong> فرقة، لواء، كتيبة، سرية... إلخ.</li>
-<li>(4) <strong>المناطق.</strong> المواقع، الحدود، الأهداف... إلخ.</li>
-<li>(5) <strong>الحركة.</strong> التقدم، الهجوم، التنقل... إلخ.</li>
-</ul>
-<p><strong>ب. الأسلحة والمعدات.</strong> تبين أنواعها مثل رشاش، مدفع، آلية، دبابة... إلخ.</p>
-<p><strong>ﺠ . معلومات متفرقة.</strong> مثل التحصينات، الطرق والموانع، خط أنابيب، مطارات أو أي نقاط أخرى.</p>
-</div>
-<br/>
-<p><strong>6. الألوان المستخدمة للقوات البرية.</strong> تستعمل ألوان خاصة لرسم هذه الرموز، وذلك لسهولة الإيضاح والتمييز البري وهي:</p>
-<ul>
-<li><strong>أ . الأزرق.</strong> لتمثيل قطعاتنا والقطعات الصديقة ويشمل المنشآت والأسلحة والنيران.. إلخ.</li>
-<li><strong>ب. الأحمر.</strong> لتمثيل قطعات العدو وجميع نشاطاته من منشآت ونيران وأسلحة.. إلخ.</li>
-<li><strong>ﺠ . الأخضر.</strong> يمثل مختلف الموانع سواء لنا أو للعدو مثل حقول الألغام، التدميرات.. إلخ.</li>
-<li><strong>د. الأصفر.</strong> للمناطق الملوثة بالعوامل الكيماوية أو النووية أو البيولوجية لكلا الطرفين.</li>
-<li><strong>ﻫ . اللون البني.</strong> يدل على الطرق.</li>
-</ul>
-<p><strong>و. الكتابة.</strong> تكتب جميع الكتابات الخاصة بقواتنا والقوات الصديقة على الشفافات والخرائط باللون الأزرق أما الكتابة الخاصة بالعدو فتكتب باللون الأحمر.</p>
-<p><strong>ز. الألوان الأخرى.</strong> تعتبر احتياطاً وإذا ما دعت الحاجة إلى استخدامها فيجب أن يبين الغرض من استخدامها كما يستخدم اللون الأسود في الكتابة التوضيحية.</p>
-<br/>
-<p><strong>7. الألوان المستخدمة للقوات البحرية.</strong></p>
-<ul>
-<li><strong>أ . اللــــون الأزرق.</strong> قواتنا والقوات الصديقة.</li>
-<li><strong>ب. اللون الأحمـــــر.</strong> العدو.</li>
-<li><strong>ﺠ . اللون الأخضــر.</strong> يمثل مختلف الموانع سواء لنا أو للعدو مثل حقول الألغام، التدميرات.. إلخ.</li>
-<li><strong>د . اللون البرتقالي.</strong> العدو المحتمل.</li>
-<li><strong>ﻫ . اللون البنــــــي.</strong> سفن غير معروفة (الأهداف غير المعروفة).</li>
-</ul>
-</div>
-</section>
-<section class="section-collapsed" id="part3">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">3</span> الخطوط ومجموعات الوقت</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>8. الخطوط المزدوجة.</strong> في حالة عدم وجود ألوان مختلفة وعند استعمال لون واحد فقط فترسم رموز العدو بخط مزدوج، بينما ترسم الرموز لقطعاتنا بخط منفرد.</p>
-<img alt="مثال خط مزدوج" src="extracted_images/dep12_section1_img_1.png" style="max-width: 200px;"/>
-<p><strong>مثال:</strong> يبين قيادة فرقة مشاة العدو.</p>
-<hr style="border-top:1px dashed #ccc; margin:20px 0;"/>
-<p><strong>9. الخطوط المتصلة والمتقطعة.</strong></p>
-<ul>
-<li>أ . تمثل الخطوط المتصلة المواقع الحقيقية أو الحالية، الأهداف، الحدود... إلخ.</li>
-<li>ب. تمثل الخطوط المتقطعة المواقع المخطط لها أو للمستقبل.</li>
-<li>ﺠ . يرسم الرمز الأساسي للوحدة بخط متصل.</li>
-</ul>
-<p><strong>أمثلة:</strong></p>
-<img alt="أمثلة خطوط" src="extracted_images/dep12_section1_img_2.png"/>
-<hr style="border-top:1px dashed #ccc; margin:20px 0;"/>
-<p><strong>10. مجموعة الوقت والتاريخ.</strong> تستعمل مجموعة الوقت والتاريخ عادة عند فتح نقطة إدارية أو وقت وصول وحدة ما إلى موقع جديد، تكتب مجموعة الوقت والتاريخ إما تحت أو داخل الرمز.</p>
-<p><strong>أمثلة:</strong></p>
-<img alt="أمثلة وقت" src="extracted_images/dep12_section1_img_3.png"/>
-<p><strong>11. إشارات الاستفهام.</strong> تستعمل إشارة الاستفهام بالإضافة لرمز العدو في حالة عدم معرفته أو في حال الشك في المعلومات عن الرمز ومكان الإشارة يدل على أن المعلومات غير المعروفة أو غير المؤكدة.</p>
-<p><strong>أمثلة:</strong></p>
-<img alt="أمثلة استفهام" src="extracted_images/dep12_section1_img_4.png"/>
-</div>
-</section>
-<section class="section-collapsed" id="part4">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">4</span> الدلالة على المواقع</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>12. الدلالة على المواقع.</strong></p>
-<p><strong>أ . أماكن الوحدات.</strong></p>
-<p>(1) للدلالة على مكان الوحدة أو النقطة يمد خط مستقيم أو منحنى من منتصف قاعدة الرمز لينتهي بمكان الوحدة بالضبط، مثال:</p>
-<img src="extracted_images/dep12_section1_img_5.png" style="max-width: 150px;"/>
-<p>(2) موقع دفاعي محتل من قبل فصيلة المشاة 3 من السرية الأولى من الكتيبة 1 (يجب أن يكون الجانب المغلق من الشكل البيضوي باتجاه العدو، ويضم هذا الشكل الحد الخارجي للموقع المحتل)، مثال:</p>
-<img src="extracted_images/dep12_section1_img_6.png" style="max-width: 250px;"/>
-<p>(3) موقع دفاعي محتل من قبل فصيلة.</p>
-<img src="extracted_images/dep12_section1_img_7.png" style="max-width: 200px;"/>
-<p>(4) سرية مشاة آلية تعمل كقوة واجب في الدفاع.</p>
-<img src="extracted_images/dep12_section1_img_8.png" style="max-width: 200px;"/>
-<p>(5) منطقة تجمع كتيبة المشاة 3 من اللواء 2.</p>
-<img src="extracted_images/dep12_section1_img_9.png" style="max-width: 200px;"/>
-<p>(6) منطقة تجمع مقترحة لكتيبة المشاة 3 من اللواء 2.</p>
-<img src="extracted_images/dep12_section1_img_10.png" style="max-width: 200px;"/>
-<p><strong>ب. المواقع الوهمية.</strong></p>
-<p>(1) موقع وهمي لكتيبة.</p>
-<img src="extracted_images/dep12_section1_img_11.png" style="max-width: 150px;"/>
-<p>(2) موقع وهمي لكتيبة مدفعية.</p>
-<img src="extracted_images/dep12_section1_img_12.png" style="max-width: 150px;"/>
-<p><strong>ﺠ . مواقع الدوريات.</strong> تؤشر دوائر مفرغة غير مظللة على شكل منحنى وباللون الأزرق لدورياتنا واللون الأحمر لدوريات العدو.</p>
-<img src="extracted_images/dep12_section1_img_13.png"/>
-<p><strong>د. مواقع القيادات.</strong> للدلالة على مقر قيادة ما لتشكيلة أو وحدة، يمد خط مستقيم أو منحنى من يسار الرمز لينتهي بمقر تلك الوحدة، مثال:</p>
-<img src="extracted_images/dep12_section1_img_14.png" style="max-width: 200px;"/>
-<p><strong>ﻫ . مواقع عدة قيادات في مقر واحد.</strong> يمد خط مستقيم بحيث يضم هذه القيادات، مثال:</p>
-<img src="extracted_images/dep12_section1_img_15.png" style="max-width: 200px;"/>
-<p><strong>و. مجموعة وحدات في مكان واحد.</strong> إذا كان هناك عدة وحدات غير القيادات في موقع واحد، تجمع الرموز لهذه الوحدات وتوضع ضمن قوس، ولتعيين المكان يمد خط مستقيم من منتصف القوس إلى المكان بالضبط مثال:</p>
-<img src="extracted_images/dep12_section1_img_16.png" style="max-width: 250px;"/>
-</div>
-</section>
-<section class="section-collapsed" id="part5">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">5</span> القيادات وتأليف الرموز</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>13. قوات الواجب.</strong> تشكل قوة خاصة تسمى قوة الواجب ويجمع لها قوات مختلفة للقيام بواجب معين ويبين تجميع هذه القوة بين قوسين تحت قيادة واحدة وتميز بالعلامة؟ مثال:</p>
-<img src="extracted_images/dep12_section1_img_17.png" style="max-width: 200px;"/>
-<p><strong>14. قيادة التشكيلات العليا.</strong> إذا كانت القيادات بمستوى فيلق، يكتفي برسم الرمز الأساسي دون بيان السلاح أو الخدمة ويوضع الاسم أو الرقم داخل الرمز، مثال:</p>
-<img src="extracted_images/dep12_section1_img_18.png" style="max-width: 150px;"/>
-<p><strong>15. تأليف الرموز.</strong> يؤلف الرمز كاملاً من المعلومات التالية:</p>
-<img alt="تأليف الرموز" src="extracted_images/section1_1.png"/>
-</div>
-</section>
-<section class="section-collapsed" id="part6">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">6</span> المعلومات الإضافية والحدود</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>16. معلومات إضافية.</strong></p>
-<p>أ . الوحدة الأم والوحدات المتفرعة، يوضع رقم الوحدة الأم عادة على يسار الرمز، وإذا أردنا توضيح القيادة أو التشكيلة الأعلى لهذه الوحدة، توضع الإشارة على يسار الوحدة الأم وتضاف القيادة الأعلى، أما رقم الوحدة الأساسية فيوضع على يمين الرمز.</p>
-<p><strong>مثال 1:</strong> يوضح هذا المثال السرية 1 من كتيبة الدبابات 4 من لواء الدروع 35 من الفرقة 9.</p>
-<img src="extracted_images/dep12_section1_img_19.png" style="max-width: 200px;"/>
-<p><strong>مثال 2:</strong></p>
-<p>أ . يوضح هذا المثال الجماعة الحضيرة الثانية من الفصيل 3 من سرية المشاة 1 من كتيبة المشاة 5.</p>
-<p>ب. إذا قامت وحدة إدارية بإلحاق أو تزويد نقطة إدارية أو إدامة، تشكيلة أو وحدة ما، فيوضع رقم الوحدة التي قدمتها على يسار الرمز بينما رقم الوحدة المستفيدة على اليمين.</p>
-<img src="extracted_images/dep12_section1_img_20.png" style="max-width: 200px;"/>
-<p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_21.png"/> يبين نقطة وقود للواء الأول من الفرقة الثانية.</p>
-<p><strong>ﺠ . الوظائف وعيار السلاح.</strong> عندما يراد تمييز لأي وحدة إدامة أو إدارية أو تمييز عيار لسلاح ما، تعين هذه الوظائف أو العيار وتكتب إما على يمين الرمز أو تحته وبين قوسين.</p>
-<p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_22.png"/> نقطة إنقاذ للكتيبة 2 من اللواء 1 (إنقاذ)</p>
-<p><img class="inline-img" src="extracted_images/dep12_section1_img_23.png"/> كتيبة المدفعية 50 عيار المدفع 155 ملم</p>
-<p><strong>د. الملحقون والمنفصلون.</strong> عند إلحاق وحدة ما إلى وحدة أخرى لتعزيزها، توضع الإشارة (+) على أعلى يمين الرمز، وكذلك إذا انفصلت وحدة فرعية عن وحدة أخرى توضع الإشـارة (-) على يمين الرمز.</p>
-<p><strong>أمثلة:</strong></p>
-<img alt="أمثلة الملحقون" src="extracted_images/section1_2.png.png"/>
-<p>ﻫ . إذا كان هناك اختلاف بين صنف أو خدمة لوحدة ما تعمل مع وحدة أخرى، فيوضع نوع الصنف أو الخدمة أو السلاح للوحدة الصغيرة داخل الرمز الأساسي، ويضاف رمز الصنف أو الخدمة للوحدة الكبيرة ويوضع تحت الرمز الأساسي عند الرغبة.</p>
-<p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_24.png"/> يبين هذا المثال فصيلة إشارة في وحدة دبابات.</p>
-<br/>
-<p><strong>17. الحدود.</strong> تؤشر الحدود بخطوط متصلة ويوضح عليها حجم الوحدة التي تشغل هذه الحدود ويوضح اسم أو رمز أو رقم الوحدتين المتجاورتين على خط الحدود بالقرب من إشارة حجم الوحدة.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>الاسم – الاصطلاح</th>
-<th>الرمز</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>1</td><td><strong>الحدود الجانبية:</strong> حدود تفصل لواء المشاة 1 ولواء المشاة 2</td><td><img src="extracted_images/dep12_section1_img_25.png"/></td></tr>
-<tr><td>2</td><td>حدود تفصل بين كتيبة المشاة 4 وكتيبة المشاة 3</td><td><img src="extracted_images/dep12_section1_img_26.png"/></td></tr>
-<tr><td>3</td><td>حدود تفصل بين سرية المشاة 2 وسرية المشاة 3</td><td><img src="extracted_images/dep12_section1_img_27.png"/></td></tr>
-<tr><td>4</td><td>حدود تفصل بين الفيلق 1 والفرقة 5 (الحدود الجانبية لوحدات وتشكيلات غير متساوية في الحجم أو مختلفة الصنوف يبين بالرمز حجم الوحدة الأكبر أو الصنف غير المشاة ويكتب حجم الوحدة الأصغر).</td><td><img src="extracted_images/dep12_section1_img_28.png"/></td></tr>
-<tr><td>5</td><td>حدود تفصل بين فرقة المشاة 3 والفرقة المدرعة 9 (يبين صنف غير المشاة).</td><td><img src="extracted_images/dep12_section1_img_29.png"/></td></tr>
-<tr><td>6</td><td><strong>الحدود الخلفية:</strong> الحدود الخلفية إلى اللواء المدرع 5 وفرقة المشاة 43 تبين هذه الحدود نهاية مسؤولية الوحدات الفرعية وليس التشكيلية أو الوحدة الأم، ويبين نوع السلاح أو الصنف أو الجنسية لتلافي التشويش.</td><td><img src="extracted_images/dep12_section1_img_30.png"/></td></tr>
-<tr><td>7</td><td>في حالة وجود قوات صديقة متجاورة يحب وضع رقم التشكيلة وجنسيتها بين قوسين.</td><td><img src="extracted_images/section1_3.png"/></td></tr>
-<tr><td>8</td><td>أ. حدود الفيلق 1 وعلى اليمين الفيلق 3 قوات صديقة وعلى اليسار الفرقة 5 وفي منطقة الفيلق 1 توجد الفرقة 4 في القاطع الأيسر واللواء 2 في القاطع الأيمن.<br/>ب. تبين أيضاً الحدود الخلفية للفرقة 4 واللواء 2 مع الفيلق 1 فهي كما مبينة وإلى الخلف.<br/><strong>ملحوظة:</strong> في الحدود الخلفية يرسم رمز الوحدة.</td><td><img src="extracted_images/section1_4.png"/></td></tr>
-<tr><td>9</td><td><strong>الحدود الأمامية لمنطقة المعركة (ح أ م م):</strong> تؤشر بسلسلة متقطعة من الخطوط المنحنية (يكون التحدب باتجاه العدو باللون الأزرق لنا والأحمر للعدو).</td><td><img src="extracted_images/dep12_section1_img_31.png"/></td></tr>
-<tr><td>10</td><td>يؤشر (ح أ م م) للعدو عند استعمال لون واحد بخط منحني مزدوج بينما يؤشر بخط منحني مفرد لقواتنا.</td><td><img src="extracted_images/dep12_section1_img_32.png"/></td></tr>
-<tr><td>11</td><td><strong>الحدود المقترحة (المستقبلية):</strong> الحدود المقترحة يبين كتيبة المشاة 3 وكتيبة المشاة 4</td><td><img src="extracted_images/dep12_section1_img_33.png"/></td></tr>
-<tr><td>12</td><td>يؤشر بخط متقطع ويكتب عليها وقت وتاريخ التنفيذ بالطرق الموضحة في المثال</td><td><img src="extracted_images/dep12_section1_img_34.png"/></td></tr>
-<tr><td>13</td><td>تمركز كتيبة المشاة 3 من اللواء 6 المجاور لنهاية حدود اللواء 4 وكتيبة المشاة 5</td><td><img src="extracted_images/dep12_section1_img_35.png"/></td></tr>
-<tr><td>14</td><td><strong>تحديد مسؤولية الوحدات:</strong> عندما تكون السرايا مسؤولة عن الحدود القصوى لمنطقة المعركة (ح ق م م) والفرقة مسؤولة عن (ح ق س).</td><td><img src="extracted_images/dep12_section1_img_36.png"/></td></tr>
-<tr><td>15</td><td>عندما تكون الكتيبة مسؤولة عن الحدود القصوى لمنطقة المعركة (ح ق م م) والفرقة مسؤولة عن (ح ق س).</td><td><img src="extracted_images/dep12_section1_img_37.png"/></td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section class="section-collapsed" id="part7">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">7</span> العمليات الهجومية والأهداف</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>18. الأهداف.</strong></p>
-<p>أ . ترسم الأهداف بخطوط متصلة تضم المنطقة المراد مهاجمتها (يوضع داخل الشكل كلمة هدف متبوعة برقم أو حرف أو اسم رمزي، كما يمكن وضع اسم الوحدة التي ستهاجم).</p>
-<img src="extracted_images/dep12_section1_img_38.png"/>
-<p>ب. في حالة تقسيم الأهداف للوحدات المرؤوسة يمكن تعيين حدود تقسم الهدف أو تجزئة الهدف إلى أهداف صغيرة وتسميتها وترسم أهدافنا باللون الأزرق.</p>
-<img src="extracted_images/dep12_section1_img_39.png"/>
-<p><strong>19. خط اتجاه الهجوم.</strong> يرسم بالخط المفرد لتحديد حركة القطعات / القوات على الطرق أو المحاور الموجودة (يستعمل عند رغبة القائد لتنسيق خطة رمي ومناورة خاصة في عمليات الهجوم الليلي والهجمات المعاكسة).</p>
-<img src="extracted_images/dep12_section1_img_40.png"/>
-<p>يرسم الخط المزدوج في حالة الانفتاح وعدم تحديد حركة القطعات القوات على طريق معين</p>
-<img src="extracted_images/dep12_section1_img_41.png"/>
-<p>وحدة كلفت باحتلال أهداف متتالية دون تغيير في اتجاه الهجوم يوضح ذلك بأسهم متتالية أو يمر السهم عبر الأهداف.</p>
-<img src="extracted_images/dep12_section1_img_42.png"/>
-<p><strong>20. سهم متابعة الهجوم بالأمر.</strong> يستعمل سهم المؤشر بالأمر عندما يطلب من وحدة أن تكون جاهزة لمتابعة الهجوم باتجاه السهم ويستعمل عادة مع بيان الحدود والأهداف، ويجب أن يكون هذا السهم بطول مناسب وبخط مستقيم بحيث لا يؤدي إلى التباس بينه وبين سهم خط اتجاه الهجوم.</p>
-<img src="extracted_images/dep12_section1_img_43.png"/>
-<p>محور هجوم رئيسي (يوضح رأس لسهم مزدوج)</p>
-<img src="extracted_images/dep12_section1_img_44.png"/>
-<p><strong>21. محاور التقدم.</strong></p>
-<p>أ . يرسم بسهم مزدوج مبيناً عليه اسم رمزي أو كلمة محور التقدم أو رمز الوحدة.</p>
-<img src="extracted_images/dep12_section1_img_45.png"/>
-<p>ب. يرسم بخط متقطع مع إضافة وقت وتاريخ تنفيذه داخل الرسم.</p>
-<img src="extracted_images/dep12_section1_img_46.png"/>
-<p><strong>22. خط البدء (خ ب).</strong> يرمز إلى خط البدء بخط طولي متصل مبيناً عليه الوقت والتاريخ.</p>
-<img src="extracted_images/dep12_section1_img_47.png"/>
-<p><strong>23. خط التماس (خ ت).</strong> يمكن أن يكون خط البدء هو خط التماس.</p>
-<img src="extracted_images/dep12_section1_img_48.png"/>
-<p><strong>24. منطقة رأس الجسر.</strong> يرسم بخط متصل مع وضع الأهداف بداخله.</p>
-<img src="extracted_images/dep12_section1_img_49.png"/>
-<p><strong>25. التسلسل (التغلغل).</strong> يحدد خط التسلل بخطين مع وضع كلمة التسلل والوحدة المتسللة في المنتصف من الخطين.</p>
-<img src="extracted_images/dep12_section1_img_50.png"/>
-<p><strong>26. خطوط الأخبار.</strong> تعيين هذه الخطوط سلفاً في عمليات التقدم أو الهجوم وذلك لتبليغ الوحدات العليا عند اجتيازها وتعطي أسماء رمزية.</p>
-<img src="extracted_images/dep12_section1_img_51.png"/>
-<p><strong>27. عمليات التخطيط للهجوم المعاكس.</strong> تستعمل الرموز التالية:</p>
-<p>أ. منطقة الاختراق المسموح به باللون الأحمر. | ب. الهدف. | ﺠ . اتجاه الهجوم وخط البدء ومنطقة التشكيل. | د. موقع الوحدة المعنية لشن الهجوم المعاكس. | ﻫ . خط البدء موقع القوات الأمامية. | و. منطقة التشكيل للوحدة المهاجمة.</p>
-<img src="extracted_images/dep12_section1_img_52.png"/>
-<p><strong>28. تخطيط مواقع الخرق.</strong> مدى الخرق المسموح به لقوات العدو ضمن مواقع قواتنا الدفاعية على ضوء التخطيط لعمليات الهجوم المعاكس وأشر حدود الخرق / الاختراق باللون الأحمر.</p>
-<img src="extracted_images/dep12_section1_img_53.png"/>
-<p><strong>29. رموز الوحدات التي تقوم بأعمال الحماية.</strong></p>
-<img src="extracted_images/dep12_section1_img_54.png"/>
-<p><strong>30. قتال الإعاقة.</strong> كتيبة مشاة آلية 35 تعمل في الإعاقة خلال القتال المستمر.</p>
-<img src="extracted_images/dep12_section1_img_55.png"/>
-<p><strong>31. كتيبة مشاة من القوات الصديقة محاصرة.</strong> يوضع حجم الوحدة داخل الدائرة ويرسم الرمز بالأزرق والمثلثات بالأحمر.</p>
-<img src="extracted_images/dep12_section1_img_56.png"/>
-<p><strong>32. كتيبة مشاة معادية محاصرة.</strong> (يرسم الرمز بالأحمر والمثلثات بالأزرق وللداخل).</p>
-</div>
-</section>
-<section class="section-collapsed" id="part8">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">8</span> التزويد والطرق</span><span class="collapse-icon">▼</span></div></h3>
-<div class="content-block">
-<p><strong>33. طرق السير.</strong> نقاط البدء ونقاط الانتشار.</p>
-<img src="extracted_images/dep12_section1_img_57.png"/>
-<p><strong>34. طرق التزويد الرئيسية (ط.ت.ر).</strong></p>
-<p>أ . في الدفاع. تمتد من طريق التزويد الرئيسية إلى الحدود الخلفية للألوية الأمامية.</p>
-<p>ب. في التعرض. يمكن أن تمتد طريق التزويد الرئيسية أمام خط البدء إلى منطقة هدف الفرقة بخط متقطع.</p>
-<img src="extracted_images/dep12_section1_img_58.png"/>
-<p><strong>35. طريق التزويد (ط.ت).</strong></p>
-<p>أ. في الدفاع. تمتد طريق التزويد إلى نقليات (ب) اللواء في حالة تجميعها ويمكن أن تمتد إلى نقطة خلف منطقة دفاع الكتيبة وخط تزويد الكتيبة يمتد من خط تزويد اللواء إلى نقليات (أ) ويمكن أن يمتد إلى نقطة خلف مواقع السرايا الأمامية.</p>
-<p>ب. في التعرض. يمكن أن تمتد طريق التزويد إلى هدف الوحدة المعنية.</p>
-<p><strong>ملاحظة:</strong> إذا عرفت نقاط البدء والانتشار فلا حاجة لوجود الأسهم.</p>
-<img src="extracted_images/dep12_section1_img_59.png"/>
-</div>
-</section>
-<section class="section-collapsed" id="part9">
-<h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">9</span> جداول الرموز الأساسية</span><span class="collapse-icon">▼</span></div></h3><div class="content-block">
-<h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">أ . الوحدات</h4>
-<div class="table-container">
-<table>
-<thead>
-<tr><th>#</th><th>الوصف</th><th>الرمز</th><th>معنى الرمز</th></tr>
-</thead>
-<tbody>
-<tr><td>1</td><td>وحدة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_60.png"/></td><td>مستطيل</td></tr>
-<tr><td>2</td><td>قيادة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_61.png"/></td><td>مستطيل مع خط مستقيم من اليسار</td></tr>
-<tr><td>3</td><td>نقاط المراقبة / الملاحظة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_62.png"/></td><td>مثلث</td></tr>
-<tr><td>4</td><td>نقاط إدارية / إدامة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_63.png"/></td><td>دائرة</td></tr>
-</tbody>
-</table>
-</div>
-<h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">ب. الصنف</h4>
-<div class="table-container">
-<table>
-<thead>
-<tr><th>الوصف</th><th>الرمز</th><th>معنى الرمز</th></tr>
-</thead>
-<tbody>
-<tr><td>المشاة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_64.png"/></td><td>تقاطع مجاند</td></tr>
-<tr><td>المشاة الجبلية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_65.png"/></td><td>جبل مظلل</td></tr>
-<tr><td>الدروع</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_66.png"/></td><td>جنزير دبابة</td></tr>
-<tr><td>المدفعية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_67.png"/></td><td>قنبلة</td></tr>
-<tr><td>الهندسة</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_68.png"/></td><td>جسر</td></tr>
-<tr><td>الإشارة</td><td><img class="inline-img" src="extracted_images/section1_5.png"/></td><td>وميض البرق</td></tr>
-<tr><td>إلكتروني</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_69.png"/></td><td>موجة إلكترونية</td></tr>
-<tr><td>النقل</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_70.png"/></td><td>عجلة آلية</td></tr>
-<tr><td>الخدمات الطبية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_71.png"/></td><td>هلال</td></tr>
-<tr><td>التصليح والإنقاذ</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_72.png"/></td><td>مفتاح آلية</td></tr>
-<tr><td>التموين</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_73.png"/></td><td>مفتاح</td></tr>
-<tr><td>المستودعات</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_74.png"/></td><td>دائرة مع تقاطع أسلحة</td></tr>
-<tr><td>المالية والرواتب</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_75.png"/></td><td>صندوق قوي</td></tr>
-<tr><td>أسلحة دمار شامل</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_76.png"/></td><td>تقاطع حوجلتين</td></tr>
-<tr><td>شؤون عسكرية/ مدنية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_77.png"/></td><td>درع</td></tr>
-<tr><td>بريد</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_78.png"/></td><td>بوق</td></tr>
-<tr><td>البرمائية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_79.png"/></td><td>أمواج وتوضع في وسط المستطيل</td></tr>
-<tr><td>الأسطول (البحري)</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_80.png"/></td><td>مرساة</td></tr>
-<tr><td>ضد الدبابات</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_81.png"/></td><td>رقم ثمانية</td></tr>
-<tr><td>ضد الطائرات</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_82.png"/></td><td>حرف A بالإنجليزي</td></tr>
-<tr><td>بحرية</td><td><img class="inline-img" src="extracted_images/dep12_section1_img_83.png"/></td><td>أمواج خفيفة</td></tr>
-</tbody>
-</table>
-</div>
-<h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">ﺠ . الحجم</h4>
-<div class="table-container">
-<table>
-<thead>
-<tr><th>الرمز</th><th>الوحدة</th><th>ملاحظات</th></tr>
-</thead>
-<tbody>
-<tr><td style="font-size:24px; color:blue; text-align:center;">•</td><td>جماعة</td><td rowspan="11" style="vertical-align:middle; text-align:center;"><img src="extracted_images/section1_6.png" style="max-width:120px; display:block; margin:auto;"/><p>عند وضع الرمز فوق رمز الحجم، فإنه يدلّ على قوة واجب أو مجموعات قتال.</p></td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">••</td><td>مفرزة أكثر من جماعة وأقل من فصيل/فصيلة</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">•••</td><td>فصيل/ فصيلة</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">|</td><td>سرية</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">||</td><td>كتيبة أو ما يعادلها</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">|||</td><td>مجموعة كتيبة أقل من لواء</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">X</td><td>لواء</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">XX</td><td>فرقة</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">XXX</td><td>فيلق</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">XXXX</td><td>جيش</td></tr>
-<tr><td style="font-size:24px; color:blue; text-align:center;">XXXXX</td><td>مجموعة جيوش</td></tr>
-</tbody>
-</table>
-</div>
-</div></section>
-</main>
-<script>
-    function toggleSidebar() {
-        const aside = document.querySelector('aside');
-        const overlay = document.getElementById('sidebarOverlay');
-        aside.classList.toggle('open');
-        overlay.classList.toggle('active');
-    }
+    </style>
+</head>
 
-    /* Search */
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
+<body><button class="tool-btn menu-toggle" id="menuBtn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" /></div>
+    <div class="fixed-tools"><button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()"
+            title="إلى الأعلى">▲</button></div>
+    <aside>
+        <div class="sidebar-search"><input id="searchInput" placeholder="بحث في العناوين..." type="text" /></div>
+        <h2>الفهرس</h2>
+        <nav>
+            <a class="nav-link" href="#part1">1. المقدمة والتعريف</a>
+            <a class="nav-link" href="#part2">2. الاستخدامات والألوان</a>
+            <a class="nav-link" href="#part3">3. الخطوط والوقت</a>
+            <a class="nav-link" href="#part4">4. الدلالة على المواقع</a>
+            <a class="nav-link" href="#part5">5. القيادات وتأليف الرموز</a>
+            <a class="nav-link" href="#part6">6. المعلومات الإضافية والحدود</a>
+            <a class="nav-link" href="#part7">7. العمليات الهجومية والأهداف</a>
+            <a class="nav-link" href="#part8">8. التزويد والطرق</a>
+            <a class="nav-link" href="#part9">9. جداول الرموز الأساسية</a>
+        </nav>
+    </aside>
+    <main>
+        <div class="page-header">
+            <h1>الرموز العسكرية: القواعد العامة</h1>
+        </div>
+        <section class="section-collapsed" id="part1">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">1</span> تعريف الرموز والاستعمال</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>1. تعريف الرموز العسكرية.</strong> هي وسيلة دقيقة وواضحة تستعمل لتمييز أي وحدة عسكرية أو
+                    منشآت أو نشاطات أخرى، ويتم توضيحها إما على شكل رموز متكاملة أو بالأحرف أو مصطلحات أو كلمات أو
+                    بالألوان.</p>
+                <p><strong>2. الاستعمال.</strong> تستعمل الرموز العسكرية في الحالات التالية:</p>
+                <ul>
+                    <li>أ. لتأشير جميع الخرائط العسكرية.</li>
+                    <li>ب. لعمل المخططات والشفافات (الكروكيات).</li>
+                </ul>
+                <p>3. إن استعمال هذه الرموز والمصطلحات ضروري جداً من قبل الوحدات العسكرية، ولا سيما أنها الوسيلة الوحيدة
+                    التي يمكن بها تمييز حجم الوحدة، نوع السلاح، الموقع، التحركات، النشاطات والمنشآت العسكرية لمختلف
+                    الوحدات في الميدان، سواء لنا أو للعدو وبهذه الطريقة يمكن تثبيت جميع هذه المعلومات على الخرائط
+                    واللوحات والشفافات.</p>
+                <p>4. الرموز العسكرية لا تطبع بشكل ثابت على الخرائط، والسبب في ذلك أن الوحدات أو أي نشاط تمثله هذه
+                    الرموز قابلة للتغيير باستمرار، كتنقل القطعات من مكان لآخر ... إلخ، وهناك سبب مهم جداً وهو المحافظة
+                    على السرية، حيث أن جميع هذه الخرائط أو الشفافات هي وثائق عسكرية وإذا دعت الحاجة إلى طيها، تستخدم
+                    لهذه الغاية خرائط وشفافات خاصة.</p>
+            </div>
+        </section>
+        <section class="section-collapsed" id="part2">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">2</span> استخدامات الرموز والألوان</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>5. استخدامات الرموز.</strong> تستخدم الرموز لبيان ما يلي:</p>
+                <div style="background:#fff; padding:15px; border:1px solid #e2e8f0; border-radius:8px;">
+                    <p><strong>أ . القطعات / القوات.</strong> وتشمل ما يلي:</p>
+                    <ul>
+                        <li>(1) <strong>النوع.</strong> وحدة قيادة منشآت أو نقاط ملاحظة... إلخ.</li>
+                        <li>(2) <strong>الصنف.</strong> مشاة، دروع، مدفعية، هندسة ... إلخ.</li>
+                        <li>(3) <strong>الحجم.</strong> فرقة، لواء، كتيبة، سرية... إلخ.</li>
+                        <li>(4) <strong>المناطق.</strong> المواقع، الحدود، الأهداف... إلخ.</li>
+                        <li>(5) <strong>الحركة.</strong> التقدم، الهجوم، التنقل... إلخ.</li>
+                    </ul>
+                    <p><strong>ب. الأسلحة والمعدات.</strong> تبين أنواعها مثل رشاش، مدفع، آلية، دبابة... إلخ.</p>
+                    <p><strong>ﺠ . معلومات متفرقة.</strong> مثل التحصينات، الطرق والموانع، خط أنابيب، مطارات أو أي نقاط
+                        أخرى.</p>
+                </div>
+                <br />
+                <p><strong>6. الألوان المستخدمة للقوات البرية.</strong> تستعمل ألوان خاصة لرسم هذه الرموز، وذلك لسهولة
+                    الإيضاح والتمييز البري وهي:</p>
+                <ul>
+                    <li><strong>أ . الأزرق.</strong> لتمثيل قطعاتنا والقطعات الصديقة ويشمل المنشآت والأسلحة والنيران..
+                        إلخ.</li>
+                    <li><strong>ب. الأحمر.</strong> لتمثيل قطعات العدو وجميع نشاطاته من منشآت ونيران وأسلحة.. إلخ.</li>
+                    <li><strong>ﺠ . الأخضر.</strong> يمثل مختلف الموانع سواء لنا أو للعدو مثل حقول الألغام، التدميرات..
+                        إلخ.</li>
+                    <li><strong>د. الأصفر.</strong> للمناطق الملوثة بالعوامل الكيماوية أو النووية أو البيولوجية لكلا
+                        الطرفين.</li>
+                    <li><strong>ﻫ . اللون البني.</strong> يدل على الطرق.</li>
+                    <li><strong>و. الكتابة.</strong> تكتب جميع الكتابات الخاصة بقواتنا والقوات الصديقة على الشفافات والخرائط
+                        باللون الأزرق أما الكتابة الخاصة بالعدو فتكتب باللون الأحمر.</li>
+                    <li><strong>ز. الألوان الأخرى.</strong> تعتبر احتياطاً وإذا ما دعت الحاجة إلى استخدامها فيجب أن يبين
+                        الغرض من استخدامها كما يستخدم اللون الأسود في الكتابة التوضيحية.</li>
+                </ul>
+                <br />
+                <p><strong>7. الألوان المستخدمة للقوات البحرية.</strong></p>
+                <ul>
+                    <li><strong>أ . اللــــون الأزرق.</strong> قواتنا والقوات الصديقة.</li>
+                    <li><strong>ب. اللون الأحمـــــر.</strong> العدو.</li>
+                    <li><strong>ﺠ . اللون الأخضــر.</strong> يمثل مختلف الموانع سواء لنا أو للعدو مثل حقول الألغام،
+                        التدميرات.. إلخ.</li>
+                    <li><strong>د . اللون البرتقالي.</strong> العدو المحتمل.</li>
+                    <li><strong>ﻫ . اللون البنــــــي.</strong> سفن غير معروفة (الأهداف غير المعروفة).</li>
+                </ul>
+            </div>
+        </section>
+        <section class="section-collapsed" id="part3">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">3</span> الخطوط ومجموعات الوقت</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>8. الخطوط المزدوجة.</strong> في حالة عدم وجود ألوان مختلفة وعند استعمال لون واحد فقط فترسم
+                    رموز العدو بخط مزدوج، بينما ترسم الرموز لقطعاتنا بخط منفرد.</p>
+                <img alt="مثال خط مزدوج" src="extracted_images/dep12_section1_img_1.png" style="max-width: 200px;" />
+                <p><strong>مثال:</strong> يبين قيادة فرقة مشاة العدو.</p>
+                <hr style="border-top:1px dashed #ccc; margin:20px 0;" />
+                <p><strong>9. الخطوط المتصلة والمتقطعة.</strong></p>
+                <ul>
+                    <li>أ . تمثل الخطوط المتصلة المواقع الحقيقية أو الحالية، الأهداف، الحدود... إلخ.</li>
+                    <li>ب. تمثل الخطوط المتقطعة المواقع المخطط لها أو للمستقبل.</li>
+                    <li>ﺠ . يرسم الرمز الأساسي للوحدة بخط متصل.</li>
+                </ul>
+                <p><strong>أمثلة:</strong></p>
+                <img alt="أمثلة خطوط" src="extracted_images/dep12_section1_img_2.png" />
+                <hr style="border-top:1px dashed #ccc; margin:20px 0;" />
+                <p><strong>10. مجموعة الوقت والتاريخ.</strong> تستعمل مجموعة الوقت والتاريخ عادة عند فتح نقطة إدارية أو
+                    وقت وصول وحدة ما إلى موقع جديد، تكتب مجموعة الوقت والتاريخ إما تحت أو داخل الرمز.</p>
+                <p><strong>أمثلة:</strong></p>
+                <img alt="أمثلة وقت" src="extracted_images/dep12_section1_img_3.png" />
+                <p><strong>11. إشارات الاستفهام.</strong> تستعمل إشارة الاستفهام بالإضافة لرمز العدو في حالة عدم معرفته
+                    أو في حال الشك في المعلومات عن الرمز ومكان الإشارة يدل على أن المعلومات غير المعروفة أو غير المؤكدة.
+                </p>
+                <p><strong>أمثلة:</strong></p>
+                <img alt="أمثلة استفهام" src="extracted_images/dep12_section1_img_4.png" />
+            </div>
+        </section>
+        <section class="section-collapsed" id="part4">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">4</span> الدلالة على المواقع</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>12. الدلالة على المواقع.</strong></p>
+                <p><strong>أ . أماكن الوحدات.</strong></p>
+                <p>(1) للدلالة على مكان الوحدة أو النقطة يمد خط مستقيم أو منحنى من منتصف قاعدة الرمز لينتهي بمكان الوحدة
+                    بالضبط، مثال:</p>
+                <img src="extracted_images/dep12_section1_img_5.png" style="max-width: 150px;" />
+                <p>(2) موقع دفاعي محتل من قبل فصيلة المشاة 3 من السرية الأولى من الكتيبة 1 (يجب أن يكون الجانب المغلق من
+                    الشكل البيضوي باتجاه العدو، ويضم هذا الشكل الحد الخارجي للموقع المحتل)، مثال:</p>
+                <img src="extracted_images/dep12_section1_img_6.png" style="max-width: 250px;" />
+                <p>(3) موقع دفاعي محتل من قبل فصيلة.</p>
+                <img src="extracted_images/dep12_section1_img_7.png" style="max-width: 200px;" />
+                <p>(4) سرية مشاة آلية تعمل كقوة واجب في الدفاع.</p>
+                <img src="extracted_images/dep12_section1_img_8.png" style="max-width: 200px;" />
+                <p>(5) منطقة تجمع كتيبة المشاة 3 من اللواء 2.</p>
+                <img src="extracted_images/dep12_section1_img_9.png" style="max-width: 200px;" />
+                <p>(6) منطقة تجمع مقترحة لكتيبة المشاة 3 من اللواء 2.</p>
+                <img src="extracted_images/dep12_section1_img_10.png" style="max-width: 200px;" />
+                <p><strong>ب. المواقع الوهمية.</strong></p>
+                <p>(1) موقع وهمي لكتيبة.</p>
+                <img src="extracted_images/dep12_section1_img_11.png" style="max-width: 150px;" />
+                <p>(2) موقع وهمي لكتيبة مدفعية.</p>
+                <img src="extracted_images/dep12_section1_img_12.png" style="max-width: 150px;" />
+                <p><strong>ﺠ . مواقع الدوريات.</strong> تؤشر دوائر مفرغة غير مظللة على شكل منحنى وباللون الأزرق
+                    لدورياتنا واللون الأحمر لدوريات العدو.</p>
+                <img src="extracted_images/dep12_section1_img_13.png" />
+                <p><strong>د. مواقع القيادات.</strong> للدلالة على مقر قيادة ما لتشكيلة أو وحدة، يمد خط مستقيم أو منحنى
+                    من يسار الرمز لينتهي بمقر تلك الوحدة، مثال:</p>
+                <img src="extracted_images/dep12_section1_img_14.png" style="max-width: 200px;" />
+                <p><strong>ﻫ . مواقع عدة قيادات في مقر واحد.</strong> يمد خط مستقيم بحيث يضم هذه القيادات، مثال:</p>
+                <img src="extracted_images/dep12_section1_img_15.png" style="max-width: 200px;" />
+                <p><strong>و. مجموعة وحدات في مكان واحد.</strong> إذا كان هناك عدة وحدات غير القيادات في موقع واحد، تجمع
+                    الرموز لهذه الوحدات وتوضع ضمن قوس، ولتعيين المكان يمد خط مستقيم من منتصف القوس إلى المكان بالضبط
+                    مثال:</p>
+                <img src="extracted_images/dep12_section1_img_16.png" style="max-width: 250px;" />
+            </div>
+        </section>
+        <section class="section-collapsed" id="part5">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">5</span> القيادات وتأليف الرموز</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>13. قوات الواجب.</strong> تشكل قوة خاصة تسمى قوة الواجب ويجمع لها قوات مختلفة للقيام بواجب
+                    معين ويبين تجميع هذه القوة بين قوسين تحت قيادة واحدة وتميز بالعلامة؟ مثال:</p>
+                <img src="extracted_images/dep12_section1_img_17.png" style="max-width: 200px;" />
+                <p><strong>14. قيادة التشكيلات العليا.</strong> إذا كانت القيادات بمستوى فيلق، يكتفي برسم الرمز الأساسي
+                    دون بيان السلاح أو الخدمة ويوضع الاسم أو الرقم داخل الرمز، مثال:</p>
+                <img src="extracted_images/dep12_section1_img_18.png" style="max-width: 150px;" />
+                <p><strong>15. تأليف الرموز.</strong> يؤلف الرمز كاملاً من المعلومات التالية:</p>
+                <img alt="تأليف الرموز" src="extracted_images/section1_1.png" />
+            </div>
+        </section>
+        <section class="section-collapsed" id="part6">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">6</span> المعلومات الإضافية والحدود</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>16. معلومات إضافية.</strong></p>
+                <p>أ . الوحدة الأم والوحدات المتفرعة، يوضع رقم الوحدة الأم عادة على يسار الرمز، وإذا أردنا توضيح القيادة
+                    أو التشكيلة الأعلى لهذه الوحدة، توضع الإشارة على يسار الوحدة الأم وتضاف القيادة الأعلى، أما رقم
+                    الوحدة الأساسية فيوضع على يمين الرمز.</p>
+                <p><strong>مثال 1:</strong> يوضح هذا المثال السرية 1 من كتيبة الدبابات 4 من لواء الدروع 35 من الفرقة 9.
+                </p>
+                <img src="extracted_images/dep12_section1_img_19.png" style="max-width: 200px;" />
+                <p><strong>مثال 2:</strong></p>
+                <p>أ . يوضح هذا المثال الجماعة الحضيرة الثانية من الفصيل 3 من سرية المشاة 1 من كتيبة المشاة 5.</p>
+                <p>ب. إذا قامت وحدة إدارية بإلحاق أو تزويد نقطة إدارية أو إدامة، تشكيلة أو وحدة ما، فيوضع رقم الوحدة
+                    التي قدمتها على يسار الرمز بينما رقم الوحدة المستفيدة على اليمين.</p>
+                <img src="extracted_images/dep12_section1_img_20.png" style="max-width: 200px;" />
+                <p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_21.png" />
+                    يبين نقطة وقود للواء الأول من الفرقة الثانية.</p>
+                <p><strong>ﺠ . الوظائف وعيار السلاح.</strong> عندما يراد تمييز لأي وحدة إدامة أو إدارية أو تمييز عيار
+                    لسلاح ما، تعين هذه الوظائف أو العيار وتكتب إما على يمين الرمز أو تحته وبين قوسين.</p>
+                <p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_22.png" />
+                    نقطة إنقاذ للكتيبة 2 من اللواء 1 (إنقاذ)</p>
+                <p><img class="inline-img" src="extracted_images/dep12_section1_img_23.png" /> كتيبة المدفعية 50 عيار
+                    المدفع 155 ملم</p>
+                <p><strong>د. الملحقون والمنفصلون.</strong> عند إلحاق وحدة ما إلى وحدة أخرى لتعزيزها، توضع الإشارة (+)
+                    على أعلى يمين الرمز، وكذلك إذا انفصلت وحدة فرعية عن وحدة أخرى توضع الإشـارة (-) على يمين الرمز.</p>
+                <p><strong>أمثلة:</strong></p>
+                <img alt="أمثلة الملحقون" src="extracted_images/section1_2.png.png" />
+                <p>ﻫ . إذا كان هناك اختلاف بين صنف أو خدمة لوحدة ما تعمل مع وحدة أخرى، فيوضع نوع الصنف أو الخدمة أو
+                    السلاح للوحدة الصغيرة داخل الرمز الأساسي، ويضاف رمز الصنف أو الخدمة للوحدة الكبيرة ويوضع تحت الرمز
+                    الأساسي عند الرغبة.</p>
+                <p><strong>مثال:</strong> <img class="inline-img" src="extracted_images/dep12_section1_img_24.png" />
+                    يبين هذا المثال فصيلة إشارة في وحدة دبابات.</p>
+                <br />
+                <p><strong>17. الحدود.</strong> تؤشر الحدود بخطوط متصلة ويوضح عليها حجم الوحدة التي تشغل هذه الحدود
+                    ويوضح اسم أو رمز أو رقم الوحدتين المتجاورتين على خط الحدود بالقرب من إشارة حجم الوحدة.</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الاسم – الاصطلاح</th>
+                                <th>الرمز</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>الحدود الجانبية:</strong> حدود تفصل لواء المشاة 1 ولواء المشاة 2</td>
+                                <td><img src="extracted_images/dep12_section1_img_25.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>حدود تفصل بين كتيبة المشاة 4 وكتيبة المشاة 3</td>
+                                <td><img src="extracted_images/dep12_section1_img_26.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>حدود تفصل بين سرية المشاة 2 وسرية المشاة 3</td>
+                                <td><img src="extracted_images/dep12_section1_img_27.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>حدود تفصل بين الفيلق 1 والفرقة 5 (الحدود الجانبية لوحدات وتشكيلات غير متساوية في
+                                    الحجم أو مختلفة الصنوف يبين بالرمز حجم الوحدة الأكبر أو الصنف غير المشاة ويكتب حجم
+                                    الوحدة الأصغر).</td>
+                                <td><img src="extracted_images/dep12_section1_img_28.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>حدود تفصل بين فرقة المشاة 3 والفرقة المدرعة 9 (يبين صنف غير المشاة).</td>
+                                <td><img src="extracted_images/dep12_section1_img_29.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><strong>الحدود الخلفية:</strong> الحدود الخلفية إلى اللواء المدرع 5 وفرقة المشاة 43
+                                    تبين هذه الحدود نهاية مسؤولية الوحدات الفرعية وليس التشكيلية أو الوحدة الأم، ويبين
+                                    نوع السلاح أو الصنف أو الجنسية لتلافي التشويش.</td>
+                                <td><img src="extracted_images/dep12_section1_img_30.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>في حالة وجود قوات صديقة متجاورة يحب وضع رقم التشكيلة وجنسيتها بين قوسين.</td>
+                                <td><img src="extracted_images/section1_3.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>أ. حدود الفيلق 1 وعلى اليمين الفيلق 3 قوات صديقة وعلى اليسار الفرقة 5 وفي منطقة
+                                    الفيلق 1 توجد الفرقة 4 في القاطع الأيسر واللواء 2 في القاطع الأيمن.<br />ب. تبين
+                                    أيضاً الحدود الخلفية للفرقة 4 واللواء 2 مع الفيلق 1 فهي كما مبينة وإلى
+                                    الخلف.<br /><strong>ملحوظة:</strong> في الحدود الخلفية يرسم رمز الوحدة.</td>
+                                <td><img src="extracted_images/section1_4.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><strong>الحدود الأمامية لمنطقة المعركة (ح أ م م):</strong> تؤشر بسلسلة متقطعة من
+                                    الخطوط المنحنية (يكون التحدب باتجاه العدو باللون الأزرق لنا والأحمر للعدو).</td>
+                                <td><img src="extracted_images/dep12_section1_img_31.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>يؤشر (ح أ م م) للعدو عند استعمال لون واحد بخط منحني مزدوج بينما يؤشر بخط منحني مفرد
+                                    لقواتنا.</td>
+                                <td><img src="extracted_images/dep12_section1_img_32.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td><strong>الحدود المقترحة (المستقبلية):</strong> الحدود المقترحة يبين كتيبة المشاة 3
+                                    وكتيبة المشاة 4</td>
+                                <td><img src="extracted_images/dep12_section1_img_33.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>يؤشر بخط متقطع ويكتب عليها وقت وتاريخ التنفيذ بالطرق الموضحة في المثال</td>
+                                <td><img src="extracted_images/dep12_section1_img_34.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>تمركز كتيبة المشاة 3 من اللواء 6 المجاور لنهاية حدود اللواء 4 وكتيبة المشاة 5</td>
+                                <td><img src="extracted_images/dep12_section1_img_35.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td><strong>تحديد مسؤولية الوحدات:</strong> عندما تكون السرايا مسؤولة عن الحدود القصوى
+                                    لمنطقة المعركة (ح ق م م) والفرقة مسؤولة عن (ح ق س).</td>
+                                <td><img src="extracted_images/dep12_section1_img_36.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>عندما تكون الكتيبة مسؤولة عن الحدود القصوى لمنطقة المعركة (ح ق م م) والفرقة مسؤولة
+                                    عن (ح ق س).</td>
+                                <td><img src="extracted_images/dep12_section1_img_37.png" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section class="section-collapsed" id="part7">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">7</span> العمليات الهجومية والأهداف</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <p><strong>18. الأهداف.</strong></p>
+                <p>أ . ترسم الأهداف بخطوط متصلة تضم المنطقة المراد مهاجمتها (يوضع داخل الشكل كلمة هدف متبوعة برقم أو حرف
+                    أو اسم رمزي، كما يمكن وضع اسم الوحدة التي ستهاجم).</p>
+                <img src="extracted_images/dep12_section1_img_38.png" />
+                <p>ب. في حالة تقسيم الأهداف للوحدات المرؤوسة يمكن تعيين حدود تقسم الهدف أو تجزئة الهدف إلى أهداف صغيرة
+                    وتسميتها وترسم أهدافنا باللون الأزرق.</p>
+                <img src="extracted_images/dep12_section1_img_39.png" />
+                <p><strong>19. خط اتجاه الهجوم.</strong> يرسم بالخط المفرد لتحديد حركة القطعات / القوات على الطرق أو
+                    المحاور الموجودة (يستعمل عند رغبة القائد لتنسيق خطة رمي ومناورة خاصة في عمليات الهجوم الليلي
+                    والهجمات المعاكسة).</p>
+                <img src="extracted_images/dep12_section1_img_40.png" />
+                <p>يرسم الخط المزدوج في حالة الانفتاح وعدم تحديد حركة القطعات القوات على طريق معين</p>
+                <img src="extracted_images/dep12_section1_img_41.png" />
+                <p>وحدة كلفت باحتلال أهداف متتالية دون تغيير في اتجاه الهجوم يوضح ذلك بأسهم متتالية أو يمر السهم عبر
+                    الأهداف.</p>
+                <img src="extracted_images/dep12_section1_img_42.png" />
+                <p><strong>20. سهم متابعة الهجوم بالأمر.</strong> يستعمل سهم المؤشر بالأمر عندما يطلب من وحدة أن تكون
+                    جاهزة لمتابعة الهجوم باتجاه السهم ويستعمل عادة مع بيان الحدود والأهداف، ويجب أن يكون هذا السهم بطول
+                    مناسب وبخط مستقيم بحيث لا يؤدي إلى التباس بينه وبين سهم خط اتجاه الهجوم.</p>
+                <img src="extracted_images/dep12_section1_img_43.png" />
+                <p>محور هجوم رئيسي (يوضح رأس لسهم مزدوج)</p>
+                <img src="extracted_images/dep12_section1_img_44.png" />
+                <p><strong>21. محاور التقدم.</strong></p>
+                <p>أ . يرسم بسهم مزدوج مبيناً عليه اسم رمزي أو كلمة محور التقدم أو رمز الوحدة.</p>
+                <img src="extracted_images/dep12_section1_img_45.png" />
+                <p>ب. يرسم بخط متقطع مع إضافة وقت وتاريخ تنفيذه داخل الرسم.</p>
+                <img src="extracted_images/dep12_section1_img_46.png" />
+                <p><strong>22. خط البدء (خ ب).</strong> يرمز إلى خط البدء بخط طولي متصل مبيناً عليه الوقت والتاريخ.</p>
+                <img src="extracted_images/dep12_section1_img_47.png" />
+                <p><strong>23. خط التماس (خ ت).</strong> يمكن أن يكون خط البدء هو خط التماس.</p>
+                <img src="extracted_images/dep12_section1_img_48.png" />
+                <p><strong>24. منطقة رأس الجسر.</strong> يرسم بخط متصل مع وضع الأهداف بداخله.</p>
+                <img src="extracted_images/dep12_section1_img_49.png" />
+                <p><strong>25. التسلسل (التغلغل).</strong> يحدد خط التسلل بخطين مع وضع كلمة التسلل والوحدة المتسللة في
+                    المنتصف من الخطين.</p>
+                <img src="extracted_images/dep12_section1_img_50.png" />
+                <p><strong>26. خطوط الأخبار.</strong> تعيين هذه الخطوط سلفاً في عمليات التقدم أو الهجوم وذلك لتبليغ
+                    الوحدات العليا عند اجتيازها وتعطي أسماء رمزية.</p>
+                <img src="extracted_images/dep12_section1_img_51.png" />
+                <p><strong>27. عمليات التخطيط للهجوم المعاكس.</strong> تستعمل الرموز التالية:</p>
+                <p>أ. منطقة الاختراق المسموح به باللون الأحمر. | ب. الهدف. | ﺠ . اتجاه الهجوم وخط البدء ومنطقة التشكيل.
+                    | د. موقع الوحدة المعنية لشن الهجوم المعاكس. | ﻫ . خط البدء موقع القوات الأمامية. | و. منطقة التشكيل
+                    للوحدة المهاجمة.</p>
+                <img src="extracted_images/dep12_section1_img_52.png" />
+                <p><strong>28. تخطيط مواقع الخرق.</strong> مدى الخرق المسموح به لقوات العدو ضمن مواقع قواتنا الدفاعية
+                    على ضوء التخطيط لعمليات الهجوم المعاكس وأشر حدود الخرق / الاختراق باللون الأحمر.</p>
+                <img src="extracted_images/dep12_section1_img_53.png" />
+                <p><strong>29. رموز الوحدات التي تقوم بأعمال الحماية.</strong></p>
+                <img src="extracted_images/dep12_section1_img_54.png" />
+                <p><strong>30. قتال الإعاقة.</strong> كتيبة مشاة آلية 35 تعمل في الإعاقة خلال القتال المستمر.</p>
+                <img src="extracted_images/dep12_section1_img_55.png" />
+                <p><strong>31. كتيبة مشاة من القوات الصديقة محاصرة.</strong> يوضع حجم الوحدة داخل الدائرة ويرسم الرمز
+                    بالأزرق والمثلثات بالأحمر.</p>
+                <img src="extracted_images/dep12_section1_img_56.png" />
+                <p><strong>32. كتيبة مشاة معادية محاصرة.</strong> (يرسم الرمز بالأحمر والمثلثات بالأزرق وللداخل).</p>
+            </div>
+        </section>
+        <section class="section-collapsed" id="part8">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">8</span> التزويد والطرق</span><span class="collapse-icon">▼</span>
+                </div>
+            </h3>
+            <div class="content-block">
+                <p><strong>33. طرق السير.</strong> نقاط البدء ونقاط الانتشار.</p>
+                <img src="extracted_images/dep12_section1_img_57.png" />
+                <p><strong>34. طرق التزويد الرئيسية (ط.ت.ر).</strong></p>
+                <p>أ . في الدفاع. تمتد من طريق التزويد الرئيسية إلى الحدود الخلفية للألوية الأمامية.</p>
+                <p>ب. في التعرض. يمكن أن تمتد طريق التزويد الرئيسية أمام خط البدء إلى منطقة هدف الفرقة بخط متقطع.</p>
+                <img src="extracted_images/dep12_section1_img_58.png" />
+                <p><strong>35. طريق التزويد (ط.ت).</strong></p>
+                <p>أ. في الدفاع. تمتد طريق التزويد إلى نقليات (ب) اللواء في حالة تجميعها ويمكن أن تمتد إلى نقطة خلف
+                    منطقة دفاع الكتيبة وخط تزويد الكتيبة يمتد من خط تزويد اللواء إلى نقليات (أ) ويمكن أن يمتد إلى نقطة
+                    خلف مواقع السرايا الأمامية.</p>
+                <p>ب. في التعرض. يمكن أن تمتد طريق التزويد إلى هدف الوحدة المعنية.</p>
+                <p><strong>ملاحظة:</strong> إذا عرفت نقاط البدء والانتشار فلا حاجة لوجود الأسهم.</p>
+                <img src="extracted_images/dep12_section1_img_59.png" />
+            </div>
+        </section>
+        <section class="section-collapsed" id="part9">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">9</span> جداول الرموز الأساسية</span><span
+                        class="collapse-icon">▼</span></div>
+            </h3>
+            <div class="content-block">
+                <h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">أ .
+                    الوحدات</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الوصف</th>
+                                <th>الرمز</th>
+                                <th>معنى الرمز</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>وحدة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_60.png" /></td>
+                                <td>مستطيل</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>قيادة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_61.png" /></td>
+                                <td>مستطيل مع خط مستقيم من اليسار</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>نقاط المراقبة / الملاحظة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_62.png" /></td>
+                                <td>مثلث</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>نقاط إدارية / إدامة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_63.png" /></td>
+                                <td>دائرة</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">ب. الصنف
+                </h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الوصف</th>
+                                <th>الرمز</th>
+                                <th>معنى الرمز</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>المشاة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_64.png" /></td>
+                                <td>تقاطع مجاند</td>
+                            </tr>
+                            <tr>
+                                <td>المشاة الجبلية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_65.png" /></td>
+                                <td>جبل مظلل</td>
+                            </tr>
+                            <tr>
+                                <td>الدروع</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_66.png" /></td>
+                                <td>جنزير دبابة</td>
+                            </tr>
+                            <tr>
+                                <td>المدفعية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_67.png" /></td>
+                                <td>قنبلة</td>
+                            </tr>
+                            <tr>
+                                <td>الهندسة</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_68.png" /></td>
+                                <td>جسر</td>
+                            </tr>
+                            <tr>
+                                <td>الإشارة</td>
+                                <td><img class="inline-img" src="extracted_images/section1_5.png" /></td>
+                                <td>وميض البرق</td>
+                            </tr>
+                            <tr>
+                                <td>إلكتروني</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_69.png" /></td>
+                                <td>موجة إلكترونية</td>
+                            </tr>
+                            <tr>
+                                <td>النقل</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_70.png" /></td>
+                                <td>عجلة آلية</td>
+                            </tr>
+                            <tr>
+                                <td>الخدمات الطبية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_71.png" /></td>
+                                <td>هلال</td>
+                            </tr>
+                            <tr>
+                                <td>التصليح والإنقاذ</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_72.png" /></td>
+                                <td>مفتاح آلية</td>
+                            </tr>
+                            <tr>
+                                <td>التموين</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_73.png" /></td>
+                                <td>مفتاح</td>
+                            </tr>
+                            <tr>
+                                <td>المستودعات</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_74.png" /></td>
+                                <td>دائرة مع تقاطع أسلحة</td>
+                            </tr>
+                            <tr>
+                                <td>المالية والرواتب</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_75.png" /></td>
+                                <td>صندوق قوي</td>
+                            </tr>
+                            <tr>
+                                <td>أسلحة دمار شامل</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_76.png" /></td>
+                                <td>تقاطع حوجلتين</td>
+                            </tr>
+                            <tr>
+                                <td>شؤون عسكرية/ مدنية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_77.png" /></td>
+                                <td>درع</td>
+                            </tr>
+                            <tr>
+                                <td>بريد</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_78.png" /></td>
+                                <td>بوق</td>
+                            </tr>
+                            <tr>
+                                <td>البرمائية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_79.png" /></td>
+                                <td>أمواج وتوضع في وسط المستطيل</td>
+                            </tr>
+                            <tr>
+                                <td>الأسطول (البحري)</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_80.png" /></td>
+                                <td>مرساة</td>
+                            </tr>
+                            <tr>
+                                <td>ضد الدبابات</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_81.png" /></td>
+                                <td>رقم ثمانية</td>
+                            </tr>
+                            <tr>
+                                <td>ضد الطائرات</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_82.png" /></td>
+                                <td>حرف A بالإنجليزي</td>
+                            </tr>
+                            <tr>
+                                <td>بحرية</td>
+                                <td><img class="inline-img" src="extracted_images/dep12_section1_img_83.png" /></td>
+                                <td>أمواج خفيفة</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 style="color:#475569; margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px;">ﺠ . الحجم
+                </h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الرمز</th>
+                                <th>الوحدة</th>
+                                <th>ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">•</td>
+                                <td>جماعة</td>
+                                <td rowspan="11" style="vertical-align:middle; text-align:center;"><img
+                                        src="extracted_images/section1_6.png"
+                                        style="max-width:120px; display:block; margin:auto;" />
+                                    <p>عند وضع الرمز فوق رمز الحجم، فإنه يدلّ على قوة واجب أو مجموعات قتال.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">••</td>
+                                <td>مفرزة أكثر من جماعة وأقل من فصيل/فصيلة</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">•••</td>
+                                <td>فصيل/ فصيلة</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">|</td>
+                                <td>سرية</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">||</td>
+                                <td>كتيبة أو ما يعادلها</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">|||</td>
+                                <td>مجموعة كتيبة أقل من لواء</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">X</td>
+                                <td>لواء</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">XX</td>
+                                <td>فرقة</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">XXX</td>
+                                <td>فيلق</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">XXXX</td>
+                                <td>جيش</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:24px; color:blue; text-align:center;">XXXXX</td>
+                                <td>مجموعة جيوش</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        function toggleSidebar() {
+            const aside = document.querySelector('aside');
+            const overlay = document.getElementById('sidebarOverlay');
+            aside.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        /* Search */
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                navLinks.forEach(link => {
+                    const text = link.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        /* Scroll Spy & Scroll Top */
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                if (scrollBtn) scrollBtn.classList.remove('hidden');
+            } else {
+                if (scrollBtn) scrollBtn.classList.add('hidden');
+            }
+
+            let current = '';
+            sections.forEach(section => {
+                // Offset for sticky header
+                if (window.scrollY >= (section.offsetTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
             navLinks.forEach(link => {
-                const text = link.textContent.toLowerCase();
-                if (text.includes(term)) {
-                    link.style.display = 'block';
-                } else {
-                    link.style.display = 'none';
+                link.classList.remove('active');
+                if (current && link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
                 }
             });
         });
-    }
 
-    /* Scroll Spy & Scroll Top */
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            if(scrollBtn) scrollBtn.classList.remove('hidden');
-        } else {
-            if(scrollBtn) scrollBtn.classList.add('hidden');
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
-        let current = '';
-        sections.forEach(section => {
-            // Offset for sticky header
-            if (window.scrollY >= (section.offsetTop - 150)) {
-                current = section.getAttribute('id');
+
+        /* Lightbox (Fixed) */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(src) {
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+            }
+        }
+
+        function closeLightbox() {
+            if (lightbox) lightbox.classList.remove('active');
+        }
+
+        // Global click listener for images
+        document.addEventListener('click', function (e) {
+            // Lightbox closing
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+                return;
+            }
+
+            // Image clicking
+            if (e.target.tagName === 'IMG') {
+                // Check if inside main to avoid sidebar icons/logos if any
+                if (e.target.closest('main')) {
+                    // Prevent interfering with other specific UI images if needed
+                    e.stopPropagation();
+                    openLightbox(e.target.src);
+                }
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (current && link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
-    });
 
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /* Lightbox (Fixed) */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-
-    function openLightbox(src) {
-        if(lightbox && lightboxImg) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
+        /* Section Toggling */
+        function toggleSection(header) {
+            const section = header.closest('section');
+            if (section) section.classList.toggle('section-collapsed');
         }
-    }
-
-    function closeLightbox() {
-        if(lightbox) lightbox.classList.remove('active');
-    }
-
-    // Global click listener for images
-    document.addEventListener('click', function(e) {
-        // Lightbox closing
-        if (e.target.id === 'lightbox') {
-            closeLightbox();
-            return;
-        }
-
-        // Image clicking
-        if (e.target.tagName === 'IMG') {
-            // Check if inside main to avoid sidebar icons/logos if any
-            if (e.target.closest('main')) {
-                // Prevent interfering with other specific UI images if needed
-                e.stopPropagation();
-                openLightbox(e.target.src);
-            }
-        }
-    });
-
-    /* Section Toggling */
-    function toggleSection(header) {
-        const section = header.closest('section');
-        if(section) section.classList.toggle('section-collapsed');
-    }
     </script>
 </body>
+
 </html>

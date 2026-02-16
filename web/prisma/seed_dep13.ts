@@ -52,12 +52,19 @@ async function main() {
     for (const term of terms) {
       if (!term.term && !term.imageUrl) continue;
 
+      let imageUrl = term.imageUrl;
+      if (imageUrl) {
+        // Force all images to use the extracted_images path
+        const filename = path.basename(imageUrl);
+        imageUrl = `/uploads/docs/extracted_images/${filename}`;
+      }
+
       await prisma.term.create({
         data: {
           sectionId: createdSection.id,
           term: term.term || "بدون عنوان",
           description: term.definition || "", // Map definition to description
-          imageUrl: term.imageUrl,
+          imageUrl: imageUrl,
         },
       });
     }
