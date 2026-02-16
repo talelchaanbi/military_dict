@@ -303,6 +303,45 @@
             }
             .sidebar-overlay.active { display: block; }
         }
+    </style><style id="lightbox-override">
+        /* Enhanced Lightbox Styles */
+        .lightbox {
+            background-color: rgba(0,0,0,0.95) !important;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox img {
+            /* Reset specific dimensions */
+            max-width: 95vw !important;
+            max-height: 95vh !important;
+            
+            /* Apply a transformative zoom effect */
+            /* Using transform: scale(1.5) or similar on click? */
+            /* No, lightbox usually just fits to screen. */
+            /* Use min-width to force small images to scale UP */
+            min-width: 60%; 
+            /* But respect aspect ratio */
+            width: auto;
+            height: auto;
+            
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+            
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .lightbox.active img {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Specific fix for very small images or vertical images */
+        @media (max-width: 768px) {
+            .lightbox img {
+                min-width: 95%;
+            }
+        }
     </style></head><body><button class="tool-btn menu-toggle" id="menuBtn" onclick="toggleSidebar()">☰</button><div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div><div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"/></div><div class="fixed-tools"><button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()" title="إلى الأعلى">▲</button></div><aside><div class="sidebar-search"><input id="searchInput" placeholder="بحث في العناوين..." type="text"/></div><h2>فهرس الوثيقة</h2><nav><a class="nav-link" href="#part1">1. مقدمة</a></nav></aside><main><section class="section-collapsed" id="part1"><h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">1</span><span>مقدمة</span></span><span class="collapse-icon">▼</span></div></h3><div class="content-block"><div class="table-wrap">
 <table>
 <tbody>
@@ -1297,40 +1336,49 @@
 </table>
 </div><p><strong>ملاحظة</strong>. جميع الكتابة والرموز باللون الأزرق.</p></div></section></main><script>
     function toggleSidebar() {
-        document.querySelector('aside').classList.toggle('open');
-        document.getElementById('sidebarOverlay').classList.toggle('active');
+        const aside = document.querySelector('aside');
+        const overlay = document.getElementById('sidebarOverlay');
+        aside.classList.toggle('open');
+        overlay.classList.toggle('active');
     }
 
+    /* Search */
     const searchInput = document.getElementById('searchInput');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        navLinks.forEach(link => {
-            if (link.textContent.toLowerCase().includes(term)) {
-                link.style.display = 'block';
-            } else {
-                link.style.display = 'none';
-            }
+    if (searchInput) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            navLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(term)) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
         });
-    });
+    }
 
+    /* Scroll Spy & Scroll Top */
     const scrollBtn = document.getElementById('scrollTopBtn');
     const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
-            scrollBtn.classList.remove('hidden');
+            if(scrollBtn) scrollBtn.classList.remove('hidden');
         } else {
-            scrollBtn.classList.add('hidden');
+            if(scrollBtn) scrollBtn.classList.add('hidden');
         }
         
         let current = '';
         sections.forEach(section => {
-            if (pageYOffset >= (section.offsetTop - 150)) {
+            // Offset for sticky header
+            if (window.scrollY >= (section.offsetTop - 150)) {
                 current = section.getAttribute('id');
             }
         });
+        
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (current && link.getAttribute('href').includes(current)) {
@@ -1343,23 +1391,43 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    /* Lightbox (Fixed) */
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
-    
-    // Delegate event for images
-    document.querySelector('main').addEventListener('click', function(e) {
-        if(e.target.tagName === 'IMG') {
-            e.stopPropagation();
-            lightboxImg.src = e.target.src;
+
+    function openLightbox(src) {
+        if(lightbox && lightboxImg) {
+            lightboxImg.src = src;
             lightbox.classList.add('active');
+        }
+    }
+
+    function closeLightbox() {
+        if(lightbox) lightbox.classList.remove('active');
+    }
+
+    // Global click listener for images
+    document.addEventListener('click', function(e) {
+        // Lightbox closing
+        if (e.target.id === 'lightbox') {
+            closeLightbox();
+            return;
+        }
+
+        // Image clicking
+        if (e.target.tagName === 'IMG') {
+            // Check if inside main to avoid sidebar icons/logos if any
+            if (e.target.closest('main')) {
+                // Prevent interfering with other specific UI images if needed
+                e.stopPropagation();
+                openLightbox(e.target.src);
+            }
         }
     });
 
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-    }
-
+    /* Section Toggling */
     function toggleSection(header) {
-        header.closest('section').classList.toggle('section-collapsed');
+        const section = header.closest('section');
+        if(section) section.classList.toggle('section-collapsed');
     }
     </script></body></html>
