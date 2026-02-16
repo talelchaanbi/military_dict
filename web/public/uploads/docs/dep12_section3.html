@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 
-<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>الرموز المستخدمة للقوات البحرية</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet"/><style>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>الرموز المستخدمة للقوات البحرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
         :root {
             --primary-color: #1e40af;
             --bg-color: #f1f5f9;
@@ -8,7 +15,9 @@
             --sidebar-width: 300px;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: "Cairo", sans-serif;
@@ -31,7 +40,7 @@
             overflow-y: auto;
             padding: 20px;
             z-index: 1000;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
             transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -56,7 +65,8 @@
             font-weight: 600;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             background-color: #eff6ff;
             color: var(--primary-color);
             transform: translateX(-5px);
@@ -106,15 +116,36 @@
             font-size: 1.05rem;
             animation: fadeIn 0.5s ease;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .content-block p { margin-bottom: 15px; }
-        .content-block ul, .content-block ol { margin-right: 20px; }
-        .content-block li { margin-bottom: 10px; }
-        strong { color: #0f172a; font-weight: 700; }
+        .content-block p {
+            margin-bottom: 15px;
+        }
+
+        .content-block ul,
+        .content-block ol {
+            margin-right: 20px;
+        }
+
+        .content-block li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #0f172a;
+            font-weight: 700;
+        }
 
         /* Images */
         img {
@@ -129,10 +160,12 @@
             cursor: zoom-in;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         img:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
+
         .inline-img {
             display: inline-block;
             vertical-align: middle;
@@ -148,17 +181,21 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             min-width: 600px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             border-bottom: 1px solid #e2e8f0;
             text-align: right;
             vertical-align: top;
         }
+
         th {
             background-color: #f8fafc;
             font-weight: 700;
@@ -166,7 +203,9 @@
         }
 
         /* --- UI Enhancements CSS --- */
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         /* Tools */
         .fixed-tools {
@@ -178,6 +217,7 @@
             gap: 15px;
             z-index: 2000;
         }
+
         .tool-btn {
             background: var(--primary-color);
             color: white;
@@ -188,23 +228,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: transform 0.2s, background 0.2s;
             font-size: 1.5rem;
         }
+
         .tool-btn:hover {
             transform: scale(1.1);
             background-color: #1e3a8a;
         }
-        .tool-btn.hidden { display: none; }
+
+        .tool-btn.hidden {
+            display: none;
+        }
 
         /* Mobile Menu */
         .menu-toggle {
             display: none;
             position: fixed;
             top: 20px;
-            left: 20px; 
+            left: 20px;
             z-index: 2001;
         }
 
@@ -213,6 +257,7 @@
             margin-bottom: 20px;
             position: relative;
         }
+
         .sidebar-search input {
             width: 100%;
             padding: 10px 15px;
@@ -230,22 +275,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             cursor: zoom-out;
             padding: 20px;
             backdrop-filter: blur(5px);
         }
+
         .lightbox img {
             max-width: 90%;
             max-height: 90%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             cursor: default;
             border: none;
             border-radius: 4px;
         }
-        .lightbox.active { display: flex; }
+
+        .lightbox.active {
+            display: flex;
+        }
 
         /* Collapsible Headers */
         .section-header-row {
@@ -255,6 +304,7 @@
             cursor: pointer;
             width: 100%;
         }
+
         .collapse-icon {
             font-size: 1.2rem;
             color: #94a3b8;
@@ -262,1172 +312,1304 @@
             margin-right: auto;
             margin-left: 10px;
         }
-        .section-collapsed .content-block { display: none; }
-        .section-collapsed .collapse-icon { transform: rotate(180deg); }
+
+        .section-collapsed .content-block {
+            display: none;
+        }
+
+        .section-collapsed .collapse-icon {
+            transform: rotate(180deg);
+        }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            body { flex-direction: column; }
+            body {
+                flex-direction: column;
+            }
+
             aside {
                 position: fixed;
                 width: 280px;
                 right: -300px;
                 left: auto;
-                top: 0; 
+                top: 0;
                 bottom: 0;
                 border-left: 1px solid #e2e8f0;
                 z-index: 2500;
                 height: 100vh;
             }
+
             aside.open {
                 right: 0;
-                box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+                box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
             }
+
             main {
                 margin-right: 0;
                 padding: 20px;
                 padding-top: 80px;
             }
+
             .menu-toggle {
                 display: flex;
                 right: 20px;
                 left: auto;
             }
+
             .sidebar-overlay {
                 display: none;
                 position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(0,0,0,0.5);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
                 z-index: 2400;
                 backdrop-filter: blur(2px);
             }
-            .sidebar-overlay.active { display: block; }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
         }
-    </style><style id="lightbox-override">
-        /* Enhanced Lightbox Styles */
+    </style>
+    <style id="lightbox-override">
+        /* Enhanced Lightbox Styles - Adjusted */
         .lightbox {
-            background-color: rgba(0,0,0,0.95) !important;
+            background-color: rgba(0, 0, 0, 0.9) !important;
             backdrop-filter: blur(5px);
         }
+
         .lightbox img {
-            /* Reset specific dimensions */
-            max-width: 95vw !important;
-            max-height: 95vh !important;
-            
-            /* Apply a transformative zoom effect */
-            /* Using transform: scale(1.5) or similar on click? */
-            /* No, lightbox usually just fits to screen. */
-            /* Use min-width to force small images to scale UP */
-            min-width: 60%; 
-            /* But respect aspect ratio */
+            /* Reset forcing dimensions to avoid blur */
             width: auto;
             height: auto;
-            
+
+            /* Constrain to screen size */
+            max-width: 90vw !important;
+            max-height: 90vh !important;
+
+            /* Minimal size to ensure visibility but not too much stretching */
+            /* We remove the aggressive min-width: 60% */
+            min-width: 0 !important;
+
             object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            border: 1px solid #333;
-            
-            transform: scale(0.8);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border: 1px solid #444;
+            border-radius: 4px;
+
+            /* Optional: slight scale up for very small images, but safely? */
+            /* No, let's keep it sharp. User prefers sharpness over size if blur is the issue. */
+
+            transform: scale(0.9);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s ease;
+            background-color: white;
+            /* Verify transparent images look okay */
         }
+
         .lightbox.active img {
             transform: scale(1);
             opacity: 1;
         }
-        
-        /* Specific fix for very small images or vertical images */
-        @media (max-width: 768px) {
-            .lightbox img {
-                min-width: 95%;
-            }
-        }
-    </style></head><body><button class="tool-btn menu-toggle" id="menuBtn" onclick="toggleSidebar()">☰</button><div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div><div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"/></div><div class="fixed-tools"><button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()" title="إلى الأعلى">▲</button></div><aside><div class="sidebar-search"><input id="searchInput" placeholder="بحث في العناوين..." type="text"/></div><h2>فهرس الوثيقة</h2><nav><a class="nav-link" href="#part1">1. مقدمة</a></nav></aside><main><section class="section-collapsed" id="part1"><h3 class="section-title"><div class="section-header-row" onclick="toggleSection(this)"><span><span class="section-number">1</span><span>مقدمة</span></span><span class="collapse-icon">▼</span></div></h3><div class="content-block"><div class="table-wrap">
-<table>
-<tbody>
-<tr>
-<td colspan="2">
-<p>#</p>
-</td>
-<td>
-<p>معنى الرمز</p>
-</td>
-<td>
-<p>الرمز</p>
-</td>
-<td colspan="2">
-<p>ملاحظات</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة قيادة</p>
-</td>
-<td><img alt="سفينة قيادة" class="doc-inline-asset" src="extracted_images/section3_1.png"/></td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حاملة طائرات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_1.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>قوة مكونة من حاملة طائرات وسفن أخرى</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_2.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>طراد</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_3.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>طراد حامل صواريخ موجهة</p>
-</td>
-<td><img alt="سفينة قيادة" class="doc-inline-asset" src="extracted_images/section3_2.png"/></td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>قوة من عدة طرادات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_4.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مدمرة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_5.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مدمرة حاملة صواريخ موجهة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_6.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مجموعة مدمرات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_7.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>فرقاطة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_8.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>فرقاطة حاملة صواريخ موجهة</p>
-</td>
-<td><img alt="سفينة قيادة" class="doc-inline-asset" src="extracted_images/section3_3.png"/></td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق صواريخ كبير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_9.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق صواريخ صغير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_10.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مجموعة زوارق صواريخ</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_11.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق طوربيد كبير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_12.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق طوربيد صغير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_13.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق مدفعية صغير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_14.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق مدفعية كبير</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_15.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سرب زوارق مدفعية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_16.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق استطلاع رادار إلكتروني</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_17.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة بحث</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_18.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زورق هايدروفيل</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_19.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة تجارية مسلحة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_20.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة إنزال صغيرة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_21.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة إنزال كبيرة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_22.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>قافلة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_23.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة تجارية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_24.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>ناقلة نفط تجارية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_25.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مركب صيد</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_26.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>هدف بحري غير معروف</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_27.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حوامة (مخدة هوائية)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_28.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>غواصة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_29.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>آخر موقع معلوم للغواصة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_30.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>زارعة ألغام</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_31.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>كاسحة ألغام</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_32.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>صائدة ألغام</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_33.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>عملية كسح الألغام</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_34.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>سفينة خدمات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_35.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>إنزال بحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_36.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>كتيبة مشاة البحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_37.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>طائرة عمودية/سمتية حاملة صواريخ جو/ سطح</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_38.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>طائرة سمتية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_39.png"/></p>
-</td>
-<td colspan="2">
-<p>المروحية المعروفة باسم الحوامة أو الطائرة العمودية أو الطائرة السمتية أو الهليكوبتر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>طائرة استطلاع متعدد المهام</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_40.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>قاعدة بحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_41.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>ميناء تزويد بالوقود والماء</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_42.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مكان صالح لرمي المخطاف</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_43.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط دورية متحركة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_44.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>منطقة ملوثة بأسلحة دمار شامل</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_45.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>اكتشاف راداري يظهر ويتلاشى</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_46.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>موقع الغواصة المكتشفة</p>
-</td>
-<td><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_47.png"/></td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>هدف تمويه راداري</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_48.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>جهاز إعاقة إلكتروني</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_49.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>محطة رادار ساحلية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_50.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>محطة تنصت وتشويش إلكتروني</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_51.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>محطة رادار جوي</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_52.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>اختفاء الاتصال</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_53.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>فقد الاتصال</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_54.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>موقع حطام السفينة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_55.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>جهاز حفر بترول</p>
-</td>
-<td>
-<div class="doc-img-strip"><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_56.png"/><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_57.png"/></div>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>لغم بحري</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_58.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>لغم دفاعي</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_59.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>لغم تحت سطح الماء (ذو سلك إرساء)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_60.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>ألغام ضد الإنزال البحري (عائم على سطح الماء)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_61.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>ألغام ضد الإنزال البحري (دفاعية)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_62.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>منطقة ألغام دفاعية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_63.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مجموعة ألغام بحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_64.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>مجموعة ألغام مضادة للغواصات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_65.png"/></p>
-</td>
-<td colspan="2">
-<p>أخضر</p>
-</td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حقل ألغام غير معروف</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_66.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حقل ألغام بحري معروف</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_67.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>بطارية صواريخ ساحلية ثابتة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_68.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>بطارية صواريخ ساحلية متحركة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_69.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>بطارية مدفعية ساحلية ثابتة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_70.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>بطارية مدفعية ساحلية متحركة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_71.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>منطقة نيران مدفعية ساحلية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_72.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حدود منطقة الكشف الراداري (حدود منطقة المراقبة)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_73.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>حدود منطقة إنزال الضفادع البشرية والمتسللين</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_74.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط بدء الانفتاح لقوات الإبرار البحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_75.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>منطقة صالحة لعمليات الإبرار البحري</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_76.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>عوامة تصنت للكشف عن الغواصات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_77.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط السير لسفينة حربية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_78.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط سير القافلة البحرية</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_79.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط سير تشكيل الإبرار مجموعة الإبرار (3)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_80.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>إحداثيات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_81.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>موقع نقطة المرجع (إذا كان من نقطة مرجع واحدة توضح النقاط الأخرى بحروف مثل (BB-CC-DD)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_82.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>نقطة التلاقي</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_83.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>انبعاث كهرومغناطيسي نوع أ (+/- 2O)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_84.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>انبعاث كهرومغناطيسي نوع ب (+/- 5O)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_85.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>انبعاث كهرومغناطيسي نوع ﺠ (+/- 10O)</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_86.png"/></p>
-</td>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td colspan="2"></td>
-<td>
-<p>خط السير والسرعة</p>
-</td>
-<td colspan="3">
-<p><strong>ترسم وتكتب خطوط السير على الخرائط البحرية كما هو مبين أعلاه في مثال رقم (1) يجب أن يكون
-                        الرقم موازياً للخط المرسوم على الخارطة ويؤشر عليه بعلامة الدرجة، أما السرعة فيجب أن تكون داخل
-                        المربع وبشكل أفقي حتى لو تم تغيير خط السير، كما هو مبين في المثال العرض 5 مم والطول 6
-                        مم.</strong></p>
-<p><strong>مثال:</strong></p>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_87.png"/></p>
-</td>
-</tr>
-</tbody>
-</table>
-</div><div class="table-wrap">
-<table>
-<tbody>
-<tr>
-<td>
-<p>#</p>
-</td>
-<td>
-<p>معنى الرمز</p>
-</td>
-<td>
-<p>الرمز</p>
-</td>
-<td>
-<p>ملاحظات</p>
-</td>
-</tr>
-<tr>
-<td></td>
-<td>
-<p>الحوض الجاف</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_88.png"/></p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<p>حوض عائم</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_89.png"/></p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<p>مانع مضاد للزوارق</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_90.png"/></p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<p>مانع ضد الغواصات</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_91.png"/></p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<p>أنوار كاشفة</p>
-</td>
-<td>
-<p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_92.png"/></p>
-</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div><p><strong>ملاحظة</strong>. جميع الكتابة والرموز باللون الأزرق.</p></div></section></main><script>
-    function toggleSidebar() {
-        const aside = document.querySelector('aside');
-        const overlay = document.getElementById('sidebarOverlay');
-        aside.classList.toggle('open');
-        overlay.classList.toggle('active');
-    }
+    </style>
+</head>
 
-    /* Search */
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
+<body><button class="tool-btn menu-toggle" id="menuBtn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" /></div>
+    <div class="fixed-tools"><button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()"
+            title="إلى الأعلى">▲</button></div>
+    <aside>
+        <div class="sidebar-search"><input id="searchInput" placeholder="بحث في العناوين..." type="text" /></div>
+        <h2>فهرس الوثيقة</h2>
+        <nav><a class="nav-link" href="#part1">1. مقدمة</a></nav>
+    </aside>
+    <main>
+        <section class="section-collapsed" id="part1">
+            <h3 class="section-title">
+                <div class="section-header-row" onclick="toggleSection(this)"><span><span
+                            class="section-number">1</span><span>مقدمة</span></span><span class="collapse-icon">▼</span>
+                </div>
+            </h3>
+            <div class="content-block">
+                <div class="table-wrap">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <p>#</p>
+                                </td>
+                                <td>
+                                    <p>معنى الرمز</p>
+                                </td>
+                                <td>
+                                    <p>الرمز</p>
+                                </td>
+                                <td colspan="2">
+                                    <p>ملاحظات</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة قيادة</p>
+                                </td>
+                                <td><img alt="سفينة قيادة" class="doc-inline-asset"
+                                        src="extracted_images/section3_1.png" /></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حاملة طائرات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_1.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>قوة مكونة من حاملة طائرات وسفن أخرى</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_2.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>طراد</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_3.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>طراد حامل صواريخ موجهة</p>
+                                </td>
+                                <td><img alt="سفينة قيادة" class="doc-inline-asset"
+                                        src="extracted_images/section3_2.png" /></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>قوة من عدة طرادات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_4.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مدمرة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_5.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مدمرة حاملة صواريخ موجهة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_6.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مجموعة مدمرات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_7.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>فرقاطة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_8.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>فرقاطة حاملة صواريخ موجهة</p>
+                                </td>
+                                <td><img alt="سفينة قيادة" class="doc-inline-asset"
+                                        src="extracted_images/section3_3.png" /></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق صواريخ كبير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_9.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق صواريخ صغير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_10.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مجموعة زوارق صواريخ</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_11.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق طوربيد كبير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_12.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق طوربيد صغير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_13.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق مدفعية صغير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_14.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق مدفعية كبير</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_15.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سرب زوارق مدفعية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_16.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق استطلاع رادار إلكتروني</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_17.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة بحث</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_18.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زورق هايدروفيل</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_19.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة تجارية مسلحة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_20.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة إنزال صغيرة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_21.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة إنزال كبيرة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_22.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>قافلة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_23.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة تجارية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_24.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>ناقلة نفط تجارية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_25.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مركب صيد</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_26.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>هدف بحري غير معروف</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_27.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حوامة (مخدة هوائية)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_28.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>غواصة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_29.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>آخر موقع معلوم للغواصة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_30.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>زارعة ألغام</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_31.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>كاسحة ألغام</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_32.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>صائدة ألغام</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_33.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>عملية كسح الألغام</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_34.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>سفينة خدمات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_35.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>إنزال بحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_36.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>كتيبة مشاة البحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_37.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>طائرة عمودية/سمتية حاملة صواريخ جو/ سطح</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_38.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>طائرة سمتية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_39.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>المروحية المعروفة باسم الحوامة أو الطائرة العمودية أو الطائرة السمتية أو
+                                        الهليكوبتر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>طائرة استطلاع متعدد المهام</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_40.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>قاعدة بحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_41.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>ميناء تزويد بالوقود والماء</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_42.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مكان صالح لرمي المخطاف</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_43.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط دورية متحركة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_44.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>منطقة ملوثة بأسلحة دمار شامل</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_45.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>اكتشاف راداري يظهر ويتلاشى</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_46.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>موقع الغواصة المكتشفة</p>
+                                </td>
+                                <td><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_47.png" />
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>هدف تمويه راداري</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_48.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>جهاز إعاقة إلكتروني</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_49.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>محطة رادار ساحلية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_50.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>محطة تنصت وتشويش إلكتروني</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_51.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>محطة رادار جوي</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_52.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>اختفاء الاتصال</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_53.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>فقد الاتصال</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_54.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>موقع حطام السفينة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_55.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>جهاز حفر بترول</p>
+                                </td>
+                                <td>
+                                    <div class="doc-img-strip"><img class="doc-inline-asset"
+                                            src="extracted_images/dep12_section3_img_56.png" /><img
+                                            class="doc-inline-asset" src="extracted_images/dep12_section3_img_57.png" />
+                                    </div>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>لغم بحري</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_58.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>لغم دفاعي</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_59.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>لغم تحت سطح الماء (ذو سلك إرساء)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_60.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>ألغام ضد الإنزال البحري (عائم على سطح الماء)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_61.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>ألغام ضد الإنزال البحري (دفاعية)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_62.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>منطقة ألغام دفاعية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_63.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مجموعة ألغام بحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_64.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مجموعة ألغام مضادة للغواصات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_65.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2">
+                                    <p>أخضر</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حقل ألغام غير معروف</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_66.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حقل ألغام بحري معروف</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_67.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>بطارية صواريخ ساحلية ثابتة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_68.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>بطارية صواريخ ساحلية متحركة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_69.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>بطارية مدفعية ساحلية ثابتة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_70.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>بطارية مدفعية ساحلية متحركة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_71.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>منطقة نيران مدفعية ساحلية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_72.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حدود منطقة الكشف الراداري (حدود منطقة المراقبة)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_73.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>حدود منطقة إنزال الضفادع البشرية والمتسللين</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_74.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط بدء الانفتاح لقوات الإبرار البحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_75.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>منطقة صالحة لعمليات الإبرار البحري</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_76.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>عوامة تصنت للكشف عن الغواصات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_77.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط السير لسفينة حربية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_78.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط سير القافلة البحرية</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_79.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط سير تشكيل الإبرار مجموعة الإبرار (3)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_80.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>إحداثيات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_81.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>موقع نقطة المرجع (إذا كان من نقطة مرجع واحدة توضح النقاط الأخرى بحروف مثل
+                                        (BB-CC-DD)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_82.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>نقطة التلاقي</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_83.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>انبعاث كهرومغناطيسي نوع أ (+/- 2O)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_84.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>انبعاث كهرومغناطيسي نوع ب (+/- 5O)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_85.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>انبعاث كهرومغناطيسي نوع ﺠ (+/- 10O)</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_86.png" />
+                                    </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>خط السير والسرعة</p>
+                                </td>
+                                <td colspan="3">
+                                    <p><strong>ترسم وتكتب خطوط السير على الخرائط البحرية كما هو مبين أعلاه في مثال رقم
+                                            (1) يجب أن يكون
+                                            الرقم موازياً للخط المرسوم على الخارطة ويؤشر عليه بعلامة الدرجة، أما السرعة
+                                            فيجب أن تكون داخل
+                                            المربع وبشكل أفقي حتى لو تم تغيير خط السير، كما هو مبين في المثال العرض 5 مم
+                                            والطول 6
+                                            مم.</strong></p>
+                                    <p><strong>مثال:</strong></p>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_87.png" />
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>الحوض الجاف</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_88.png" />
+                                    </p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> </td>
+                                <td>
+                                    <p>حوض عائم</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_89.png" />
+                                    </p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مانع مضاد للزوارق</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_90.png" />
+                                    </p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>مانع ضد الغواصات</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_91.png" />
+                                    </p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <p>أنوار كاشفة</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section3_img_92.png" />
+                                    </p>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>ملاحظة</strong>. جميع الكتابة والرموز باللون الأزرق.</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        function toggleSidebar() {
+            const aside = document.querySelector('aside');
+            const overlay = document.getElementById('sidebarOverlay');
+            aside.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        /* Search */
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                navLinks.forEach(link => {
+                    const text = link.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        /* Scroll Spy & Scroll Top */
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                if (scrollBtn) scrollBtn.classList.remove('hidden');
+            } else {
+                if (scrollBtn) scrollBtn.classList.add('hidden');
+            }
+
+            let current = '';
+            sections.forEach(section => {
+                // Offset for sticky header
+                if (window.scrollY >= (section.offsetTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
             navLinks.forEach(link => {
-                const text = link.textContent.toLowerCase();
-                if (text.includes(term)) {
-                    link.style.display = 'block';
-                } else {
-                    link.style.display = 'none';
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
                 }
             });
         });
-    }
 
-    /* Scroll Spy & Scroll Top */
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            if(scrollBtn) scrollBtn.classList.remove('hidden');
-        } else {
-            if(scrollBtn) scrollBtn.classList.add('hidden');
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
-        let current = '';
-        sections.forEach(section => {
-            // Offset for sticky header
-            if (window.scrollY >= (section.offsetTop - 150)) {
-                current = section.getAttribute('id');
+
+        /* Lightbox (Fixed) */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(src) {
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+            }
+        }
+
+        function closeLightbox() {
+            if (lightbox) lightbox.classList.remove('active');
+        }
+
+        // Global click listener for images
+        document.addEventListener('click', function (e) {
+            // Lightbox closing
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+                return;
+            }
+
+            // Image clicking
+            if (e.target.tagName === 'IMG') {
+                // Check if inside main to avoid sidebar icons/logos if any
+                if (e.target.closest('main')) {
+                    // Prevent interfering with other specific UI images if needed
+                    e.stopPropagation();
+                    openLightbox(e.target.src);
+                }
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (current && link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    });
 
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /* Lightbox (Fixed) */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-
-    function openLightbox(src) {
-        if(lightbox && lightboxImg) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
+        /* Section Toggling */
+        function toggleSection(header) {
+            const section = header.closest('section');
+            if (section) section.classList.toggle('section-collapsed');
         }
-    }
+    </script>
+</body>
 
-    function closeLightbox() {
-        if(lightbox) lightbox.classList.remove('active');
-    }
-
-    // Global click listener for images
-    document.addEventListener('click', function(e) {
-        // Lightbox closing
-        if (e.target.id === 'lightbox') {
-            closeLightbox();
-            return;
-        }
-
-        // Image clicking
-        if (e.target.tagName === 'IMG') {
-            // Check if inside main to avoid sidebar icons/logos if any
-            if (e.target.closest('main')) {
-                // Prevent interfering with other specific UI images if needed
-                e.stopPropagation();
-                openLightbox(e.target.src);
-            }
-        }
-    });
-
-    /* Section Toggling */
-    function toggleSection(header) {
-        const section = header.closest('section');
-        if(section) section.classList.toggle('section-collapsed');
-    }
-    </script></body></html>
+</html>
