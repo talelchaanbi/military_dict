@@ -403,15 +403,12 @@
 
         .lightbox img {
             /* Reset specific dimensions */
-            max-width: 95vw !important;
-            max-height: 95vh !important;
+            max-width: 80vw !important;  /* Reduced from 95vw */
+            max-height: 80vh !important; /* Reduced from 95vh */
 
-            /* Apply a transformative zoom effect */
-            /* Using transform: scale(1.5) or similar on click? */
-            /* No, lightbox usually just fits to screen. */
-            /* Use min-width to force small images to scale UP */
-            min-width: 60%;
-            /* But respect aspect ratio */
+            /* Remove aggressive min-width that forces small icons to be huge */
+            /* min-width: 60%; */ 
+            
             width: auto;
             height: auto;
 
@@ -432,7 +429,8 @@
         /* Specific fix for very small images or vertical images */
         @media (max-width: 768px) {
             .lightbox img {
-                min-width: 95%;
+                /* valid for mobile */
+                max-width: 90%;
             }
         }
     </style>
@@ -2589,7 +2587,8 @@
                                 <td>
                                     <p>ملجأ</p>
                                 </td>
-                                <td></td>
+                                <td><img class="doc-inline-asset"
+                                            src="extracted_images/Screenshot from 2026-02-16 15-38-07.png" /></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -2599,7 +2598,7 @@
                                 </td>
                                 <td>
                                     <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_162.png" /></p>
+                                            src="extracted_images/Screenshot from 2026-02-16 15-38-35.png" /></p>
                                 </td>
                                 <td></td>
                             </tr>
@@ -2781,59 +2780,45 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>8</td>
-                                <td>
+                                <td rowspan="5">8</td>
+                                <td colspan="3">
                                     <p><strong>الموانع الترابية.</strong></p>
-                                    <ol>
-                                        <li>ثابت</li>
-                                    </ol>
-                                </td>
-                                <td>
-                                    <div class="doc-img-strip"><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_177.png" /><img
-                                            class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_178.png" /><img
-                                            class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_179.png" /><img
-                                            class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_180.png" /></div>
-                                </td>
-                                <td rowspan="4">
-                                    <p></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>9</td>
                                 <td>
-                                    <ol>
-                                        <li>ثابت ومحصن سابقاً</li>
-                                    </ol>
+                                    <p>أ. ثابت</p>
                                 </td>
                                 <td>
-                                    <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_181.png" /></p>
+                                    <p><img class="doc-inline-asset" src="extracted_images/Screenshot from 2026-02-16 15-53-52.png" /></p>
+                                </td>
+                                <td rowspan="4"><img src="extracted_images/dep12_section2_img_180.png" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>ب. ثابت ومحصن سابقاً</p>
+                                </td>
+                                <td>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section2_img_181.png" /></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>10</td>
                                 <td>
-                                    <p>ﺠ. متحرك مصدات</p>
+                                    <p>ج. متحرك مصدات</p>
                                 </td>
                                 <td>
-                                    <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_182.png" /></p>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section2_img_182.png" /></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>11</td>
                                 <td>
                                     <p>د. متحرك وعمل سابقاً</p>
                                 </td>
                                 <td>
-                                    <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_183.png" /></p>
+                                    <p><img class="doc-inline-asset" src="extracted_images/dep12_section2_img_183.png" /></p>
                                 </td>
                             </tr>
+                            <!-- Rows 9, 10, 11 merged into 8 -->
                             <tr>
                                 <td>12</td>
                                 <td>
@@ -2986,7 +2971,7 @@
                                 </td>
                                 <td>
                                     <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_197.png" /></p>
+                                            src="extracted_images/Screenshot from 2026-02-16 15-57-48.png" /></p>
                                 </td>
                                 <td></td>
                             </tr>
@@ -3148,8 +3133,8 @@
                                     <p>أ. حقل ألغام 1500 لغم ضد الدبابات مختلط بألغام ضد الأفراد.</p>
                                 </td>
                                 <td>
-                                    <p><strong>1500</strong></p><img class="doc-inline-asset"
-                                        src="extracted_images/dep12_section2_img_209.png" />
+                                    <p><img class="doc-inline-asset"
+                                        src="extracted_images/Screenshot from 2026-02-16 15-59-29.png" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -3158,8 +3143,7 @@
                                 <td>
                                     <p>ب. حقل ألغام ضد الدبابات من 600 لغم.</p>
                                 </td>
-                                <td><img class="doc-inline-asset" src="extracted_images/dep12_section2_img_210.png" />
-                                    <p><strong>600</strong></p>
+                                <td><img class="doc-inline-asset" src="extracted_images/Screenshot from 2026-02-16 15-59-56.png" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -3221,7 +3205,7 @@
                                         والثغرة تخترق هذا الحزام.</p>
                                 </td>
                                 <td>
-                                    <p><strong>600</strong></p><img class="doc-inline-asset"
+                                    <p></p><img class="doc-inline-asset"
                                         src="extracted_images/dep12_section2_img_215.png" />
                                 </td>
                                 <td></td>
@@ -3231,8 +3215,7 @@
                                     <p>ب. حزام لـ400 من الألغام المضادة للدبابات بعضها موصولة بمصائد مغفلين الثغرة تخترق
                                         هذا الحزام.</p>
                                 </td>
-                                <td><img class="doc-inline-asset" src="extracted_images/dep12_section2_img_216.png" />
-                                    <p><strong>400</strong></p>
+                                <td><img class="doc-inline-asset" src="extracted_images/Screenshot from 2026-02-16 16-00-13.png" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -3243,8 +3226,7 @@
                                     <p>(أ. د. ش).</p>
                                 </td>
                                 <td>
-                                    <p><strong>أ د ش</strong></p>
-                                    <p><strong>أ د ش</strong></p>
+<img src="extracted_images/Screenshot from 2026-02-16 16-04-56.png" alt="">
                                 </td>
                                 <td>
                                     <p>نوع المادة التي توضع خارج المثلث وعن يساره ألغام أسلحة الدمار الشامل وتؤشر باللون
@@ -3417,10 +3399,12 @@
                             <tr>
                                 <td>7</td>
                                 <td>
-                                    <p>مخاضة</p>
+                                                                        <p>مخاضة</p>
+
                                 </td>
                                 <td>
-                                    <p>مخاضة</p>
+                                                                        <p><u>مخاضة</u></p>
+
                                 </td>
                                 <td>
                                     <p>وضع الطول والعرض بالعمق تحت الرمز</p>
@@ -3432,7 +3416,7 @@
                                     <p>معدية (طوف)</p>
                                 </td>
                                 <td>
-                                    <p>معدية (طوف)</p>
+                                    <p><u>معدية (طوف)</u></p>
                                 </td>
                                 <td>
                                     <p>العرض والحمولة تحت الرمز</p>
@@ -3466,7 +3450,7 @@
                                     <p><img class="doc-inline-asset"
                                             src="extracted_images/dep12_section2_img_230.png" /></p>
                                 </td>
-                                <td>
+                                <td rowspan="3">
                                     <p>تستعمل من قبل قوافل معينة</p>
                                 </td>
                             </tr>
@@ -3638,7 +3622,7 @@
                                 <td>
                                     <p>ب. السير باتجاهين.</p>
                                 </td>
-                                <td></td>
+                                <td><img src="extracted_images/Screenshot from 2026-02-16 16-12-51.png" alt=""></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -4036,7 +4020,7 @@
                                 <td>
                                     <p>منطقة / خط التقابل مع القوات الأرضية</p>
                                 </td>
-                                <td></td>
+                                <td><img src="extracted_images/Screenshot from 2026-02-16 16-15-19.png" alt=""></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -4081,7 +4065,7 @@
                                 </td>
                                 <td>
                                     <p><img class="doc-inline-asset"
-                                            src="extracted_images/dep12_section2_img_279.png" /></p>
+                                            src="extracted_images/Screenshot from 2026-02-16 16-16-51.png" /></p>
                                 </td>
                                 <td></td>
                             </tr>
