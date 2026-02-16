@@ -27,7 +27,7 @@ export async function Shell({
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md shadow-sm">
-        <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
+        <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
               <div className="bg-primary/10 group-hover:bg-primary/20 p-2.5 rounded-xl transition-colors">
@@ -104,7 +104,7 @@ export async function Shell({
 
       {/* Main Content */}
       <main className="flex-1 py-8">
-        <div className={`container px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
+        <div className={`container px-4 sm:px-8 mx-auto max-w-[1600px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
                {backTo && (
@@ -122,7 +122,7 @@ export async function Shell({
 
       {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-6 md:py-0">
-        <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto ${fullWidth ? "max-w-none w-4/5" : "max-w-7xl"}`}>
+        <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <p className="text-center text-sm leading-loose text-muted-foreground">
              تم التطوير بواسطة إدارة النظم والمعلومات &copy; {new Date().getFullYear()}
           </p>

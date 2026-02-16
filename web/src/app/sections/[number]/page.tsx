@@ -8,7 +8,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Search, ChevronLeft, ChevronRight, File, ArrowRight } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, File, ArrowRight, Ban } from "lucide-react";
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -255,9 +255,6 @@ export default async function SectionPage({
   if (wantsAbbr) {
     andFilters.push({ abbreviation: { not: null } });
     andFilters.push({ abbreviation: { not: "" } });
-    andFilters.push({ abbreviation: { not: "-" } });
-    andFilters.push({ abbreviation: { not: "–" } });
-    andFilters.push({ abbreviation: { not: "—" } });
   }
 
   if (wantsDesc) {
@@ -469,7 +466,17 @@ const renderRow = (t: any) => {
                 )}
                 {t.description || (!t.imageUrl && <span className="text-muted-foreground italic">لا يوجد شرح</span>)}
             </div>
-            <div className="hidden sm:block sm:col-span-1 text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-0.5 rounded text-xs">{t.abbreviation || ""}</div>
+            <div className="hidden sm:block sm:col-span-1 flex items-center">
+                {t.abbreviation ? (
+                  <span className="inline-block font-mono font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-md text-sm shadow-sm transform hover:scale-105 transition-transform cursor-default select-all" title="اختصار">
+                    {t.abbreviation}
+                  </span>
+                ) : (
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted/30 border border-muted" title="لا يوجد اختصار">
+                    <Ban className="w-4 h-4 text-muted-foreground/40" />
+                  </div>
+                )}
+            </div>
             {canPropose && (
                 <div className="hidden sm:block sm:col-span-1">
                     <Link
@@ -507,9 +514,9 @@ const renderRow = (t: any) => {
               className="h-11 rounded-md border border-input bg-background px-3 text-sm"
             >
               <option value="all">بحث في الكل</option>
-              <option value="term">المصطلح فقط</option>
-              <option value="description">الشرح فقط</option>
-              <option value="abbreviation">الاختصار فقط</option>
+              <option value="term">{isDep13SubSection ? "معنى الرمز" : "المصطلح فقط"}</option>
+              <option value="description">{isDep13SubSection ? "الملاحظات" : "الشرح فقط"}</option>
+              {!isDep13SubSection && <option value="abbreviation">الاختصار فقط</option>}
               <option value="itemNumber">الرقم فقط</option>
             </select>
             <select
@@ -543,10 +550,12 @@ const renderRow = (t: any) => {
               placeholder="يبدأ بـ (حسب نطاق البحث)..."
               className="h-10 max-w-xs"
             />
-            <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" name="hasAbbr" value="1" defaultChecked={wantsAbbr} />
-              يحتوي اختصار فقط
-            </label>
+            {!isDep13SubSection && (
+             <label className="flex items-center gap-2 text-sm">
+                <input type="checkbox" name="hasAbbr" value="1" defaultChecked={wantsAbbr} />
+                يحتوي اختصار فقط
+              </label>
+            )}
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" name="hasDesc" value="1" defaultChecked={wantsDesc} />
               يحتوي شرح فقط

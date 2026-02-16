@@ -6,7 +6,7 @@ import { BookOpen, Shield, Search } from "lucide-react";
 
 export default function Home() {
   return (
-    <Shell fullWidth>
+    <Shell>
       <div className="flex flex-col items-center justify-center py-12 text-center space-y-8">
         <div className="rounded-full bg-primary/10 p-6 mb-4">
           <Shield className="h-16 w-16 text-primary" />
