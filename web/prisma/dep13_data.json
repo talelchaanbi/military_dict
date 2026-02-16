@@ -1,0 +1,1979 @@
+[
+  {
+    "section": {
+      "number": 1,
+      "title": "الرموز العسكرية للقوات الجوية"
+    },
+    "terms": [
+      {
+        "term": "قوات جوية (سلاح الجو)",
+        "definition": "مروحة طائرة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_1.png"
+      },
+      {
+        "term": "طيران الجيش",
+        "definition": "مروحة طائرة مظللة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_2.png"
+      },
+      {
+        "term": "القوات المحمولة جواً",
+        "definition": "جناح طائر",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_3.png"
+      },
+      {
+        "term": "أسلحة مضادة للطيران",
+        "definition": "حرف A بالانجليزي",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_4.png"
+      },
+      {
+        "term": "دفاع جوي",
+        "definition": "قبة رادار",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_5.png"
+      },
+      {
+        "term": "الصواريخ والقذائف الموجهة",
+        "definition": "صاروخ (قذيفة)",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_6.png"
+      },
+      {
+        "term": "المظليون",
+        "definition": "مظلة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_7.png"
+      },
+      {
+        "term": "المشاة/ قوات محمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_8.jpeg"
+      },
+      {
+        "term": "وحدة مظليين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_9.jpeg"
+      },
+      {
+        "term": "المدفعية المحمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_11.jpeg"
+      },
+      {
+        "term": "مجموعة استطلاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_12.png"
+      },
+      {
+        "term": "هندسة محمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_13.jpeg"
+      },
+      {
+        "term": "صيانة الطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_14.png"
+      },
+      {
+        "term": "منطاد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_1.png"
+      },
+      {
+        "term": "طائرة موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_15.png"
+      },
+      {
+        "term": "طائرة استطلاع بحري متعددة المهام موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_3.png"
+      },
+      {
+        "term": "طائرات قاذفة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_17.png"
+      },
+      {
+        "term": "طائرات مقاتلة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_18.png"
+      },
+      {
+        "term": "طائرة مقاتلة موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_4.png"
+      },
+      {
+        "term": "طائرات مقاتلة قاذفة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_19.png"
+      },
+      {
+        "term": "طائرات مقاتلة لمختلف الظروف الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_20.png"
+      },
+      {
+        "term": "طائرات استطلاع مقاتلة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_21.png"
+      },
+      {
+        "term": "طائرات استطلاع عام",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_22.png"
+      },
+      {
+        "term": "طائرات نقل خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_23.png"
+      },
+      {
+        "term": "طائرات نقل متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_24.png"
+      },
+      {
+        "term": "طائرات نقل ثقيل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_25.png"
+      },
+      {
+        "term": "طائرات بحث وإنقاذ",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_26.png"
+      },
+      {
+        "term": "طائرات مضادة للغواصات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_27.png"
+      },
+      {
+        "term": "طائرة عمودية موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_5.png"
+      },
+      {
+        "term": "طائرات تزود بالوقود جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_28.png"
+      },
+      {
+        "term": "طائرات خدمات طبية جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_6.png"
+      },
+      {
+        "term": "طائرة إنذار مبكر",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_29.jpeg"
+      },
+      {
+        "term": "طائرة بحرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_30.png"
+      },
+      {
+        "term": "طائرات عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_7.png"
+      },
+      {
+        "term": "طائرات استطلاع عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_8.png"
+      },
+      {
+        "term": "نقل خفيف طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_31.png"
+      },
+      {
+        "term": "نقل متوسط طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_9.png"
+      },
+      {
+        "term": "نقل ثقيل طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_32.png"
+      },
+      {
+        "term": "طائرة عمودية بحرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_10.png"
+      },
+      {
+        "term": "مطار",
+        "definition": "يكتب اسم المطار على الخط",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_33.png"
+      },
+      {
+        "term": "مهبط طائرات ذات الأجنحة الثابتة",
+        "definition": "يكتب اسم المهبط على الخط",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_34.png"
+      },
+      {
+        "term": "منطقة هبوط طائرات عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_35.png"
+      },
+      {
+        "term": "قاعدة جوية (السهم يبين الموقع بدقة)",
+        "definition": "رمز قاعدة جوية مؤقتة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_36.png"
+      },
+      {
+        "term": "منشأة تموينية أو إدارية للقوات الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_37.png"
+      },
+      {
+        "term": "محروقات للقوات الجوية (الصنف الثالث)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_38.png"
+      },
+      {
+        "term": "موقع ذخيرة للقوات الجوية (الصنف الخامس)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_39.png"
+      },
+      {
+        "term": "ضربة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_40.png"
+      },
+      {
+        "term": "محطة إيجاد اتجاه الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_41.png"
+      },
+      {
+        "term": "مظلة جوية",
+        "definition": "يوضع داخل الحلقات عدد ونوع الطائرات",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_42.png"
+      },
+      {
+        "term": "خط كشف راداري",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_43.jpeg"
+      },
+      {
+        "term": "مخبأ للطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_44.png"
+      },
+      {
+        "term": "محطة أرصاد جوية للمطارات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_45.png"
+      },
+      {
+        "term": "رادار مراقبة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_46.png"
+      },
+      {
+        "term": "رادار إنذار جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_47.png"
+      },
+      {
+        "term": "منطقة يمنع الطيران بها",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_48.png"
+      },
+      {
+        "term": "منطقة محظور الطيران بها",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_49.png"
+      },
+      {
+        "term": "خط سير الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_50.png"
+      },
+      {
+        "term": "منطقة إنزال جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_51.png"
+      },
+      {
+        "term": "منطقة إنزال مظليين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_52.png"
+      },
+      {
+        "term": "ممر عبور الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_53.png"
+      },
+      {
+        "term": "خط رد الفعل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_54.png"
+      },
+      {
+        "term": "مجموعة الارتباط الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_55.png"
+      },
+      {
+        "term": "مسيطر جوي أمامي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_56.png"
+      },
+      {
+        "term": "مسيطر جوي أمامي محمول جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_11.png"
+      },
+      {
+        "term": "مسيطر أمامي محمول جواً (بري)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_57.png"
+      },
+      {
+        "term": "منطقة الالتقاط للإسقاط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_58.png"
+      },
+      {
+        "term": "رف جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_59.jpeg"
+      },
+      {
+        "term": "سرب جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_60.png"
+      },
+      {
+        "term": "قاعدة جوية (سلاح الجو)",
+        "definition": "رمز حجم قاعدة جوية ثابتة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_61.png"
+      },
+      {
+        "term": "مراقبة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_62.png"
+      },
+      {
+        "term": "وحدة جوية في دور الدفاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_63.png"
+      },
+      {
+        "term": "وحدة رادار جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_64.png"
+      },
+      {
+        "term": "استطلاع جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_65.png"
+      },
+      {
+        "term": "قوة طيران الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_66.png"
+      },
+      {
+        "term": "نقطة مراقبة جوية مع جهاز لاسلكي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_67.png"
+      },
+      {
+        "term": "محطة لاسلكي طيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_68.png"
+      },
+      {
+        "term": "تشويش لاسلكي طيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_69.png"
+      },
+      {
+        "term": "نقطة ذخيرة قوات جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_70.png"
+      },
+      {
+        "term": "نقطة ذخيرة دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_71.png"
+      },
+      {
+        "term": "نقطة ذخيرة طيران الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_72.png"
+      },
+      {
+        "term": "نقطة ذخيرة صواريخ/ قذائف موجهة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_73.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم لسلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_74.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم) لطائرات الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_75.png"
+      },
+      {
+        "term": "صاروخ قواذف موجهة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_76.png"
+      },
+      {
+        "term": "قذائف أرض / أرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_77.png"
+      },
+      {
+        "term": "قذائف أرض / جو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_78.png"
+      },
+      {
+        "term": "ضربة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_79.png"
+      },
+      {
+        "term": "منطقة معرضة للقصف الجوي بالقنابل شديدة الانفجار لأي نوع من الرماية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_80.png"
+      },
+      {
+        "term": "منطقة معرضة لقذائف موجهة جو أرض أو أرض أرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_81.png"
+      },
+      {
+        "term": "اتجاه هجومنا الجوي الحالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_82.png"
+      },
+      {
+        "term": "اتجاه هجوم العدو الجوي الحالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_83.jpeg"
+      },
+      {
+        "term": "اتجاه هجوم العدو الجوي المتوقع",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_84.jpeg"
+      },
+      {
+        "term": "خط الدخول في القتال للطيران المقاتل خط الانسحاب من القتال للطيران المقاتل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_85.png"
+      },
+      {
+        "term": "خط الدخول في القتال للطائرات العمودية أثناء الهجوم",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_86.png"
+      },
+      {
+        "term": "المعركة الجوية مع تعيين نوع وعدد الطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_87.png"
+      },
+      {
+        "term": "منطقة المناوبة في الجو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_88.png"
+      },
+      {
+        "term": "منطقة التغطية الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_89.png"
+      },
+      {
+        "term": "منطقة للإنزال الجوي للقوات الخاصة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_90.png"
+      },
+      {
+        "term": "منطقة الإنزال الجوي للعتاد القتالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_91.png"
+      },
+      {
+        "term": "منطقة الاستطلاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_92.png"
+      },
+      {
+        "term": "خط قصف القنابل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_12.png"
+      },
+      {
+        "term": "محطة أرصاد جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_93.png"
+      },
+      {
+        "term": "محطة أرصاد جوية إلكترونية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_94.png"
+      },
+      {
+        "term": "رياح تتراوح سرعتها من 3-4م/ثا وتهب من الشرق",
+        "definition": "رأس السهم يدل على اتجاه الريح",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_95.png"
+      },
+      {
+        "term": "رياح متغيرة تتراوح سرعتها من 3-4م/ثا",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_96.png"
+      },
+      {
+        "term": "اتجاه الريح غير ثابت",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_97.png"
+      },
+      {
+        "term": "رياح اتجاهها 90 درجة وسرعتها 15م/ثا على ارتفاع 10 كم من سطح الأرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_98.png"
+      },
+      {
+        "term": "لا يوجد سحاب السماء صافية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_99.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (استقرار)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_100.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (تعادل)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_101.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (غير مستقرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_102.png"
+      },
+      {
+        "term": "سحب خفيفة (أقل من نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_103.png"
+      },
+      {
+        "term": "سحب متوسطة (نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_104.png"
+      },
+      {
+        "term": "سحب أكثر من متوسطة (أكثر من نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_105.png"
+      },
+      {
+        "term": "سحب كثيفة (السماء كلها مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_106.png"
+      },
+      {
+        "term": "ضباب خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_13.png"
+      },
+      {
+        "term": "ضباب متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_107.png"
+      },
+      {
+        "term": "ضباب كثيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_108.png"
+      },
+      {
+        "term": "مطر خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-41.png"
+      },
+      {
+        "term": "مطر متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-48.png"
+      },
+      {
+        "term": "مطر شديد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-52.png"
+      },
+      {
+        "term": "قوات جوية (سلاح الجو)",
+        "definition": "مروحة طائرة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_1.png"
+      },
+      {
+        "term": "طيران الجيش",
+        "definition": "مروحة طائرة مظللة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_2.png"
+      },
+      {
+        "term": "القوات المحمولة جواً",
+        "definition": "جناح طائر",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_3.png"
+      },
+      {
+        "term": "أسلحة مضادة للطيران",
+        "definition": "حرف A بالانجليزي",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_4.png"
+      },
+      {
+        "term": "دفاع جوي",
+        "definition": "قبة رادار",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_5.png"
+      },
+      {
+        "term": "الصواريخ والقذائف الموجهة",
+        "definition": "صاروخ (قذيفة)",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_6.png"
+      },
+      {
+        "term": "المظليون",
+        "definition": "مظلة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_7.png"
+      },
+      {
+        "term": "المشاة/ قوات محمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_8.jpeg"
+      },
+      {
+        "term": "وحدة مظليين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_9.jpeg"
+      },
+      {
+        "term": "المدفعية المحمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_11.jpeg"
+      },
+      {
+        "term": "مجموعة استطلاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_12.png"
+      },
+      {
+        "term": "هندسة محمولة جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_13.jpeg"
+      },
+      {
+        "term": "صيانة الطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_14.png"
+      },
+      {
+        "term": "منطاد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_1.png"
+      },
+      {
+        "term": "طائرة موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_15.png"
+      },
+      {
+        "term": "طائرة استطلاع بحري متعددة المهام موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_3.png"
+      },
+      {
+        "term": "طائرات قاذفة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_17.png"
+      },
+      {
+        "term": "طائرات مقاتلة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_18.png"
+      },
+      {
+        "term": "طائرة مقاتلة موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_4.png"
+      },
+      {
+        "term": "طائرات مقاتلة قاذفة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_19.png"
+      },
+      {
+        "term": "طائرات مقاتلة لمختلف الظروف الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_20.png"
+      },
+      {
+        "term": "طائرات استطلاع مقاتلة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_21.png"
+      },
+      {
+        "term": "طائرات استطلاع عام",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_22.png"
+      },
+      {
+        "term": "طائرات نقل خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_23.png"
+      },
+      {
+        "term": "طائرات نقل متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_24.png"
+      },
+      {
+        "term": "طائرات نقل ثقيل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_25.png"
+      },
+      {
+        "term": "طائرات بحث وإنقاذ",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_26.png"
+      },
+      {
+        "term": "طائرات مضادة للغواصات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_27.png"
+      },
+      {
+        "term": "طائرة عمودية موجهة عن بُعد (مُسيرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_5.png"
+      },
+      {
+        "term": "طائرات تزود بالوقود جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_28.png"
+      },
+      {
+        "term": "طائرات خدمات طبية جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_6.png"
+      },
+      {
+        "term": "طائرة إنذار مبكر",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_29.jpeg"
+      },
+      {
+        "term": "طائرة بحرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_30.png"
+      },
+      {
+        "term": "طائرات عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_7.png"
+      },
+      {
+        "term": "طائرات استطلاع عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_8.png"
+      },
+      {
+        "term": "نقل خفيف طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_31.png"
+      },
+      {
+        "term": "نقل متوسط طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_9.png"
+      },
+      {
+        "term": "نقل ثقيل طيران عمودي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_32.png"
+      },
+      {
+        "term": "طائرة عمودية بحرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_10.png"
+      },
+      {
+        "term": "مطار",
+        "definition": "يكتب اسم المطار على الخط",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_33.png"
+      },
+      {
+        "term": "مهبط طائرات ذات الأجنحة الثابتة",
+        "definition": "يكتب اسم المهبط على الخط",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_34.png"
+      },
+      {
+        "term": "منطقة هبوط طائرات عمودية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_35.png"
+      },
+      {
+        "term": "قاعدة جوية (السهم يبين الموقع بدقة)",
+        "definition": "رمز قاعدة جوية مؤقتة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_36.png"
+      },
+      {
+        "term": "منشأة تموينية أو إدارية للقوات الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_37.png"
+      },
+      {
+        "term": "محروقات للقوات الجوية (الصنف الثالث)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_38.png"
+      },
+      {
+        "term": "موقع ذخيرة للقوات الجوية (الصنف الخامس)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_39.png"
+      },
+      {
+        "term": "ضربة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_40.png"
+      },
+      {
+        "term": "محطة إيجاد اتجاه الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_41.png"
+      },
+      {
+        "term": "مظلة جوية",
+        "definition": "يوضع داخل الحلقات عدد ونوع الطائرات",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_42.png"
+      },
+      {
+        "term": "خط كشف راداري",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_43.jpeg"
+      },
+      {
+        "term": "مخبأ للطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_44.png"
+      },
+      {
+        "term": "محطة أرصاد جوية للمطارات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_45.png"
+      },
+      {
+        "term": "رادار مراقبة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_46.png"
+      },
+      {
+        "term": "رادار إنذار جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_47.png"
+      },
+      {
+        "term": "منطقة يمنع الطيران بها",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_48.png"
+      },
+      {
+        "term": "منطقة محظور الطيران بها",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_49.png"
+      },
+      {
+        "term": "خط سير الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_50.png"
+      },
+      {
+        "term": "منطقة إنزال جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_51.png"
+      },
+      {
+        "term": "منطقة إنزال مظليين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_52.png"
+      },
+      {
+        "term": "ممر عبور الطيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_53.png"
+      },
+      {
+        "term": "خط رد الفعل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_54.png"
+      },
+      {
+        "term": "مجموعة الارتباط الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_55.png"
+      },
+      {
+        "term": "مسيطر جوي أمامي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_56.png"
+      },
+      {
+        "term": "مسيطر جوي أمامي محمول جواً",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_11.png"
+      },
+      {
+        "term": "مسيطر أمامي محمول جواً (بري)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_57.png"
+      },
+      {
+        "term": "منطقة الالتقاط للإسقاط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_58.png"
+      },
+      {
+        "term": "رف جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_59.jpeg"
+      },
+      {
+        "term": "سرب جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_60.png"
+      },
+      {
+        "term": "قاعدة جوية (سلاح الجو)",
+        "definition": "رمز حجم قاعدة جوية ثابتة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_61.png"
+      },
+      {
+        "term": "مراقبة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_62.png"
+      },
+      {
+        "term": "وحدة جوية في دور الدفاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_63.png"
+      },
+      {
+        "term": "وحدة رادار جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_64.png"
+      },
+      {
+        "term": "استطلاع جوي (سلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_65.png"
+      },
+      {
+        "term": "قوة طيران الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_66.png"
+      },
+      {
+        "term": "نقطة مراقبة جوية مع جهاز لاسلكي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_67.png"
+      },
+      {
+        "term": "محطة لاسلكي طيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_68.png"
+      },
+      {
+        "term": "تشويش لاسلكي طيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_69.png"
+      },
+      {
+        "term": "نقطة ذخيرة قوات جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_70.png"
+      },
+      {
+        "term": "نقطة ذخيرة دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_71.png"
+      },
+      {
+        "term": "نقطة ذخيرة طيران الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_72.png"
+      },
+      {
+        "term": "نقطة ذخيرة صواريخ/ قذائف موجهة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_73.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم لسلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_74.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم) لطائرات الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_75.png"
+      },
+      {
+        "term": "صاروخ قواذف موجهة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_76.png"
+      },
+      {
+        "term": "قذائف أرض / أرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_77.png"
+      },
+      {
+        "term": "قذائف أرض / جو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_78.png"
+      },
+      {
+        "term": "ضربة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_79.png"
+      },
+      {
+        "term": "منطقة معرضة للقصف الجوي بالقنابل شديدة الانفجار لأي نوع من الرماية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_80.png"
+      },
+      {
+        "term": "منطقة معرضة لقذائف موجهة جو أرض أو أرض أرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_81.png"
+      },
+      {
+        "term": "اتجاه هجومنا الجوي الحالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_82.png"
+      },
+      {
+        "term": "اتجاه هجوم العدو الجوي الحالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_83.jpeg"
+      },
+      {
+        "term": "اتجاه هجوم العدو الجوي المتوقع",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_84.jpeg"
+      },
+      {
+        "term": "خط الدخول في القتال للطيران المقاتل خط الانسحاب من القتال للطيران المقاتل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_85.png"
+      },
+      {
+        "term": "خط الدخول في القتال للطائرات العمودية أثناء الهجوم",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_86.png"
+      },
+      {
+        "term": "المعركة الجوية مع تعيين نوع وعدد الطائرات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_87.png"
+      },
+      {
+        "term": "منطقة المناوبة في الجو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_88.png"
+      },
+      {
+        "term": "منطقة التغطية الجوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_89.png"
+      },
+      {
+        "term": "منطقة للإنزال الجوي للقوات الخاصة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_90.png"
+      },
+      {
+        "term": "منطقة الإنزال الجوي للعتاد القتالي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_91.png"
+      },
+      {
+        "term": "منطقة الاستطلاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_92.png"
+      },
+      {
+        "term": "خط قصف القنابل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_12.png"
+      },
+      {
+        "term": "محطة أرصاد جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_93.png"
+      },
+      {
+        "term": "محطة أرصاد جوية إلكترونية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_94.png"
+      },
+      {
+        "term": "رياح تتراوح سرعتها من 3-4م/ثا وتهب من الشرق",
+        "definition": "رأس السهم يدل على اتجاه الريح",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_95.png"
+      },
+      {
+        "term": "رياح متغيرة تتراوح سرعتها من 3-4م/ثا",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_96.png"
+      },
+      {
+        "term": "اتجاه الريح غير ثابت",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_97.png"
+      },
+      {
+        "term": "رياح اتجاهها 90 درجة وسرعتها 15م/ثا على ارتفاع 10 كم من سطح الأرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_98.png"
+      },
+      {
+        "term": "لا يوجد سحاب السماء صافية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_99.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (استقرار)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_100.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (تعادل)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_101.png"
+      },
+      {
+        "term": "حالة التغير العمودي لدرجة حرارة الهواء (غير مستقرة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_102.png"
+      },
+      {
+        "term": "سحب خفيفة (أقل من نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_103.png"
+      },
+      {
+        "term": "سحب متوسطة (نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_104.png"
+      },
+      {
+        "term": "سحب أكثر من متوسطة (أكثر من نصف السماء مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_105.png"
+      },
+      {
+        "term": "سحب كثيفة (السماء كلها مغطاة بالسحب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_106.png"
+      },
+      {
+        "term": "ضباب خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_13.png"
+      },
+      {
+        "term": "ضباب متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_107.png"
+      },
+      {
+        "term": "ضباب كثيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section1_img_108.png"
+      },
+      {
+        "term": "مطر خفيف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-41.png"
+      },
+      {
+        "term": "مطر متوسط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-48.png"
+      },
+      {
+        "term": "مطر شديد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-11 10-03-52.png"
+      }
+    ]
+  },
+  {
+    "section": {
+      "number": 2,
+      "title": "الرموز العسكرية لقوات الدفاع الجوي"
+    },
+    "terms": [
+      {
+        "term": "كتيبة دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_1.jpeg"
+      },
+      {
+        "term": "قاعدة/قيادة/قطاع/قاطع دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_14.png"
+      },
+      {
+        "term": "آلية تحمل محطة رادار جوي متحرك",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_2.jpeg"
+      },
+      {
+        "term": "مراقبة جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_3.jpeg"
+      },
+      {
+        "term": "وحدة جوية في دور الدفاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_4.jpeg"
+      },
+      {
+        "term": "وحدة رادار جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_5.jpeg"
+      },
+      {
+        "term": "منصة إطلاق صواريخ أرض / جو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_6.jpeg"
+      },
+      {
+        "term": "نقطة مهددة (دفاع جوي)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_7.jpeg"
+      },
+      {
+        "term": "منطقة مهددة (دفاع جوي)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_8.png"
+      },
+      {
+        "term": "ممرات عبور طيران",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_9.jpeg"
+      },
+      {
+        "term": "محطة رادار جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_10.jpeg"
+      },
+      {
+        "term": "مدافع الدفاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_15.png"
+      },
+      {
+        "term": "وحدة دفاع جوي م/ط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_11.png"
+      },
+      {
+        "term": "وحدة صواريخ دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_12.jpeg"
+      },
+      {
+        "term": "صاروخ الدفاع الجوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_16.png"
+      },
+      {
+        "term": "صواريخ أرض جو",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_17.png"
+      },
+      {
+        "term": "وحدة مهندسين دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-43-32.png"
+      },
+      {
+        "term": "وحدة اتصالات دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-43-36.png"
+      },
+      {
+        "term": "وحدة صيانة دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section2_img_13.png"
+      },
+      {
+        "term": "الممرات الآمنة بين وحدات صواريخ الدفاع الجوي والطيران الصديق",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-43-44.png"
+      },
+      {
+        "term": "خط دخول المقاتلات للقتال",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-43-57.png"
+      },
+      {
+        "term": "منطقة التدمير للمدفعية المضادة للطيران (م/ط)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-44-02.png"
+      }
+    ]
+  },
+  {
+    "section": {
+      "number": 3,
+      "title": "الرموز العسكرية لأسلحة الدمار الشامل"
+    },
+    "terms": [
+      {
+        "term": "التفجيرات النووية",
+        "definition": "يمثل الانفجار النووي على شكل الفطر أما نقطة الصفر فتحددها قاعدة جذع الفطر والسهم",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-44-37.png"
+      },
+      {
+        "term": "عيار الانفجار",
+        "definition": "يبين عيار الانفجار داخل شكل الفطر العلوي وتوضع مجموعة الوقت وتاريخ الانفجار عندما لا يكون العيار مؤكدا بالضبط فيوضع العيار بين قوسين",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_1.png"
+      },
+      {
+        "term": "ارتفاع الانفجار",
+        "definition": "يوضع ارتفاع الانفجار على يسار ساق الفطر بالأمتار وإذا لم يعرف الارتفاع بالضبط فيوضع الارتفاع التقريبي (مرتفع، منخفض، سطحي أو تحت الأرض)",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_2.png"
+      },
+      {
+        "term": "المتساقطات والريح",
+        "definition": "إذا كانت هناك متساقطات فتمثل بتظليل الساق وعندما يراد معرفة (اتجاه الريح فيرسم سهم يشير إلى الاتجاه)",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_3.png"
+      },
+      {
+        "term": "تفجير نووي مقترح/محتمل",
+        "definition": "يرسم بخطوط متقطعة",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_4.png"
+      },
+      {
+        "term": "الألوان",
+        "definition": "يستعمل اللون الأصفر لنا وللعدو",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_5.png"
+      },
+      {
+        "term": "الرماية النووية المخطط لها",
+        "definition": "أ . يرسم رمز الرماية المخطط لها بإشارة ولكنها أكبر من الإشارة المستعملة للتجمعات النارية في نيران المدفعية. ب. النقطة تبين المركز الحقيقي لنقطة الصفر.",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-44-51.png"
+      },
+      {
+        "term": "منطقة ملوثة بإشعاعات ذرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_6.png"
+      },
+      {
+        "term": "منطقة ملوثة بالغازات بيولوجية/ كيماوية",
+        "definition": "تظلل وتكون باللون الأصفر مع كلمــة غازات.... إلخ داخل هذا الرمز مع إضافة الوقت والتاريخ",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-44-59.png"
+      },
+      {
+        "term": "نقطة مراقبة/مرصد كيميائية",
+        "definition": "في حالة عدم توفر اللون يكتب اللون داخل الرمز لجميع الرموز",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-08.png"
+      },
+      {
+        "term": "أسلحة الدمار الشامل (ن. ب. أ. ك)",
+        "definition": "نووي، بيولوجي، إشعاعي، كيميائي",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-18.png"
+      },
+      {
+        "term": "وحدة تطهير (ن. ب. أ. ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-23.png"
+      },
+      {
+        "term": "وحدة توليد دخان",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-30.png"
+      },
+      {
+        "term": "وحدة استطلاع (ن. ب. أ. ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-36.png"
+      },
+      {
+        "term": "وحدة الدفاع ضد (ن. ب. أ. ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-48.png"
+      },
+      {
+        "term": "عربة التطهير",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-45-54.png"
+      },
+      {
+        "term": "آلية استطلاع مدرعة (ن، ب، أ، ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_7.png"
+      },
+      {
+        "term": "منطقة التطهير",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-46-03.png"
+      },
+      {
+        "term": "نقطة إعادة التعبئة بالمحلول (للتطهير)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_8.png"
+      },
+      {
+        "term": "المستودعات الكيميائية الميدانية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_9.png"
+      },
+      {
+        "term": "ملجأ مجهز تحت سطح الأرض (ن، ب، أ، ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_10.png"
+      },
+      {
+        "term": "خط خلع تجهيزات الوقاية الفردية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-46-16.png"
+      },
+      {
+        "term": "منطقة ملوثة بغازات حربية ومواد بيولوجية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_11.png"
+      },
+      {
+        "term": "حقول الألغام الكيمائية",
+        "definition": "(نوع المواد السامة توضع خارج الدائرة وعن يساره الألغام الكيماوية تؤشر باللون الأصفر)",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-46-28.png"
+      },
+      {
+        "term": "نقطة مستودعات مواد وتجهيزات (ن، ب، أ، ك)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_12.png"
+      },
+      {
+        "term": "نقطة إعادة تعبئة بوقود قاذفات اللهب",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-46-45.png"
+      },
+      {
+        "term": "منطقة استطلاع كيماوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-46-52.png"
+      },
+      {
+        "term": "حدود كشف الانفجارات النووية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_13.png"
+      },
+      {
+        "term": "استطلاع محور (طريق) بواسطة دورية استطلاع كيمياوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_14.jpeg"
+      },
+      {
+        "term": "خط إنتاج حجاب دخان على جبهة 2 كم من قبل س1 دخان بالساعة 0800 – 1030 يوم 12 ك1",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-47-05.png"
+      },
+      {
+        "term": "خط دخان تم إنتاجه بمولدات الدخان الآلية (قد يكتب في اليمين طول الحجاب ونوع وسيلة الإنتاج والعدد مع وقت وتاريخ البدء بإنشاء الحجاب)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-47-15.png"
+      },
+      {
+        "term": "خط توليد الدخان بعجلات توليد الدخان (قد يؤشر في اليمين طول الخط ونوع وسيلة الإنتاج والعدد من الوقت والتاريخ)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_15.jpeg"
+      },
+      {
+        "term": "حجاب دخان ثابت بالمدفعية لمدة 20 دقيقة اعتباراً من الساعة 0800 يوم 10 شباط",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-47-34.png"
+      },
+      {
+        "term": "منطقة عبور على مانع مغطاة بسحابة (يكتب اسم الوحدة المنتجة للدخان تحت المنطقة وعلى اليمين تكتب مساحة المنطقة وعدد ووسيلة إنتاج الدخان مع وقت وتاريخ إنشاء السحابة)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-47-58.png"
+      },
+      {
+        "term": "1. شكل الفطر 2. السهم يدل على اتجاه الرياح 3. نقطة صفر الأرض",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 12-48-13.png"
+      },
+      {
+        "term": "1. عيار الانفجار يوضع داخل القطر العلوي 2. أسفل منه يوضع مجموعة الوقت والتاريخ 3. عندما لا يكون العيار مؤكداً يوضع العيار بين قوسين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_16.png"
+      },
+      {
+        "term": "1. يوضع ارتفاع الانفجار على يسار الفطر بالأمتار 2. إذا لم يعرف الارتفاع بالضبط فيوضع الارتفاع التقريبي 3. يحدد النوع (عالي، منخفض، سطحي، تحت السطح)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section3_img_17.png"
+      }
+    ]
+  },
+  {
+    "section": {
+      "number": 4,
+      "title": "الرموز العسكرية للإشارة/الاتصالات ونظم المعلومات"
+    },
+    "terms": [
+      {
+        "term": "وحدة الإشارة/الاتصالات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-53-52.png"
+      },
+      {
+        "term": "وحدة خطوط سلكية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-53-57.png"
+      },
+      {
+        "term": "وحدة هاتف لاسلكي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_1.png"
+      },
+      {
+        "term": "وحدة مايكروويف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_2.png"
+      },
+      {
+        "term": "وحدة تصليح معدات إشارة/اتصالات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-09.png"
+      },
+      {
+        "term": "مستودع إشارة/اتصالات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-54-16.png"
+      },
+      {
+        "term": "مشغل/ورشة تصليح إشارة/اتصالات متحرك",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_3.png"
+      },
+      {
+        "term": "مستودع إشارة/اتصالات متحرك",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_4.png"
+      },
+      {
+        "term": "بدالة 100 خط(تكتب السعة أسفل الرمز)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-54-40.png"
+      },
+      {
+        "term": "جهاز لاسلكي: تردد عالي H تردد عالي جداً V تردد فوق العالي U تردد فوق العالي جداً S",
+        "definition": "يكتب نوع التردد داخل الدائرة",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-54-46.png"
+      },
+      {
+        "term": "جهاز لاسلكي (وهمي/تضليلي)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-13.png"
+      },
+      {
+        "term": "محطة استقبال",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-25.png"
+      },
+      {
+        "term": "شبكة لاسلكية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-31.png"
+      },
+      {
+        "term": "محطة إعادة بث إذاعي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-43.png"
+      },
+      {
+        "term": "محطة بصرية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-50.png"
+      },
+      {
+        "term": "محطة تلفزيون",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-57.png"
+      },
+      {
+        "term": "حفرة لوصل الكوابل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-09.png"
+      },
+      {
+        "term": "محطة لاسلكية (متعددةالقنوات)(فردية)",
+        "definition": "(يكتب عدد القنوات أسفل الرمز)",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-17.png"
+      },
+      {
+        "term": "محطة لاسلكية متعددة القنوات (مزدوجة أو توسطية)",
+        "definition": "(يكتب عدد القنوات أسفل الرمز)",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-25.png"
+      },
+      {
+        "term": "محطتي هاتف لاسلكي متعدد القنوات يكون اتجاه الهوائي في اتجاه المحطة المقابلة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-29.png"
+      },
+      {
+        "term": "اتجاه هاتف لاسلكي متعدد القنوات باستخدام محطة توسيطية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-42.png"
+      },
+      {
+        "term": "محطة مايكروويف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-48.png"
+      },
+      {
+        "term": "محطة إعادة مايكروويف",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-52.png"
+      },
+      {
+        "term": "محطة أقمار صناعية (أرضية)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-01.png"
+      },
+      {
+        "term": "محطات موجات انتشارية (تروبوسفيرية)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-18.png"
+      },
+      {
+        "term": "جهاز لاسلكيمركب في سيارة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_5.png"
+      },
+      {
+        "term": "جهاز لاسلكي مركب في آلية مقاتلة مصفحة بعجلات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-24.png"
+      },
+      {
+        "term": "جهاز لاسلكي مركب في دبابة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-30.png"
+      },
+      {
+        "term": "جهاز لاسلكي مركب في ناقلة قيادة مدرعة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-38.png"
+      },
+      {
+        "term": "مركز اتصال",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-42.png"
+      },
+      {
+        "term": "مكتب إشارة/اتصالات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-54.png"
+      },
+      {
+        "term": "مكتب (بريد عسكري)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-59.png"
+      },
+      {
+        "term": "آلة نقل الصورة (فاكس)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-10.png"
+      },
+      {
+        "term": "ساعي بريد/مراسل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-17.png"
+      },
+      {
+        "term": "دراجة آلية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-22.png"
+      },
+      {
+        "term": "كيبل ميداني د 10خط واحد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_6.png"
+      },
+      {
+        "term": "كيبل أكثر من زوج",
+        "definition": "(يكتب عدد الكيابل أسفل الرمز) يكتب أيضاً نوع الكيبل",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-25.png"
+      },
+      {
+        "term": "كيبل مسلح (أربعمائة زوج)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-34.png"
+      },
+      {
+        "term": "كيبل محوري",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-40.png"
+      },
+      {
+        "term": "كيبل بحري (يكتب عدد أزواج أسفل الرمز)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-46.png"
+      },
+      {
+        "term": "جهاز هاتف (تليفون) (يكتب نوع الهاتف أسفل الرمز) (ساخن/مباشر/توصيلة/نمير)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-53.png"
+      },
+      {
+        "term": "صندوق توصيل واختبار تليفون أو صندوق توزيع خارجي (20 خط)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-59.png"
+      }
+    ]
+  },
+  {
+    "section": {
+      "number": 5,
+      "title": "الرموز العسكرية للإمداد المشترك/ الشؤون الإدارية (التموين، النقل، الخدمات الطبية)"
+    },
+    "terms": [
+      {
+        "term": "وحدة النقل",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-59-26.png"
+      },
+      {
+        "term": "وحدة التموين",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_1.png"
+      },
+      {
+        "term": "الخدمات الطبية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_2.png"
+      },
+
+      {
+        "term": "مواد الإعاشـة/الأرزاق",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-30.png"
+      },
+      {
+        "term": "الملابس، الخيام، شباك التمويه، المعدات/التجهيزات الفردية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-33.png"
+      },
+      {
+        "term": "الوقــود والزيوت",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-43.png"
+      },
+      {
+        "term": "المواد الإنشائية كمواد البناء والحواجز والتحصينات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-46.png"
+      },
+      {
+        "term": "الذخيرة لجميع الأنواع",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-51.png"
+      },
+      {
+        "term": "المواد والأدوية والأجهزة الطبية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-00-55.png"
+      },
+      {
+        "term": "قطع الغيار والصيانة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-01-01.png"
+      },
+      {
+        "term": "نقطة تزويد ذخيرة مدفعية ودبابات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_3.png"
+      },
+      {
+        "term": "نقطة ذخيرة قوات جوية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_4.png"
+      },
+      {
+        "term": "نقطة ذخيرة دفاع جوي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_5.png"
+      },
+      {
+        "term": "نقطة ذخيرة طيران الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_6.png"
+      },
+      {
+        "term": "نقطة ذخيرة صواريخ/ قذائف موجهة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_7.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم لسلاح الجو)",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_8.png"
+      },
+      {
+        "term": "نقطة وقود (بنزين وزيوت وشحوم) لطائرات الجيش",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_9.png"
+      },
+      {
+        "term": "سبخه/ أرض رخوة",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-01-18.png"
+      },
+      {
+        "term": "طريق سكة حديد تحت الجسر",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-01-26.png"
+      },
+
+      {
+        "term": "أ. الرمز الأساسي لصنف الجسر",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_10.png"
+      },
+      {
+        "term": "ب. جسر رقم (1) صنف 30",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_11.png"
+      },
+      {
+        "term": "جـ. جسر باتجاه واحد",
+        "definition": "رقم الجسر (1) وصنف 30 بطول 14 قدماً، عرض 12 قدماً حوله طريق جانبية يمكن المرور منها",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_12.png"
+      },
+      {
+        "term": "د. جسر ذو اتجاهين",
+        "definition": "رقم الجسر (2) صنف 60 باتجاه واحد صنف (30) باتجاهين وصف (80) باتجاه واحد للآليات المجنزرة بطول 100م وعرض 10م حوله طريق جانبية لا يمكن المرور فيها",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_13.png"
+      },
+      {
+        "term": "هـ. جسر ذو اتجاهين",
+        "definition": "رقم (4) صنف (80) باتجاهين وصنف (100) باتجاه واحد للآليات المدولبة وصف 60 باتجاهين وصف 80 باتجاه واحد للآليات المجنزرة بطول 100 م وعرض 10م جوله طريق جانبية لا يمكن المرور فيها",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_14.png"
+      },
+      {
+        "term": "مخبز ميداني متحرك",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-02-30.png"
+      },
+      {
+        "term": "مناطق الحجر/العزل الصحي للقوات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-02-36.png"
+      },
+      {
+        "term": "مصدر الطاقة الرئيسي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_15.png"
+      },
+      {
+        "term": "محطة توليد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-02-47.png"
+      },
+      {
+        "term": "مصدر الغاز الطبيعي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_16.png"
+      },
+      {
+        "term": "مركز البريد",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_17.png"
+      },
+      {
+        "term": "بئر مياه جوفية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_18.png"
+      },
+      {
+        "term": "نقطة فرز طبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-01.png"
+      },
+      {
+        "term": "طوارئ",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_19.png"
+      },
+      {
+        "term": "مستشفى ميداني عسكري",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-07.png"
+      },
+      {
+        "term": "مستشفى مدني",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-12.png"
+      },
+      {
+        "term": "منطقة إخلاء طبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-18.png"
+      },
+      {
+        "term": "نقطة الاستقبال والإخلاء الطبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-22.png"
+      },
+      {
+        "term": "مروحية إخلاء طبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-26.png"
+      },
+      {
+        "term": "مدرعة إخلاء طبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-29.png"
+      },
+      {
+        "term": "مركبة إخلاء طبي",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-35.png"
+      },
+      {
+        "term": "مدرعة إخلاء طبي بعجلات",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-38.png"
+      },
+      {
+        "term": "مقبرة جماعية",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-44.png"
+      },
+      {
+        "term": "منطقة تجميع الموتى",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/dep13_section5_img_20.png"
+      },
+      {
+        "term": "مستشفى عائم",
+        "definition": "",
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 17-03-52.png"
+      }
+    ]
+  }
+]
