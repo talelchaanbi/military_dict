@@ -51,6 +51,21 @@ async function seedDep13() {
   }
 }
 
+async function seedSubtitles() {
+  console.log("Seeding Subtitles/Structure using HTML files...");
+  try {
+    const scriptPath = path.join(__dirname, "seed_subtitles.ts");
+    if (fs.existsSync(scriptPath)) {
+        await execPromise(`npx tsx "${scriptPath}"`);
+        console.log("✅ Subtitles seeded successfully.");
+    } else {
+        console.warn("⚠️ seed_subtitles.ts not found. Skipping subtitle seeding.");
+    }
+  } catch(error) {
+      console.error("❌ Failed to seed Subtitles:", error);
+  }
+}
+
 async function seedAdmin() {
   const username = process.env.ADMIN_USERNAME || "admin";
   const password = process.env.ADMIN_PASSWORD || "admin123";
@@ -87,7 +102,10 @@ async function main() {
   // 2. Always run DEP 13 seeder (it handles its own idempotency/updates)
   await seedDep13();
 
-  // 3. Ensure Admin user exists
+  // 3. Seed Subtitles (Structure from HTML)
+  await seedSubtitles();
+
+  // 4. Ensure Admin user exists
   await seedAdmin();
 }
 

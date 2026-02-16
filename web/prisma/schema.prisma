@@ -38,6 +38,7 @@ model Section {
   type   SectionType
 
   terms      Term[]
+  subtitles  Subtitle[]
   documents  Document[]
 
   createdAt DateTime @default(now())

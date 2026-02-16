@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -20,74 +18,10 @@ type SubtitleGroup = {
   title: string;
   parentTitle?: string;
   subTitle?: string;
-  itemNumbers: Set<string>;
 };
 
-function cleanText(value: string) {
-  return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-}
-
-function loadSubtitleGroups(sectionNumber: number): SubtitleGroup[] {
-  // Check multiple possible locations for the HTML file
-  const possiblePaths = [
-    // Original path: ../qafFilesManager/Department/Details/X.html
-    path.join(process.cwd(), "..", "qafFilesManager", "Department", "Details", `${sectionNumber}.html`),
-    // Root path: ../X.html
-    path.join(process.cwd(), "..", `${sectionNumber}.html`),
-  ];
-
-  let htmlPath = "";
-  for (const p of possiblePaths) {
-    if (fs.existsSync(p)) {
-      htmlPath = p;
-      break;
-    }
-  }
-
-  if (!htmlPath) {
-    console.warn(`[SectionPage] Subtitle Grouping file not found in any of: ${possiblePaths.join(", ")}`);
-    return [];
-  }
-
-  const html = fs.readFileSync(htmlPath, "utf-8");
-  const groups: SubtitleGroup[] = [];
-
-  const blockRegex = /<div\s+class\s*=\s*["'][^"']*\bterms-table-container\b[^"']*["'][^>]*>[\s\S]*?<div\s+class\s*=\s*["'][^"']*\bdepartment-subtitle\b[^"']*["'][^>]*>([\s\S]*?)<\/div>(?:\s*<span[^>]*>([\s\S]*?)<\/span>)?[\s\S]*?(<table[\s\S]*?<\/table>)/gi;
-  let match: RegExpExecArray | null;
-  let index = 0;
-
-  while ((match = blockRegex.exec(html)) !== null) {
-    const subtitle = cleanText(match[1] || "");
-    const span = cleanText(match[2] || "");
-    const parentTitle = subtitle || `قسم ${index + 1}`;
-    const subTitle = span || undefined;
-    const title = subTitle ? subTitle : parentTitle;
-
-    const tableHtml = match[3] || "";
-    const rows = tableHtml.match(/<tr[\s\S]*?<\/tr>/gi) || [];
-    const itemNumbers = new Set<string>();
-
-    rows.forEach((row) => {
-      const tdMatch = row.match(/<td[^>]*>\s*([\s\S]*?)\s*<\/td>/i);
-      if (!tdMatch) return;
-      const numberText = cleanText(tdMatch[1] || "");
-      if (numberText) itemNumbers.add(numberText);
-    });
-
-    if (itemNumbers.size > 0) {
-      index += 1;
-      groups.push({
-        id: `subtitle-${sectionNumber}-${index}`,
-        title,
-        parentTitle,
-        subTitle,
-        itemNumbers,
-      });
-    }
-  }
-
-  return groups;
-}
+// ... removed cleanText ...
+// ... removed loadSubtitleGroups ...
 
 export default async function SectionPage({
   params,
@@ -224,8 +158,17 @@ export default async function SectionPage({
   );
 
   const isGroupedView = section.number >= 1 && section.number <= 11;
-  const subtitleGroups = isGroupedView ? loadSubtitleGroups(section.number) : [];
-  const canGroup = isGroupedView && subtitleGroups.length > 0;
+
+  // Retrieve subtitles from DB if applicable
+  const dbSubtitles = isGroupedView
+    ? await prisma.subtitle.findMany({
+        where: { sectionId: section.id },
+        orderBy: { order: "asc" },
+        include: { parent: true },
+      })
+    : [];
+
+  const canGroup = isGroupedView && dbSubtitles.length > 0;
 
   const andFilters: Array<Record<string, unknown>> = [{ sectionId: section.id }];
 
@@ -300,6 +243,7 @@ export default async function SectionPage({
             description: true,
             abbreviation: true,
             imageUrl: true,
+            subtitleId: true,
           },
         }),
       ])
@@ -317,50 +261,56 @@ export default async function SectionPage({
             description: true,
             abbreviation: true,
             imageUrl: true,
+            subtitleId: true,
           },
         }),
       ]);
 
   const totalPages = Math.max(1, Math.ceil(total / sizeNum));
 
-  const groupedTerms = canGroup
-    ? subtitleGroups.map((group) => ({
-        id: group.id,
-        title: group.title,
-        parentTitle: group.parentTitle,
-        subTitle: group.subTitle,
-        terms: [] as typeof terms,
-        itemNumbers: group.itemNumbers,
-      }))
-    : [];
-
+  let groupedTerms: any[] = [];
+  
   if (canGroup) {
-    const itemToGroup = new Map<string, number>();
-    groupedTerms.forEach((group, idx) => {
-      group.itemNumbers.forEach((num) => {
-        if (!itemToGroup.has(num)) itemToGroup.set(num, idx);
-      });
-    });
+      const subtitleMap = new Map<number, any>();
+      const rawGroups: any[] = [];
 
-    const ungrouped: typeof terms = [];
-    terms.forEach((term) => {
-      const num = String(term.itemNumber || "").trim();
-      const groupIndex = itemToGroup.get(num);
-      if (groupIndex === undefined) {
-        ungrouped.push(term);
-      } else {
-        groupedTerms[groupIndex].terms.push(term);
+      // Initialize groups from DB Subtitles
+      for (const sub of dbSubtitles) {
+          const groupObj = {
+              id: `subtitle-${sub.id}`,
+              title: sub.title,
+              parentTitle: sub.parent ? sub.parent.title : undefined,
+              subTitle: sub.parent ? sub.title : undefined,
+              subtitleId: sub.id,
+              terms: [] as typeof terms,
+          };
+          subtitleMap.set(sub.id, groupObj);
+          rawGroups.push(groupObj);
       }
-    });
 
-    if (ungrouped.length > 0) {
-      groupedTerms.push({
-        id: `subtitle-${section.number}-other`,
-        title: "مصطلحات أخرى",
-        terms: ungrouped,
-        itemNumbers: new Set<string>(),
+      const ungrouped: typeof terms = [];
+      const itemToGroup = new Map<string, any>(); // Fallback for pure itemNumber matching if needed, but we prefer subtitleId
+
+      terms.forEach((term) => {
+        if (term.subtitleId && subtitleMap.has(term.subtitleId)) {
+          subtitleMap.get(term.subtitleId).terms.push(term);
+        } else {
+          ungrouped.push(term);
+        }
       });
-    }
+
+      // Filter groups that have terms
+      groupedTerms = rawGroups.filter(g => g.terms.length > 0);
+
+      // Add "Other" if needed
+      if (ungrouped.length > 0) {
+        groupedTerms.push({
+          id: `subtitle-${section.number}-other`,
+          title: "مصطلحات أخرى",
+          subtitleId: -1,
+          terms: ungrouped,
+        });
+      }
   }
 
   const navItems = canGroup
