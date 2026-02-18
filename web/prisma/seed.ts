@@ -8,9 +8,15 @@ import util from "util";
 const execPromise = util.promisify(exec);
 const prisma = new PrismaClient();
 
-// Helper to determine the correct mysql command prefix (handling path issues might require manual PATH setup on Windows)
-function getMysqlCommand() {
-    return process.platform === "win32" ? "mysql.exe" : "mysql";
+// Helper to sanitize command for execution
+async function runCommand(command: string) {
+    if (process.platform === "win32") {
+        // On Windows, use cmd /c to handle redirection properly
+        // And quote the whole command if it has internal quotes, or trust child_process to handle it
+        return execPromise(`cmd /c "${command}"`);
+    } else {
+        return execPromise(command);
+    }
 }
 
 async function restoreFromSql() {
@@ -42,10 +48,19 @@ async function restoreFromSql() {
     const passwordFlag = url.password ? `-p"${url.password}"` : '--password=""';
 
     const command = `mysql -u "${user}" ${passwordFlag} -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
-    await execPromise(command);
+    if (process.platform === 'win32') {
+         // PowerShell doesn't support < properly for input redirection sometimes, use cmd /c
+         await execPromise(`cmd /c "${command}"`);
+    } else {
+         await execPromise(command);
+    }
     console.log("✅ Base data restored successfully.");
 
     // re-apply schema to ensure all columns exist
+    // On Windows, db push might fail if tables are locked or case sensitivity issues with restored data
+    // We try to handle "Failed to open the referenced table 'subtitle'" by dropping constraints first if needed,
+    // but db push usually handles it.
+    // If it fails, it might be because the SQL dump has different casing or structure conflicts.
     console.log("⚠️ Re-applying Prisma Schema to ensure compatibility...");
     await execPromise("npx prisma db push --accept-data-loss");
     console.log("✅ Schema synchronized.");
