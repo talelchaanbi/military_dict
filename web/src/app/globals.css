@@ -133,3 +133,46 @@
 .doc-content .img { @apply border border-border rounded-lg overflow-hidden bg-card; }
 .doc-content .img img { @apply w-full block; }
 .doc-content .cap { @apply text-xs text-muted-foreground p-2 text-center bg-muted/10; }
+
+/* Simple Entry Animations */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--enter-translate-y, 0));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-in {
+  /* Using 'both' for fill-mode ensures the element takes the 'from'
+     state (opacity: 0) before the animation starts (during delay),
+     and keeps the 'to' state (opacity: 1) after it impactful. */
+  animation: enter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.fade-in {
+  /* Just a marker class, animation 'enter' handles fading */
+}
+
+.slide-in-from-bottom-4 {
+  --enter-translate-y: 1rem;
+}
+
+.slide-in-from-bottom-8 {
+  --enter-translate-y: 2rem;
+}
+
+.slide-in-from-bottom-10 {
+  --enter-translate-y: 2.5rem;
+}
+
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.fill-mode-backwards {
+    animation-fill-mode: backwards;
+}
