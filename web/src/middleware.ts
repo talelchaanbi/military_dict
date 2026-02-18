@@ -42,6 +42,14 @@ export function middleware(request: NextRequest) {
     "camera=(), microphone=(), geolocation=(), browsing-topics=()"
   );
 
+  // Add HSTS header in production to enforce HTTPS
+  if (process.env.NODE_ENV === "production") {
+    response.headers.set(
+      "Strict-Transport-Security",
+      "max-age=63072000; includeSubDomains; preload"
+    );
+  }
+
   return response;
 }
 
