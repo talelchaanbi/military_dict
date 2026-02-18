@@ -11,13 +11,60 @@ This project is a Next.js application for a military dictionary, managing terms,
 
 1.  **Clone the repository** and navigate to the `web` directory:
     ```bash
-    cd web
+    git clone http://10.27.170.81:3000/talelchaanbi/military_dict.git
+    cd military_dict/web
     ```
 
-2.  **Install dependencies**:
+2.  **Environment Variables**:
+    Make sure you have a `.env` file at the root of `web` folder.
+    You can use the example file as a template:
+    ```bash
+    cp .env.example .env
+    ```
+    Then edit `.env` to match your MySQL user/password (if any).
+
+3.  **Install dependencies**:
     ```bash
     npm install
     ```
+
+4.  **Database Seeding**:
+    This single command will:
+    - Reset the database (force drop if exists as per your request).
+    - Create the schema.
+    - Seed all data (Departments 1-13 + Subtitles).
+    
+    ```bash
+    npx prisma db push --force-reset && npx prisma db seed
+    ```
+
+## Running the Application
+
+### Development Mode
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000)
+
+### Production Mode (Build once, run forever)
+    ```bash
+    npm run build
+    npm start
+    ```
+
+### Production with PM2 (Recommended for Servers)
+    ```bash
+    # Install PM2 globally if needed
+    npm install -g pm2
+    
+    # Build the app
+    npm run build
+    
+    # Start and save process
+    pm2 start npm --name "military-dict" -- start
+    pm2 save
+    ```
+
 
 3.  **Environment Variables**:
     Create a `.env` file in the `web` directory based on your configuration. Example:
