@@ -48,25 +48,19 @@ async function restoreFromSql() {
     const passwordFlag = url.password ? `-p"${url.password}"` : '--password=""';
 
     const command = `mysql -u "${user}" ${passwordFlag} -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
-    if (process.platform === 'win32') {
-         // PowerShell doesn't support < properly for input redirection sometimes, use cmd /c
-         await execPromise(`cmd /c "${command}"`);
-    } else {
-         await execPromise(command);
-    }
+    
+    // Execute the restore command
+    console.log(`Executing: ${command.replace(password, '"********"')}`); // mask password in logs
+    await runCommand(command);
+
     console.log("✅ Base data restored successfully.");
 
-    // re-apply schema to ensure all columns exist
-    // On Windows, db push might fail if tables are locked or case sensitivity issues with restored data
-    // We try to handle "Failed to open the referenced table 'subtitle'" by dropping constraints first if needed,
-    // but db push usually handles it.
-    // If it fails, it might be because the SQL dump has different casing or structure conflicts.
     console.log("⚠️ Re-applying Prisma Schema to ensure compatibility...");
-    await execPromise("npx prisma db push --accept-data-loss");
+    await runCommand("npx prisma db push --accept-data-loss");
     console.log("✅ Schema synchronized.");
   } catch (error) {
-    console.error("❌ Failed to restore SQL data:", error);
-    console.error("You may need to run: mysql -u USER -p DATABASE < prisma/seed_data.sql");
+    console.error("❌ Failed to restore SQL data. Ensure 'mysql' is in your PATH.", error);
+    console.error("Manual command: mysql -u USER -p DATABASE < prisma/seed_data.sql");
   }
 }
 
@@ -75,7 +69,8 @@ async function seedDep13() {
   try {
     // Run the existing seed_dep13.ts script
     const scriptPath = path.join(__dirname, "seed_dep13.ts");
-    await execPromise(`npx tsx "${scriptPath}"`);
+    // npx works cross-platform usually, but using runCommand handles shell weirdness
+    await runCommand(`npx tsx "${scriptPath}"`);
     console.log("✅ DEP 13 seeded successfully.");
   } catch (error) {
     console.error("❌ Failed to seed DEP 13:", error);
@@ -83,11 +78,11 @@ async function seedDep13() {
 }
 
 async function seedSubtitles() {
-  console.log("Seeding Subtitles/Structure using HTML files...");
+  console.log("Seeding Subtitles/Structure using JSON data...");
   try {
     const scriptPath = path.join(__dirname, "seed_subtitles.ts");
     if (fs.existsSync(scriptPath)) {
-        const { stdout, stderr } = await execPromise(`npx tsx "${scriptPath}"`);
+        const { stdout, stderr } = await runCommand(`npx tsx "${scriptPath}"`);
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
         console.log("✅ Subtitles seeded successfully.");
