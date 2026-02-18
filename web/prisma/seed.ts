@@ -56,7 +56,9 @@ async function seedSubtitles() {
   try {
     const scriptPath = path.join(__dirname, "seed_subtitles.ts");
     if (fs.existsSync(scriptPath)) {
-        await execPromise(`npx tsx "${scriptPath}"`);
+        const { stdout, stderr } = await execPromise(`npx tsx "${scriptPath}"`);
+        if (stdout) console.log(stdout);
+        if (stderr) console.error(stderr);
         console.log("✅ Subtitles seeded successfully.");
     } else {
         console.warn("⚠️ seed_subtitles.ts not found. Skipping subtitle seeding.");
