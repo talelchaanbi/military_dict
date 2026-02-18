@@ -37,6 +37,26 @@ This project is a Next.js application for a military dictionary, managing terms,
     ```bash
     npx prisma db push --force-reset && npx prisma db seed
     ```
+    
+    > **Note for Windows (PowerShell) Users:**
+    > If `&&` does not work, run the commands separately:
+    > ```powershell
+    > npx prisma db push --force-reset
+    > npx prisma db seed
+    > ```
+    >
+    > **Note for WAMP Server Users:**
+    > If you are using WAMP, the `mysql` command is located in a path similar to:
+    > `C:\wamp64\bin\mysql\mysql8.0.x\bin`
+    > You must add this path to your Windows Environment Variables (Path) for the restore command to work.
+    >
+    > Alternatively, you can temporarily add it to your current PowerShell session before running the seed:
+    > ```powershell
+    > $env:Path += ";C:\wamp64\bin\mysql\mysql8.0.31\bin"
+    > npx prisma db push --force-reset
+    > npx prisma db seed
+    > ```
+    > (Check your specific WAMP MySQL version folder name).
 
 ## Running the Application
 

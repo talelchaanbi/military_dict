@@ -8,6 +8,11 @@ import util from "util";
 const execPromise = util.promisify(exec);
 const prisma = new PrismaClient();
 
+// Helper to determine the correct mysql command prefix (handling path issues might require manual PATH setup on Windows)
+function getMysqlCommand() {
+    return process.platform === "win32" ? "mysql.exe" : "mysql";
+}
+
 async function restoreFromSql() {
   const sqlPath = path.join(__dirname, "seed_data.sql");
   if (!fs.existsSync(sqlPath)) {
@@ -25,12 +30,18 @@ async function restoreFromSql() {
   try {
     const url = new URL(databaseUrl.replace("mysql://", "http://"));
     const user = url.username;
-    const password = url.password;
+    // Handle empty password correctly for CLI
+    const password = url.password ? `-p"${url.password}"` : ""; 
     const host = url.hostname;
     const port = url.port || "3306";
     const database = url.pathname.substring(1);
 
-    const command = `mysql -u "${user}" -p"${password}" -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
+    // On Windows, if mysql is not in PATH, this will fail. We rely on user having it in PATH.
+    // If password is empty, we must strictly NOT pass -p"" on some versions or -p on others.
+    // Safe bet: if password exists pass -p"password". If not, omit -p entirely or use --password=""
+    const passwordFlag = url.password ? `-p"${url.password}"` : '--password=""';
+
+    const command = `mysql -u "${user}" ${passwordFlag} -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
     await execPromise(command);
     console.log("✅ Base data restored successfully.");
 
