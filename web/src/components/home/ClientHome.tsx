@@ -27,24 +27,24 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "15s" }}></div>
         </div>
 
-      <div className="flex flex-col items-center justify-center pt-20 pb-32 text-center space-y-12">
+      <div className="flex flex-col items-center justify-center pt-10 pb-20 text-center space-y-8">
         
         {/* Logo & Headline */}
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out">
-          <div className="relative inline-block mb-6">
+        <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out">
+          <div className="relative inline-block mb-4">
               <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
               <img 
                   src="/logo.png" 
                   alt="شعار القاموس العسكري" 
-                  className="relative h-40 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
+                  className="relative h-32 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
               />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2">
             القاموس العسكري الموحد
           </h1>
           
-          <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed font-light">
+          <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed font-light">
             المرجع الرقمي الشامل للمصطلحات والمفاهيم العسكرية الحديثة. 
             <br className="hidden md:block"/>
             دقة في المعلومة، وسرعة في الوصول.
@@ -82,19 +82,19 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-24 px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-backwards">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12 px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-backwards">
            <FeatureCard 
-              icon={<Globe className="h-10 w-10 text-blue-500" />}
+              icon={<Globe className="h-8 w-8 text-blue-500" />}
               title="شامل ومتكامل"
               description="قاعدة بيانات ضخمة تغطي كافة التخصصات البرية والجوية والبحرية، محدثة باستمرار."
            />
            <FeatureCard 
-              icon={<Zap className="h-10 w-10 text-yellow-500" />}
+              icon={<Zap className="h-8 w-8 text-yellow-500" />}
               title="بحث ذكي وسريع"
               description="خوارزميات بحث متقدمة تضمن الوصول إلى المصطلح الدقيق ومعانيه في ثوانٍ معدودة."
            />
            <FeatureCard 
-              icon={<Shield className="h-10 w-10 text-green-500" />}
+              icon={<Shield className="h-8 w-8 text-green-500" />}
               title="موثوق ومعتمد"
               description="المصدر الرسمي المعتمد للمصطلحات والرموز العسكرية في مختلف الصنوف والتشكيلات."
            />
@@ -108,14 +108,14 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
     return (
         <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-left">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <CardHeader className="relative z-10 flex flex-col items-center text-center">
-                <div className="mb-4 inline-flex p-3 rounded-2xl bg-secondary/50 group-hover:bg-background shadow-sm transition-colors">
+            <CardHeader className="relative z-10 flex flex-col items-center text-center p-4">
+                <div className="mb-3 inline-flex p-2.5 rounded-xl bg-secondary/50 group-hover:bg-background shadow-sm transition-colors">
                     {icon}
                 </div>
-                <CardTitle className="text-xl font-bold">{title}</CardTitle>
+                <CardTitle className="text-lg font-bold">{title}</CardTitle>
             </CardHeader>
-            <CardContent className="relative z-10 text-center">
-                <CardDescription className="text-base leading-relaxed">
+            <CardContent className="relative z-10 text-center p-4 pt-0">
+                <CardDescription className="text-sm leading-relaxed">
                     {description}
                 </CardDescription>
             </CardContent>
