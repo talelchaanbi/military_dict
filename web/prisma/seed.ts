@@ -90,7 +90,17 @@ async function seedAdmin() {
 async function main() {
   // 1. Check if database is empty (missing base sections)
   // We check for Section 1 which is standard in the dump
-  const section1 = await prisma.section.findFirst({ where: { number: 1 } });
+  let section1 = null;
+  try {
+    section1 = await prisma.section.findFirst({ where: { number: 1 } });
+  } catch (error: any) {
+    // P2021: The table does not exist in the current database.
+    if (error.code === 'P2021') {
+      console.log("⚠️ Tables do not exist. Attempting full restoration...");
+    } else {
+      throw error;
+    }
+  }
   
   if (!section1) {
     console.log("⚠️ Database appears incomplete. Attempting full restoration...");
