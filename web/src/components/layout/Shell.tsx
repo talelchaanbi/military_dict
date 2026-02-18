@@ -1,13 +1,8 @@
 import Link from "next/link";
-import { BookOpen, Shield, ChevronLeft, User, LogOut, Menu } from "lucide-react";
+import { BookOpen, ChevronLeft, User, LogOut } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export async function Shell({
   children,
@@ -74,6 +69,7 @@ export async function Shell({
           </div>
           
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             {user ? (
               <div className="flex items-center gap-2">
                 <div className="hidden sm:flex flex-col items-end mr-2">
