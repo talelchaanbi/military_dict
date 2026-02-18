@@ -1,4 +1,4 @@
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web> npx prisma db seed
+mdn@LAPTOP-2RLL4CNS MINGW64 ~/Desktop/TALEL/military_dict (main)
 warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
 For more information, see: https://pris.ly/prisma-config
 
@@ -86,6 +86,7 @@ Seeding Subtitles for Section 8 from JSON data...
 Checking Section 9...
 Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
 Manual data for 9: Found
+Seeding Subtitles for Section 9 from JSON data...
 Checking Section 10...
 Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
 Manual data for 10: Found
@@ -100,12 +101,6 @@ Migration complete.
 ✅ Admin user 'admin' created.
 
 The seed command has been executed.
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web> mysql -u USER -p DATABASE < prisma/seed_data.sql
-Au caractère Ligne:1 : 27
-+ mysql -u USER -p DATABASE < prisma/seed_data.sql
-+                           ~
-L’opérateur « < » est réservé à une utilisation future.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : RedirectionNotSupported
- 
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web>
+
+mdn@LAPTOP-2RLL4CNS MINGW64 ~/Desktop/TALEL/military_dict/web (main)
+$
