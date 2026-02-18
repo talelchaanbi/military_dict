@@ -1,27 +1,3 @@
-PS C:\Users\mdn\Desktop\TALEL\military_dict> git pull
-remote: Enumerating objects: 8, done.
-PS C:\Users\mdn\Desktop\TALEL\military_dict> cd web
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web> npx prisma db push --force-reset && npx prisma db seed
-Au caractère Ligne:1 : 34
-+ npx prisma db push --force-reset && npx prisma db seed
-+                                  ~~
-Le jeton « && » n’est pas un séparateur d’instruction valide.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : InvalidEndOfLine
- 
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web> npx prisma db push --force-reset                      
-warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
-
-Environment variables loaded from .env
-Prisma schema loaded from prisma\schema.prisma
-Datasource "db": MySQL database "military_dict" at "localhost:3306"
-
-The MySQL database "military_dict" at "localhost:3306" was successfully reset.
-
-Your database is now in sync with your Prisma schema. Done in 223ms
-
-✔ Generated Prisma Client (v6.19.2) to .\node_modules\@prisma\client in 119ms
-
 PS C:\Users\mdn\Desktop\TALEL\military_dict\web> npx prisma db seed
 warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
 For more information, see: https://pris.ly/prisma-config
@@ -30,10 +6,22 @@ Environment variables loaded from .env
 Running seed command `tsx prisma/seed.ts` ...
 ⚠️ Database appears incomplete. Attempting full restoration...
 Restoring base data from seed_data.sql...
-❌ Failed to restore SQL data: Error: Command failed: mysql -u "root" -p"" -h "localhost" -P "3306" "military_dict" < "
-C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\seed_data.sql"
-'mysql' n'est pas reconnu en tant que commande interne
-ou externe, un programme ex�cutable ou un fichier de commandes.
+✅ Base data restored successfully.
+⚠️ Re-applying Prisma Schema to ensure compatibility...
+❌ Failed to restore SQL data: Error: Command failed: npx prisma db push --accept-data-loss
+warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
+For more information, see: https://pris.ly/prisma-config
+
+Environment variables loaded from .env
+Error: Failed to open the referenced table 'subtitle'
+   0: sql_schema_connector::apply_migration::migration_step
+           with step=AddForeignKey { foreign_key_id: ForeignKeyId(2) }
+             at schema-engine\connectors\sql-schema-connector\src\apply_migration.rs:28
+   1: sql_schema_connector::apply_migration::apply_migration
+             at schema-engine\connectors\sql-schema-connector\src\apply_migration.rs:11
+   2: schema_core::state::SchemaPush
+             at schema-engine\core\src\state.rs:545
+
 
     at genericNodeError (node:internal/errors:985:15)
     at wrappedFn (node:internal/errors:539:14)
@@ -44,51 +32,80 @@ ou externe, un programme ex�cutable ou un fichier de commandes.
   code: 1,
   killed: false,
   signal: null,
-  cmd: 'mysql -u "root" -p"" -h "localhost" -P "3306" "military_dict" < "C:\\Users\\mdn\\Desktop\\TALEL\\military_dict\\web\\prisma\\seed_data.sql"',
-  stdout: '',
-  stderr: "'mysql' n'est pas reconnu en tant que commande interne\r\n" +
-    'ou externe, un programme ex�cutable ou un fichier de commandes.\r\n'
+  cmd: 'npx prisma db push --accept-data-loss',
+  stdout: 'Prisma schema loaded from prisma\\schema.prisma\n' +
+    'Datasource "db": MySQL database "military_dict" at "localhost:3306"\n',
+  stderr: 'warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).\n' +
+    'For more information, see: https://pris.ly/prisma-config\n' +
+    '\n' +
+    'Environment variables loaded from .env\n' +
+    "Error: Failed to open the referenced table 'subtitle'\n" +
+    '   0: sql_schema_connector::apply_migration::migration_step\n' +
+    '           with step=AddForeignKey { foreign_key_id: ForeignKeyId(2) }\n' +
+    '             at schema-engine\\connectors\\sql-schema-connector\\src\\apply_migration.rs:28\n' +
+    '   1: sql_schema_connector::apply_migration::apply_migration\n' +
+    '             at schema-engine\\connectors\\sql-schema-connector\\src\\apply_migration.rs:11\n' +
+    '   2: schema_core::state::SchemaPush\n' +
+    '             at schema-engine\\core\\src\\state.rs:545\n' +
+    '\n'
 }
 You may need to run: mysql -u USER -p DATABASE < prisma/seed_data.sql
 Seeding DEP 13 data...
 ✅ DEP 13 seeded successfully.
 Seeding Subtitles/Structure using HTML files...
 Checking Section 1...
-Section 1 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 1: Found
+Seeding Subtitles for Section 1 from JSON data...
 Checking Section 2...
-Section 2 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 2: Found
 Checking Section 3...
-Section 3 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 3: Found
 Checking Section 4...
-Section 4 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 4: Found
+Seeding Subtitles for Section 4 from JSON data...
 Checking Section 5...
-Section 5 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 5: Found
+Seeding Subtitles for Section 5 from JSON data...
 Checking Section 6...
-Section 6 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 6: Found
+Seeding Subtitles for Section 6 from JSON data...
 Checking Section 7...
-Section 7 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 7: Found
+Seeding Subtitles for Section 7 from JSON data...
 Checking Section 8...
-Section 8 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 8: Found
+Seeding Subtitles for Section 8 from JSON data...
 Checking Section 9...
-Section 9 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 9: Found
 Checking Section 10...
-Section 10 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 10: Found
+Seeding Subtitles for Section 10 from JSON data...
 Checking Section 11...
-Section 11 not found in DB. Skipping.
+Looking for manual data in: C:\Users\mdn\Desktop\TALEL\military_dict\web\prisma\subtitles_data.json
+Manual data for 11: Found
+Seeding Subtitles for Section 11 from JSON data...
 Migration complete.
 
 ✅ Subtitles seeded successfully.
 ✅ Admin user 'admin' created.
-┌─────────────────────────────────────────────────────────┐
-│  Update available 6.19.2 -> 7.4.0                       │
-│                                                         │
-│  This is a major update - please follow the guide at    │
-│  https://pris.ly/d/major-version-upgrade                │
-│                                                         │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
 
 The seed command has been executed.
-PS C:\Users\mdn\Desktop\TALEL\military_dict\web> 
+PS C:\Users\mdn\Desktop\TALEL\military_dict\web> mysql -u USER -p DATABASE < prisma/seed_data.sql
+Au caractère Ligne:1 : 27
++ mysql -u USER -p DATABASE < prisma/seed_data.sql
++                           ~
+L’opérateur « < » est réservé à une utilisation future.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : RedirectionNotSupported
+ 
+PS C:\Users\mdn\Desktop\TALEL\military_dict\web>
