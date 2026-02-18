@@ -33,6 +33,11 @@ async function restoreFromSql() {
     const command = `mysql -u "${user}" -p"${password}" -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
     await execPromise(command);
     console.log("✅ Base data restored successfully.");
+
+    // re-apply schema to ensure all columns exist
+    console.log("⚠️ Re-applying Prisma Schema to ensure compatibility...");
+    await execPromise("npx prisma db push --accept-data-loss");
+    console.log("✅ Schema synchronized.");
   } catch (error) {
     console.error("❌ Failed to restore SQL data:", error);
     console.error("You may need to run: mysql -u USER -p DATABASE < prisma/seed_data.sql");

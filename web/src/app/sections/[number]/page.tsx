@@ -576,7 +576,7 @@ const renderRow = (t: any) => {
 
           <div className="flex-1 space-y-6">
             {groupedTerms.map((group, idx) => (
-              <div key={group.id} id={group.id} className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
+              <div key={group.id} id={group.id} className="group-section scroll-mt-24 rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
                 <div className="px-4 py-3 bg-muted/40">
                   {group.subTitle && group.parentTitle ? (
                     <div className="space-y-1">
