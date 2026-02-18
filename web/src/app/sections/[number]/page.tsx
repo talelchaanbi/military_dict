@@ -542,7 +542,7 @@ const renderRow = (t: any) => {
       {canGroup ? (
         <div className="flex flex-col lg:flex-row gap-6">
           <aside className="lg:w-64 xl:w-72 shrink-0">
-            <div className="rounded-xl border bg-white/80 dark:bg-zinc-900/80 backdrop-blur p-4 lg:sticky lg:top-6">
+            <div className="rounded-xl border bg-white/80 dark:bg-zinc-900/80 backdrop-blur p-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] overflow-y-auto">
               <div className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 mb-3">
                 العناوين الفرعية
               </div>

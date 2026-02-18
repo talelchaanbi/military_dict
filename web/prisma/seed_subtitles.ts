@@ -99,9 +99,9 @@ async function migrateSection(sectionNumber: number) {
   // We assume the script is run from 'web' via 'npx tsx prisma/seed_subtitles.ts'
   // So __dirname is web/prisma.
   const possiblePaths = [
+    path.join(__dirname, "../../dep", `${sectionNumber}.html`),
     path.join(__dirname, "../../qafFilesManager/Department/Details", `${sectionNumber}.html`),
-    path.join(__dirname, "../../", `${sectionNumber}.html`), // If they were conceptually in root
-    path.join(__dirname, "../../web/public/uploads/docs", `dep12.html`), // Special cases mapping if needed? No, user said 1-13 html files.
+    path.join(__dirname, "../../", `${sectionNumber}.html`), 
   ];
 
   let htmlPath = "";
