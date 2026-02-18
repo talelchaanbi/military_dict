@@ -8,6 +8,15 @@ export type UserRole = "admin" | "editor" | "reader";
 const SESSION_COOKIE = "session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 
+// Security: Enforce strong password policy
+export function isStrongPassword(password: string): boolean {
+  if (password.length < 8) return false;
+  // Basic check: at least one letter and one number
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  return hasLetter && hasNumber;
+}
+
 function getJwtSecret() {
   const secret = process.env.AUTH_SECRET;
   if (!secret) {
@@ -41,7 +50,7 @@ export async function createSession(payload: SessionPayload) {
     name: SESSION_COOKIE,
     value: token,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict", // Improved security: Use 'strict' instead of 'lax' for same-site
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: SESSION_TTL_SECONDS,
@@ -54,7 +63,7 @@ export async function clearSession() {
     name: SESSION_COOKIE,
     value: "",
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict", // Improved security
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: 0,
