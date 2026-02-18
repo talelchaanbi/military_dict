@@ -19,6 +19,63 @@ async function runCommand(command: string) {
     }
 }
 
+async function tableExists(tableName: string) {
+  const rows = await prisma.$queryRawUnsafe<any[]>(`
+    SELECT 1
+    FROM information_schema.TABLES
+    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = '${tableName}'
+    LIMIT 1
+  `);
+  return rows.length > 0;
+}
+
+async function columnExists(tableName: string, columnName: string) {
+  const rows = await prisma.$queryRawUnsafe<any[]>(`
+    SELECT 1
+    FROM information_schema.COLUMNS
+    WHERE TABLE_SCHEMA = DATABASE()
+      AND TABLE_NAME = '${tableName}'
+      AND COLUMN_NAME = '${columnName}'
+    LIMIT 1
+  `);
+  return rows.length > 0;
+}
+
+async function ensureRequiredSchemaAdditions() {
+  console.log("⚠️ Ensuring required schema additions exist...");
+
+  if (!(await columnExists("Term", "imageUrl"))) {
+    await prisma.$executeRawUnsafe(
+      "ALTER TABLE `Term` ADD COLUMN `imageUrl` VARCHAR(191) NULL"
+    );
+  }
+
+  if (!(await columnExists("Term", "subtitleId"))) {
+    await prisma.$executeRawUnsafe(
+      "ALTER TABLE `Term` ADD COLUMN `subtitleId` INTEGER NULL"
+    );
+  }
+
+  if (!(await tableExists("Subtitle"))) {
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE \`Subtitle\` (
+        \`id\` INTEGER NOT NULL AUTO_INCREMENT,
+        \`sectionId\` INTEGER NOT NULL,
+        \`title\` VARCHAR(191) NOT NULL,
+        \`order\` INTEGER NOT NULL DEFAULT 0,
+        \`parentId\` INTEGER NULL,
+        \`createdAt\` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+        \`updatedAt\` DATETIME(3) NOT NULL,
+        INDEX \`Subtitle_sectionId_idx\`(\`sectionId\`),
+        INDEX \`Subtitle_parentId_idx\`(\`parentId\`),
+        PRIMARY KEY (\`id\`)
+      ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+    `);
+  }
+
+  console.log("✅ Required schema additions ensured.");
+}
+
 async function restoreFromSql() {
   const sqlPath = path.join(__dirname, "seed_data.sql");
   if (!fs.existsSync(sqlPath)) {
@@ -36,8 +93,7 @@ async function restoreFromSql() {
   try {
     const url = new URL(databaseUrl.replace("mysql://", "http://"));
     const user = url.username;
-    // Handle empty password correctly for CLI
-    const password = url.password ? `-p"${url.password}"` : ""; 
+    const password = url.password;
     const host = url.hostname;
     const port = url.port || "3306";
     const database = url.pathname.substring(1);
@@ -50,33 +106,15 @@ async function restoreFromSql() {
     const command = `mysql -u "${user}" ${passwordFlag} -h "${host}" -P "${port}" "${database}" < "${sqlPath}"`;
     
     // Execute the restore command
-    console.log(`Executing: ${command.replace(password, '"********"')}`); // mask password in logs
+    const maskedCommand = password
+      ? command.replace(`-p"${password}"`, '-p"********"')
+      : command;
+    console.log(`Executing: ${maskedCommand}`);
     await runCommand(command);
 
     console.log("✅ Base data restored successfully.");
 
-    console.log("⚠️ Ensuring required schema additions exist...");
-    await prisma.$executeRawUnsafe(
-      "ALTER TABLE `Term` ADD COLUMN IF NOT EXISTS `imageUrl` VARCHAR(191) NULL"
-    );
-    await prisma.$executeRawUnsafe(
-      "ALTER TABLE `Term` ADD COLUMN IF NOT EXISTS `subtitleId` INTEGER NULL"
-    );
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS \`Subtitle\` (
-        \`id\` INTEGER NOT NULL AUTO_INCREMENT,
-        \`sectionId\` INTEGER NOT NULL,
-        \`title\` VARCHAR(191) NOT NULL,
-        \`order\` INTEGER NOT NULL DEFAULT 0,
-        \`parentId\` INTEGER NULL,
-        \`createdAt\` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-        \`updatedAt\` DATETIME(3) NOT NULL,
-        INDEX \`Subtitle_sectionId_idx\`(\`sectionId\`),
-        INDEX \`Subtitle_parentId_idx\`(\`parentId\`),
-        PRIMARY KEY (\`id\`)
-      ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
-    `);
-    console.log("✅ Required schema additions ensured.");
+    await ensureRequiredSchemaAdditions();
   } catch (error) {
     console.error("❌ Failed to restore SQL data. Ensure 'mysql' is in your PATH.", error);
     console.error("Manual command: mysql -u USER -p DATABASE < prisma/seed_data.sql");
