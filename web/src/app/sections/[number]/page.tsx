@@ -386,7 +386,7 @@ const renderRow = (t: any) => {
                 {/* Symbol Col (formerly imageUrl)*/}
                 <div className="col-span-4 sm:col-span-3 flex justify-center sm:justify-start">
                      {t.imageUrl ? (
-                        <img src={t.imageUrl} alt={t.term} className="max-w-[120px] h-auto max-h-[120px] object-contain border rounded-md bg-white p-1" />
+                        <img src={t.imageUrl} alt={t.term} className="max-w-[120px] h-auto max-h-[120px] object-contain border rounded-md bg-card p-1" />
                      ) : (
                         <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
                      )}
@@ -422,7 +422,7 @@ const renderRow = (t: any) => {
             <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
             <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
                 {t.imageUrl && (
-                <img src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain border rounded-md mb-2 bg-white" />
+                <img src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain border rounded-md mb-2 bg-card" />
                 )}
                 {t.description || (!t.imageUrl && <span className="text-muted-foreground italic">لا يوجد شرح</span>)}
             </div>
@@ -542,8 +542,8 @@ const renderRow = (t: any) => {
       {canGroup ? (
         <div className="flex flex-col lg:flex-row gap-6">
           <aside className="lg:w-64 xl:w-72 shrink-0">
-            <div className="rounded-xl border bg-white/80 dark:bg-zinc-900/80 backdrop-blur p-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] overflow-y-auto">
-              <div className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 mb-3">
+            <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] overflow-y-auto">
+              <div className="text-sm font-semibold text-muted-foreground mb-3">
                 العناوين الفرعية
               </div>
               <div className="flex flex-col gap-3">
@@ -551,7 +551,7 @@ const renderRow = (t: any) => {
                   <div key={item.id} className="flex flex-col gap-2">
                     <a
                       href={`#${item.id}`}
-                      className="rounded-full border bg-zinc-50 dark:bg-zinc-800 px-3 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 w-fit"
+                      className="rounded-full border bg-muted px-3 py-1 text-xs font-semibold text-foreground hover:bg-accent w-fit"
                     >
                       {item.title}
                     </a>
@@ -561,7 +561,7 @@ const renderRow = (t: any) => {
                           <a
                             key={child.id}
                             href={`#${child.id}`}
-                            className="rounded-full border bg-zinc-50/70 dark:bg-zinc-800/70 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                            className="rounded-full border bg-muted/70 px-3 py-1 text-xs text-foreground hover:bg-accent"
                           >
                             {child.title}
                           </a>

@@ -21,7 +21,7 @@ export async function Shell({
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md shadow-sm">
+      <header className="fixed top-0 right-0 left-0 z-[1000] w-full border-b border-border/50 bg-background/90 backdrop-blur-md shadow-sm">
         <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
@@ -97,7 +97,7 @@ export async function Shell({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 py-8">
+      <main className="flex-1 py-8 pt-24">
         <div className={`container px-4 sm:px-8 mx-auto max-w-[1600px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">

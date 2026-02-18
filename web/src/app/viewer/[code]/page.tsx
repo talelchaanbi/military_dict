@@ -50,6 +50,14 @@ export default async function ViewerPage({
   // Note: This regex is simple and implies the structure we know.
   content = content.replace(/<div class="doc-content">/g, "").replace(/<\/div>\s*$/g, "");
 
+   // Remove embedded styles/scripts from source HTML so global app theme and navbar are not affected.
+   content = content
+      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/\sstyle=("[^"]*"|'[^']*')/gi, "")
+      .replace(/\sbgcolor=("[^"]*"|'[^']*')/gi, "")
+      .replace(/\scolor=("[^"]*"|'[^']*')/gi, "");
+
    // Remove subheader rows like (أ)(ب)(ج/ﺠ)(د) in tables
    content = content.replace(
       /<tr>\s*<th>\s*<p>\s*\(أ\)\s*<\/p>\s*<\/th>\s*<th>\s*<p>\s*\(ب\)\s*<\/p>\s*<\/th>\s*<th>\s*<p>\s*\((?:ﺠ|ج)\)\s*<\/p>\s*<\/th>\s*<\/tr>/gi,
@@ -75,7 +83,7 @@ export default async function ViewerPage({
             <Card className="shadow-lg">
                <CardContent className="p-8 sm:p-12">
                   <div
-                     className="doc-content prose prose-zinc dark:prose-invert max-w-none"
+                     className="doc-content max-w-none"
                      dangerouslySetInnerHTML={{ __html: content }}
                   />
                </CardContent>
