@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Shell } from "@/components/layout/Shell";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { FileText, List } from "lucide-react";
+import { SectionsClient } from "./sections-client";
 
 export default async function SectionsIndexPage() {
   const sections = await prisma.section.findMany({
@@ -19,32 +17,16 @@ export default async function SectionsIndexPage() {
   });
 
   return (
-    <Shell title="الأقسام" backTo="/">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {sections.map((s) => (
-          <Link
-            key={s.number}
-            href={`/sections/${s.number}`}
-            className="block h-full"
-          >
-            <Card className="h-full hover:border-primary/50 hover:shadow-md transition-all cursor-pointer">
-              <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start mb-2">
-                     <span className="text-xs font-bold text-muted-foreground bg-muted px-2 py-1 rounded-md">
-                        قسم {s.number}
-                     </span>
-                     {s.type === "terms" ? (
-                         <List className="h-5 w-5 text-muted-foreground" />
-                     ) : (
-                         <FileText className="h-5 w-5 text-muted-foreground" />
-                     )}
-                  </div>
-                 <CardTitle className="leading-snug text-lg">{s.title}</CardTitle>
-              </CardHeader>
-            </Card>
-          </Link>
-        ))}
+    <Shell backTo="/">
+      <div className="flex flex-col space-y-2 mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
+        <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+          الأقسام والمراجع
+        </h1>
+        <p className="text-muted-foreground text-lg max-w-2xl">
+          تصفح جميع أقسام القاموس العسكري والمراجع الفنية. يمكنك البحث والتصفية للوصول السريع للمعلومة.
+        </p>
       </div>
+      <SectionsClient sections={sections} />
     </Shell>
   );
 }
