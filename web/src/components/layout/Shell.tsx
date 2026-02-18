@@ -25,10 +25,10 @@ export async function Shell({
         <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
-                <img src="/logo.png" alt="القاموس العسكري" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+                <img src="/logo.png" alt="القاموس العسكري الموحد" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
               <div className="hidden sm:block">
-                <h1 className="text-lg font-bold leading-none tracking-tight">القاموس العسكري</h1>
-                <p className="text-xs text-muted-foreground mt-1">أمانة الشؤون العسكرية</p>
+                <h1 className="text-lg font-bold leading-none tracking-tight">القاموس العسكري الموحد</h1>
+                <p className="text-xs text-muted-foreground mt-1">الإدارة العسكرية ومجلس السلم والأمن العربي</p>
               </div>
             </Link>
             
@@ -118,7 +118,7 @@ export async function Shell({
       <footer className="border-t border-border bg-muted/30 py-6 md:py-0">
         <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <p className="text-center text-sm leading-loose text-muted-foreground">
-             تم التطوير بواسطة إدارة النظم والمعلومات &copy; {new Date().getFullYear()}
+             الإدارة العامّة للإشارة والإعلاميّة (ادارة الدراسات و التطوير) &copy; {new Date().getFullYear()}
           </p>
         </div>
       </footer>
