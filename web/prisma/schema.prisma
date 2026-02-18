@@ -1,17 +1,106 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Section {
+  id        Int         @id @default(autoincrement())
+  number    Int         @unique
+  title     String
+  type      SectionType
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  documents Document[]
+  subtitles Subtitle[]
+  terms     Term[]
+
+  @@index([type])
+}
+
+model Subtitle {
+  id        Int        @id @default(autoincrement())
+  sectionId Int
+  title     String
+  order     Int        @default(0)
+  parentId  Int?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  parent    Subtitle?  @relation("SubtitleHierarchy", fields: [parentId], references: [id])
+  children  Subtitle[] @relation("SubtitleHierarchy")
+  section   Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  terms     Term[]
+
+  @@index([sectionId])
+  @@index([parentId])
+}
+
+model Term {
+  id                    Int                    @id @default(autoincrement())
+  sectionId             Int
+  itemNumber            String?
+  term                  String
+  description           String?                @db.LongText
+  abbreviation          String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  imageUrl              String?
+  subtitleId            Int?
+  abbreviationProposals AbbreviationProposal[]
+  section               Section                @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  subtitle              Subtitle?              @relation(fields: [subtitleId], references: [id])
+
+  @@index([sectionId])
+  @@index([subtitleId])
+  @@index([term])
+}
+
+model User {
+  id                Int                    @id @default(autoincrement())
+  username          String                 @unique
+  passwordHash      String
+  role              UserRole               @default(reader)
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  proposals         AbbreviationProposal[] @relation("ProposalAuthor")
+  reviewedProposals AbbreviationProposal[] @relation("ProposalReviewer")
+}
+
+model AbbreviationProposal {
+  id                   Int            @id @default(autoincrement())
+  termId               Int
+  proposedAbbreviation String
+  status               ProposalStatus @default(pending)
+  createdById          Int
+  reviewedById         Int?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  createdBy            User           @relation("ProposalAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  reviewedBy           User?          @relation("ProposalReviewer", fields: [reviewedById], references: [id])
+  term                 Term           @relation(fields: [termId], references: [id], onDelete: Cascade)
+
+  @@index([termId])
+  @@index([status])
+  @@index([createdById])
+  @@index([reviewedById], map: "AbbreviationProposal_reviewedById_fkey")
+}
+
+model Document {
+  id          Int      @id @default(autoincrement())
+  sectionId   Int
+  code        String   @db.VarChar(64)
+  title       String?
+  contentHtml String?  @db.LongText
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  section     Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@unique([sectionId, code])
+  @@index([sectionId])
 }
 
 enum SectionType {
@@ -29,111 +118,4 @@ enum ProposalStatus {
   pending
   approved
   rejected
-}
-
-model Section {
-  id     Int         @id @default(autoincrement())
-  number Int         @unique
-  title  String
-  type   SectionType
-
-  terms      Term[]
-  subtitles  Subtitle[]
-  documents  Document[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([type])
-}
-
-model Subtitle {
-  id        Int      @id @default(autoincrement())
-  sectionId Int
-  title     String
-  order     Int      @default(0)
-  
-  // Hierarchy support
-  parentId  Int?
-  parent    Subtitle? @relation("SubtitleHierarchy", fields: [parentId], references: [id])
-  children  Subtitle[] @relation("SubtitleHierarchy")
-
-  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-  terms     Term[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([sectionId])
-  @@index([parentId])
-}
-
-model Term {
-  id           Int      @id @default(autoincrement())
-  sectionId    Int
-  subtitleId   Int?
-  itemNumber   String?
-  term         String
-  description  String? @db.LongText
-  abbreviation String?
-  imageUrl     String?
-
-  subtitle     Subtitle? @relation(fields: [subtitleId], references: [id])
-  abbreviationProposals AbbreviationProposal[]
-
-  section Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([sectionId])
-  @@index([subtitleId])
-  @@index([term])
-}
-
-model User {
-  id           Int      @id @default(autoincrement())
-  username     String   @unique
-  passwordHash String
-  role         UserRole @default(reader)
-  proposals    AbbreviationProposal[] @relation("ProposalAuthor")
-  reviewedProposals AbbreviationProposal[] @relation("ProposalReviewer")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model AbbreviationProposal {
-  id                   Int            @id @default(autoincrement())
-  termId               Int
-  proposedAbbreviation String
-  status               ProposalStatus @default(pending)
-  createdById          Int
-  reviewedById         Int?
-  term                 Term           @relation(fields: [termId], references: [id], onDelete: Cascade)
-  createdBy            User           @relation("ProposalAuthor", fields: [createdById], references: [id], onDelete: Cascade)
-  reviewedBy           User?          @relation("ProposalReviewer", fields: [reviewedById], references: [id])
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-
-  @@index([termId])
-  @@index([status])
-  @@index([createdById])
-}
-
-model Document {
-  id        Int    @id @default(autoincrement())
-  sectionId Int
-  code      String @db.VarChar(64) // e.g. dep12, dep13
-  title     String?
-
-  // Canonical web representation (prefer from DOCX)
-  contentHtml String? @db.LongText
-
-  section  Section          @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([sectionId, code])
-  @@index([sectionId])
 }

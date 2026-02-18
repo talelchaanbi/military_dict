@@ -55,9 +55,28 @@ async function restoreFromSql() {
 
     console.log("✅ Base data restored successfully.");
 
-    console.log("⚠️ Re-applying Prisma Schema to ensure compatibility...");
-    await runCommand("npx prisma db push --accept-data-loss");
-    console.log("✅ Schema synchronized.");
+    console.log("⚠️ Ensuring required schema additions exist...");
+    await prisma.$executeRawUnsafe(
+      "ALTER TABLE `Term` ADD COLUMN IF NOT EXISTS `imageUrl` VARCHAR(191) NULL"
+    );
+    await prisma.$executeRawUnsafe(
+      "ALTER TABLE `Term` ADD COLUMN IF NOT EXISTS `subtitleId` INTEGER NULL"
+    );
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS \`Subtitle\` (
+        \`id\` INTEGER NOT NULL AUTO_INCREMENT,
+        \`sectionId\` INTEGER NOT NULL,
+        \`title\` VARCHAR(191) NOT NULL,
+        \`order\` INTEGER NOT NULL DEFAULT 0,
+        \`parentId\` INTEGER NULL,
+        \`createdAt\` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+        \`updatedAt\` DATETIME(3) NOT NULL,
+        INDEX \`Subtitle_sectionId_idx\`(\`sectionId\`),
+        INDEX \`Subtitle_parentId_idx\`(\`parentId\`),
+        PRIMARY KEY (\`id\`)
+      ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+    `);
+    console.log("✅ Required schema additions ensured.");
   } catch (error) {
     console.error("❌ Failed to restore SQL data. Ensure 'mysql' is in your PATH.", error);
     console.error("Manual command: mysql -u USER -p DATABASE < prisma/seed_data.sql");
