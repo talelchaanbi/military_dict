@@ -340,6 +340,58 @@
             transform: rotate(180deg);
         }
 
+        /* Search Box */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        #tableSearch {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: "Cairo", sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        /* Table Column Sizing */
+        table {
+             width: 100%;
+             table-layout: fixed; /* Better control */
+        }
+        
+        /* Column 1: ID (colspan=2 but effectively small) */
+        table tr > td:nth-child(1) {
+            width: 8%; /* Small ID column */
+            text-align: center;
+        }
+
+        /* Column 2: Meaning */
+        table tr > td:nth-child(2) {
+            width: 40%; 
+        }
+
+        /* Column 3: Symbol */
+        table tr > td:nth-child(3) {
+            width: 30%;
+            text-align: center;
+        }
+        
+        table tr > td:nth-child(3) img {
+            max-width: 200px; /* Constrain image size */
+            margin: 0 auto;
+        }
+
+        /* Column 4: Remarks (last child) */
+        table tr > td:last-child {
+             width: 22%; /* Reduce Remarks column width */
+             font-size: 0.9em;
+             color: #666;
+        }
+        
+        /* Specific override for header row if needed */
+        
         /* Responsive */
         @media (max-width: 1024px) {
             body {
@@ -446,6 +498,9 @@
             <h1>الرموز المستخدمة للقوات البحرية</h1>
         </div>
         <section id="part1">
+            <div class="search-container">
+                <input type="text" id="tableSearch" onkeyup="searchTable()" placeholder="ابحث في القائمة..." title="بحث عن رمز">
+            </div>
 
             <div class="content-block" style="display: block;">
                 <div class="table-wrap">
@@ -1581,7 +1636,42 @@
             const section = header.closest('section');
             if (section) section.classList.toggle('section-collapsed');
         }
+
+        /* Table Search */
+        function searchTable() {
+            const input = document.getElementById("tableSearch");
+            const filter = input.value.toUpperCase();
+            // This assumes only ONE table in the section
+            const table = document.querySelector("#part1 table"); 
+            const tr = table.getElementsByTagName("tr");
+
+            // Skip the first row (headers)
+            for (let i = 1; i < tr.length; i++) {
+                const row = tr[i];
+                const tds = row.getElementsByTagName("td");
+                
+                // The first cell might have colspan=2, so tds[1] is actually the meaning.
+                // Row structure in this weird table:
+                // [0] (colspan=2) ID
+                // [1] Meaning
+                // [2] Symbol
+                // [3] (colspan=2) Remarks
+                
+                if (tds.length >= 2) {
+                     const tdMeaning = tds[1];
+                     if (tdMeaning) {
+                        const txtValue = tdMeaning.textContent || tdMeaning.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
     </script>
+
 </body>
 
 </html>
