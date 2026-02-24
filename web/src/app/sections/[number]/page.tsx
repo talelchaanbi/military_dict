@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Search, ChevronLeft, ChevronRight, File, ArrowRight, Ban } from "lucide-react";
+import { ImageZoom } from "@/components/ui/image-zoom";
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -386,7 +387,9 @@ const renderRow = (t: any) => {
                 {/* Symbol Col (formerly imageUrl)*/}
                 <div className="col-span-4 sm:col-span-3 flex justify-center sm:justify-start">
                      {t.imageUrl ? (
-                        <img src={t.imageUrl} alt={t.term} className="max-w-[120px] h-auto max-h-[120px] object-contain border rounded-md bg-card p-1" />
+                        <div className="w-[120px] h-[120px] flex items-center justify-center bg-white border rounded-md p-1 overflow-hidden">
+                          <ImageZoom src={t.imageUrl} alt={t.term} className="w-full h-full" cropBorder={true} />
+                        </div>
                      ) : (
                         <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
                      )}
@@ -422,7 +425,9 @@ const renderRow = (t: any) => {
             <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
             <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
                 {t.imageUrl && (
-                <img src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain border rounded-md mb-2 bg-card" />
+                <div className="inline-block bg-white p-1 rounded-md border mb-2 overflow-hidden">
+                    <ImageZoom src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain" cropBorder={true} />
+                </div>
                 )}
                 {t.description || (!t.imageUrl && <span className="text-muted-foreground italic">لا يوجد شرح</span>)}
             </div>
