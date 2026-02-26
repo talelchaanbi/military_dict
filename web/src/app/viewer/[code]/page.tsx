@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "@/components/layout/Shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dep12ViewerClient, type Dep12DocItem } from "./dep12-viewer-client";
 
 export default async function ViewerPage({
   params,
@@ -32,6 +33,71 @@ export default async function ViewerPage({
 
    const showPdfButton = safeCode === "dep12" || safeCode === "dep13";
    const pdfUrl = `/uploads/docs/${safeCode}.pdf`;
+
+   if (safeCode === "dep12") {
+      const dep12Title = "الرموز العسكرية للقوات البرية والقوات البحرية";
+      const candidates: Dep12DocItem[] = [
+         {
+            code: "dep12_maps",
+            title: "الخرائط",
+            description: "استعراض الخرائط",
+            kind: "visuals",
+         },
+         {
+            code: "dep12_transparencies",
+            title: "الشفافات والمخططات",
+            description: "مخططات وشفافات",
+            kind: "visuals",
+         },
+         {
+            code: "dep12_maritime_maps",
+            title: "الخرائط البحرية",
+            description: "خرائط بحرية",
+            kind: "visuals",
+         },
+         {
+            code: "dep12_section1",
+            title: "القسم الأول: الرموز العسكرية",
+            description: "محتوى + بحث داخل الصفحة",
+            kind: "sections",
+         },
+         {
+            code: "dep12_section2",
+            title: "القسم الثاني: الرموز العسكرية للقوات البرية",
+            description: "محتوى + بحث داخل الصفحة",
+            kind: "sections",
+         },
+         {
+            code: "dep12_section3",
+            title: "القسم الثالث: الرموز المستخدمة للقوات البحرية",
+            description: "محتوى + بحث داخل الجدول",
+            kind: "sections",
+         },
+      ];
+
+      const docsDir = path.join(process.cwd(), "public", "uploads", "docs");
+      const items = candidates.filter((c) =>
+         fs.existsSync(path.join(docsDir, `${c.code}.html`))
+      );
+
+      return (
+         <Shell backTo="/sections">
+            <div className="max-w-6xl mx-auto">
+               {showPdfButton && (
+                  <div className="mb-4 flex justify-end">
+                     <Button asChild variant="outline" size="sm">
+                        <a href={pdfUrl} target="_blank" rel="noreferrer">
+                           تحميل
+                        </a>
+                     </Button>
+                  </div>
+               )}
+
+               <Dep12ViewerClient items={items} title={dep12Title} />
+            </div>
+         </Shell>
+      );
+   }
 
    // Some docs (notably `dep12_*`) rely on embedded CSS/JS (theme toggle, search, maps-like layout).
    // When we inline HTML we intentionally strip <style>/<script> for safety and app-theme isolation.

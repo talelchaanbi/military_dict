@@ -457,6 +457,8 @@ export default async function SectionPage({
   const canPropose = currentUser?.role === "reader";
   const descriptionCol = canPropose ? "col-span-6 sm:col-span-6" : "col-span-6 sm:col-span-7";
 
+  const isDep13SubSection = section.number >= 1301 && section.number <= 1399;
+
   const baseParams = new URLSearchParams();
   if (query) baseParams.set("q", query);
   if (searchField !== "all") baseParams.set("field", searchField);
@@ -466,14 +468,58 @@ export default async function SectionPage({
   if (sortBy !== "number-asc") baseParams.set("sort", sortBy);
   if (sizeNum !== 25) baseParams.set("pageSize", String(sizeNum));
 
+  const buildFilterLink = (mutations: Record<string, string | null>) => {
+    const params = new URLSearchParams(baseParams);
+    for (const [key, value] of Object.entries(mutations)) {
+      if (!value) params.delete(key);
+      else params.set(key, value);
+    }
+    const qs = params.toString();
+    return qs ? `/sections/${section.number}?${qs}` : `/sections/${section.number}`;
+  };
+
+  const fieldLabel: Record<string, string> = {
+    all: "بحث في الكل",
+    term: isDep13SubSection ? "معنى الرمز" : "المصطلح",
+    description: isDep13SubSection ? "الملاحظات" : "الشرح",
+    abbreviation: "الاختصار",
+    itemNumber: "الرقم",
+  };
+
+  const sortLabel: Record<string, string> = {
+    "number-asc": "الرقم ↑",
+    "number-desc": "الرقم ↓",
+    "term-asc": "المصطلح أ-ي",
+    "term-desc": "المصطلح ي-أ",
+  };
+
+  const activeChips: Array<{ label: string; href: string }> = [];
+  if (query) activeChips.push({ label: `بحث: ${query}`, href: buildFilterLink({ q: null }) });
+  if (searchField !== "all") {
+    activeChips.push({ label: `نطاق: ${fieldLabel[searchField] || searchField}`, href: buildFilterLink({ field: null }) });
+  }
+  if (startsWith) {
+    activeChips.push({ label: `يبدأ بـ: ${startsWith}`, href: buildFilterLink({ starts: null }) });
+  }
+  if (!isDep13SubSection && wantsAbbr) {
+    activeChips.push({ label: "اختصار فقط", href: buildFilterLink({ hasAbbr: null }) });
+  }
+  if (wantsDesc) {
+    activeChips.push({ label: "شرح فقط", href: buildFilterLink({ hasDesc: null }) });
+  }
+  if (sortBy !== "number-asc") {
+    activeChips.push({ label: `ترتيب: ${sortLabel[sortBy] || sortBy}`, href: buildFilterLink({ sort: null }) });
+  }
+  if (sizeNum !== 25) {
+    activeChips.push({ label: `حجم: ${sizeNum}`, href: buildFilterLink({ pageSize: null }) });
+  }
+
   const buildPageLink = (targetPage: number) => {
     const params = new URLSearchParams(baseParams);
     params.set("page", String(targetPage));
     return `/sections/${section.number}?${params.toString()}`;
   };
 
-
-const isDep13SubSection = section.number >= 1301 && section.number <= 1399;
 
 const columns: ColumnDef[] = isDep13SubSection
     ? [
@@ -577,11 +623,34 @@ const renderRow = (t: TermRow) => {
       {shouldShowQuickIndex ? (
         <QuickTermIndexClient sectionNumber={section.number} quickTerms={quickTerms} />
       ) : null}
+
+      {hasFilters ? (
+        <div className="mb-6 flex flex-wrap items-center gap-2">
+          <span className="text-xs text-muted-foreground">فلاتر نشطة:</span>
+          {activeChips.map((chip) => (
+            <Link
+              key={chip.label}
+              href={chip.href}
+              className="rounded-full border bg-muted px-3 py-1 text-xs font-semibold text-foreground hover:bg-accent"
+              title="إزالة هذا الفلتر"
+            >
+              {chip.label}
+            </Link>
+          ))}
+          <Link
+            href={`/sections/${section.number}`}
+            className="rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground hover:text-primary"
+            title="إزالة كل الفلاتر"
+          >
+            إعادة ضبط الكل
+          </Link>
+        </div>
+      ) : null}
       
       {/* Search Bar */}
       <div className="mb-8">
         <form className="grid gap-4" action="" method="get">
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-4">
             <div className="relative flex-1">
               <Search className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
               <Input
@@ -591,69 +660,98 @@ const renderRow = (t: TermRow) => {
                 className="pr-10 h-10 sm:h-11 text-sm sm:text-base shadow-sm"
               />
             </div>
-            <select
-              aria-label="نطاق البحث"
-              name="field"
-              defaultValue={searchField}
-              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
-            >
-              <option value="all">بحث في الكل</option>
-              <option value="term">{isDep13SubSection ? "معنى الرمز" : "المصطلح فقط"}</option>
-              <option value="description">{isDep13SubSection ? "الملاحظات" : "الشرح فقط"}</option>
-              {!isDep13SubSection && <option value="abbreviation">الاختصار فقط</option>}
-              <option value="itemNumber">الرقم فقط</option>
-            </select>
-            <select
-              aria-label="ترتيب النتائج"
-              name="sort"
-              defaultValue={sortBy}
-              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
-            >
-              <option value="number-asc">ترتيب: الرقم ↑</option>
-              <option value="number-desc">ترتيب: الرقم ↓</option>
-              <option value="term-asc">ترتيب: المصطلح أ-ي</option>
-              <option value="term-desc">ترتيب: المصطلح ي-أ</option>
-            </select>
-            <select
-              aria-label="حجم الصفحة"
-              name="pageSize"
-              defaultValue={String(sizeNum)}
-              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
-            >
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="200">200</option>
-            </select>
-          </div>
 
-          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
-            <Input
-              name="starts"
-              defaultValue={startsWith}
-              placeholder="يبدأ بـ (حسب نطاق البحث)..."
-              className="h-10 max-w-xs"
-            />
-            {!isDep13SubSection && (
-             <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" name="hasAbbr" value="1" defaultChecked={wantsAbbr} />
-                يحتوي اختصار فقط
-              </label>
-            )}
-            <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" name="hasDesc" value="1" defaultChecked={wantsDesc} />
-              يحتوي شرح فقط
-            </label>
-            <div className="flex gap-2">
-              <Button size="lg" className="px-8 font-semibold">بحث</Button>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
+              <Button size="lg" className="px-8 font-semibold w-full sm:w-auto">بحث</Button>
               <Link
                 href={`/sections/${section.number}`}
-                className="text-sm text-muted-foreground hover:text-primary self-center"
+                className="text-sm text-muted-foreground hover:text-primary text-center sm:text-right"
               >
                 إعادة ضبط
               </Link>
             </div>
           </div>
+
+          <details className="rounded-lg border bg-card/60 p-4">
+            <summary className="cursor-pointer select-none text-sm font-semibold">
+              تصفية متقدمة
+              {hasFilters ? <span className="text-xs font-normal text-muted-foreground"> (مفعّلة)</span> : null}
+            </summary>
+
+            <div className="mt-4 grid gap-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-1">
+                  <label className="text-xs text-muted-foreground">نطاق البحث</label>
+                  <select
+                    aria-label="نطاق البحث"
+                    name="field"
+                    defaultValue={searchField}
+                    className="h-10 rounded-md border border-input bg-background px-3 text-sm"
+                  >
+                    <option value="all">بحث في الكل</option>
+                    <option value="term">{isDep13SubSection ? "معنى الرمز" : "المصطلح فقط"}</option>
+                    <option value="description">{isDep13SubSection ? "الملاحظات" : "الشرح فقط"}</option>
+                    {!isDep13SubSection && <option value="abbreviation">الاختصار فقط</option>}
+                    <option value="itemNumber">الرقم فقط</option>
+                  </select>
+                </div>
+
+                <div className="grid gap-1">
+                  <label className="text-xs text-muted-foreground">يبدأ بـ</label>
+                  <Input
+                    name="starts"
+                    defaultValue={startsWith}
+                    placeholder="مثال: أ، ب، ..."
+                    className="h-10"
+                  />
+                </div>
+
+                <div className="grid gap-1">
+                  <label className="text-xs text-muted-foreground">الترتيب</label>
+                  <select
+                    aria-label="ترتيب النتائج"
+                    name="sort"
+                    defaultValue={sortBy}
+                    className="h-10 rounded-md border border-input bg-background px-3 text-sm"
+                  >
+                    <option value="number-asc">ترتيب: الرقم ↑</option>
+                    <option value="number-desc">ترتيب: الرقم ↓</option>
+                    <option value="term-asc">ترتيب: المصطلح أ-ي</option>
+                    <option value="term-desc">ترتيب: المصطلح ي-أ</option>
+                  </select>
+                </div>
+
+                <div className="grid gap-1">
+                  <label className="text-xs text-muted-foreground">حجم الصفحة</label>
+                  <select
+                    aria-label="حجم الصفحة"
+                    name="pageSize"
+                    defaultValue={String(sizeNum)}
+                    className="h-10 rounded-md border border-input bg-background px-3 text-sm"
+                  >
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+                {!isDep13SubSection ? (
+                  <label className="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="hasAbbr" value="1" defaultChecked={wantsAbbr} />
+                    يحتوي اختصار فقط
+                  </label>
+                ) : null}
+
+                <label className="flex items-center gap-2 text-sm">
+                  <input type="checkbox" name="hasDesc" value="1" defaultChecked={wantsDesc} />
+                  يحتوي شرح فقط
+                </label>
+              </div>
+            </div>
+          </details>
         </form>
       </div>
 
