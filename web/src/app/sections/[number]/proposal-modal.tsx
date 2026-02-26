@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 type TermProps = {
   id: number;
   term: string;
-  abbreviation: string | null;
-  description: string | null;
+  abbreviation?: string | null;
+  description?: string | null;
 };
 
 export function ProposalModal({ term }: { term: TermProps }) {
@@ -131,10 +131,8 @@ export function ProposalModal({ term }: { term: TermProps }) {
                         "جارٍ الإرسال..."
                       ) : (
                         <>
-                          <div className="flex items-center gap-2">
-                            <span>إرسال المقترح</span>
-                            <Send className="w-4 h-4 ml-2 rtl:mr-2 rtl:ml-0" />
-                          </div>
+                          <span>إرسال المقترح</span>
+                          <Send className="w-4 h-4 ml-2" />
                         </>
                       )}
                     </Button>
