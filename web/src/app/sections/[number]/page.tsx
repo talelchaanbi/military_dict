@@ -18,6 +18,7 @@ import {
   QuickTermIndexClient,
   type QuickTerm,
 } from "./quick-term-index-client";
+import { ProposalModal } from "./proposal-modal";
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -594,12 +595,7 @@ const renderRow = (t: TermRow) => {
             </div>
             {canPropose && (
                 <div className="hidden sm:block sm:col-span-1">
-                    <Link
-                    href={`/proposals/new?termId=${t.id}`}
-                    className="text-xs text-primary hover:underline"
-                    >
-                    اقتراح
-                    </Link>
+                    <ProposalModal term={t} />
                 </div>
             )}
         </>
