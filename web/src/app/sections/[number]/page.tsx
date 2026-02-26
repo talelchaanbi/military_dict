@@ -648,7 +648,7 @@ const renderRow = (t: any) => {
                         key={t.id}
                         id={`term-${t.id}`}
                         className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
-                            highlightTermId === t.id ? "bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 animate-pulse" : ""
+                          highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
                         }`}
                       >
                         {renderRow(t)}
@@ -681,7 +681,7 @@ const renderRow = (t: any) => {
                       key={t.id}
                       id={`term-${t.id}`}
                       className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
-                        highlightTermId === t.id ? "bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 animate-pulse" : ""
+                        highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
                       }`}
                   >
                      {renderRow(t)}
