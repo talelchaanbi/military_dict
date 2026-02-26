@@ -46,7 +46,7 @@ export async function Shell({
                   href="/editor/terms"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 px-3 py-2 rounded-md transition-all"
                 >
-                  إدارة المصطلحات
+                  إدارة المصطلحات والرموز
                 </Link>
               )}
               {isEditor && (
