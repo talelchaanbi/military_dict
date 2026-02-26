@@ -150,6 +150,69 @@
   }
 }
 
+/* Home: cursor-following spotlight */
+.home-spotlight {
+  --spotlight-x: 50%;
+  --spotlight-y: 30%;
+}
+
+.home-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      700px circle at var(--spotlight-x) var(--spotlight-y),
+      hsl(var(--primary) / 0.14),
+      transparent 55%
+    );
+  opacity: 0.9;
+}
+
+.dark .home-spotlight::before {
+  background:
+    radial-gradient(
+      800px circle at var(--spotlight-x) var(--spotlight-y),
+      hsl(var(--primary) / 0.18),
+      transparent 60%
+    );
+}
+
+/* Home: floating logo */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Home: animated gradient headline */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
 .animate-in {
   /* Using 'both' for fill-mode ensures the element takes the 'from'
      state (opacity: 0) before the animation starts (during delay),
@@ -176,7 +239,18 @@
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-900 { animation-delay: 900ms; }
 
 .fill-mode-backwards {
     animation-fill-mode: backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-float,
+  .animate-gradient,
+  .animate-pulse {
+    animation: none !important;
+  }
 }

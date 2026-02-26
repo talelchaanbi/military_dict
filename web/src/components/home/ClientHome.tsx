@@ -5,12 +5,37 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { BookOpen, Shield, Search, ArrowLeft, Globe, Zap } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: string }) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    root.style.setProperty("--spotlight-x", "50%");
+    root.style.setProperty("--spotlight-y", "30%");
+  }, []);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const root = rootRef.current;
+    if (!root) return;
+    const rect = root.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    root.style.setProperty("--spotlight-x", `${x.toFixed(2)}%`);
+    root.style.setProperty("--spotlight-y", `${y.toFixed(2)}%`);
+  };
+
+  const handlePointerLeave = () => {
+    const root = rootRef.current;
+    if (!root) return;
+    root.style.setProperty("--spotlight-x", "50%");
+    root.style.setProperty("--spotlight-y", "30%");
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +45,12 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
   };
 
   return (
-    <div className="relative min-h-screen bg-transparent text-foreground overflow-hidden">
+    <div
+      ref={rootRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      className="home-spotlight relative min-h-screen bg-transparent text-foreground overflow-hidden"
+    >
         {/* Background Gradients */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "10s" }}></div>
@@ -31,7 +61,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
         
         {/* Logo & Headline */}
         <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out">
-          <div className="relative inline-block mb-4">
+          <div className="relative inline-block mb-4 animate-float">
               <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
               <img 
                   src="/logo.png" 
@@ -40,7 +70,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
               />
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2">
+          <h1 className="animate-gradient text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2">
             القاموس العسكري الموحد
           </h1>
           
@@ -82,18 +112,21 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12 px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-backwards">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12 px-4">
            <FeatureCard 
+              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-backwards"
               icon={<Globe className="h-8 w-8 text-blue-500" />}
               title="شامل ومتكامل"
               description="قاعدة بيانات ضخمة تغطي كافة التخصصات البرية والجوية والبحرية، محدثة باستمرار."
            />
            <FeatureCard 
+              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-700 fill-mode-backwards"
               icon={<Zap className="h-8 w-8 text-yellow-500" />}
               title="بحث ذكي وسريع"
               description="خوارزميات بحث متقدمة تضمن الوصول إلى المصطلح الدقيق ومعانيه في ثوانٍ معدودة."
            />
            <FeatureCard 
+              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-900 fill-mode-backwards"
               icon={<Shield className="h-8 w-8 text-green-500" />}
               title="موثوق ومعتمد"
               description="المصدر الرسمي المعتمد للمصطلحات والرموز العسكرية في مختلف الصنوف والتشكيلات."
@@ -104,9 +137,19 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+function FeatureCard({
+  icon,
+  title,
+  description,
+  className,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  className?: string;
+}) {
     return (
-        <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-left">
+        <Card className={`group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-left ${className ?? ""}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <CardHeader className="relative z-10 flex flex-col items-center text-center p-4">
                 <div className="mb-3 inline-flex p-2.5 rounded-xl bg-secondary/50 group-hover:bg-background shadow-sm transition-colors">

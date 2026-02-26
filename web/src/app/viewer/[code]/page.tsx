@@ -87,7 +87,7 @@ export default async function ViewerPage({
                   <div className="mb-4 flex justify-end">
                      <Button asChild variant="outline" size="sm">
                         <a href={pdfUrl} target="_blank" rel="noreferrer">
-                           تحميل
+                             عرض الوثيقة الأصلية
                         </a>
                      </Button>
                   </div>

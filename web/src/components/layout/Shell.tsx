@@ -97,7 +97,7 @@ export async function Shell({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 py-4 sm:py-8 pt-20 sm:pt-24">
+      <main className="flex-1 py-4 sm:py-8 pt-20 sm:pt-24 pb-24 md:pb-20">
         <div className={`container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1600px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
@@ -115,7 +115,7 @@ export async function Shell({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/30 py-6 md:py-0">
+      <footer className="fixed bottom-0 right-0 left-0 z-[900] border-t border-border bg-background/90 backdrop-blur-md">
         <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto max-w-[1600px]`}>
           <p className="text-center text-sm leading-loose text-muted-foreground">
              الإدارة العامّة للإشارة والإعلاميّة (ادارة الدراسات و التطوير) &copy; {new Date().getFullYear()}

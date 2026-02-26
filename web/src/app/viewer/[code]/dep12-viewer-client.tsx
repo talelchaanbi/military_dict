@@ -50,9 +50,6 @@ export function Dep12ViewerClient({
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <Button asChild variant="outline" size="sm">
-              <Link href="/sections">رجوع للأقسام</Link>
-            </Button>
           </div>
         </div>
 
