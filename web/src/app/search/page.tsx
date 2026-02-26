@@ -140,7 +140,7 @@ export default async function SearchPage({
                                         {term.description || "لا يوجد وصف متاح."}
                                     </p>
                                     <div className="flex justify-end pt-2 border-t border-border/50">
-                                        <Link href={`/sections/${term.section?.number}?term=${term.id}`}>
+                                        <Link href={`/sections/${term.section?.number}?term=${term.id}#term-${term.id}`}>
                                             <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 hover:bg-primary/10 -mr-3">
                                                 عرض التفاصيل
                                                 <ArrowLeft className="h-4 w-4 mr-2" />

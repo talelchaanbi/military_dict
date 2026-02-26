@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Search, ChevronLeft, ChevronRight, File, ArrowRight, Ban } from "lucide-react";
 import { ImageZoom } from "@/components/ui/image-zoom";
+import { HashAnchorOffset } from "@/components/ui/hash-anchor-offset";
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -38,6 +39,7 @@ export default async function SectionPage({
     hasDesc?: string;
     starts?: string;
     sort?: string;
+    term?: string; // Add term ID for highlighting
   }>;
 }) {
   const { number } = await params;
@@ -139,6 +141,7 @@ export default async function SectionPage({
     hasDesc = "0",
     starts = "",
     sort = "number-asc",
+    term: initialTermId = "",
   } = await searchParams;
 
   const query = String(q || "").trim();
@@ -153,6 +156,7 @@ export default async function SectionPage({
   const sortBy = ["number-asc", "number-desc", "term-asc", "term-desc"].includes(String(sort))
     ? String(sort)
     : "number-asc";
+  const highlightTermId = safeInt(initialTermId);
 
   const hasFilters = Boolean(
     query || wantsAbbr || wantsDesc || startsWith || searchField !== "all" || sortBy !== "number-asc"
@@ -231,6 +235,38 @@ export default async function SectionPage({
           ? [{ itemNumber: "desc" }, { id: "desc" }]
           : [{ itemNumber: "asc" }, { id: "asc" }];
 
+  // Determine redirect URL logic for pagination
+  if (highlightTermId && !canGroup) {
+      const allIds = await prisma.term.findMany({
+            where,
+            orderBy,
+            select: { id: true }
+      });
+        
+      const index = allIds.findIndex(t => t.id === highlightTermId);
+      if (index !== -1) {
+          const targetPage = Math.floor(index / sizeNum) + 1;
+          
+          if (targetPage !== pageNum) {
+                const params = new URLSearchParams();
+                if (query) params.set("q", query);
+                if (searchField !== "all") params.set("field", searchField);
+                if (wantsAbbr) params.set("hasAbbr", "1");
+                if (wantsDesc) params.set("hasDesc", "1");
+                if (startsWith) params.set("starts", startsWith);
+                if (sortBy !== "number-asc") params.set("sort", sortBy);
+                if (String(sizeNum) !== "25") params.set("pageSize", String(sizeNum));
+                
+                params.set("page", String(targetPage));
+                params.set("term", String(highlightTermId));
+                
+                redirect(`/sections/${section.number}?${params.toString()}#term-${highlightTermId}`);
+            }
+      }
+  }
+
+  const skip = (pageNum - 1) * sizeNum;
+
   const [total, terms] = canGroup
     ? await Promise.all([
         prisma.term.count({ where }),
@@ -253,7 +289,7 @@ export default async function SectionPage({
         prisma.term.findMany({
           where,
           orderBy,
-          skip: (pageNum - 1) * sizeNum,
+          skip,
           take: sizeNum,
           select: {
             id: true,
@@ -363,11 +399,11 @@ const isDep13SubSection = section.number >= 1301 && section.number <= 1399;
 
 const columns = isDep13SubSection
     ? [
-        { key: 'id', label: 'الرقم', className: 'col-span-2 sm:col-span-1' },
-        { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3' },
-        { key: 'term', label: 'معنى الرمز', className: 'col-span-4 sm:col-span-4' },
-        { key: 'description', label: 'ملاحظات', className: canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4' },
-        ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1' }] : [])
+        { key: 'id', label: 'الرقم', className: 'col-span-2 sm:col-span-1 text-center' },
+        { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3 text-center' },
+        { key: 'term', label: 'معنى الرمز', className: 'col-span-4 sm:col-span-4 text-center' },
+        { key: 'description', label: 'ملاحظات', className: `${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-center` },
+        ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1 text-center' }] : [])
       ]
     : [
         { key: 'itemNumber', label: 'الرقم', className: 'col-span-2 sm:col-span-1' },
@@ -382,31 +418,31 @@ const renderRow = (t: any) => {
     if (isDep13SubSection) {
         return (
             <>
-                <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.id}</div>
+                <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1 flex items-center justify-center">{t.id}</div>
                 
-                {/* Symbol Col (formerly imageUrl)*/}
-                <div className="col-span-4 sm:col-span-3 flex justify-center sm:justify-start">
+                {/* Symbol Col (formerly imageUrl) - CENTERED */}
+                <div className="col-span-4 sm:col-span-3 flex justify-center items-center">
                      {t.imageUrl ? (
-                        <div className="w-[120px] h-[120px] flex items-center justify-center bg-white border rounded-md p-1 overflow-hidden">
-                          <ImageZoom src={t.imageUrl} alt={t.term} className="w-full h-full" cropBorder={true} />
+                        <div className="inline-block bg-white border rounded-md overflow-hidden">
+                          <ImageZoom src={t.imageUrl} alt={t.term} className="max-w-[200px] h-auto block" cropBorder={true} />
                         </div>
                      ) : (
                         <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
                      )}
                 </div>
 
-                {/* Meaning Col (formerly term)*/}
-                <div className="col-span-4 sm:col-span-4 font-bold text-primary text-base leading-snug">
+                {/* Meaning Col (formerly term) - CENTERED */}
+                <div className="col-span-4 sm:col-span-4 font-bold text-primary text-base leading-snug flex items-center justify-center text-center">
                     {t.term}
                 </div>
 
                 {/* Notes Col (formerly description) */}
-                <div className={`${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-foreground/90 leading-relaxed text-base`}>
+                <div className={`${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center`}>
                     {t.description || ""}
                 </div>
 
                 {canPropose && (
-                    <div className="hidden sm:block sm:col-span-1">
+                    <div className="hidden sm:block sm:col-span-1 flex items-center justify-center">
                           <Link
                             href={`/proposals/new?termId=${t.id}`}
                             className="text-xs text-primary hover:underline"
@@ -458,6 +494,7 @@ const renderRow = (t: any) => {
   
   return (
     <Shell title={section.title || `قسم ${section.number}`} backTo={section.number >= 1300 ? "/sections/13" : "/sections"} fullWidth>
+      <HashAnchorOffset anchorId={highlightTermId ? `term-${highlightTermId}` : null} />
       
       {/* Search Bar */}
       <div className="mb-8">
@@ -609,7 +646,10 @@ const renderRow = (t: any) => {
                     {group.terms.map((t) => (
                       <div
                         key={t.id}
-                        className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
+                        id={`term-${t.id}`}
+                        className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
+                            highlightTermId === t.id ? "bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 animate-pulse" : ""
+                        }`}
                       >
                         {renderRow(t)}
                       </div>
@@ -639,7 +679,10 @@ const renderRow = (t: any) => {
                   {terms.map((t) => (
                   <div
                       key={t.id}
-                      className="grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start"
+                      id={`term-${t.id}`}
+                      className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
+                        highlightTermId === t.id ? "bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 animate-pulse" : ""
+                      }`}
                   >
                      {renderRow(t)}
                   </div>
