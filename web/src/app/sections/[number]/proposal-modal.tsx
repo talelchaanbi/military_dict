@@ -131,8 +131,8 @@ export function ProposalModal({ term }: { term: TermProps }) {
                         "جارٍ الإرسال..."
                       ) : (
                         <>
-                          <span>إرسال المقترح</span>
-                          <Send className="w-4 h-4 ml-2" />
+                          <span className="ml-2">إرسال المقترح</span>
+                          <Send className="w-4 h-4" />
                         </>
                       )}
                     </Button>
