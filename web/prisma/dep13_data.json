@@ -942,7 +942,7 @@
       {
         "term": "مستودع إشارة/اتصالات متحرك",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_4.png"
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-26 08-46-12.png"
       },
       {
         "term": "بدالة 100 خط(تكتب السعة أسفل الرمز)",
@@ -962,127 +962,151 @@
       {
         "term": "محطة استقبال",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-25.png"
+        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-26 08-50-42.png"
       },
       {
         "term": "شبكة لاسلكية",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-31.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-25.png"
+
       },
       {
         "term": "محطة إعادة بث إذاعي",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-43.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-31.png"
+
       },
       {
         "term": "محطة بصرية",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-50.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-43.png"
+
       },
       {
         "term": "محطة تلفزيون",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-57.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-50.png"
+
       },
       {
         "term": "حفرة لوصل الكوابل",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-09.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-55-57.png"
+
       },
       {
         "term": "محطة لاسلكية (متعددةالقنوات)(فردية)",
         "definition": "(يكتب عدد القنوات أسفل الرمز)",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-17.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-26 08-42-53.png"
+
       },
       {
         "term": "محطة لاسلكية متعددة القنوات (مزدوجة أو توسطية)",
         "definition": "(يكتب عدد القنوات أسفل الرمز)",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-25.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-17.png"
+
       },
       {
         "term": "محطتي هاتف لاسلكي متعدد القنوات يكون اتجاه الهوائي في اتجاه المحطة المقابلة",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-29.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-25.png"
+
       },
       {
         "term": "اتجاه هاتف لاسلكي متعدد القنوات باستخدام محطة توسيطية",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-42.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-29.png"
+
       },
       {
         "term": "محطة مايكروويف",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-48.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-42.png"
+
       },
       {
         "term": "محطة إعادة مايكروويف",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-52.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-48.png"
+
       },
       {
         "term": "محطة أقمار صناعية (أرضية)",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-01.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-56-52.png"
+
       },
       {
         "term": "محطات موجات انتشارية (تروبوسفيرية)",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-18.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-01.png"
+
       },
       {
-        "term": "جهاز لاسلكيمركب في سيارة",
+        "term": "جهاز لاسلكي مركب في سيارة",
         "definition": "",
+        
         "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_5.png"
       },
       {
         "term": "جهاز لاسلكي مركب في آلية مقاتلة مصفحة بعجلات",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-24.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-26 09-05-33.png"
+
       },
       {
         "term": "جهاز لاسلكي مركب في دبابة",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-30.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-24.png"
+
       },
       {
         "term": "جهاز لاسلكي مركب في ناقلة قيادة مدرعة",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-38.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-30.png"
+
       },
       {
         "term": "مركز اتصال",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-42.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-38.png"
+
       },
       {
         "term": "مكتب إشارة/اتصالات",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-54.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-42.png"
+
       },
       {
         "term": "مكتب (بريد عسكري)",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-59.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-54.png"
+
       },
       {
         "term": "آلة نقل الصورة (فاكس)",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-10.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-57-59.png"
+
       },
       {
         "term": "ساعي بريد/مراسل",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-17.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-10.png"
+
       },
       {
         "term": "دراجة آلية",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-22.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-17.png"
+
       },
       {
         "term": "كيبل ميداني د 10خط واحد",
         "definition": "",
-        "imageUrl": "/uploads/docs/extracted_images/dep13_section4_img_6.png"
+                "imageUrl": "/uploads/docs/extracted_images/Screenshot from 2026-02-10 16-58-22.png"
+
       },
       {
         "term": "كيبل أكثر من زوج",
