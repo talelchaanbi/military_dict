@@ -525,8 +525,7 @@ const columns: ColumnDef[] = isDep13SubSection
     ? [
         { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3 text-center' },
         { key: 'term', label: 'معنى الرمز', className: 'col-span-4 sm:col-span-4 text-center' },
-        { key: 'description', label: 'ملاحظات', className: `${canPropose ? 'col-span-4 sm:col-span-4' : 'col-span-4 sm:col-span-5'} text-center` },
-        ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1 text-center' }] : [])
+        { key: 'description', label: 'ملاحظات', className: 'col-span-4 sm:col-span-5 text-center' },
       ]
     : [
         { key: 'itemNumber', label: 'الرقم', className: 'col-span-2 sm:col-span-1' },
@@ -563,20 +562,9 @@ const renderRow = (t: TermRow) => {
                 </div>
 
                 {/* Notes Col (formerly description) */}
-                <div className={`${canPropose ? 'col-span-4 sm:col-span-4' : 'col-span-4 sm:col-span-5'} text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center`}>
+                <div className="col-span-4 sm:col-span-5 text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center">
                     {t.description || ""}
                 </div>
-
-                {canPropose && (
-                    <div className="hidden sm:flex sm:col-span-1 items-center justify-center">
-                          <Link
-                            href={`/proposals/new?termId=${t.id}`}
-                            className="text-xs text-primary hover:underline"
-                          >
-                            اقتراح
-                          </Link>
-                    </div>
-                )}
             </>
         )
     }

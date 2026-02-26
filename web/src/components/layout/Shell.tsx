@@ -116,10 +116,12 @@ export async function Shell({
 
       {/* Footer */}
       <footer className="fixed bottom-0 right-0 left-0 z-[900] border-t border-border bg-background/90 backdrop-blur-md">
-        <div className={`container flex flex-col items-center justify-center gap-4 md:h-16 px-4 sm:px-8 mx-auto max-w-[1600px]`}>
-          <p className="text-center text-sm leading-loose text-muted-foreground">
-             الإدارة العامّة للإشارة والإعلاميّة (ادارة الدراسات و التطوير) &copy; {new Date().getFullYear()}
-          </p>
+        <div className={`container flex flex-col items-center justify-center py-2 px-4 sm:px-8 mx-auto max-w-[1600px]`}>
+          <div className="text-center text-xs sm:text-sm text-muted-foreground flex flex-col gap-0.5">
+            <span className="font-semibold text-foreground/80">الجمهورية التونسية</span>
+            <span>وزارة الدفاع الوطني</span>
+            <span>الإدارة العامّة للإشارة والإعلامية</span>
+          </div>
         </div>
       </footer>
     </div>
