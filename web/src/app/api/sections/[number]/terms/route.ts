@@ -65,6 +65,7 @@ export async function GET(
         term: true,
         description: true,
         abbreviation: true,
+        imageUrl: true,
       },
     }),
   ]);
@@ -91,6 +92,7 @@ export async function POST(
   const description = body.description ? String(body.description) : null;
   const abbreviation = body.abbreviation ? String(body.abbreviation) : null;
   const itemNumber = body.itemNumber ? String(body.itemNumber) : null;
+  const imageUrl = body.imageUrl ? String(body.imageUrl) : null;
 
   if (!term) {
     return NextResponse.json({ error: "Missing term" }, { status: 400 });
@@ -119,6 +121,7 @@ export async function POST(
       description,
       abbreviation,
       itemNumber,
+      imageUrl,
     },
     select: {
       id: true,
@@ -126,6 +129,7 @@ export async function POST(
       term: true,
       description: true,
       abbreviation: true,
+      imageUrl: true,
     },
   });
 

@@ -27,12 +27,14 @@ export async function PATCH(
     description: body.description !== undefined ? String(body.description) : undefined,
     abbreviation: body.abbreviation !== undefined ? String(body.abbreviation) : undefined,
     itemNumber: body.itemNumber !== undefined ? String(body.itemNumber) : undefined,
+    imageUrl:
+      body.imageUrl === undefined ? undefined : body.imageUrl === null ? null : String(body.imageUrl),
   } as const;
 
   const term = await prisma.term.update({
     where: { id: termId },
     data,
-    select: { id: true, term: true, abbreviation: true, itemNumber: true, description: true },
+    select: { id: true, term: true, abbreviation: true, itemNumber: true, description: true, imageUrl: true },
   });
 
   return NextResponse.json({ term });

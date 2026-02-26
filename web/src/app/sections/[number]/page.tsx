@@ -523,10 +523,9 @@ export default async function SectionPage({
 
 const columns: ColumnDef[] = isDep13SubSection
     ? [
-        { key: 'id', label: 'الرقم', className: 'col-span-2 sm:col-span-1 text-center' },
         { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3 text-center' },
         { key: 'term', label: 'معنى الرمز', className: 'col-span-4 sm:col-span-4 text-center' },
-        { key: 'description', label: 'ملاحظات', className: `${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-center` },
+        { key: 'description', label: 'ملاحظات', className: `${canPropose ? 'col-span-4 sm:col-span-4' : 'col-span-4 sm:col-span-5'} text-center` },
         ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1 text-center' }] : [])
       ]
     : [
@@ -542,13 +541,16 @@ const renderRow = (t: TermRow) => {
     if (isDep13SubSection) {
         return (
             <>
-                <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1 flex items-center justify-center">{t.id}</div>
-                
                 {/* Symbol Col (formerly imageUrl) - CENTERED */}
                 <div className="col-span-4 sm:col-span-3 flex justify-center items-center">
                      {t.imageUrl ? (
                         <div className="inline-block bg-white border rounded-md overflow-hidden">
-                          <ImageZoom src={t.imageUrl} alt={t.term} className="w-full max-w-[200px] h-auto block object-contain" cropBorder={true} />
+                          <ImageZoom
+                            src={t.imageUrl}
+                            alt={t.term}
+                            className="w-full max-w-[280px] sm:max-w-[360px] h-auto block object-contain"
+                            cropBorder={true}
+                          />
                         </div>
                      ) : (
                         <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
@@ -561,7 +563,7 @@ const renderRow = (t: TermRow) => {
                 </div>
 
                 {/* Notes Col (formerly description) */}
-                <div className={`${canPropose ? 'col-span-2 sm:col-span-3' : 'col-span-2 sm:col-span-4'} text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center`}>
+                <div className={`${canPropose ? 'col-span-4 sm:col-span-4' : 'col-span-4 sm:col-span-5'} text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center`}>
                     {t.description || ""}
                 </div>
 

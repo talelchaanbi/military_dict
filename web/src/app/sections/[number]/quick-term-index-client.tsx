@@ -130,8 +130,7 @@ export function QuickTermIndexClient({
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
-                if (hits.length) goToTerm(hits[0].id);
-                else goToSearch();
+                goToSearch();
               }
               if (e.key === "Escape") {
                 setOpen(false);

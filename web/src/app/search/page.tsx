@@ -3,29 +3,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowLeft, Search, FileText } from "lucide-react";
-import sanitizeHtml from 'sanitize-html';
-
-function stripHtml(html: string) {
-  return sanitizeHtml(html, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
-}
-
-function getSnippet(text: string, query: string, length = 150) {
-    if (!text) return "";
-    const lowerText = text.toLowerCase();
-    const lowerQuery = query.toLowerCase();
-    const index = lowerText.indexOf(lowerQuery);
-    
-    if (index === -1) return text.substring(0, length) + "...";
-    
-    const start = Math.max(0, index - 50);
-    const end = Math.min(text.length, index + query.length + 100);
-    
-    return (start > 0 ? "..." : "") + text.substring(start, end) + (end < text.length ? "..." : "");
-}
+import { ArrowLeft, Search } from "lucide-react";
 
 export default async function SearchPage({
   searchParams,
@@ -36,40 +14,20 @@ export default async function SearchPage({
   const query = q || "";
 
   let terms: any[] = [];
-  let documents: any[] = [];
 
   if (query) {
-    const [termsResult, documentsResult] = await Promise.all([
-        prisma.term.findMany({
+        terms = await prisma.term.findMany({
             where: {
-            OR: [
-                { term: { contains: query } },
-                { description: { contains: query } },
-            ],
+                OR: [{ term: { contains: query } }, { description: { contains: query } }],
             },
             include: {
-            section: true,
+                section: true,
             },
             take: 20,
-        }),
-        prisma.document.findMany({
-            where: {
-                contentHtml: { contains: query },
-                section: {
-                    number: { in: [12, 13] } // Assuming section numbers are literally 12 and 13. Adjust if needed.
-                }
-            },
-            include: {
-                section: true
-            },
-            take: 10
-        })
-    ]);
-    terms = termsResult;
-    documents = documentsResult;
+        });
   }
 
-  const hasResults = terms.length > 0 || documents.length > 0;
+    const hasResults = terms.length > 0;
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
@@ -154,49 +112,6 @@ export default async function SearchPage({
                     </div>
                 )}
 
-                {/* Documents Results */}
-                {documents.length > 0 && (
-                    <div className="space-y-4">
-                        <h2 className="text-2xl font-semibold flex items-center gap-2 mt-8 border-t pt-8">
-                            <FileText className="h-6 w-6" />
-                            مستندات ({documents.length})
-                        </h2>
-                        <div className="grid gap-6">
-                            {documents.map((doc) => {
-                                const plainText = stripHtml(doc.contentHtml || "");
-                                const snippet = getSnippet(plainText, query);
-                                return (
-                                <Card key={doc.id} className="hover:shadow-md transition-shadow group">
-                                    <CardHeader className="pb-2">
-                                        <div className="flex justify-between items-start gap-4">
-                                            <CardTitle className="text-xl font-bold text-primary group-hover:text-blue-600 transition-colors">
-                                                {doc.title || doc.code}
-                                            </CardTitle>
-                                            {doc.section && (
-                                                <span className="text-xs font-medium bg-secondary px-2 py-1 rounded-md text-muted-foreground whitespace-nowrap">
-                                                    {doc.section.title}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-muted-foreground line-clamp-3 mb-4 leading-relaxed font-mono text-sm">
-                                            {snippet}
-                                        </p>
-                                        <div className="flex justify-end pt-2 border-t border-border/50">
-                                            <Link href={`/viewer/${doc.code}?q=${encodeURIComponent(query)}`}>
-                                                <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 hover:bg-primary/10 -mr-3">
-                                                    عرض المستند
-                                                    <ArrowLeft className="h-4 w-4 mr-2" />
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            )})}
-                        </div>
-                    </div>
-                )}
             </div>
             )}
         </div>
