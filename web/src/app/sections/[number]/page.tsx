@@ -10,6 +10,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Search, ChevronLeft, ChevronRight, File, ArrowRight, Ban } from "lucide-react";
 import { ImageZoom } from "@/components/ui/image-zoom";
 import { HashAnchorOffset } from "@/components/ui/hash-anchor-offset";
+import {
+  Dep13SubsectionsClient,
+  type Dep13SubsectionItem,
+} from "./dep13-subsections-client";
+import {
+  QuickTermIndexClient,
+  type QuickTerm,
+} from "./quick-term-index-client";
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -85,29 +93,47 @@ export default async function SectionPage({
         orderBy: { number: "asc" }
       });
 
+      const items: Dep13SubsectionItem[] = await Promise.all(
+        subSections.map(async (sub) => {
+          const [termCount, subtitleCount, sampleTerms] = await Promise.all([
+            prisma.term.count({
+              where: {
+                sectionId: sub.id,
+                term: { not: "#" },
+              },
+            }),
+            prisma.subtitle.count({
+              where: { sectionId: sub.id },
+            }),
+            prisma.term.findMany({
+              where: {
+                sectionId: sub.id,
+                term: { not: "#" },
+              },
+              orderBy: [{ itemNumber: "asc" }, { id: "asc" }],
+              take: 5,
+              select: {
+                id: true,
+                itemNumber: true,
+                term: true,
+              },
+            }),
+          ]);
+
+          return {
+            number: sub.number,
+            title: sub.title,
+            href: `/sections/${sub.number}`,
+            termCount,
+            subtitleCount,
+            sampleTerms,
+          };
+        })
+      );
+
       return (
         <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
-          <div className="grid gap-6">
-            {subSections.map((sub) => (
-              <Link
-                key={sub.number}
-                href={`/sections/${sub.number}`}
-                className="block group"
-              >
-                <Card className="h-full hover:border-primary hover:shadow-lg transition-all">
-                  <CardContent className="pt-6 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
-                            <File className="h-6 w-6 text-primary" />
-                        </div>
-                        <div className="font-semibold text-lg">{sub.title}</div>
-                    </div>
-                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          <Dep13SubsectionsClient items={items} originalDocHref="/viewer/dep13" />
         </Shell>
       );
     }
@@ -193,6 +219,40 @@ export default async function SectionPage({
     : [];
 
   const canGroup = isGroupedView && dbSubtitles.length > 0;
+
+  const shouldShowQuickIndex = section.number >= 1 && section.number <= 11;
+  let quickTerms: QuickTerm[] = [];
+  if (shouldShowQuickIndex) {
+    quickTerms = await prisma.term.findMany({
+      where: {
+        sectionId: section.id,
+        term: { not: "#" },
+        abbreviation: { not: null },
+        NOT: { abbreviation: "" },
+      },
+      orderBy: [{ itemNumber: "asc" }, { id: "asc" }],
+      take: 14,
+      select: { id: true, itemNumber: true, term: true },
+    });
+
+    if (quickTerms.length < 10) {
+      const fallback = await prisma.term.findMany({
+        where: {
+          sectionId: section.id,
+          term: { not: "#" },
+        },
+        orderBy: [{ itemNumber: "asc" }, { id: "asc" }],
+        take: 14,
+        select: { id: true, itemNumber: true, term: true },
+      });
+
+      const seen = new Set(quickTerms.map((t) => t.id));
+      for (const t of fallback) {
+        if (!seen.has(t.id)) quickTerms.push(t);
+        if (quickTerms.length >= 14) break;
+      }
+    }
+  }
 
   const andFilters: Array<Record<string, unknown>> = [{ sectionId: section.id }];
 
@@ -513,6 +573,10 @@ const renderRow = (t: TermRow) => {
   return (
     <Shell title={section.title || `قسم ${section.number}`} backTo={section.number >= 1300 ? "/sections/13" : "/sections"} fullWidth>
       <HashAnchorOffset anchorId={highlightTermId ? `term-${highlightTermId}` : null} />
+
+      {shouldShowQuickIndex ? (
+        <QuickTermIndexClient sectionNumber={section.number} quickTerms={quickTerms} />
+      ) : null}
       
       {/* Search Bar */}
       <div className="mb-8">

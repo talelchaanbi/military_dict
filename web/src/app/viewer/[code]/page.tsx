@@ -11,18 +11,62 @@ export default async function ViewerPage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  // Security: Allow only alphanumeric characters to prevent traversal
-  const safeCode = code.replace(/[^a-zA-Z0-9]/g, "");
-  
-  const filePath = path.join(process.cwd(), "public", "uploads", "docs", `${safeCode}.html`);
+   // Security: allow only a safe filename-like slug to prevent traversal.
+   // We intentionally allow underscores/hyphens because docs are named like `dep12_section1.html`.
+   if (!/^[a-zA-Z0-9_-]+$/.test(code)) {
+      return notFound();
+   }
+
+   const safeCode = code;
+   const filePath = path.join(
+      process.cwd(),
+      "public",
+      "uploads",
+      "docs",
+      `${safeCode}.html`
+   );
 
   if (!fs.existsSync(filePath)) {
     return notFound();
   }
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
    const showPdfButton = safeCode === "dep12" || safeCode === "dep13";
    const pdfUrl = `/uploads/docs/${safeCode}.pdf`;
+
+   // Some docs (notably `dep12_*`) rely on embedded CSS/JS (theme toggle, search, maps-like layout).
+   // When we inline HTML we intentionally strip <style>/<script> for safety and app-theme isolation.
+   // For these docs, render via iframe so their own assets execute without affecting the app shell.
+   const shouldUseIframe = safeCode.startsWith("dep12_");
+   if (shouldUseIframe) {
+      const iframeSrc = `/uploads/docs/${encodeURIComponent(safeCode)}.html`;
+      return (
+         <Shell backTo="/sections">
+            <div className="max-w-6xl mx-auto">
+               <div className="mb-4 flex items-center justify-end gap-2">
+                  <Button asChild variant="outline" size="sm">
+                     <a href={iframeSrc} target="_blank" rel="noreferrer">
+                        فتح النسخة الأصلية (HTML)
+                     </a>
+                  </Button>
+               </div>
+               <Card className="shadow-lg">
+                  <CardContent className="p-0">
+                     <iframe
+                        title={safeCode}
+                        src={iframeSrc}
+                        className="block w-full h-[80vh] sm:h-[85vh] md:h-[88vh] rounded-md"
+                        // Allow scripts + same-origin storage for theme sync.
+                        // Allow top navigation on user click to avoid nesting the app inside the iframe.
+                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                     />
+                  </CardContent>
+               </Card>
+            </div>
+         </Shell>
+      );
+   }
+
+   const fileContent = fs.readFileSync(filePath, "utf-8");
 
   // Simple extraction of the main content
   // We look for <main> content or just body body content

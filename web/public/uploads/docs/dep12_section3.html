@@ -483,25 +483,167 @@
             transform: scale(1);
             opacity: 1;
         }
+        /* ===== Dark Mode (synced) ===== */
+        body.dark {
+            --bg-color: #0b1220;
+            --text-color: #e5e7eb;
+            --primary-color: #60a5fa;
+        }
+
+        body.dark .page-header {
+            background: linear-gradient(to left, #111827, #0b1220);
+            border-color: #374151;
+            box-shadow: none;
+        }
+
+        body.dark section {
+            background: #111827;
+            border-color: #374151;
+        }
+
+        body.dark .table-wrap,
+        body.dark table,
+        body.dark th,
+        body.dark td {
+            border-color: #374151;
+        }
+
+        body.dark th {
+            background: #0b1220;
+        }
+
+        body.dark td {
+            background: #111827;
+        }
+
+        body.dark strong {
+            color: #f9fafb;
+        }
+
+        /* ===== Maps-style layout overrides ===== */
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --accent: #2563eb;
+            --border: #e2e8f0;
+
+            --bg-color: var(--bg);
+            --text-color: var(--text);
+            --primary-color: var(--accent);
+        }
+
+        body.dark {
+            --bg: #0b1220;
+            --card: #1f2937;
+            --text: #e5e7eb;
+            --border: #374151;
+
+            --bg-color: var(--bg);
+            --text-color: var(--text);
+            --primary-color: #60a5fa;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        main {
+            padding: 25px;
+            max-width: none !important;
+            margin-right: 0 !important;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .topbar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--bg);
+            padding-bottom: 10px;
+        }
+
+        .topbar input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            background: var(--card);
+            color: var(--text);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .topbar button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+
+        .topbar button:hover {
+            background: #1d4ed8;
+        }
+
+        section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+        }
+
+        strong {
+            color: var(--text);
+        }
+
+        img {
+            background: var(--card);
+            border-color: var(--border);
+        }
+
+        th {
+            background-color: rgba(148, 163, 184, 0.12);
+            color: var(--primary-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: transparent;
+        }
     </style>
 </head>
 
-<body>
+<body class="dark">
     <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" /></div>
     <div class="fixed-tools">
-        <a href="http://localhost:3000/viewer/dep12" class="tool-btn" title="العودة للقائمة الرئيسية" style="text-decoration: none;">🏠</a>
-        <button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()"
-            title="إلى الأعلى">▲</button></div>
+        <a href="/viewer/dep12" class="tool-btn" title="العودة للقائمة الرئيسية" style="text-decoration: none;">🏠</a>
+        <button class="tool-btn hidden" id="scrollTopBtn" onclick="scrollToTop()" title="إلى الأعلى">▲</button>
+    </div>
 
     <main style="margin-right: 0; max-width: 100%;">
+        <div class="topbar">
+            <input type="text" placeholder="ابحث في المحتوى..." onkeyup="searchText(this.value)">
+            <button onclick="toggleDark()">🌙 / ☀️</button>
+        </div>
         <div class="page-header">
             <h1>الرموز المستخدمة للقوات البحرية</h1>
         </div>
         <section id="part1">
-            <div class="search-container">
-                <input type="text" id="tableSearch" onkeyup="searchTable()" placeholder="ابحث في القائمة..." title="بحث عن رمز">
-            </div>
-
             <div class="content-block" style="display: block;">
                 <div class="table-wrap">
                     <table>
@@ -1582,6 +1724,46 @@
         </section>
     </main>
     <script>
+        const THEME_KEY = "theme";
+
+        function getTheme() {
+            try {
+                const stored = localStorage.getItem(THEME_KEY);
+                return stored === "light" ? "light" : "dark";
+            } catch {
+                return "dark";
+            }
+        }
+
+        function applyTheme(theme) {
+            document.body.classList.toggle("dark", theme === "dark");
+        }
+
+        function setTheme(theme) {
+            try {
+                localStorage.setItem(THEME_KEY, theme);
+            } catch { }
+            applyTheme(theme);
+        }
+
+        function toggleDark() {
+            const current = getTheme();
+            const next = current === "dark" ? "light" : "dark";
+            setTheme(next);
+        }
+
+        (function initTheme() {
+            const theme = getTheme();
+            try {
+                if (!localStorage.getItem(THEME_KEY)) localStorage.setItem(THEME_KEY, theme);
+            } catch { }
+            applyTheme(theme);
+
+            window.addEventListener("storage", (e) => {
+                if (e.key === THEME_KEY) applyTheme(getTheme());
+            });
+        })();
+
         /* Scroll Top */
         const scrollBtn = document.getElementById('scrollTopBtn');
 
@@ -1637,10 +1819,13 @@
             if (section) section.classList.toggle('section-collapsed');
         }
 
+        function searchText(value) {
+            searchTable(value);
+        }
+
         /* Table Search */
-        function searchTable() {
-            const input = document.getElementById("tableSearch");
-            const filter = input.value.toUpperCase();
+        function searchTable(value) {
+            const filter = (value || "").toUpperCase();
             // This assumes only ONE table in the section
             const table = document.querySelector("#part1 table"); 
             const tr = table.getElementsByTagName("tr");
