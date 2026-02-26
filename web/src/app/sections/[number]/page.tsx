@@ -6,7 +6,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Prisma } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Search, ChevronLeft, ChevronRight, File, ArrowRight, Ban } from "lucide-react";
 import { ImageZoom } from "@/components/ui/image-zoom";
 import { HashAnchorOffset } from "@/components/ui/hash-anchor-offset";
@@ -16,11 +16,29 @@ function safeInt(value: string) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-type SubtitleGroup = {
+type TermRow = {
+  id: number;
+  itemNumber: string | null;
+  term: string;
+  description: string | null;
+  abbreviation: string | null;
+  imageUrl: string | null;
+  subtitleId: number | null;
+};
+
+type TermGroup = {
   id: string;
   title: string;
   parentTitle?: string;
   subTitle?: string;
+  subtitleId: number;
+  terms: TermRow[];
+};
+
+type ColumnDef = {
+  key: string;
+  label: string;
+  className: string;
 };
 
 // ... removed cleanText ...
@@ -306,32 +324,31 @@ export default async function SectionPage({
 
   const totalPages = Math.max(1, Math.ceil(total / sizeNum));
 
-  let groupedTerms: any[] = [];
+    let groupedTerms: TermGroup[] = [];
   
   if (canGroup) {
-      const subtitleMap = new Map<number, any>();
-      const rawGroups: any[] = [];
+      const subtitleMap = new Map<number, TermGroup>();
+      const rawGroups: TermGroup[] = [];
 
       // Initialize groups from DB Subtitles
       for (const sub of dbSubtitles) {
-          const groupObj = {
+          const groupObj: TermGroup = {
               id: `subtitle-${sub.id}`,
               title: sub.title,
               parentTitle: sub.parent ? sub.parent.title : undefined,
               subTitle: sub.parent ? sub.title : undefined,
               subtitleId: sub.id,
-              terms: [] as typeof terms,
+            terms: [],
           };
           subtitleMap.set(sub.id, groupObj);
           rawGroups.push(groupObj);
       }
 
-      const ungrouped: typeof terms = [];
-      const itemToGroup = new Map<string, any>(); // Fallback for pure itemNumber matching if needed, but we prefer subtitleId
+        const ungrouped: TermRow[] = [];
 
-      terms.forEach((term) => {
+      (terms as TermRow[]).forEach((term) => {
         if (term.subtitleId && subtitleMap.has(term.subtitleId)) {
-          subtitleMap.get(term.subtitleId).terms.push(term);
+          subtitleMap.get(term.subtitleId)!.terms.push(term);
         } else {
           ungrouped.push(term);
         }
@@ -398,7 +415,7 @@ export default async function SectionPage({
 
 const isDep13SubSection = section.number >= 1301 && section.number <= 1399;
 
-const columns = isDep13SubSection
+const columns: ColumnDef[] = isDep13SubSection
     ? [
         { key: 'id', label: 'الرقم', className: 'col-span-2 sm:col-span-1 text-center' },
         { key: 'imageUrl', label: 'الرمز', className: 'col-span-4 sm:col-span-3 text-center' },
@@ -413,16 +430,6 @@ const columns = isDep13SubSection
         { key: 'abbreviation', label: 'اختصار', className: 'hidden sm:block sm:col-span-1' },
         ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1' }] : [])
       ];
-
-type TermRow = {
-  id: number;
-  itemNumber: string | null;
-  term: string;
-  description: string | null;
-  abbreviation: string | null;
-  imageUrl: string | null;
-  subtitleId: number | null;
-};
 
 // Helper to render row content based on configuration
 const renderRow = (t: TermRow) => {
@@ -644,7 +651,7 @@ const renderRow = (t: TermRow) => {
                 </div>
                 <div className="overflow-x-auto">
                   <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                      {columns.map((col: any) => (
+                        {columns.map((col) => (
                           <div key={col.key} className={col.className}>{col.label}</div>
                       ))}
                   </div>
@@ -677,8 +684,8 @@ const renderRow = (t: TermRow) => {
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             {/* Table Header */}
-            <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                 {columns.map((col: any) => (
+              <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                {columns.map((col) => (
                       <div key={col.key} className={col.className}>{col.label}</div>
                  ))}
             </div>
