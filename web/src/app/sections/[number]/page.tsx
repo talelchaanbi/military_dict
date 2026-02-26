@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { Shell } from "@/components/layout/Shell";
+import { Prisma } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -226,7 +227,7 @@ export default async function SectionPage({
 
   const where = { AND: andFilters };
 
-  const orderBy =
+  const orderBy: Prisma.TermOrderByWithRelationInput[] =
     sortBy === "term-asc"
       ? [{ term: "asc" }, { id: "asc" }]
       : sortBy === "term-desc"
@@ -413,8 +414,18 @@ const columns = isDep13SubSection
         ...(canPropose ? [{ key: 'actions', label: 'اقتراح', className: 'hidden sm:block sm:col-span-1' }] : [])
       ];
 
+type TermRow = {
+  id: number;
+  itemNumber: string | null;
+  term: string;
+  description: string | null;
+  abbreviation: string | null;
+  imageUrl: string | null;
+  subtitleId: number | null;
+};
+
 // Helper to render row content based on configuration
-const renderRow = (t: any) => {
+const renderRow = (t: TermRow) => {
     if (isDep13SubSection) {
         return (
             <>
@@ -424,7 +435,7 @@ const renderRow = (t: any) => {
                 <div className="col-span-4 sm:col-span-3 flex justify-center items-center">
                      {t.imageUrl ? (
                         <div className="inline-block bg-white border rounded-md overflow-hidden">
-                          <ImageZoom src={t.imageUrl} alt={t.term} className="max-w-[200px] h-auto block" cropBorder={true} />
+                          <ImageZoom src={t.imageUrl} alt={t.term} className="w-full max-w-[200px] h-auto block object-contain" cropBorder={true} />
                         </div>
                      ) : (
                         <span className="text-muted-foreground text-xs italic">لا يوجد رمز</span>
@@ -442,7 +453,7 @@ const renderRow = (t: any) => {
                 </div>
 
                 {canPropose && (
-                    <div className="hidden sm:block sm:col-span-1 flex items-center justify-center">
+                    <div className="hidden sm:flex sm:col-span-1 items-center justify-center">
                           <Link
                             href={`/proposals/new?termId=${t.id}`}
                             className="text-xs text-primary hover:underline"
@@ -462,12 +473,12 @@ const renderRow = (t: any) => {
             <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
                 {t.imageUrl && (
                 <div className="inline-block bg-white p-1 rounded-md border mb-2 overflow-hidden">
-                    <ImageZoom src={t.imageUrl} alt={t.term} className="max-w-[150px] h-auto max-h-[150px] object-contain" cropBorder={true} />
+                    <ImageZoom src={t.imageUrl} alt={t.term} className="w-full max-w-[150px] h-auto max-h-[150px] object-contain" cropBorder={true} />
                 </div>
                 )}
                 {t.description || (!t.imageUrl && <span className="text-muted-foreground italic">لا يوجد شرح</span>)}
             </div>
-            <div className="hidden sm:block sm:col-span-1 flex items-center">
+            <div className="hidden sm:flex sm:col-span-1 items-center">
                 {t.abbreviation ? (
                   <span className="inline-block font-mono font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-md text-sm shadow-sm transform hover:scale-105 transition-transform cursor-default select-all" title="اختصار">
                     {t.abbreviation}
@@ -506,14 +517,14 @@ const renderRow = (t: any) => {
                 name="q"
                 defaultValue={query}
                 placeholder="ابحث عن مصطلح، تعريف، أو اختصار..."
-                className="pr-10 h-11 text-base shadow-sm"
+                className="pr-10 h-10 sm:h-11 text-sm sm:text-base shadow-sm"
               />
             </div>
             <select
               aria-label="نطاق البحث"
               name="field"
               defaultValue={searchField}
-              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
             >
               <option value="all">بحث في الكل</option>
               <option value="term">{isDep13SubSection ? "معنى الرمز" : "المصطلح فقط"}</option>
@@ -525,7 +536,7 @@ const renderRow = (t: any) => {
               aria-label="ترتيب النتائج"
               name="sort"
               defaultValue={sortBy}
-              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
             >
               <option value="number-asc">ترتيب: الرقم ↑</option>
               <option value="number-desc">ترتيب: الرقم ↓</option>
@@ -536,7 +547,7 @@ const renderRow = (t: any) => {
               aria-label="حجم الصفحة"
               name="pageSize"
               defaultValue={String(sizeNum)}
-              className="h-11 rounded-md border border-input bg-background px-3 text-sm"
+              className="h-10 sm:h-11 rounded-md border border-input bg-background px-3 text-sm"
             >
               <option value="25">25</option>
               <option value="50">50</option>
@@ -631,64 +642,68 @@ const renderRow = (t: any) => {
                     <div className="text-sm font-semibold">{group.title}</div>
                   )}
                 </div>
-                <div className={`grid grid-cols-12 gap-4 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider`}>
-                    {columns.map((col: any) => (
-                        <div key={col.key} className={col.className}>{col.label}</div>
-                    ))}
-                </div>
+                <div className="overflow-x-auto">
+                  <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                      {columns.map((col: any) => (
+                          <div key={col.key} className={col.className}>{col.label}</div>
+                      ))}
+                  </div>
 
-                {group.terms.length === 0 ? (
-                  <div className="p-6 text-center text-muted-foreground">
-                    لا توجد عناصر ضمن هذا العنوان.
-                  </div>
-                ) : (
-                  <div className="divide-y divide-border">
-                    {group.terms.map((t) => (
-                      <div
-                        key={t.id}
-                        id={`term-${t.id}`}
-                        className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
-                          highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
-                        }`}
-                      >
-                        {renderRow(t)}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                  {group.terms.length === 0 ? (
+                    <div className="p-6 text-center text-muted-foreground">
+                      لا توجد عناصر ضمن هذا العنوان.
+                    </div>
+                  ) : (
+                    <div className="min-w-[720px] divide-y divide-border">
+                      {group.terms.map((t: TermRow) => (
+                        <div
+                          key={t.id}
+                          id={`term-${t.id}`}
+                          className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
+                            highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
+                          }`}
+                        >
+                          {renderRow(t)}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         </div>
       ) : (
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
-          {/* Table Header */}
-          <div className="grid grid-cols-12 gap-0 border-b bg-muted/50 px-4 py-3 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-               {columns.map((col: any) => (
-                    <div key={col.key} className={col.className}>{col.label}</div>
-               ))}
+          <div className="overflow-x-auto">
+            {/* Table Header */}
+            <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                 {columns.map((col: any) => (
+                      <div key={col.key} className={col.className}>{col.label}</div>
+                 ))}
+            </div>
+            
+            {/* Table Body */}
+            {terms.length === 0 ? (
+                <div className="p-12 text-center text-muted-foreground">
+                    لا توجد نتائج مطابقة للبحث.
+                </div>
+            ) : (
+                <div className="min-w-[720px] divide-y divide-border">
+                    {terms.map((t: TermRow) => (
+                    <div
+                        key={t.id}
+                        id={`term-${t.id}`}
+                        className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
+                          highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
+                        }`}
+                    >
+                       {renderRow(t)}
+                    </div>
+                    ))}
+                </div>
+            )}
           </div>
-          
-          {/* Table Body */}
-          {terms.length === 0 ? (
-              <div className="p-12 text-center text-muted-foreground">
-                  لا توجد نتائج مطابقة للبحث.
-              </div>
-          ) : (
-              <div className="divide-y divide-border">
-                  {terms.map((t) => (
-                  <div
-                      key={t.id}
-                      id={`term-${t.id}`}
-                      className={`scroll-mt-40 grid grid-cols-12 gap-4 px-4 py-4 text-sm hover:bg-muted/30 transition-colors items-start ${
-                        highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
-                      }`}
-                  >
-                     {renderRow(t)}
-                  </div>
-                  ))}
-              </div>
-          )}
         </div>
       )}
 

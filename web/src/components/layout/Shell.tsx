@@ -97,8 +97,8 @@ export async function Shell({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 py-8 pt-24">
-        <div className={`container px-4 sm:px-8 mx-auto max-w-[1600px]`}>
+      <main className="flex-1 py-4 sm:py-8 pt-20 sm:pt-24">
+        <div className={`container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1600px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
                {backTo && (
@@ -107,7 +107,7 @@ export async function Shell({
                     عودة
                  </Link>
                )}
-               {title && <h2 className="text-2xl font-bold tracking-tight">{title}</h2>}
+               {title && <h2 className="text-xl sm:text-2xl font-bold tracking-tight">{title}</h2>}
              </div>
            )}
            {children}
