@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { 
   FileText, List, Search, LayoutGrid, List as ListIcon, BookOpen, 
   Shield, Users, Crosshair, Anchor, Plane, Truck, Activity, Radio, 
@@ -172,69 +173,76 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                 key={s.number}
                 href={`/sections/${s.number}`}
                 className={cn(
-                  "group block transition-all duration-200 hover:-translate-y-1 active:scale-[0.98]",
+                  "group block",
                   "focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background rounded-xl"
                 )}
               >
-                <Card className={cn(
-                  "h-full overflow-hidden border-border/40 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300",
-                  "bg-card hover:bg-card/80",
-                  viewMode === "list" && "flex flex-row items-center p-3"
-                )}>
-                  {viewMode === "grid" ? (
-                    <>
-                      {/* Gradient Line Top */}
-                      <div className={cn(
-                        "h-1.5 w-full transition-all duration-300",
-                        isTerms ? "bg-blue-500/40 group-hover:bg-blue-500" : "bg-orange-500/40 group-hover:bg-orange-500"
-                      )} />
-                      
-                      <CardHeader className="p-5 space-y-4">
-                        <div className="flex justify-between items-start">
-                          <span className={cn(
-                            "text-xs font-bold px-3 py-1.5 rounded-md border transition-colors shadow-sm",
-                            isTerms 
-                              ? "bg-blue-50 text-blue-700 border-blue-200 group-hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800"
-                              : "bg-orange-50 text-orange-700 border-orange-200 group-hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800"
-                          )}>
-                            القسم {s.number}
-                          </span>
-                           <div className={cn(
-                             "p-2 rounded-lg transition-transform duration-300 group-hover:scale-110",
-                             isTerms ? "bg-blue-50 dark:bg-blue-900/20" : "bg-orange-50 dark:bg-orange-900/20"
-                           )}>
-                             <Icon className={cn(
-                              "h-5 w-5",
-                               isTerms ? "text-blue-600 dark:text-blue-400" : "text-orange-600 dark:text-orange-400"
-                            )} />
-                           </div>
+                <motion.div
+                  whileHover={{ y: -6, scale: 1.015 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                  className="h-full transform-gpu"
+                >
+                  <Card className={cn(
+                    "h-full overflow-hidden border-border/40 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300",
+                    "bg-card hover:bg-card/80",
+                    viewMode === "list" && "flex flex-row items-center p-3"
+                  )}>
+                    {viewMode === "grid" ? (
+                      <>
+                        {/* Gradient Line Top */}
+                        <div className={cn(
+                          "h-1.5 w-full transition-all duration-300",
+                          isTerms ? "bg-blue-500/40 group-hover:bg-blue-500" : "bg-orange-500/40 group-hover:bg-orange-500"
+                        )} />
+                        
+                        <CardHeader className="p-5 space-y-4">
+                          <div className="flex justify-between items-start">
+                            <span className={cn(
+                              "text-xs font-bold px-3 py-1.5 rounded-md border transition-colors shadow-sm",
+                              isTerms 
+                                ? "bg-blue-50 text-blue-700 border-blue-200 group-hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800"
+                                : "bg-orange-50 text-orange-700 border-orange-200 group-hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800"
+                            )}>
+                              القسم {s.number}
+                            </span>
+                             <div className={cn(
+                               "p-2 rounded-lg transition-transform duration-300 group-hover:scale-110",
+                               isTerms ? "bg-blue-50 dark:bg-blue-900/20" : "bg-orange-50 dark:bg-orange-900/20"
+                             )}>
+                               <Icon className={cn(
+                                "h-5 w-5",
+                                 isTerms ? "text-blue-600 dark:text-blue-400" : "text-orange-600 dark:text-orange-400"
+                              )} />
+                             </div>
+                          </div>
+                          <CardTitle className="leading-snug text-lg font-semibold group-hover:text-primary transition-colors text-right line-clamp-2">
+                            {s.title}
+                          </CardTitle>
+                        </CardHeader>
+                      </>
+                    ) : (
+                      /* List View Layout */
+                      <div className="flex items-center justify-between w-full px-2 py-1">
+                        <div className="flex items-center gap-4">
+                            <div className={cn(
+                              "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform group-hover:scale-105",
+                              isTerms 
+                                ? "bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800"
+                                : "bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
+                            )}>
+                              <Icon className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <span className="text-sm font-medium text-muted-foreground block text-right mb-0.5">القسم {s.number}</span>
+                                <h3 className="font-semibold text-base group-hover:text-primary transition-colors text-right line-clamp-1">{s.title}</h3>
+                            </div>
                         </div>
-                        <CardTitle className="leading-snug text-lg font-semibold group-hover:text-primary transition-colors text-right line-clamp-2">
-                          {s.title}
-                        </CardTitle>
-                      </CardHeader>
-                    </>
-                  ) : (
-                    /* List View Layout */
-                    <div className="flex items-center justify-between w-full px-2 py-1">
-                      <div className="flex items-center gap-4">
-                          <div className={cn(
-                            "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform group-hover:scale-105",
-                            isTerms 
-                              ? "bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800"
-                              : "bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
-                          )}>
-                            <Icon className="h-6 w-6" />
-                          </div>
-                          <div>
-                              <span className="text-sm font-medium text-muted-foreground block text-right mb-0.5">القسم {s.number}</span>
-                              <h3 className="font-semibold text-base group-hover:text-primary transition-colors text-right line-clamp-1">{s.title}</h3>
-                          </div>
+                        <ChevronLeft className="h-5 w-5 text-muted-foreground opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-all" />
                       </div>
-                      <ChevronLeft className="h-5 w-5 text-muted-foreground opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-all" />
-                    </div>
-                  )}
-                </Card>
+                    )}
+                  </Card>
+                </motion.div>
               </Link>
             );
           })}
