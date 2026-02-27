@@ -66,11 +66,11 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
               <img 
                   src="/logo.png" 
                   alt="شعار القاموس العسكري" 
-                  className="relative h-32 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
+                  className="relative h-48 md:h-64 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
               />
           </div>
           
-          <h1 className="animate-gradient text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2">
+          <h1 className="animate-gradient text-4xl md:text-6xl font-black font-cairo tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2 leading-tight">
             القاموس العسكري الموحد
           </h1>
           

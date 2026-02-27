@@ -14,7 +14,14 @@ export async function GET() {
       id: true,
       proposedAbbreviation: true,
       createdAt: true,
-      term: { select: { id: true, term: true, abbreviation: true } },
+      term: { 
+        select: { 
+          id: true, 
+          term: true, 
+          abbreviation: true,
+          section: { select: { id: true, title: true, number: true } },
+        } 
+      },
       createdBy: { select: { id: true, username: true } },
     },
   });
