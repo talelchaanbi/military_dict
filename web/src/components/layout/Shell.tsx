@@ -97,8 +97,8 @@ export async function Shell({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 py-4 sm:py-8 pt-20 sm:pt-24 pb-24 md:pb-20">
-        <div className={`container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1600px]`}>
+      <main className={fullWidth ? "flex-1 pt-16" : "flex-1 py-4 sm:py-8 pt-20 sm:pt-24 pb-24 md:pb-20"}>
+        <div className={fullWidth ? "w-full" : "container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1600px]"}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
                {backTo && (

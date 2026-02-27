@@ -3,7 +3,7 @@ import { ClientHome } from "@/components/home/ClientHome";
 
 export default function Home() {
   return (
-    <Shell>
+    <Shell fullWidth>
       <ClientHome />
     </Shell>
   );
