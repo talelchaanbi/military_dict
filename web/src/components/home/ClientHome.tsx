@@ -2,40 +2,33 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { BookOpen, Shield, Search, ArrowLeft, Globe, Zap } from "lucide-react";
+import { BookOpen, Search, Crosshair, Radar, ShieldAlert, Terminal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+const TRENDING_TERMS = ["استطلاع", "مناورة", "إمداد لوجستي", "عمليات خاصة", "دفاع جوي"];
 
 export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: string }) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
+  const [isFocused, setIsFocused] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    root.style.setProperty("--spotlight-x", "50%");
-    root.style.setProperty("--spotlight-y", "30%");
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!rootRef.current) return;
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      rootRef.current.style.setProperty("--spotlight-x", `${x}%`);
+      rootRef.current.style.setProperty("--spotlight-y", `${y}%`);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const root = rootRef.current;
-    if (!root) return;
-    const rect = root.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    root.style.setProperty("--spotlight-x", `${x.toFixed(2)}%`);
-    root.style.setProperty("--spotlight-y", `${y.toFixed(2)}%`);
-  };
-
-  const handlePointerLeave = () => {
-    const root = rootRef.current;
-    if (!root) return;
-    root.style.setProperty("--spotlight-x", "50%");
-    root.style.setProperty("--spotlight-y", "30%");
-  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,121 +40,168 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
   return (
     <div
       ref={rootRef}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      className="home-spotlight relative min-h-screen bg-transparent text-foreground overflow-hidden"
+      className="relative min-h-screen bg-background text-foreground overflow-hidden flex flex-col items-center justify-center selection:bg-primary/30"
+      dir="rtl"
     >
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "10s" }}></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "15s" }}></div>
-        </div>
-
-      <div className="flex flex-col items-center justify-center pt-10 pb-20 text-center space-y-8">
+      {/* 1. Tactical Background Effects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Animated Spotlight tracking mouse */}
+        <div 
+          className="absolute inset-0 z-0 opacity-40 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(var(--primary-rgb), 0.05), transparent 40%)`
+          }}
+        />
         
-        {/* Logo & Headline */}
-        <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out">
-          <div className="relative inline-block mb-4 animate-float">
-              <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
-              <img 
-                  src="/logo.png" 
-                  alt="شعار القاموس العسكري" 
-                  className="relative h-48 md:h-64 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
-              />
-          </div>
-          
-          <h1 className="animate-gradient text-4xl md:text-6xl font-black font-cairo tracking-tight max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary pb-2 leading-tight">
+        {/* Tactical Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_10%,transparent_100%)] opacity-20" />
+
+        {/* Floating Tech Icons */}
+        <motion.div animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[15%] right-[10%] text-primary/10">
+          <Radar size={120} />
+        </motion.div>
+        <motion.div animate={{ y: [10, -10, 10], rotate: [0, -10, 10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-[20%] left-[10%] text-blue-500/10">
+          <Crosshair size={100} />
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 max-w-5xl space-y-12">
+        
+        {/* 2. LOGO SECTION */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative group"
+        >
+          <motion.div
+            className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-blue-600/20 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+          <motion.img
+            src="/logo.png"
+            alt="شعار القاموس العسكري"
+            className="relative h-40 md:h-56 w-auto object-contain drop-shadow-2xl z-10"
+            whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+            transition={{
+              scale: { type: "spring", stiffness: 300 },
+              rotate: { duration: 0.35, ease: "easeInOut" },
+            }}
+          />
+        </motion.div>
+
+        {/* 3. TITLE & DESCRIPTION */}
+        <div className="text-center space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-xs font-mono text-primary mb-2 shadow-sm backdrop-blur-sm"
+          >
+            <Terminal className="h-3 w-3" />
+            <span>نظام البيانات الموحد - الإصدار 2.0</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-5xl md:text-7xl font-black font-cairo tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground via-primary to-blue-600 pb-2 drop-shadow-sm"
+          >
             القاموس العسكري الموحد
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed font-light">
-            المرجع الرقمي الشامل للمصطلحات والمفاهيم العسكرية الحديثة. 
-            <br className="hidden md:block"/>
-            دقة في المعلومة، وسرعة في الوصول.
-          </p>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed font-light"
+          >
+            المرجع الرقمي الشامل للمصطلحات والمفاهيم العسكرية الحديثة.
+            <br className="hidden md:block" />
+            <span className="font-medium text-foreground/80">دقة في المعلومة، وسرعة في الوصول.</span>
+          </motion.p>
         </div>
 
-        {/* Search Bar */}
-        <div className="w-full max-w-2xl relative animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-backwards">
-          <form onSubmit={handleSearch} className="relative group">
-              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative flex items-center bg-card border border-border/50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 p-2 pl-4">
-                  <Search className="h-6 w-6 text-muted-foreground mr-4 ml-2" />
-                  <Input 
-                      type="text" 
-                      placeholder="ابحث عن مصطلح (مثال: مناورة، إمداد، استطلاع...)" 
-                      className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-lg h-12"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <Button type="submit" size="lg" className="rounded-full px-8 h-12 ml-1">
-                      بحث
-                  </Button>
-              </div>
-          </form>
-        </div>
-        
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-backwards">
-           <Link href="/sections">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg gap-3 rounded-full border-2 hover:bg-secondary/50 hover:border-primary/50 transition-all">
-                 <BookOpen className="h-5 w-5" />
-                 تصفح الأقسام
+        {/* 4. SEARCH CONSOLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="w-full max-w-2xl flex flex-col items-center gap-4"
+        >
+          <form onSubmit={handleSearch} className="w-full relative group">
+            {/* Glowing border effect */}
+            <div className={cn(
+              "absolute -inset-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-full blur opacity-20 transition-opacity duration-500",
+              isFocused ? "opacity-60" : "group-hover:opacity-40"
+            )} />
+            
+            <div className="relative flex items-center bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl p-2 pl-2 pr-6 overflow-hidden">
+              <Search className={cn(
+                "h-6 w-6 transition-colors duration-300",
+                isFocused ? "text-primary" : "text-muted-foreground"
+              )} />
+              
+              <Input
+                type="text"
+                placeholder="أدخل المصطلح العسكري للبحث..."
+                className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-lg h-14 placeholder:text-muted-foreground/50 pr-4"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+              />
+              
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="rounded-full px-8 h-12 gap-2 text-md font-bold shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                تحليل
+                <Crosshair className="h-4 w-4" />
               </Button>
-           </Link>
-        </div>
+            </div>
+          </form>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12 px-4">
-           <FeatureCard 
-              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-backwards"
-              icon={<Globe className="h-8 w-8 text-blue-500" />}
-              title="شامل ومتكامل"
-              description="قاعدة بيانات ضخمة تغطي كافة التخصصات البرية والجوية والبحرية، محدثة باستمرار."
-           />
-           <FeatureCard 
-              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-700 fill-mode-backwards"
-              icon={<Zap className="h-8 w-8 text-yellow-500" />}
-              title="بحث ذكي وسريع"
-              description="خوارزميات بحث متقدمة تضمن الوصول إلى المصطلح الدقيق ومعانيه في ثوانٍ معدودة."
-           />
-           <FeatureCard 
-              className="animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-900 fill-mode-backwards"
-              icon={<Shield className="h-8 w-8 text-green-500" />}
-              title="موثوق ومعتمد"
-              description="المصدر الرسمي المعتمد للمصطلحات والرموز العسكرية في مختلف الصنوف والتشكيلات."
-           />
-        </div>
+          {/* Quick Trending Tags */}
+          <div className="flex flex-wrap justify-center gap-2 mt-2">
+            <span className="text-xs text-muted-foreground py-1.5 px-2 flex items-center gap-1">
+              <ShieldAlert className="h-3 w-3" />
+              الأكثر بحثاً:
+            </span>
+            {TRENDING_TERMS.map((term, i) => (
+              <motion.button
+                key={term}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1 + (i * 0.1) }}
+                onClick={() => setSearchQuery(term)}
+                className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary/50 border border-border/50 text-secondary-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all cursor-pointer"
+              >
+                {term}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 5. EXPLORE BUTTON */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="pt-8"
+        >
+          <Link href="/sections">
+            <Button size="lg" variant="ghost" className="h-14 px-8 text-lg gap-3 rounded-full border-2 border-transparent hover:bg-secondary/20 hover:border-primary/20 group transition-all">
+              <BookOpen className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              استعراض قاعدة البيانات
+            </Button>
+          </Link>
+        </motion.div>
+
       </div>
     </div>
   );
-}
-
-function FeatureCard({
-  icon,
-  title,
-  description,
-  className,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  className?: string;
-}) {
-    return (
-        <Card className={`group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-left ${className ?? ""}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <CardHeader className="relative z-10 flex flex-col items-center text-center p-4">
-                <div className="mb-3 inline-flex p-2.5 rounded-xl bg-secondary/50 group-hover:bg-background shadow-sm transition-colors">
-                    {icon}
-                </div>
-                <CardTitle className="text-lg font-bold">{title}</CardTitle>
-            </CardHeader>
-            <CardContent className="relative z-10 text-center p-4 pt-0">
-                <CardDescription className="text-sm leading-relaxed">
-                    {description}
-                </CardDescription>
-            </CardContent>
-        </Card>
-    )
 }

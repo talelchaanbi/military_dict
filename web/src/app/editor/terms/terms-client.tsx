@@ -432,55 +432,68 @@ export default function TermsEditorClient() {
                 {supportsImages ? (
                   <div className="col-span-2 p-2 border-l h-full flex items-center justify-center">
                     <div className="flex flex-col gap-2 items-center">
-                      <div className="relative group/image w-fit">
                         {t.imageUrl ? (
-                          <div className="relative">
-                            <ImageZoom
-                              src={t.imageUrl}
-                              alt={t.term}
-                              className="h-12 w-auto min-w-[40px] object-contain rounded border bg-background"
-                            />
-                            <Button
-                              type="button"
-                              size="icon"
-                              variant="destructive"
-                              className="absolute -top-2 -right-2 h-5 w-5 rounded-full opacity-0 group-hover/image:opacity-100 transition-opacity shadow-sm z-10"
-                              title="حذف الصورة"
-                              onClick={() => {
-                                if (!confirm("حذف الصورة؟")) return;
-                                onUpdate(t.id, { imageUrl: null });
-                              }}
-                            >
-                              <X className="h-3 w-3" />
-                            </Button>
+                          <div className="flex items-center gap-2">
+                             <div className="border rounded bg-muted/10 p-1">
+                                <ImageZoom
+                                  src={t.imageUrl}
+                                  alt={t.term}
+                                  className="h-10 w-auto object-contain"
+                                />
+                             </div>
+                             <div className="flex flex-col gap-1">
+                                <label className="cursor-pointer inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-muted text-muted-foreground hover:text-primary transition-colors" title="تغيير الصورة">
+                                  <ImageIcon className="h-4 w-4" />
+                                  <input
+                                    type="file"
+                                    accept="image/png,image/jpeg,image/webp,image/gif"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                      const file = e.target.files?.[0];
+                                      if (file) {
+                                        if (!confirm("استبدال الصورة الحالية؟")) {
+                                          e.currentTarget.value = "";
+                                          return;
+                                        }
+                                        onUploadImage(t.id, file);
+                                      }
+                                      e.currentTarget.value = "";
+                                    }}
+                                  />
+                                </label>
+                                <Button
+                                  type="button"
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                  title="حذف الصورة"
+                                  onClick={() => {
+                                    if (!confirm("هل أنت متأكد من حذف الصورة؟")) return;
+                                    onUpdate(t.id, { imageUrl: null });
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                             </div>
                           </div>
                         ) : (
-                          <div className="h-12 w-12 flex items-center justify-center rounded border bg-muted/20 border-dashed text-muted-foreground">
-                            <ImageOff className="h-4 w-4 opacity-30" />
-                          </div>
-                        )}
-                        
-                        <label className="cursor-pointer absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover/image:opacity-100 transition-opacity rounded text-white text-xs font-medium z-10">
-                          <span className="sr-only">تغيير</span>
-                          <ImageIcon className="h-4 w-4" />
-                          <input
-                            type="file"
-                            accept="image/png,image/jpeg,image/webp,image/gif"
-                            className="hidden"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                if (t.imageUrl && !confirm("استبدال الصورة الحالية؟")) {
+                          <label className="flex flex-col items-center justify-center w-full h-14 rounded border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/30 cursor-pointer transition-all p-2 text-muted-foreground hover:text-primary">
+                            <ImageIcon className="h-5 w-5 mb-1 opacity-50" />
+                            <span className="text-[10px] font-medium">رفع صورة</span>
+                            <input
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp,image/gif"
+                                className="hidden"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) {
+                                    onUploadImage(t.id, file);
+                                  }
                                   e.currentTarget.value = "";
-                                  return;
-                                }
-                                onUploadImage(t.id, file);
-                              }
-                              e.currentTarget.value = "";
-                            }}
-                          />
-                        </label>
-                      </div>
+                                }}
+                              />
+                          </label>
+                        )}
                     </div>
                   </div>
                 ) : null}
