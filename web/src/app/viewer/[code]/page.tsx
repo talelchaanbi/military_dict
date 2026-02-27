@@ -27,12 +27,67 @@ export default async function ViewerPage({
       `${safeCode}.html`
    );
 
+   const showPdfButton = safeCode === "dep12" || safeCode === "dep13";
+   const pdfUrl = `/uploads/docs/${safeCode}.pdf`;
+
+   // Special case for DEP13 viewer container (even if .html doesn't exist, we might want to show children)
+   if (safeCode === "dep13") {
+        const dep13Title = "دليل الرموز والمصطلحات العسكرية (DEP 13)";
+        // DEP13 logic
+        const dep13Items: Dep12DocItem[] = [
+            {
+               code: "dep13_section1",
+               title: "القسم الأول: القوات البرية",
+               description: "رموز القوات البرية",
+               kind: "sections",
+            },
+           {
+               code: "dep13_section2",
+               title: "القسم الثاني: الجو-فضاء",
+               description: "رموز الجو-فضاء",
+               kind: "sections",
+            },
+             {
+               code: "dep13_section3",
+               title: "القسم الثالث: القوات البحرية",
+               description: "رموز القوات البحرية",
+               kind: "sections",
+            },
+            {
+               code: "dep13_section4",
+               title: "القسم الرابع: الأنشطة الفضائية",
+               description: "رموز الأنشطة الفضائية",
+               kind: "sections",
+            },
+           {
+               code: "dep13_section5",
+               title: "القسم الخامس: القيادة والسيطرة",
+               description: "رموز القيادة والسيطرة",
+               kind: "sections",
+            },
+        ];
+        
+        return (
+             <Shell backTo="/sections">
+                <div className="max-w-6xl mx-auto">
+                   {showPdfButton && (
+                      <div className="mb-4 flex justify-end">
+                         <Button asChild variant="outline" size="sm">
+                            <a href={pdfUrl} target="_blank" rel="noreferrer">
+                                 عرض الوثيقة الأصلية
+                            </a>
+                         </Button>
+                      </div>
+                   )}
+                   <Dep12ViewerClient items={dep13Items} title={dep13Title} />
+                </div>
+             </Shell>
+          );
+   }
+
   if (!fs.existsSync(filePath)) {
     return notFound();
   }
-
-   const showPdfButton = safeCode === "dep12" || safeCode === "dep13";
-   const pdfUrl = `/uploads/docs/${safeCode}.pdf`;
 
    if (safeCode === "dep12") {
       const dep12Title = "الرموز العسكرية للقوات البرية والقوات البحرية";

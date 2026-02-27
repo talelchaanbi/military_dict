@@ -134,7 +134,7 @@ export default async function SectionPage({
 
       return (
         <Shell title={section.title || `قسم ${section.number}`} backTo="/sections" fullWidth>
-          <Dep13SubsectionsClient items={items} originalDocHref="/viewer/dep13" />
+          <Dep13SubsectionsClient items={items} originalDocHref="/uploads/docs/dep13.pdf" />
         </Shell>
       );
     }

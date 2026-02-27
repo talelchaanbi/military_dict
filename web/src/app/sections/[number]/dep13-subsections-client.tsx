@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { File, Search } from "lucide-react";
+import { File, Search, Shield, Plane, Anchor, Rocket, Radio, Target } from "lucide-react";
 
 export type Dep13SubsectionItem = {
   number: number;
@@ -43,6 +43,15 @@ export function Dep13SubsectionsClient({
     });
   }, [items, query]);
 
+  function getSectionIcon(number: number) {
+    if (number === 1301) return Shield; // Land
+    if (number === 1302) return Plane;  // Air
+    if (number === 1303) return Anchor; // Naval
+    if (number === 1304) return Rocket; // Space
+    if (number === 1305) return Radio;  // C2
+    return File;
+  }
+
   return (
     <div className="grid gap-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -58,13 +67,16 @@ export function Dep13SubsectionsClient({
 
         {originalDocHref ? (
           <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href={originalDocHref}>عرض الوثيقة الأصلية</Link>
+            <Link href={originalDocHref} target="_blank" rel="noopener noreferrer">عرض الوثيقة الأصلية</Link>
           </Button>
         ) : null}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((item) => (
+        {filtered.map((item) => {
+          const Icon = getSectionIcon(item.number);
+          
+          return (
           <Card
             key={item.number}
             className="h-full hover:border-primary hover:shadow-lg transition-all"
@@ -73,13 +85,12 @@ export function Dep13SubsectionsClient({
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
                   <div className="bg-primary/10 p-2.5 rounded-full">
-                    <File className="h-5 w-5 text-primary" />
+                    <Icon className="h-5 w-5 text-primary" />
                   </div>
                   <div className="grid gap-1">
                     <div className="font-semibold leading-tight">
                       {item.title || `قسم ${item.number}`}
                     </div>
-                    <div className="text-xs text-muted-foreground">قسم {item.number}</div>
                   </div>
                 </div>
                 <Button asChild size="sm" className="shrink-0">
@@ -124,7 +135,7 @@ export function Dep13SubsectionsClient({
               )}
             </CardContent>
           </Card>
-        ))}
+        );})}
       </div>
 
       {!filtered.length ? (
