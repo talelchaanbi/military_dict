@@ -563,7 +563,7 @@ const renderRow = (t: TermRow) => {
                 </div>
 
                 {/* Notes Col (formerly description) */}
-                <div className="col-span-4 sm:col-span-5 text-foreground/90 leading-relaxed text-base flex items-center justify-center text-center">
+                <div className="col-span-4 sm:col-span-5 text-foreground leading-relaxed text-base flex items-center justify-center text-center">
                     {t.description || ""}
                 </div>
             </>
@@ -574,7 +574,7 @@ const renderRow = (t: TermRow) => {
         <>
             <div className="col-span-2 sm:col-span-1 font-mono text-muted-foreground text-xs pt-1">{t.itemNumber || "-"}</div>
             <div className="col-span-4 sm:col-span-3 font-bold text-primary text-base leading-snug">{t.term}</div>
-            <div className={`${descriptionCol} text-foreground/90 leading-relaxed text-base`}>
+            <div className={`${descriptionCol} text-foreground leading-relaxed text-base`}>
                 {t.imageUrl && (
                 <div className="inline-block bg-white p-1 rounded-md border mb-2 overflow-hidden">
                     <ImageZoom src={t.imageUrl} alt={t.term} className="w-full max-w-[150px] h-auto max-h-[150px] object-contain" cropBorder={true} />

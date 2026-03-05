@@ -1,67 +1,74 @@
 @import "tailwindcss";
 
 :root {
+  --color-primary: #C6B034;
+  --color-secondary: #58913E;
+  --color-dark: #313725;
+  --color-bg: #F7F8F8;
+  --color-muted: #786F6D;
+  --primary-rgb: 198, 176, 52;
+
   color-scheme: light;
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --background: 180 20% 98%; /* F7F8F8 equivalent */
+  --foreground: 79 30% 10%; /* 313725 equivalent */
 
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 79 30% 10%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover-foreground: 79 30% 10%;
 
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 49 58% 49%; /* #C6B034 */
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 101 40% 40%; /* #58913E */
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 180 20% 92%; /* Light gray background */
+  --muted-foreground: 10 5% 25%; /* #786F6D */
 
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: 180 20% 92%;
+  --accent-foreground: 79 30% 10%;
 
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 210 40% 100%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
+  --border: 10 5% 85%;
+  --input: 10 5% 85%;
+  --ring: 49 58% 49%;
 
   --radius: 0.5rem;
 }
 
 .dark {
   color-scheme: dark;
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: 79 19.5% 12%;
+  --foreground: 0 0% 98%;
 
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: 79 19.5% 15%;
+  --card-foreground: 0 0% 98%;
 
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 79 19.5% 15%;
+  --popover-foreground: 0 0% 98%;
 
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 47.4% 11.2%;
+  --primary: 49 58% 49%;
+  --primary-foreground: 79 19.5% 11%;
 
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 101 40% 40%;
+  --secondary-foreground: 0 0% 98%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 79 19.5% 25%;
+  --muted-foreground: 10 5% 65%;
 
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 79 19.5% 25%;
+  --accent-foreground: 0 0% 98%;
 
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 0% 98%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 48%;
+  --border: 79 19.5% 25%;
+  --input: 79 19.5% 25%;
+  --ring: 49 58% 49%;
 }
 
 @theme inline {
@@ -84,6 +91,7 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-dark: hsl(79 19.5% 17%);
 }
 
 @layer base {
@@ -115,7 +123,7 @@
 
 /* Document content styles */
 .doc-content {
-  @apply text-foreground/90 leading-loose;
+  @apply text-foreground leading-loose;
 }
 .doc-content h1 { @apply text-2xl mb-4 mt-8 pb-2 border-b border-border; }
 .doc-content h2 { @apply text-xl mb-3 mt-6; }

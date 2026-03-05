@@ -193,7 +193,7 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                         {/* Gradient Line Top */}
                         <div className={cn(
                           "h-1.5 w-full transition-all duration-300",
-                          isTerms ? "bg-blue-500/40 group-hover:bg-blue-500" : "bg-orange-500/40 group-hover:bg-orange-500"
+                          isTerms ? "bg-primary/40 group-hover:bg-primary" : "bg-orange-500/40 group-hover:bg-orange-500"
                         )} />
                         
                         <CardHeader className="p-5 space-y-4">
@@ -201,18 +201,18 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                             <span className={cn(
                               "text-xs font-bold px-3 py-1.5 rounded-md border transition-colors shadow-sm",
                               isTerms 
-                                ? "bg-blue-50 text-blue-700 border-blue-200 group-hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800"
+                                ? "bg-primary/10 text-foreground border-primary/30 group-hover:bg-primary/20 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
                                 : "bg-orange-50 text-orange-700 border-orange-200 group-hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800"
                             )}>
                               القسم {s.number}
                             </span>
                              <div className={cn(
                                "p-2 rounded-lg transition-transform duration-300 group-hover:scale-110",
-                               isTerms ? "bg-blue-50 dark:bg-blue-900/20" : "bg-orange-50 dark:bg-orange-900/20"
+                               isTerms ? "bg-primary/10 dark:bg-primary/20" : "bg-orange-50 dark:bg-orange-900/20"
                              )}>
                                <Icon className={cn(
                                 "h-5 w-5",
-                                 isTerms ? "text-blue-600 dark:text-blue-400" : "text-orange-600 dark:text-orange-400"
+                                 isTerms ? "text-primary dark:text-primary" : "text-orange-600 dark:text-orange-400"
                               )} />
                              </div>
                           </div>
@@ -228,7 +228,7 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                             <div className={cn(
                               "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform group-hover:scale-105",
                               isTerms 
-                                ? "bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800"
+                                ? "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
                                 : "bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
                             )}>
                               <Icon className="h-6 w-6" />

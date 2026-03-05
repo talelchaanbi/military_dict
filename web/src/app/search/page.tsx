@@ -34,7 +34,7 @@ export default async function SearchPage({
         {/* Reuse Background Gradients for consistency */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "10s" }}></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "15s" }}></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "15s" }}></div>
         </div>
 
       <Shell>
@@ -83,11 +83,11 @@ export default async function SearchPage({
                             <Card key={term.id} className="hover:shadow-md transition-shadow group">
                                 <CardHeader className="pb-2">
                                     <div className="flex justify-between items-start gap-4">
-                                        <CardTitle className="text-xl font-bold text-primary group-hover:text-blue-600 transition-colors">
+                                        <CardTitle className="text-xl font-bold text-primary group-hover:text-secondary transition-colors">
                                             {term.term}
                                         </CardTitle>
                                         {term.section && (
-                                            <span className="text-xs font-medium bg-secondary px-2 py-1 rounded-md text-muted-foreground whitespace-nowrap">
+                                            <span className="text-xs font-medium bg-secondary px-2 py-1 rounded-md text-white whitespace-nowrap">
                                                 {term.section.title}
                                             </span>
                                         )}

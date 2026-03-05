@@ -125,7 +125,7 @@ export default function ProposalsClient() {
                       <User className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-foreground/90">{p.createdBy.username}</div>
+                      <div className="font-bold text-sm text-foreground">{p.createdBy.username}</div>
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-0.5">
                         <Badge variant="secondary" className="px-1.5 h-5 font-normal bg-background/50 hover:bg-background">
                             <Clock className="h-3 w-3 ml-1" />
@@ -135,7 +135,7 @@ export default function ProposalsClient() {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-2">
-                    <Badge variant="outline" className="bg-background/80 backdrop-blur font-medium border-blue-200 text-blue-700 shadow-sm">
+                    <Badge variant="outline" className="bg-background/80 backdrop-blur font-medium border-primary/30 text-foreground shadow-sm">
                       <FileEdit className="h-3 w-3 ml-1.5" />
                       اقتراح تعديل
                     </Badge>
@@ -151,7 +151,7 @@ export default function ProposalsClient() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">المصطلح الأصلي</span>
-                      <span className="text-[10px] text-muted-foreground/50">ID: {p.term.id}</span>
+                      <span className="text-[10px] text-muted-foreground/80">ID: {p.term.id}</span>
                   </div>
                   <div className="p-3 bg-muted/10 rounded-lg border border-border/30">
                      <h3 className="text-lg md:text-xl font-bold leading-tight text-right dir-rtl" dir="rtl">{p.term.term}</h3>
@@ -164,7 +164,7 @@ export default function ProposalsClient() {
                     <div className="text-xs text-muted-foreground font-medium text-center">الاختصار الحالي</div>
                     <div className={cn(
                         "relative flex items-center justify-center min-h-[48px] rounded-md border text-lg font-mono font-bold transition-colors",
-                        p.term.abbreviation ? "bg-muted/10 border-border text-foreground" : "bg-muted/5 border-dashed border-muted text-muted-foreground/50"
+                        p.term.abbreviation ? "bg-muted/10 border-border text-foreground" : "bg-muted/5 border-dashed border-muted text-muted-foreground/80"
                     )}>
                       {p.term.abbreviation || <span className="text-sm">لا يوجد</span>}
                     </div>

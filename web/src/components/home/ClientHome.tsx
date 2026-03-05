@@ -40,7 +40,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
   return (
     <div
       ref={rootRef}
-      className="relative min-h-screen bg-background text-foreground overflow-hidden flex flex-col items-center justify-center selection:bg-primary/30"
+      className="relative h-[100dvh] w-full bg-background text-foreground overflow-hidden flex flex-col items-center justify-center selection:bg-primary/30"
       dir="rtl"
     >
       {/* 1. Tactical Background Effects */}
@@ -60,7 +60,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
         <motion.div animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[15%] right-[10%] text-primary/10">
           <Radar size={120} />
         </motion.div>
-        <motion.div animate={{ y: [10, -10, 10], rotate: [0, -10, 10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-[20%] left-[10%] text-blue-500/10">
+        <motion.div animate={{ y: [10, -10, 10], rotate: [0, -10, 10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-[20%] left-[10%] text-secondary/20">
           <Crosshair size={100} />
         </motion.div>
       </div>
@@ -75,7 +75,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
           className="relative group"
         >
           <motion.div
-            className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-blue-600/20 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+            className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-500"
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
@@ -97,7 +97,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-xs font-mono text-primary mb-2 shadow-sm backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-mono text-primary mb-2 shadow-sm backdrop-blur-sm"
           >
             <Terminal className="h-3 w-3" />
             <span>نظام البيانات الموحد - الإصدار 2.0</span>
@@ -107,7 +107,7 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-black font-cairo tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground via-primary to-blue-600 pb-2 drop-shadow-sm"
+            className="text-5xl md:text-7xl font-black font-cairo tracking-tight text-primary pb-2"
           >
             القاموس العسكري الموحد
           </motion.h1>
@@ -116,11 +116,11 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed font-light"
+            className="max-w-2xl mx-auto text-lg md:text-xl text-foreground font-semibold leading-relaxed"
           >
             المرجع الرقمي الشامل للمصطلحات والمفاهيم العسكرية الحديثة.
             <br className="hidden md:block" />
-            <span className="font-medium text-foreground/80">دقة في المعلومة، وسرعة في الوصول.</span>
+            <span className="font-bold text-secondary">دقة في المعلومة، وسرعة في الوصول.</span>
           </motion.p>
         </div>
 
@@ -134,20 +134,20 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
           <form onSubmit={handleSearch} className="w-full relative group">
             {/* Glowing border effect */}
             <div className={cn(
-              "absolute -inset-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-full blur opacity-20 transition-opacity duration-500",
+              "absolute -inset-0.5 bg-primary rounded-full blur opacity-20 transition-opacity duration-500",
               isFocused ? "opacity-60" : "group-hover:opacity-40"
             )} />
             
             <div className="relative flex items-center bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl p-2 pl-2 pr-6 overflow-hidden">
               <Search className={cn(
                 "h-6 w-6 transition-colors duration-300",
-                isFocused ? "text-primary" : "text-muted-foreground"
+                isFocused ? "text-primary" : "text-foreground"
               )} />
               
               <Input
                 type="text"
                 placeholder="أدخل المصطلح العسكري للبحث..."
-                className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-lg h-14 placeholder:text-muted-foreground/50 pr-4"
+                className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-lg h-14 placeholder:text-foreground/80 pr-4 font-semibold"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsFocused(true)}
@@ -167,8 +167,8 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
 
           {/* Quick Trending Tags */}
           <div className="flex flex-wrap justify-center gap-2 mt-2">
-            <span className="text-xs text-muted-foreground py-1.5 px-2 flex items-center gap-1">
-              <ShieldAlert className="h-3 w-3" />
+            <span className="text-sm font-semibold text-foreground py-1.5 px-2 flex items-center gap-1">
+              <ShieldAlert className="h-4 w-4" />
               الأكثر بحثاً:
             </span>
             {TRENDING_TERMS.map((term, i) => (
@@ -178,27 +178,12 @@ export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: s
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 + (i * 0.1) }}
                 onClick={() => setSearchQuery(term)}
-                className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary/50 border border-border/50 text-secondary-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all cursor-pointer"
+                className="text-sm font-bold px-4 py-2 rounded-full bg-secondary/30 border border-secondary text-foreground hover:bg-primary/30 hover:border-primary transition-all cursor-pointer"
               >
                 {term}
               </motion.button>
             ))}
           </div>
-        </motion.div>
-
-        {/* 5. EXPLORE BUTTON */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-          className="pt-8"
-        >
-          <Link href="/sections">
-            <Button size="lg" variant="ghost" className="h-14 px-8 text-lg gap-3 rounded-full border-2 border-transparent hover:bg-secondary/20 hover:border-primary/20 group transition-all">
-              <BookOpen className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              استعراض قاعدة البيانات
-            </Button>
-          </Link>
         </motion.div>
 
       </div>

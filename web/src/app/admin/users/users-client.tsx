@@ -43,7 +43,7 @@ function RoleBadge({ role }: { role: UserRole }) {
       );
     case "editor":
       return (
-        <Badge variant="secondary" className="gap-1 pl-2 bg-blue-100 text-blue-800 hover:bg-blue-200">
+        <Badge variant="secondary" className="gap-1 pl-2 bg-primary/10 text-foreground hover:bg-primary/20">
           <UserCog className="h-3 w-3" />
           محرر
         </Badge>
