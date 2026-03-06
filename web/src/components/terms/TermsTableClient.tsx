@@ -347,9 +347,11 @@ export function TermsTableClient({
             <button onClick={handlePrint} disabled={selectedCount === 0} className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 text-sm font-semibold disabled:opacity-50 disabled:pointer-events-none transition-all">
                <Printer className="w-4 h-4" /> طباعة
             </button>
-            <button onClick={handleExportCsv} disabled={selectedCount === 0} className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 text-sm font-semibold disabled:opacity-50 disabled:pointer-events-none transition-all">
-               <Download className="w-4 h-4" /> تصدير CSV
-            </button>
+            {!isDep13SubSection && (
+              <button onClick={handleExportCsv} disabled={selectedCount === 0} className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 text-sm font-semibold disabled:opacity-50 disabled:pointer-events-none transition-all">
+                 <Download className="w-4 h-4" /> تصدير CSV
+              </button>
+            )}
           </div>
        </div>
 
