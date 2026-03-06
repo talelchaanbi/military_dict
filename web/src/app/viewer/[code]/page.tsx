@@ -69,7 +69,7 @@ export default async function ViewerPage({
         
         return (
              <Shell backTo="/sections">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-[95%] mx-auto">
                    {showPdfButton && (
                       <div className="mb-4 flex justify-end">
                          <Button asChild variant="outline" size="sm">
@@ -137,7 +137,7 @@ export default async function ViewerPage({
 
       return (
          <Shell backTo="/sections">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-[95%] mx-auto">
                {showPdfButton && (
                   <div className="mb-4 flex justify-end">
                      <Button asChild variant="outline" size="sm">
@@ -162,7 +162,7 @@ export default async function ViewerPage({
       const iframeSrc = `/uploads/docs/${encodeURIComponent(safeCode)}.html`;
       return (
          <Shell backTo="/sections">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-[95%] mx-auto">
                <div className="mb-4 flex items-center justify-end gap-2">
                   <Button asChild variant="outline" size="sm">
                      <a href={iframeSrc} target="_blank" rel="noreferrer">
@@ -235,7 +235,7 @@ export default async function ViewerPage({
 
    return (
       <Shell backTo="/sections">
-         <div className="max-w-5xl mx-auto">
+         <div className="max-w-[95%] mx-auto">
             {showPdfButton && (
                <div className="mb-4 flex justify-end">
                   <Button asChild variant="outline" size="sm">
