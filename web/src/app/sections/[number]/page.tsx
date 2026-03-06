@@ -743,47 +743,59 @@ const renderRow = (t: TermRow) => {
         </form>
       </div>
 
-      <div className="mb-4 text-sm text-muted-foreground flex justify-between items-center">
-         <span>عدد النتائج: <span className="font-semibold text-foreground">{total}</span></span>
-        {!canGroup && <span>صفحة {pageNum} من {totalPages}</span>}
-      </div>
-
       {/* Results Table/List */}
       {canGroup ? (
-        <div className="flex flex-col lg:flex-row gap-6">
-          <aside className="lg:w-64 xl:w-72 shrink-0">
-            <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] overflow-y-auto">
-              <div className="text-sm font-semibold text-muted-foreground mb-3">
-                العناوين الفرعية
-              </div>
+        <div className="flex flex-col xl:flex-row gap-6">
+          {/* Right Sidebar (First half of index) */}
+          <aside className="xl:w-[280px] shrink-0 hidden xl:block">
+            <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar shadow-sm">
               <div className="flex flex-col gap-3">
-                {navItems.map((item) => (
-                  <div key={item.id} className="flex flex-col gap-2">
-                    <a
-                      href={`#${item.id}`}
-                      className="rounded-full border bg-muted px-3 py-1 text-xs font-semibold text-foreground hover:bg-accent w-fit"
-                    >
-                      {item.title}
-                    </a>
-                    {item.children && item.children.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pl-3">
-                        {item.children.map((child) => (
-                          <a
-                            key={child.id}
-                            href={`#${child.id}`}
-                            className="rounded-full border bg-muted/70 px-3 py-1 text-xs text-foreground hover:bg-accent"
-                          >
-                            {child.title}
+                {navItems.slice(0, Math.ceil(navItems.length / 2)).map((item) => (
+                  <div key={item.id} className="flex flex-col group border border-border/40 rounded-lg overflow-hidden bg-muted/10">
+                    {item.children && item.children.length > 0 ? (
+                      <details className="group/details [&_summary::-webkit-details-marker]:hidden">
+                        <summary className="flex items-start justify-between cursor-pointer p-2.5 text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors bg-muted/40 border-b border-transparent group-open/details:border-border/50">
+                          <a href={`#${item.id}`} className="flex-1 text-right ml-2 leading-relaxed" title={item.title}>
+                            {item.title}
                           </a>
-                        ))}
-                      </div>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 mt-0.5 transition-transform duration-200 group-open/details:-rotate-180 text-muted-foreground"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </summary>
+                        <div className="flex flex-col p-1.5 bg-background/50">
+                          {item.children.map((child) => (
+                            <a key={child.id} href={`#${child.id}`} className="px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded transition-colors leading-snug flex gap-2 items-start" title={child.title}>
+                              <span className="w-1 h-1 rounded-full bg-border mt-1.5 shrink-0"></span>
+                              {child.title}
+                            </a>
+                          ))}
+                        </div>
+                      </details>
+                    ) : (
+                      <a href={`#${item.id}`} className="p-2.5 text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors leading-relaxed bg-muted/40" title={item.title}>
+                        {item.title}
+                      </a>
                     )}
                   </div>
                 ))}
               </div>
             </div>
           </aside>
+
+          {/* Main Content (Table) */}
           <div className="flex-1 min-w-0">
+             {/* Mobile/Tablet Fallback Index (Shows when sidebars are hidden) */}
+             <div className="xl:hidden mb-6 rounded-xl border bg-card/90 text-card-foreground p-5 shadow-sm">
+                <div className="text-sm font-bold text-primary mb-4 pb-3 border-b border-border/50 uppercase tracking-wider">
+                  الفهرس السريع
+                </div>
+                <div className="columns-1 md:columns-2 gap-4">
+                  {navItems.map((item) => (
+                    <a key={item.id} href={`#${item.id}`} className="block break-inside-avoid p-2 mb-2 text-[12px] font-bold rounded-lg border border-border/50 bg-muted/20 hover:border-primary/30 hover:bg-primary/5 hover:text-primary transition-colors line-clamp-2" title={item.title}>
+                      {item.title}
+                    </a>
+                  ))}
+                </div>
+             </div>
+
               <TermsTableClient sectionTitle={section?.title} 
                  terms={terms as any}
                  groupedTerms={groupedTerms as any}
@@ -795,6 +807,40 @@ const renderRow = (t: TermRow) => {
                  descriptionCol={descriptionCol}
               />
           </div>
+
+          {/* Left Sidebar (Second half of index) */}
+          <aside className="xl:w-[280px] shrink-0 hidden xl:block">
+            <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar shadow-sm">
+              <div className="flex flex-col gap-3">
+                {navItems.slice(Math.ceil(navItems.length / 2)).map((item) => (
+                  <div key={item.id} className="flex flex-col group border border-border/40 rounded-lg overflow-hidden bg-muted/10">
+                    {item.children && item.children.length > 0 ? (
+                      <details className="group/details [&_summary::-webkit-details-marker]:hidden">
+                        <summary className="flex items-start justify-between cursor-pointer p-2.5 text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors bg-muted/40 border-b border-transparent group-open/details:border-border/50">
+                          <a href={`#${item.id}`} className="flex-1 text-right ml-2 leading-relaxed" title={item.title}>
+                            {item.title}
+                          </a>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 mt-0.5 transition-transform duration-200 group-open/details:-rotate-180 text-muted-foreground"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </summary>
+                        <div className="flex flex-col p-1.5 bg-background/50">
+                          {item.children.map((child) => (
+                            <a key={child.id} href={`#${child.id}`} className="px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded transition-colors leading-snug flex gap-2 items-start" title={child.title}>
+                              <span className="w-1 h-1 rounded-full bg-border mt-1.5 shrink-0"></span>
+                              {child.title}
+                            </a>
+                          ))}
+                        </div>
+                      </details>
+                    ) : (
+                      <a href={`#${item.id}`} className="p-2.5 text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors leading-relaxed bg-muted/40" title={item.title}>
+                        {item.title}
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
         </div>
       ) : (
         <TermsTableClient sectionTitle={section?.title} 

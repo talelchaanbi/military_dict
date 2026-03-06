@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Search, FileText, Map as MapIcon, Sparkles, ChevronLeft, Zap, Layers, Anchor, Rocket, Target, Flag, Shield, Plane } from "lucide-react";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 export type Dep12DocItem = {
   code: string;
@@ -161,6 +162,7 @@ function SectionBlock({
           <DocListItem key={item.code} item={item} />
         ))}
       </motion.div>
+      <BackToTop />
     </motion.div>
   );
 }

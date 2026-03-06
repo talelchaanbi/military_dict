@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ProposalModal } from "@/app/sections/[number]/proposal-modal";
 import { Download, CheckSquare, Square, Ban, Printer } from "lucide-react";
 import { ImageZoom } from "@/components/ui/image-zoom";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 export function TermsTableClient({
   terms,
@@ -384,9 +385,9 @@ export function TermsTableClient({
                   </button>
                 </div>
                 <div className="overflow-x-auto">
-                  <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                  <div className={`min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider ${isDep13SubSection ? "text-center items-center" : ""}`}>
                       {columns.map((col: any) => (
-                          <div key={col.key} className={col.className}>{col.label}</div>
+                          <div key={col.key} className={`${col.className} ${isDep13SubSection ? "flex justify-center text-center" : ""}`}>{col.label}</div>
                       ))}
                   </div>
 
@@ -400,7 +401,7 @@ export function TermsTableClient({
                         <div
                           key={t.id}
                           id={`term-${t.id}`}
-                          className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
+                          className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors ${isDep13SubSection ? "items-center text-center" : "items-start"} ${
                                 highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
                           }`}
                         >
@@ -416,9 +417,9 @@ export function TermsTableClient({
        ) : (
          <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
-              <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
+              <div className={`min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider ${isDep13SubSection ? "text-center items-center" : ""}`}>
                  {columns.map((col: any) => (
-                      <div key={col.key} className={col.className}>{col.label}</div>
+                      <div key={col.key} className={`${col.className} ${isDep13SubSection ? "flex justify-center text-center" : ""}`}>{col.label}</div>
                  ))}
             </div>
             
@@ -432,7 +433,7 @@ export function TermsTableClient({
                     <div
                         key={t.id}
                         id={`term-${t.id}`}
-                        className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
+                        className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors ${isDep13SubSection ? "items-center text-center" : "items-start"} ${
                               highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
                         }`}
                     >
@@ -444,6 +445,7 @@ export function TermsTableClient({
           </div>
         </div>
        )}
+       <BackToTop />
     </div>
   );
 }

@@ -173,50 +173,60 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                     "bg-gradient-to-b from-card to-card/50 hover:bg-card/80 group/card",
                     viewMode === "list" && "flex flex-row items-center p-3"
                   )}>
+                    {/* Background Logo */}
+                    <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none z-0">
+                      <Icon 
+                        strokeWidth={1.5}
+                        className={cn(
+                        "transition-all duration-500 -rotate-12 group-hover/card:-rotate-0 group-hover/card:scale-110",
+                        viewMode === "grid" ? "w-40 h-40" : "w-24 h-24",
+                        isTerms 
+                          ? "text-primary/20 group-hover/card:text-primary/40" 
+                          : "text-orange-500/20 dark:text-orange-400/20 group-hover/card:text-orange-500/40 dark:group-hover/card:text-orange-400/40"
+                      )} />
+                    </div>
+
                     {viewMode === "grid" ? (
-                      <div className="p-5 sm:p-6 flex flex-col h-full relative z-10 w-full">
+                      <div className="p-4 flex flex-col h-full relative z-10 w-full">
                         {/* Decorative Background Blur */}
                         <div className={cn(
-                          "absolute top-0 right-0 w-32 h-32 blur-3xl rounded-full opacity-[0.03] dark:opacity-10 -z-10 transition-opacity duration-500 group-hover/card:opacity-[0.08] dark:group-hover/card:opacity-30",
+                          "absolute top-0 right-0 w-32 h-32 blur-3xl rounded-full opacity-10 dark:opacity-20 -z-10 transition-opacity duration-500 group-hover/card:opacity-25 dark:group-hover/card:opacity-40",
                           isTerms ? "bg-primary" : "bg-orange-600"
                         )} />
 
                         <div className="flex items-start justify-between mb-auto">
                           <div className={cn(
-                            "flex items-center justify-center p-3 w-12 h-12 rounded-2xl transition-all duration-500 shadow-sm border",
+                            "flex items-center justify-center p-2.5 w-10 h-10 rounded-xl transition-all duration-500 shadow-sm border",
                             isTerms 
                                 ? "bg-primary/5 text-primary border-primary/20 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-primary/10 group-hover/card:shadow-primary/20" 
                                 : "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/10 dark:border-orange-800/50 dark:text-orange-400 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-orange-100 dark:group-hover/card:bg-orange-900/30 group-hover/card:shadow-orange-500/20"
                           )}>
-                            <Icon className="h-6 w-6" strokeWidth={1.5} />
+                            <Icon className="h-5 w-5" strokeWidth={1.5} />
                           </div>
                           
                           <div className="flex flex-col items-end gap-1">
                             <span className={cn(
-                              "text-xs font-bold px-3 py-1 rounded-full border shadow-sm backdrop-blur-md transition-colors",
+                              "text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-sm backdrop-blur-md transition-colors",
                               isTerms 
                                 ? "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20"
                                 : "bg-orange-100/50 border-orange-200 text-orange-700 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-400"
                             )}>
                               القسم {s.number}
                             </span>
-                            <span className="text-[10px] text-muted-foreground/70 font-medium px-2">
-                              {isTerms ? "مصطلحات" : "وثائق"}
-                            </span>
                           </div>
                         </div>
                         
-                        <div className="mt-8">
-                            <CardTitle className="leading-relaxed text-lg font-bold group-hover/card:text-primary transition-colors text-right line-clamp-2">
+                        <div className="mt-4 text-center flex flex-col items-center">
+                            <CardTitle className="leading-snug text-base font-bold group-hover/card:text-primary transition-colors line-clamp-2">
                               {s.title}
                             </CardTitle>
                             
-                            <div className="flex items-center justify-between mt-5 pt-4 border-t border-border/50">
-                              <span className="text-xs text-muted-foreground font-medium flex items-center gap-1.5 opacity-80 group-hover/card:opacity-100 transition-opacity">
-                                <BookOpen className="h-3.5 w-3.5" />
+                            <div className="flex items-center justify-center w-full mt-3 pt-3 border-t border-border/50 gap-2">
+                              <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1.5 opacity-80 group-hover/card:opacity-100 transition-opacity">
+                                <BookOpen className="h-3 w-3" />
                                 {isTerms ? "تصفح المصطلحات" : "قراءة الوثيقة"}
                               </span>
-                              <ChevronLeft className="h-4 w-4 text-muted-foreground opacity-30 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all" />
+                              <ChevronLeft className="h-3.5 w-3.5 text-muted-foreground opacity-30 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all" />
                             </div>
                         </div>
                       </div>

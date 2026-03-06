@@ -24,7 +24,7 @@ export async function Shell({
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* Navbar */}
       <header className="fixed top-0 right-0 left-0 z-[1000] w-full border-b border-muted/50 bg-dark text-white shadow-sm">
-        <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1600px]`}>
+        <div className={`container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto max-w-[1920px]`}>
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center gap-2 transition-all hover:opacity-90">
                 <img src="/logo.png" alt="القاموس العسكري الموحد" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
@@ -100,7 +100,7 @@ export async function Shell({
 
       {/* Main Content */}
       <main className={`flex-1 ${isHome ? "" : "py-4 sm:py-8 pt-20 sm:pt-24 pb-24 md:pb-20"}`}>
-        <div className={isHome ? "w-full" : "container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1600px]"}>
+        <div className={isHome ? "w-full" : `container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1920px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
                {backTo && (
