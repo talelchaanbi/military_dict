@@ -19,6 +19,8 @@ import {
   type QuickTerm,
 } from "./quick-term-index-client";
 import { ProposalModal } from "./proposal-modal";
+import { TermsTableClient } from "@/components/terms/TermsTableClient";
+
 
 function safeInt(value: string) {
   const parsed = Number.parseInt(value, 10);
@@ -781,85 +783,30 @@ const renderRow = (t: TermRow) => {
               </div>
             </div>
           </aside>
-
-          <div className="flex-1 space-y-6">
-            {groupedTerms.map((group, idx) => (
-              <div key={group.id} id={group.id} className="group-section scroll-mt-24 rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
-                <div className="px-4 py-3 bg-muted/40">
-                  {group.subTitle && group.parentTitle ? (
-                    <div className="space-y-1">
-                      {(idx === 0 || groupedTerms[idx - 1]?.parentTitle !== group.parentTitle) && (
-                        <div className="text-xs font-semibold text-muted-foreground">{group.parentTitle}</div>
-                      )}
-                      <div className="text-sm font-semibold">{group.title}</div>
-                    </div>
-                  ) : (
-                    <div className="text-sm font-semibold">{group.title}</div>
-                  )}
-                </div>
-                <div className="overflow-x-auto">
-                  <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                        {columns.map((col) => (
-                          <div key={col.key} className={col.className}>{col.label}</div>
-                      ))}
-                  </div>
-
-                  {group.terms.length === 0 ? (
-                    <div className="p-6 text-center text-muted-foreground">
-                      لا توجد عناصر ضمن هذا العنوان.
-                    </div>
-                  ) : (
-                    <div className="min-w-[720px] divide-y divide-border">
-                      {group.terms.map((t: TermRow) => (
-                        <div
-                          key={t.id}
-                          id={`term-${t.id}`}
-                          className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
-                            highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
-                          }`}
-                        >
-                          {renderRow(t)}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
+          <div className="flex-1 min-w-0">
+              <TermsTableClient sectionTitle={section?.title} 
+                 terms={terms as any}
+                 groupedTerms={groupedTerms as any}
+                 columns={columns as any}
+                 isDep13SubSection={isDep13SubSection}
+                 canPropose={canPropose}
+                 highlightTermId={highlightTermId}
+                 canGroup={canGroup}
+                 descriptionCol={descriptionCol}
+              />
           </div>
         </div>
       ) : (
-        <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            {/* Table Header */}
-              <div className="min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                {columns.map((col) => (
-                      <div key={col.key} className={col.className}>{col.label}</div>
-                 ))}
-            </div>
-            
-            {/* Table Body */}
-            {terms.length === 0 ? (
-                <div className="p-12 text-center text-muted-foreground">
-                    لا توجد نتائج مطابقة للبحث.
-                </div>
-            ) : (
-                <div className="min-w-[720px] divide-y divide-border">
-                    {terms.map((t: TermRow) => (
-                    <div
-                        key={t.id}
-                        id={`term-${t.id}`}
-                        className={`scroll-mt-40 grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm hover:bg-muted/30 transition-colors items-start ${
-                          highlightTermId === t.id ? "bg-primary/10 dark:bg-primary/20 border-l-4 border-primary ring-2 ring-primary/30" : ""
-                        }`}
-                    >
-                       {renderRow(t)}
-                    </div>
-                    ))}
-                </div>
-            )}
-          </div>
-        </div>
+        <TermsTableClient sectionTitle={section?.title} 
+             terms={terms as any}
+             groupedTerms={groupedTerms as any}
+             columns={columns as any}
+             isDep13SubSection={isDep13SubSection}
+             canPropose={canPropose}
+             highlightTermId={highlightTermId}
+             canGroup={canGroup}
+             descriptionCol={descriptionCol}
+          />
       )}
 
       {/* Pagination */}

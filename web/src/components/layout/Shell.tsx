@@ -120,12 +120,8 @@ export async function Shell({
       <footer className="fixed bottom-0 right-0 left-0 z-[900] border-t border-border bg-background/95 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
         <div className="container flex flex-col items-center justify-center py-3 px-4 mx-auto max-w-[1600px]">
           <div className="text-center flex flex-col gap-1">
-            <div className="text-xs font-semibold text-foreground flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-              <span>الجمهورية التونسية</span>
-              <span className="hidden sm:inline text-muted-foreground/40">•</span>
-              <span>وزارة الدفاع الوطني</span>
-              <span className="hidden sm:inline text-muted-foreground/40">•</span>
-              <span>الإدارة العامّة للإشارة والإعلامية</span>
+            <div className="text-sm font-semibold text-foreground flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+              <span>القاموس العسكري الموحد</span>
             </div>
             <div className="text-[10px] text-muted-foreground dir-ltr font-mono">
               جميع الحقوق محفوظة &copy; {new Date().getFullYear()}

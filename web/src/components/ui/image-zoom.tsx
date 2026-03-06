@@ -74,7 +74,7 @@ export function ImageZoom({ src, alt, className, objectCover = false, cropBorder
                <img 
               src={src} 
               alt={alt} 
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-2xl"
+              className="w-[90vw] md:w-[600px] lg:w-[800px] h-auto max-h-[90vh] object-contain bg-white rounded-md shadow-2xl p-4"
             />
             </div>
           </div>

@@ -10,20 +10,20 @@
 
   <style>
     :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --sidebar: #1e293b;
-      --accent: #2563eb;
-      --border: #e2e8f0;
+      --bg: #ffffff;
+      --card: hsl(79, 20%, 98%);
+      --text: hsl(79, 19.5%, 20%);
+      --sidebar: #2e4933;
+      --accent: #d4af37;
+      --border: hsl(79, 19.5%, 85%);
     }
 
     body.dark {
-      --bg: #0b1220;
-      --card: #1f2937;
-      --text: #e5e7eb;
-      --sidebar: #020617;
-      --border: #374151;
+      --bg: hsl(79, 19.5%, 12%);
+      --card: hsl(79, 19.5%, 15%);
+      --text: hsl(79, 20%, 98%);
+      --sidebar: hsl(79, 19.5%, 15%);
+      --border: hsl(79, 19.5%, 25%);
     }
 
     * {
@@ -32,12 +32,12 @@
 
     body {
       margin: 0;
-      font-family: "Cairo", sans-serif;
+      font-family: 'Cairo', sans-serif;
       background: var(--bg);
       color: var(--text);
       display: flex;
       height: 100vh;
-      overflow: hidden;
+      overflow: hidden; /* Empêche le double scrollbar */
     }
 
     /* ===== SIDEBAR ===== */
@@ -62,7 +62,7 @@
     aside a {
       display: block;
       padding: 10px 12px;
-      color: #cbd5e1;
+      color: hsl(79, 19.5%, 70%);
       text-decoration: none;
       border-radius: 6px;
       margin-bottom: 5px;
@@ -99,7 +99,7 @@
       padding: 12px 15px;
       border-radius: 10px;
       border: 1px solid var(--border);
-      font-family: "Cairo";
+      font-family: 'Cairo';
       font-size: 16px;
       background: var(--card);
       color: var(--text);
@@ -113,13 +113,13 @@
       background: var(--accent);
       color: white;
       cursor: pointer;
-      font-family: "Cairo";
+      font-family: 'Cairo';
       font-weight: 700;
       transition: background 0.2s;
     }
     
     button:hover {
-      background: #1d4ed8;
+      background: #b5952f;
     }
 
     /* ===== CARD ===== */
@@ -144,7 +144,7 @@
       font-size: 19px;
       background: rgba(0, 0, 0, 0.02);
       border-bottom: 1px solid transparent;
-      list-style: none;
+      list-style: none; /* Cache la flèche par défaut sur certains navigateurs */
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -161,13 +161,13 @@
     
     details[open] summary {
       border-bottom-color: var(--border);
-      background: rgba(37, 99, 235, 0.1);
+      background: rgba(212, 175, 55, 0.15);
       color: var(--accent);
     }
 
     /* Flèche personnalisée */
     summary::after {
-      content: "+";
+      content: '+';
       font-size: 24px;
       font-weight: 300;
       transform: rotate(0deg);
@@ -187,7 +187,7 @@
     /* Styles du contenu original */
     .content p { margin: 12px 0; }
     .content strong { color: var(--accent); }
-    body.dark .content strong { color: #60a5fa; }
+    body.dark .content strong { color: #e6c863; } /* Bleu plus clair en mode sombre */
     
     .content ul, .content ol {
       padding-right: 25px;
@@ -198,27 +198,25 @@
       margin-bottom: 8px;
     }
     
-    /* Table Styles within Card */
-    .content table {
+    .table-container, .table-wrap {
+      overflow-x: auto;
+    }
+    table {
       width: 100%;
       border-collapse: collapse;
-      margin: 15px 0;
-      font-size: 15px;
+      margin-bottom: 20px;
     }
-    
-    .content th, .content td {
+    th, td {
       border: 1px solid var(--border);
       padding: 12px;
-      text-align: right;
+      text-align: center;
+      vertical-align: middle;
     }
-    
-    .content th {
-      background: rgba(0,0,0,0.03);
-      font-weight: 700;
-      color: var(--accent);
+    th {
+      background: rgba(0,0,0,0.05);
+      color: var(--text);
     }
-
-    body.dark .content th {
+    body.dark th {
       background: rgba(255,255,255,0.05);
     }
 
@@ -227,8 +225,49 @@
       aside { width: 100%; height: auto; overflow: visible;}
       main { padding: 15px; }
       .topbar { position: static; }
-      .content table { font-size: 14px; }
     }
+  
+    /* Image and Lightbox styles */
+    .content img {
+      height: 150px !important;
+      width: auto !important;
+      max-width: 100% !important;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.2s;
+      background: white;
+      padding: 5px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: inline-block;
+      margin: 10px;
+    }
+    .content img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+    #lightbox img {
+      height: 500px !important;
+      width: auto !important;
+      max-width: 90vw !important;
+      object-fit: contain;
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 0 !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
   </style>
 </head>
 
@@ -241,11 +280,11 @@
       🏠 العودة للقائمة الرئيسية
     </a>
 
-    <h2>📚 الفهرس</h2>
-    <a href="#general">عام (مقدمة)</a>
-    <a href="#scales">مقياس رسم الخرائط</a>
+        <h2>📚 الفهرس</h2>
+    <a href="#general">عام: الخرائط البحرية</a>
+    <a href="#scales">مقياس رسم الخرائط وأنواعها</a>
     <a href="#nav_maps">الخرائط الملاحية</a>
-    <a href="#sailing_inst">تعليمات الإبحار</a>
+    <a href="#sailing_inst">تعليمات الإبحار (دليل التخطيط)</a>
   </aside>
 
   <!-- ===== MAIN ===== -->
@@ -412,6 +451,24 @@
         if (e.key === THEME_KEY) applyTheme(getTheme());
       });
     })();
+  </script>
+
+
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="zoom">
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.content img').forEach(img => {
+        img.onclick = function(e) {
+          e.stopPropagation(); // Prevent triggering other clicks
+          const lb = document.getElementById('lightbox');
+          const lbImg = document.getElementById('lightbox-img');
+          lbImg.src = this.src;
+          lb.style.display = 'flex';
+        };
+      });
+    });
   </script>
 
 </body>

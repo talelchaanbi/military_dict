@@ -8,7 +8,7 @@ import {
   FileText, List, Search, LayoutGrid, List as ListIcon, BookOpen, 
   Shield, Users, Crosshair, Anchor, Plane, Truck, Activity, Radio, 
   Cpu, Database, Wrench, GraduationCap, Gavel, Scale, Globe, Target, Briefcase,
-  Zap, Navigation, Layers, Server, Map as MapIcon, Box, ChevronLeft
+  Zap, Navigation, Layers, Server, Map as MapIcon, Box, ChevronLeft, AlertTriangle
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -25,37 +25,22 @@ interface SectionsClientProps {
 }
 
 function getSectionIcon(number: number, title: string) {
-  const t = title ? title.toLowerCase() : "";
-  
-  if (t.includes("إمداد") || t.includes("لوجست") || t.includes("نقل") || t.includes("مركبات")) return Truck;
-  if (t.includes("طيران") || t.includes("جوي")) return Plane;
-  if (t.includes("بحر")) return Anchor;
-  if (t.includes("طب") || t.includes("صحة") || t.includes("علاج")) return Activity;
-  if (t.includes("إشارة") || t.includes("اتصال") || t.includes("لاسلكي")) return Radio;
-  if (t.includes("مهندس") || t.includes("صيانة") || t.includes("إنشاء")) return Wrench;
-  if (t.includes("حاسب") || t.includes("كمبيوتر") || t.includes("تقنية")) return Cpu;
-  if (t.includes("بيانات") || t.includes("معلومات")) return Database;
-  if (t.includes("تدريب") || t.includes("تعليم")) return GraduationCap;
-  if (t.includes("قانون") || t.includes("قضاء")) return Gavel;
-  if (t.includes("ملاحة") || t.includes("خريطة") || t.includes("مساحة")) return MapIcon;
-  if (t.includes("تذخیر") || t.includes("ذخیرة") || t.includes("سلاح")) return Crosshair;
-  if (t.includes("فرد") || t.includes("أفراد")) return Users;
-  if (t.includes("أمن") || t.includes("حراسة")) return Shield;
-
-  if (number === 1) return Users; 
-  if (number === 2) return Shield; 
-  if (number === 3) return Target; 
-  if (number === 4) return Truck; 
-  if (number === 5) return LayoutGrid;
-  if (number === 6) return Radio; 
-  if (number >= 1200 && number < 1300) return Layers;
-  if (number >= 1300) return Server;
-
-  if (number === 7) return GraduationCap;
-  if (number === 8) return Wrench;
-  if (number === 9) return Activity;
-
-  return Box;
+  switch (number) {
+    case 1: return Shield;
+    case 2: return Anchor;
+    case 3: return Plane;
+    case 4: return Navigation;
+    case 5: return Target;
+    case 6: return Zap;
+    case 7: return Crosshair;
+    case 8: return AlertTriangle;
+    case 9: return Radio;
+    case 10: return Truck;
+    case 11: return GraduationCap;
+    case 12: return MapIcon;
+    case 13: return Layers;
+    default: return Box;
+  }
 }
 
 export function SectionsClient({ sections }: SectionsClientProps) {
@@ -184,61 +169,80 @@ export function SectionsClient({ sections }: SectionsClientProps) {
                   className="h-full transform-gpu"
                 >
                   <Card className={cn(
-                    "h-full overflow-hidden border-border/40 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300",
-                    "bg-card hover:bg-card/80",
+                    "h-full overflow-hidden border-border/40 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 relative",
+                    "bg-gradient-to-b from-card to-card/50 hover:bg-card/80 group/card",
                     viewMode === "list" && "flex flex-row items-center p-3"
                   )}>
                     {viewMode === "grid" ? (
-                      <>
-                        {/* Gradient Line Top */}
+                      <div className="p-5 sm:p-6 flex flex-col h-full relative z-10 w-full">
+                        {/* Decorative Background Blur */}
                         <div className={cn(
-                          "h-1.5 w-full transition-all duration-300",
-                          isTerms ? "bg-primary/40 group-hover:bg-primary" : "bg-orange-500/40 group-hover:bg-orange-500"
+                          "absolute top-0 right-0 w-32 h-32 blur-3xl rounded-full opacity-[0.03] dark:opacity-10 -z-10 transition-opacity duration-500 group-hover/card:opacity-[0.08] dark:group-hover/card:opacity-30",
+                          isTerms ? "bg-primary" : "bg-orange-600"
                         )} />
-                        
-                        <CardHeader className="p-5 space-y-4">
-                          <div className="flex justify-between items-start">
+
+                        <div className="flex items-start justify-between mb-auto">
+                          <div className={cn(
+                            "flex items-center justify-center p-3 w-12 h-12 rounded-2xl transition-all duration-500 shadow-sm border",
+                            isTerms 
+                                ? "bg-primary/5 text-primary border-primary/20 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-primary/10 group-hover/card:shadow-primary/20" 
+                                : "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/10 dark:border-orange-800/50 dark:text-orange-400 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-orange-100 dark:group-hover/card:bg-orange-900/30 group-hover/card:shadow-orange-500/20"
+                          )}>
+                            <Icon className="h-6 w-6" strokeWidth={1.5} />
+                          </div>
+                          
+                          <div className="flex flex-col items-end gap-1">
                             <span className={cn(
-                              "text-xs font-bold px-3 py-1.5 rounded-md border transition-colors shadow-sm",
+                              "text-xs font-bold px-3 py-1 rounded-full border shadow-sm backdrop-blur-md transition-colors",
                               isTerms 
-                                ? "bg-primary/10 text-foreground border-primary/30 group-hover:bg-primary/20 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
-                                : "bg-orange-50 text-orange-700 border-orange-200 group-hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800"
+                                ? "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20"
+                                : "bg-orange-100/50 border-orange-200 text-orange-700 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-400"
                             )}>
                               القسم {s.number}
                             </span>
-                             <div className={cn(
-                               "p-2 rounded-lg transition-transform duration-300 group-hover:scale-110",
-                               isTerms ? "bg-primary/10 dark:bg-primary/20" : "bg-orange-50 dark:bg-orange-900/20"
-                             )}>
-                               <Icon className={cn(
-                                "h-5 w-5",
-                                 isTerms ? "text-primary dark:text-primary" : "text-orange-600 dark:text-orange-400"
-                              )} />
-                             </div>
+                            <span className="text-[10px] text-muted-foreground/70 font-medium px-2">
+                              {isTerms ? "مصطلحات" : "وثائق"}
+                            </span>
                           </div>
-                          <CardTitle className="leading-snug text-lg font-semibold group-hover:text-primary transition-colors text-right line-clamp-2">
-                            {s.title}
-                          </CardTitle>
-                        </CardHeader>
-                      </>
-                    ) : (
-                      /* List View Layout */
-                      <div className="flex items-center justify-between w-full px-2 py-1">
-                        <div className="flex items-center gap-4">
-                            <div className={cn(
-                              "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform group-hover:scale-105",
-                              isTerms 
-                                ? "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
-                                : "bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
-                            )}>
-                              <Icon className="h-6 w-6" />
-                            </div>
-                            <div>
-                                <span className="text-sm font-medium text-muted-foreground block text-right mb-0.5">القسم {s.number}</span>
-                                <h3 className="font-semibold text-base group-hover:text-primary transition-colors text-right line-clamp-1">{s.title}</h3>
+                        </div>
+                        
+                        <div className="mt-8">
+                            <CardTitle className="leading-relaxed text-lg font-bold group-hover/card:text-primary transition-colors text-right line-clamp-2">
+                              {s.title}
+                            </CardTitle>
+                            
+                            <div className="flex items-center justify-between mt-5 pt-4 border-t border-border/50">
+                              <span className="text-xs text-muted-foreground font-medium flex items-center gap-1.5 opacity-80 group-hover/card:opacity-100 transition-opacity">
+                                <BookOpen className="h-3.5 w-3.5" />
+                                {isTerms ? "تصفح المصطلحات" : "قراءة الوثيقة"}
+                              </span>
+                              <ChevronLeft className="h-4 w-4 text-muted-foreground opacity-30 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all" />
                             </div>
                         </div>
-                        <ChevronLeft className="h-5 w-5 text-muted-foreground opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-all" />
+                      </div>
+                    ) : (
+                      /* List View Layout */
+                      <div className="flex items-center justify-between w-full px-2 py-1 relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className={cn(
+                              "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform duration-500 group-hover/card:scale-105 group-hover/card:-rotate-3 group-hover/card:shadow-md",
+                              isTerms 
+                                ? "bg-primary/5 text-primary border-primary/20 group-hover/card:bg-primary/10 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
+                                : "bg-orange-50 text-orange-600 border-orange-100 group-hover/card:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
+                            )}>
+                              <Icon className="h-6 w-6" strokeWidth={1.5} />
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-muted/50 text-muted-foreground">القسم {s.number}</span>
+                                  <span className="text-[10px] text-muted-foreground/70">{isTerms ? "مصطلحات" : "وثائق"}</span>
+                                </div>
+                                <h3 className="font-semibold text-base group-hover/card:text-primary transition-colors text-right line-clamp-1">{s.title}</h3>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <ChevronLeft className="h-5 w-5 text-muted-foreground opacity-40 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all duration-300" />
+                        </div>
                       </div>
                     )}
                   </Card>
