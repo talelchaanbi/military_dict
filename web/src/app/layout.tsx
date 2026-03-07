@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cairo } from "next/font/google";
 import "./globals.css";
+import { WelcomeVideoModal } from "@/components/ui/welcome-video-modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <WelcomeVideoModal />
       </body>
     </html>
   );

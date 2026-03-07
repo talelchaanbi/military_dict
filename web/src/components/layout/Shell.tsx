@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, ChevronLeft, User, LogOut } from "lucide-react";
+import { BookOpen, ChevronLeft, User, LogOut, HelpCircle } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -72,6 +72,13 @@ export async function Shell({
           
           <div className="flex items-center gap-3">
             <ThemeToggle />
+            <Link
+              href="/guide"
+              title="دليل الاستخدام"
+              className="h-9 w-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 border border-white/25 hover:border-white/60 transition-all"
+            >
+              <HelpCircle className="h-4.5 w-4.5" />
+            </Link>
             {user ? (
               <div className="flex items-center gap-2">
                 <div className="hidden sm:flex flex-col items-end mr-2 text-white">
@@ -99,7 +106,7 @@ export async function Shell({
       </header>
 
       {/* Main Content */}
-      <main className={`flex-1 ${isHome ? "" : "py-4 sm:py-8 pt-20 sm:pt-24 pb-24 md:pb-20"}`}>
+      <main className={`flex-1 ${isHome ? "" : "py-4 sm:py-8 pt-20 sm:pt-24 pb-36 md:pb-32"}`}>
         <div className={isHome ? "w-full" : `container px-3 sm:px-6 lg:px-8 mx-auto max-w-[1920px]`}>
            {(title || backTo) && (
              <div className="mb-8 border-b border-border pb-4 flex flex-col gap-2">
