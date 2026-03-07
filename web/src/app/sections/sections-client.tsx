@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { motion } from "framer-motion";
 import { 
   FileText, List, Search, LayoutGrid, List as ListIcon, BookOpen, 
@@ -62,7 +62,7 @@ export function SectionsClient({ sections }: SectionsClientProps) {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" dir="rtl">
       
       {/* Search & Toolbar */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card/60 backdrop-blur-md p-4 rounded-xl shadow-sm border sticky top-20 z-10 transition-all hover:shadow-md">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card p-4 rounded-xl shadow-sm border sticky top-20 z-30 transition-shadow hover:shadow-md">
         
         <div className="relative w-full md:w-96 group">
           <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors z-10" />
@@ -70,7 +70,7 @@ export function SectionsClient({ sections }: SectionsClientProps) {
             placeholder="بحث (مثال: 'إمداد', '1205')..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pr-10 pl-4 bg-background/50 focus:bg-background transition-all border-muted-foreground/20 focus:border-primary/50 text-right w-full shadow-sm"
+            className="pr-10 pl-4 bg-background focus:bg-background transition-all border-muted-foreground/20 focus:border-primary/50 text-right w-full shadow-sm"
           />
         </div>
         
@@ -146,8 +146,10 @@ export function SectionsClient({ sections }: SectionsClientProps) {
       ) : (
         /* Results Grid/List */
         <div className={cn(
-          "grid gap-5 transition-all",
-          viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          "grid gap-4 transition-all",
+          viewMode === "grid"
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            : "grid-cols-1"
         )}>
           {filteredSections.map((s) => {
             const Icon = getSectionIcon(s.number, s.title);
@@ -157,105 +159,151 @@ export function SectionsClient({ sections }: SectionsClientProps) {
               <Link
                 key={s.number}
                 href={`/sections/${s.number}`}
-                className={cn(
-                  "group block",
-                  "focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background rounded-xl"
-                )}
+                className="group block focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background rounded-xl"
               >
                 <motion.div
-                  whileHover={{ y: -6, scale: 1.015 }}
-                  whileTap={{ scale: 0.99 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   className="h-full transform-gpu"
                 >
-                  <Card className={cn(
-                    "h-full overflow-hidden border-border/40 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 relative",
-                    "bg-gradient-to-b from-card to-card/50 hover:bg-card/80 group/card",
-                    viewMode === "list" && "flex flex-row items-center p-3"
-                  )}>
-                    {/* Background Logo */}
-                    <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none z-0">
-                      <Icon 
-                        strokeWidth={1.5}
-                        className={cn(
-                        "transition-all duration-500 -rotate-12 group-hover/card:-rotate-0 group-hover/card:scale-110",
-                        viewMode === "grid" ? "w-40 h-40" : "w-24 h-24",
-                        isTerms 
-                          ? "text-primary/20 group-hover/card:text-primary/40" 
-                          : "text-orange-500/20 dark:text-orange-400/20 group-hover/card:text-orange-500/40 dark:group-hover/card:text-orange-400/40"
+                  {viewMode === "grid" ? (
+                    /* ── GRID CARD ── */
+                    <div className={cn(
+                      "h-full flex flex-col rounded-xl border bg-card overflow-hidden",
+                      "shadow-sm group-hover:shadow-md transition-shadow duration-300",
+                      isTerms
+                        ? "group-hover:border-primary/50"
+                        : "group-hover:border-orange-400/50"
+                    )}>
+                      {/* Coloured top stripe */}
+                      <div className={cn(
+                        "h-1.5 w-full",
+                        isTerms ? "bg-primary" : "bg-orange-500"
                       )} />
-                    </div>
 
-                    {viewMode === "grid" ? (
-                      <div className="p-4 flex flex-col h-full relative z-10 w-full">
-                        {/* Decorative Background Blur */}
-                        <div className={cn(
-                          "absolute top-0 right-0 w-32 h-32 blur-3xl rounded-full opacity-10 dark:opacity-20 -z-10 transition-opacity duration-500 group-hover/card:opacity-25 dark:group-hover/card:opacity-40",
-                          isTerms ? "bg-primary" : "bg-orange-600"
-                        )} />
+                      <div className="relative flex flex-col flex-1 p-4 gap-3">
+                        {/* Background watermark logo */}
+                        <div className="absolute bottom-2 left-1 pointer-events-none select-none overflow-hidden">
+                          <Icon
+                            strokeWidth={1}
+                            className={cn(
+                              "w-28 h-28 -rotate-12 transition-all duration-500 group-hover:rotate-0 group-hover:scale-110",
+                              isTerms
+                                ? "text-primary/10 group-hover:text-primary/20"
+                                : "text-orange-500/10 group-hover:text-orange-500/20"
+                            )}
+                          />
+                        </div>
 
-                        <div className="flex items-start justify-between mb-auto">
+                        {/* Icon + badge row */}
+                        <div className="flex items-center justify-between">
                           <div className={cn(
-                            "flex items-center justify-center p-2.5 w-10 h-10 rounded-xl transition-all duration-500 shadow-sm border",
-                            isTerms 
-                                ? "bg-primary/5 text-primary border-primary/20 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-primary/10 group-hover/card:shadow-primary/20" 
-                                : "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/10 dark:border-orange-800/50 dark:text-orange-400 group-hover/card:scale-110 group-hover/card:-rotate-3 group-hover/card:bg-orange-100 dark:group-hover/card:bg-orange-900/30 group-hover/card:shadow-orange-500/20"
+                            "flex items-center justify-center w-11 h-11 rounded-xl border shadow-sm transition-transform duration-300 group-hover:scale-105",
+                            isTerms
+                              ? "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20"
+                              : "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
                           )}>
                             <Icon className="h-5 w-5" strokeWidth={1.5} />
                           </div>
-                          
-                          <div className="flex flex-col items-end gap-1">
-                            <span className={cn(
-                              "text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-sm backdrop-blur-md transition-colors",
-                              isTerms 
-                                ? "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20"
-                                : "bg-orange-100/50 border-orange-200 text-orange-700 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-400"
-                            )}>
-                              القسم {s.number}
-                            </span>
-                          </div>
+                          <span className={cn(
+                            "text-xs font-semibold px-2.5 py-1 rounded-full border",
+                            isTerms
+                              ? "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20"
+                              : "bg-orange-100 border-orange-200 text-orange-700 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-400"
+                          )}>
+                            {s.number}
+                          </span>
                         </div>
-                        
-                        <div className="mt-4 text-center flex flex-col items-center">
-                            <CardTitle className="leading-snug text-base font-bold group-hover/card:text-primary transition-colors line-clamp-2">
-                              {s.title}
-                            </CardTitle>
-                            
-                            <div className="flex items-center justify-center w-full mt-3 pt-3 border-t border-border/50 gap-2">
-                              <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1.5 opacity-80 group-hover/card:opacity-100 transition-opacity">
-                                <BookOpen className="h-3 w-3" />
-                                {isTerms ? "تصفح المصطلحات" : "قراءة الوثيقة"}
-                              </span>
-                              <ChevronLeft className="h-3.5 w-3.5 text-muted-foreground opacity-30 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all" />
-                            </div>
-                        </div>
-                      </div>
-                    ) : (
-                      /* List View Layout */
-                      <div className="flex items-center justify-between w-full px-2 py-1 relative z-10">
-                        <div className="flex items-center gap-4">
-                            <div className={cn(
-                              "h-12 w-12 rounded-xl flex items-center justify-center border shadow-sm transition-transform duration-500 group-hover/card:scale-105 group-hover/card:-rotate-3 group-hover/card:shadow-md",
-                              isTerms 
-                                ? "bg-primary/5 text-primary border-primary/20 group-hover/card:bg-primary/10 dark:bg-primary/20 dark:text-primary dark:border-primary/40"
-                                : "bg-orange-50 text-orange-600 border-orange-100 group-hover/card:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
-                            )}>
-                              <Icon className="h-6 w-6" strokeWidth={1.5} />
-                            </div>
-                            <div className="flex flex-col gap-0.5">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-muted/50 text-muted-foreground">القسم {s.number}</span>
-                                  <span className="text-[10px] text-muted-foreground/70">{isTerms ? "مصطلحات" : "وثائق"}</span>
-                                </div>
-                                <h3 className="font-semibold text-base group-hover/card:text-primary transition-colors text-right line-clamp-1">{s.title}</h3>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <ChevronLeft className="h-5 w-5 text-muted-foreground opacity-40 group-hover/card:opacity-100 group-hover/card:-translate-x-1 transition-all duration-300" />
+
+                        {/* Title */}
+                        <h3 className="text-sm font-bold leading-relaxed text-foreground group-hover:text-primary transition-colors text-center line-clamp-3 flex-1">
+                          {s.title}
+                        </h3>
+
+                        {/* Footer CTA */}
+                        <div className={cn(
+                          "flex items-center justify-between pt-3 border-t",
+                          isTerms ? "border-primary/10" : "border-orange-200/50 dark:border-orange-800/30"
+                        )}>
+                          <span className={cn(
+                            "text-[11px] font-medium flex items-center gap-1.5",
+                            isTerms ? "text-primary/70" : "text-orange-600/70 dark:text-orange-400/70"
+                          )}>
+                            <BookOpen className="h-3 w-3" />
+                            {isTerms ? "تصفح المصطلحات" : "قراءة الوثيقة"}
+                          </span>
+                          <ChevronLeft className={cn(
+                            "h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1",
+                            isTerms ? "text-primary/60" : "text-orange-500/60"
+                          )} />
                         </div>
                       </div>
-                    )}
-                  </Card>
+                    </div>
+                  ) : (
+                    /* ── LIST ROW ── */
+                    <div className={cn(
+                      "relative flex items-center gap-4 rounded-xl border bg-card px-4 py-3.5 overflow-hidden",
+                      "shadow-sm group-hover:shadow-md transition-all duration-300",
+                      isTerms
+                        ? "group-hover:border-primary/50"
+                        : "group-hover:border-orange-400/50"
+                    )}>
+                      {/* Background watermark logo */}
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none select-none">
+                        <Icon
+                          strokeWidth={1}
+                          className={cn(
+                            "w-16 h-16 -rotate-12 transition-all duration-500 group-hover:rotate-0 group-hover:scale-110",
+                            isTerms
+                              ? "text-primary/10 group-hover:text-primary/20"
+                              : "text-orange-500/10 group-hover:text-orange-500/20"
+                          )}
+                        />
+                      </div>
+                      {/* Left colored border accent */}
+                      <div className={cn(
+                        "self-stretch w-1 rounded-full flex-shrink-0",
+                        isTerms ? "bg-primary" : "bg-orange-500"
+                      )} />
+
+                      {/* Icon */}
+                      <div className={cn(
+                        "flex items-center justify-center w-12 h-12 rounded-xl border shadow-sm flex-shrink-0 transition-transform duration-300 group-hover:scale-105",
+                        isTerms
+                          ? "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20"
+                          : "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
+                      )}>
+                        <Icon className="h-6 w-6" strokeWidth={1.5} />
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex-1 min-w-0 text-right">
+                        <div className="flex items-center justify-end gap-2 mb-0.5">
+                          <span className="text-[11px] text-muted-foreground">
+                            {isTerms ? "مصطلحات" : "وثائق"}
+                          </span>
+                          <span className={cn(
+                            "text-xs font-bold px-2 py-0.5 rounded-md border",
+                            isTerms
+                              ? "bg-primary/10 border-primary/20 text-primary dark:bg-primary/20"
+                              : "bg-orange-100 border-orange-200 text-orange-700 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-400"
+                          )}>
+                            القسم {s.number}
+                          </span>
+                        </div>
+                        <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                          {s.title}
+                        </h3>
+                      </div>
+
+                      {/* Arrow */}
+                      <ChevronLeft className={cn(
+                        "h-5 w-5 flex-shrink-0 transition-all duration-300 group-hover:-translate-x-1",
+                        isTerms ? "text-primary/50" : "text-orange-500/50"
+                      )} />
+                    </div>
+                  )}
                 </motion.div>
               </Link>
             );

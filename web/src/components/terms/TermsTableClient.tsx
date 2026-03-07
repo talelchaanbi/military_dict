@@ -16,7 +16,8 @@ export function TermsTableClient({
   highlightTermId,
   canGroup,
   descriptionCol,
-  sectionTitle
+  sectionTitle,
+  hideGroupHeaders = false,
 }: any) {
   const [selectedMap, setSelectedMap] = useState<Record<number, any>>({});
   const selectedCount = Object.keys(selectedMap).length;
@@ -207,7 +208,7 @@ export function TermsTableClient({
         <h1>${sectionTitle || 'قسم بدون عنوان'}</h1>
         
         ${printGroups.map((group: any) => `
-          ${group.title ? `<div class="group-title">${group.title}</div>` : ''}
+          ${(group.title && !hideGroupHeaders) ? `<div class="group-title">${group.title}</div>` : ''}
           <table>
             <thead>
               <tr>
@@ -358,8 +359,10 @@ export function TermsTableClient({
 
        {canGroup ? (
          <div className="flex-1 space-y-6">
-            {groupedTerms.map((group: any, idx: number) => (
+            {groupedTerms.map((group: any, idx: number) => {
+              return (
               <div key={group.id} id={group.id} className="group-section scroll-mt-24 rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
+                {!hideGroupHeaders && (
                 <div className="px-4 py-3 bg-muted/40 flex justify-between items-center break-inside-avoid">
                   <div>
                     {group.subTitle && group.parentTitle ? (
@@ -384,6 +387,7 @@ export function TermsTableClient({
                     )}
                   </button>
                 </div>
+                )}
                 <div className="overflow-x-auto">
                   <div className={`min-w-[720px] grid grid-cols-12 gap-2 sm:gap-4 border-b bg-muted/50 px-3 sm:px-4 py-3 text-[11px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider ${isDep13SubSection ? "text-center items-center" : ""}`}>
                       {columns.map((col: any) => (
@@ -412,7 +416,8 @@ export function TermsTableClient({
                   )}
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
        ) : (
          <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">

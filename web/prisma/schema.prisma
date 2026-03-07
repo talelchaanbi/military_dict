@@ -64,6 +64,9 @@ model User {
   username          String                 @unique
   passwordHash      String
   role              UserRole               @default(reader)
+  isActive          Boolean                @default(true)
+  deletedAt         DateTime?
+  lastActiveAt      DateTime?
   createdAt         DateTime               @default(now())
   updatedAt         DateTime               @updatedAt
   proposals         AbbreviationProposal[] @relation("ProposalAuthor")

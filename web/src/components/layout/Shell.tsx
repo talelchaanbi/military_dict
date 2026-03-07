@@ -35,18 +35,18 @@ export async function Shell({
             </Link>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1 mr-6">
+            <nav className="hidden md:flex items-center gap-2 mr-6">
               <Link 
                 href="/sections" 
-                className="text-sm font-medium text-white/80 hover:text-secondary hover:bg-secondary/10 px-3 py-2 rounded-md transition-all flex items-center gap-2 active:bg-primary/20 active:text-primary"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/10 transition-all"
               >
-                <BookOpen className="h-4 w-4" />
+                <BookOpen className="h-4 w-4 shrink-0" />
                 <span>الأقسام</span>
               </Link>
               {isEditor && (
                 <Link
                   href="/editor/terms"
-                  className="text-sm font-medium text-white/80 hover:text-secondary hover:bg-secondary/10 px-3 py-2 rounded-md transition-all active:bg-primary/20 active:text-primary"
+                  className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/10 transition-all"
                 >
                   إدارة المصطلحات والرموز
                 </Link>
@@ -54,7 +54,7 @@ export async function Shell({
               {isEditor && (
                 <Link
                   href="/editor/proposals"
-                  className="text-sm font-medium text-white/80 hover:text-secondary hover:bg-secondary/10 px-3 py-2 rounded-md transition-all active:bg-primary/20 active:text-primary"
+                  className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/10 transition-all"
                 >
                   طلبات الاختصارات
                 </Link>
@@ -62,7 +62,7 @@ export async function Shell({
               {isAdmin && (
                 <Link
                   href="/admin/users"
-                  className="text-sm font-medium text-white/80 hover:text-secondary hover:bg-secondary/10 px-3 py-2 rounded-md transition-all active:bg-primary/20 active:text-primary"
+                  className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/10 transition-all"
                 >
                   المستخدمون
                 </Link>
@@ -76,7 +76,7 @@ export async function Shell({
               <div className="flex items-center gap-2">
                 <div className="hidden sm:flex flex-col items-end mr-2 text-white">
                    <span className="text-sm font-medium leading-none">{user.username}</span>
-                   <span className="text-xs text-white/70">{user.role === 'admin' ? 'مدير النظام' : user.role === 'editor' ? 'محرر' : 'مستخدم'}</span>
+                   <span className="text-xs text-white/70">{user.role === 'admin' ? 'مدير النظام' : user.role === 'editor' ? 'معالج البيانات' : 'مستخدم'}</span>
                 </div>
                 <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
                    <User className="h-4 w-4" />

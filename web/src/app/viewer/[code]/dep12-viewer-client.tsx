@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
-import { Search, FileText, Map as MapIcon, Sparkles, ChevronLeft, Zap, Layers, Anchor, Rocket, Target, Flag, Shield, Plane } from "lucide-react";
+import { Search, FileText, Map as MapIcon, ChevronLeft, Zap, Layers, Anchor, Rocket, Target, Flag, Shield, Plane } from "lucide-react";
 import { BackToTop } from "@/components/ui/back-to-top";
 
 export type Dep12DocItem = {
@@ -61,10 +61,6 @@ export function Dep12ViewerClient({
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold tracking-widest text-xs uppercase shadow-sm">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>مستكشف دليل الذخيرة والوثائق</span>
-            </div>
             <h1 className="text-3xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-l from-foreground to-foreground/70 tracking-tight leading-tight">
               {title}
             </h1>

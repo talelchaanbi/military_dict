@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
     const user = await prisma.user.findUnique({
       where: { username },
-      select: { id: true, passwordHash: true, role: true },
+      select: { id: true, passwordHash: true, role: true, isActive: true, deletedAt: true },
     });
 
     // Timing attack mitigation: ensure consistent response time roughly
@@ -46,7 +46,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
+    // Block deleted or deactivated accounts
+    if (user.deletedAt) {
+      return NextResponse.json({ error: "هذا الحساب محذوف" }, { status: 403 });
+    }
+    if (!user.isActive) {
+      return NextResponse.json({ error: "هذا الحساب معطل، تواصل مع المدير" }, { status: 403 });
+    }
+
     await createSession({ userId: user.id, role: user.role });
+
+    // Track last active time
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastActiveAt: new Date() },
+    });
 
     return NextResponse.json({ ok: true });
 

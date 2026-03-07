@@ -431,6 +431,13 @@ export default async function SectionPage({
       }
   }
 
+  // If the only displayed group has the same title as the section → it is redundant, hide the header
+  const normTitle = (s: string) => (s || "").trim().replace(/\s+/g, " ").replace(/ـ/g, "");
+  const hideGroupHeaders =
+    canGroup &&
+    groupedTerms.length === 1 &&
+    normTitle(groupedTerms[0]?.title || "") === normTitle(section.title);
+
   const navItems = canGroup
     ? (() => {
         const items: Array<{ id: string; title: string; children?: Array<{ id: string; title: string }> }> = [];
@@ -747,7 +754,7 @@ const renderRow = (t: TermRow) => {
       {canGroup ? (
         <div className="flex flex-col xl:flex-row gap-6">
           {/* Right Sidebar (First half of index) */}
-          <aside className="xl:w-[280px] shrink-0 hidden xl:block">
+          {!hideGroupHeaders && <aside className="xl:w-[280px] shrink-0 hidden xl:block">
             <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar shadow-sm">
               <div className="flex flex-col gap-3">
                 {navItems.slice(0, Math.ceil(navItems.length / 2)).map((item) => (
@@ -778,12 +785,12 @@ const renderRow = (t: TermRow) => {
                 ))}
               </div>
             </div>
-          </aside>
+          </aside>}
 
           {/* Main Content (Table) */}
           <div className="flex-1 min-w-0">
              {/* Mobile/Tablet Fallback Index (Shows when sidebars are hidden) */}
-             <div className="xl:hidden mb-6 rounded-xl border bg-card/90 text-card-foreground p-5 shadow-sm">
+             {!hideGroupHeaders && <div className="xl:hidden mb-6 rounded-xl border bg-card/90 text-card-foreground p-5 shadow-sm">
                 <div className="text-sm font-bold text-primary mb-4 pb-3 border-b border-border/50 uppercase tracking-wider">
                   الفهرس السريع
                 </div>
@@ -794,7 +801,7 @@ const renderRow = (t: TermRow) => {
                     </a>
                   ))}
                 </div>
-             </div>
+             </div>}
 
               <TermsTableClient sectionTitle={section?.title} 
                  terms={terms as any}
@@ -805,11 +812,12 @@ const renderRow = (t: TermRow) => {
                  highlightTermId={highlightTermId}
                  canGroup={canGroup}
                  descriptionCol={descriptionCol}
+                 hideGroupHeaders={hideGroupHeaders}
               />
           </div>
 
           {/* Left Sidebar (Second half of index) */}
-          <aside className="xl:w-[280px] shrink-0 hidden xl:block">
+          {!hideGroupHeaders && <aside className="xl:w-[280px] shrink-0 hidden xl:block">
             <div className="rounded-xl border bg-card/90 text-card-foreground backdrop-blur p-4 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar shadow-sm">
               <div className="flex flex-col gap-3">
                 {navItems.slice(Math.ceil(navItems.length / 2)).map((item) => (
@@ -840,7 +848,7 @@ const renderRow = (t: TermRow) => {
                 ))}
               </div>
             </div>
-          </aside>
+          </aside>}
         </div>
       ) : (
         <TermsTableClient sectionTitle={section?.title} 
@@ -852,6 +860,7 @@ const renderRow = (t: TermRow) => {
              highlightTermId={highlightTermId}
              canGroup={canGroup}
              descriptionCol={descriptionCol}
+             hideGroupHeaders={hideGroupHeaders}
           />
       )}
 

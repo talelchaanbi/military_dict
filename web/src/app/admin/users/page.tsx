@@ -3,10 +3,10 @@ import { requireRole } from "@/lib/auth";
 import AdminUsersClient from "./users-client";
 
 export default async function AdminUsersPage() {
-  await requireRole(["admin"]);
+  const session = await requireRole(["admin"]);
   return (
     <Shell title="إدارة المستخدمين" backTo="/sections">
-      <AdminUsersClient />
+      <AdminUsersClient currentUserId={session.userId} />
     </Shell>
   );
 }
