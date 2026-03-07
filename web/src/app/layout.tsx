@@ -18,7 +18,7 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "القاموس العسكري",
+  title: "القاموس العسكري الموحد",
   description: "قاموس وموسوعة مصطلحات ووثائق عسكرية",
   icons: {
     icon: "/logo.png",

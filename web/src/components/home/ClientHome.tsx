@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const TRENDING_TERMS = ["استطلاع", "مناورة", "إمداد لوجستي", "عمليات خاصة", "دفاع جوي"];
+const TRENDING_TERMS = ["القوات المسلحة",  "فرقة", "هيئة الاستخبارات", "إدارة الاستطلاع", "كتيبة"];
 
 export function ClientHome({ initialSearchQuery = "" }: { initialSearchQuery?: string }) {
   const router = useRouter();
